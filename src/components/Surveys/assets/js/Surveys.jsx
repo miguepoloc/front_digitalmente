@@ -398,7 +398,7 @@ class Surveys {
           surveyRecent = objSurvey;
         }
       });
-    } 
+    }
   }
 
   /**
@@ -431,4 +431,4 @@ class Surveys {
   }
 }
 
-module.exports = { Surveys }
+module.exports = { default: Surveys }
