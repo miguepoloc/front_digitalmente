@@ -1,0 +1,50 @@
+.buttonShake{
+    position:fixed;
+    width: 50px;
+    height:50px;
+    background-color: #fc8890;
+    border-radius:5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow: hidden;
+    z-index: 12;
+    /*Por la seccion de objetivos.*/
+    -webkit-box-shadow: 4px 4px 37px -12px rgba(0, 0, 0, 0.5);
+    box-shadow: 4px 4px 37px -12px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+  
+.bottomRight{
+    bottom:10px;
+    right:10px;
+  }
+  
+  .topRight{
+    top:100px;
+    right:10px;
+  }
+
+
+.shake:hover {
+    animation: shake 1s;
+    animation-iteration-count: infinite;
+  }
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-2px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(2px, 0, 0);
+  }
+  }

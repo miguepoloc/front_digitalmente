@@ -1,0 +1,53 @@
+$ColorLightBlue: #D5F5F9;
+$ColorDarkBlue: #00659D;
+$ColorNaranja: #fc8890;
+
+
+
+.bg-naranja{
+    background-color: $ColorNaranja;
+}
+
+.fill-naranja{
+    fill: $ColorNaranja;
+}
+
+.text-darkBlue{
+    color: $ColorDarkBlue;
+}
+
+.bg-darkBlue{
+    background-color: $ColorDarkBlue;
+}
+
+.fill-darkBlue{
+    fill: $ColorDarkBlue !important;
+}
+
+.text-lightBlue{
+    color: $ColorLightBlue;
+}
+
+.bg-lightBlue{
+    background-color: $ColorLightBlue;
+}
+
+.fill-lightBlue{
+    fill: $ColorLightBlue;
+}
+
+.waveTop{
+    margin-bottom: -1% !important;
+}
+
+.waveBottom{
+    margin-top: -4% !important;
+}
+body {
+    width: 100% !important;
+}
+
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}

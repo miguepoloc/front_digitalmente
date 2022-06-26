@@ -1,0 +1,41 @@
+.buttonFixed{
+  position:fixed;
+  width: 50px;
+  height:50px;
+  background-color: #fc8890;
+  border-radius:5px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow: hidden;
+  z-index: 12;
+  /*Por la seccion de objetivos.*/
+  -webkit-box-shadow: 4px 4px 37px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 37px -12px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.buttonFixed_sgr{
+position: fixed;
+    width: 50px;
+    height: 50px;
+    // background-color: #8a88fc;
+    background-color:#fc8890;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 12;
+    -webkit-box-shadow: 4px 4px 37px -12px rgb(0 0 0 / 50%);
+    box-shadow: 4px 4px 37px -12px rgb(0 0 0 / 50%);
+    cursor: pointer;
+}
+.bottomRight{
+  bottom:10px;
+  right:10px;
+}
+
+.topRight{
+  top:100px;
+  right:10px;
+}

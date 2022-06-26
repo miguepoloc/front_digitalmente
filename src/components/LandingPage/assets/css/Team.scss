@@ -1,0 +1,14 @@
+.text_Team{
+    font-size: 1.4em;
+}
+
+.img_Team{
+    width: 100% !important;
+}
+
+@media (max-width: 992px) {
+    .img_Team {
+       width:55% !important;
+       margin-bottom: 3%;
+    }
+  }

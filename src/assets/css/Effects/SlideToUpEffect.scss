@@ -1,0 +1,19 @@
+.slideToUp {
+    animation-duration: .8s;
+    animation-name: slideUp;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes slideUp {
+    from {
+      margin-bottom: 0%;
+    }
+  
+    50% {
+      margin-top: 120%;
+    }
+  
+    to {
+      margin-bottom: 200%;
+    }
+  }

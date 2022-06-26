@@ -1,0 +1,63 @@
+.imgLogo_aboutEstrategy {
+    width: 80%;
+}
+
+.title_aboutEstrategy {
+    margin-bottom: -5.4%;
+}
+
+.ganso_aboutEstrategy {
+    position: absolute;
+    left: -17px;
+    width: 180px;
+    bottom: 133px;
+}
+
+
+.othersPj_aboutEstrategy {
+    position: absolute;
+    right: 9px;
+    width: 250px;
+    bottom: 93px;
+}
+
+@media (max-width: 1400px) {
+    .ganso_aboutEstrategy {
+
+        position: absolute;
+        left: -17px;
+        width: 180px;
+        bottom: 78px;
+
+    }
+
+
+    .othersPj_aboutEstrategy {
+        position: absolute;
+        right: 9px;
+        width: 250px;
+        bottom: -18px;
+    }
+}
+
+@media (max-width: 990px) {
+    .imgLogo_aboutEstrategy {
+        width: 60%;
+    }
+}
+
+@media (min-width: 1600px) {
+    .ganso_aboutEstrategy {
+        position: absolute;
+        left: -17px;
+        width: 260px;
+        bottom: 103px;
+    }
+
+    .othersPj_aboutEstrategy {
+    position: absolute;
+    right: 9px;
+    width: 300px;
+    bottom: 21px;
+    }
+}

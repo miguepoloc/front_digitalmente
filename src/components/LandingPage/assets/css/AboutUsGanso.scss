@@ -1,0 +1,15 @@
+.img_aboutUsGanso{
+    width: 100% !important;
+  }
+
+@media (max-width:990px) {
+    .img_aboutUsGanso {
+        width: 60% !important;
+    }
+}
+
+@media (min-width: 990px) and (max-width:1400px) {
+  .img_aboutUsGanso {
+      width: 80% !important;
+  }
+}

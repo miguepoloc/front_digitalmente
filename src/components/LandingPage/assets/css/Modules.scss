@@ -1,0 +1,161 @@
+
+
+$ColorSection_modules: rgb(0,101,157);
+$color_card_relax : #c9e26591;
+$color_card_misEmociones: #b274c19e;
+$color_card_piensalo: #14a0e19e;
+$color_card_misHabilidades: #ffc500a3;
+$color_card_moduloAutoevaluativo: #f4f2ee73;
+
+
+
+.modules_cards{
+  padding: 2rem !important;
+  color: white;
+  border-radius: 0.3rem!important;
+  margin: 0.25rem!important;
+}
+
+.card_relax{
+  background-color: $color_card_relax;
+}
+
+.card_misEmociones{
+  background-color: $color_card_misEmociones;
+}
+
+.card_piensalo{
+  background-color:$color_card_piensalo ;
+}
+
+.card_misHabilidades{
+  background-color: $color_card_misHabilidades;
+}
+
+.card_moduloAutoevaluativo{
+  background-color: $color_card_moduloAutoevaluativo ;
+}
+
+.content-103{
+	background: $ColorSection_modules;
+	padding-bottom:50px;
+}
+
+.imgItem{
+  width: 100%;
+}
+
+.imgItemLarge{
+  width: 40%;
+}
+
+.content-103 .sercies-title{
+	text-align:center;
+	padding: 50px 0;
+}
+
+.service-post {
+  background: #fff;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 12;
+  margin-bottom: 30px;
+  -moz-box-shadow: 0 5px 4px -4px rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 5px 4px -4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 5px 4px -4px rgba(0, 0, 0, 0.08);
+	border-radius:25px;
+}
+.content-103 .service-content {
+  position: relative;
+  z-index: 13;
+}
+.content-103 .service-icon {
+  margin: 10px 0 20px 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  text-align: center;
+  border: 2px solid #00acc1;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 50px;
+  -moz-transition: color, 250ms;
+  -o-transition: color, 250ms;
+  -webkit-transition: color, 250ms;
+  transition: color, 250ms;
+}
+.content-103 .service-post:hover .service-icon {
+  border-color: #fff;
+}
+.content-103 .service-icon i {
+  font-size: 18px;
+  color: #00acc1;
+}
+.content-103 .service-post:hover .service-icon i {
+  color: #fff;
+}
+.content-103 .service-title {
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 15px;
+  -moz-transition: color, 250ms;
+  -o-transition: color, 250ms;
+  -webkit-transition: color, 250ms;
+  transition: color, 250ms;
+
+}
+.content-103 .service-post:hover .service-title {
+  color: #fff;
+}
+.content-103 .service-description {
+  -moz-transition: color, 250ms;
+  -o-transition: color, 250ms;
+  -webkit-transition: color, 250ms;
+  transition: color, 250ms;
+}
+.content-103 .service-post:hover .service-description {
+  color: #fff;
+}
+
+
+.content-103 .service-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  width: 100%;
+  height: 0px;
+  background: #00acc1;
+  -moz-transition: width, 250ms;
+  -o-transition: width, 250ms;
+  -webkit-transition: width, 250ms;
+  transition: width, 250ms;
+	border-radius:25px;
+}
+/*hover-background-color effect*/
+.content-103 .service-post:hover .service-hover {
+  height: 100%;
+}
+
+@media (max-width:765px) {
+  .imgItem {
+      width: 40% !important;
+  }
+}
+@media (min-width:765px) and(max-width:990px) {
+  .imgItem {
+      width: 60% !important;
+  }
+}
+
+@media (min-width: 990px) and (max-width:1400px) {
+.imgItem {
+    width: 90% !important;
+}
+}
+@media (min-width:1401px) {
+.imgItem {
+    width: 100% !important;
+}}
