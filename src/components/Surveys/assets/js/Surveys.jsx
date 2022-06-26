@@ -2,7 +2,7 @@ const { Question } = require('./Question');
 const { Survey } = require('./Survey')
 const { SurveysLocalStorage } = require('./Surveys_localStorage')
 
-export class Surveys {
+class Surveys {
 
   static id_user
 
@@ -430,3 +430,5 @@ export class Surveys {
     return json;
   }
 }
+
+module.exports = { Surveys }
