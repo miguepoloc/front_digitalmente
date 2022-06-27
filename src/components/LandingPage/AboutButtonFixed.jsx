@@ -5,7 +5,7 @@ import '../../assets/css/ButtonFixed.scss'
 import { ImArrowRight } from 'react-icons/im'
 import { BsFillChatFill } from 'react-icons/bs'
 export const AboutButtonFixed = ({ section }) => {
-  return (
+    return (
         <section className="mt-lg-5 mt-md-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className='waveTop'><path className='fill-darkBlue' d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,133.3C672,107,768,85,864,80C960,75,1056,85,1152,96C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
             <div className="bg_aboutButtonFixed" id={section.id}>
@@ -15,7 +15,11 @@ export const AboutButtonFixed = ({ section }) => {
                     </div>
                     <div className="row">
                         <div className=" col-lg-4 col-md-12  col-12 justify-content-center align-self-center text-center mx-auto">
-                            <img src={imgGanso.explicando} className="ganso_aboutUs" />
+                            <img
+                                src={imgGanso.explicando}
+                                className="ganso_aboutUs"
+                                alt="ganso"
+                            />
                         </div>
                         <div className=" col-lg-7 col-md-12 mt-md-0 mt-3 col-12 justify-content-center align-self-center text-white mb-2">
 
@@ -48,5 +52,5 @@ export const AboutButtonFixed = ({ section }) => {
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className='waveBottom'><path className='fill-darkBlue' d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,133.3C672,107,768,85,864,80C960,75,1056,85,1152,96C1248,107,1344,117,1392,122.7L1440,128L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
         </section>
-  )
+    )
 }

@@ -15,7 +15,7 @@ export const initialOptions = {
     select_acciones_0: -1,
     select_acciones_1: -1,
     select_acciones_2: -1
-  };
+};
 
 export const section1 = {
     name: "Seccion1",
@@ -264,14 +264,14 @@ export const areUniqueValue = (arr) => {
 
 export const areValidValues = (arr) => {
     for (const value of arr) {
-        if (value == -1) {
+        if (value === -1) {
             return false;
         }
     }
     return true;
 }
 
-export const areCorrectAnswers = (arr, column,activityIndex) => {
+export const areCorrectAnswers = (arr, column, activityIndex) => {
     for (const value of arr) {
         if (!seccion2.ejercicios[activityIndex][column][value].isCorrect) {
             return false;

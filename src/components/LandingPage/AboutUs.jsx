@@ -2,14 +2,18 @@ import React from 'react'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import './assets/css/AboutUs.scss'
 const AboutUs = ({ section }) => {
-  return (
+    return (
         <>
             <section id={section.id} className="mt-lg-5 mt-md-2">
                 <div className="aboutUs">
                     <div className="container pt-md-5">
                         <div className="row">
                             <div className=" col-lg-4 col-md-12  col-12 justify-content-center align-self-center text-center mx-auto">
-                                <img src={imgGanso.pensando} className="ganso_aboutUs" />
+                                <img
+                                    src={imgGanso.pensando}
+                                    className="ganso_aboutUs"
+                                    alt="ganso"
+                                />
                             </div>
                             <div className=" col-lg-8 col-md-12 mt-md-0 mt-3 col-12 justify-content-center align-self-center">
                                 <h3 className="font-Geomanist display-5 fw-bold text-center text-darkBlue mb-4 ">¿Qué es DigitalMente?</h3>
@@ -31,7 +35,7 @@ const AboutUs = ({ section }) => {
                 </div>
             </section>
         </>
-  )
+    )
 }
 
 export default AboutUs

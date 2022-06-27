@@ -9,26 +9,26 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 
 const Schema = Yup.object().shape({
-  Texto1: Yup.string()
-    .min(2, 'Demasiado corto')
-    .max(50, 'Demasiado largo')
-    .required('Es necesario llenar esta información'),
-  Texto2: Yup.string()
-    .min(2, 'Demasiado corto')
-    .max(50, 'Demasiado largo')
-    .required('Es necesario llenar esta información')
+    Texto1: Yup.string()
+        .min(2, 'Demasiado corto')
+        .max(50, 'Demasiado largo')
+        .required('Es necesario llenar esta información'),
+    Texto2: Yup.string()
+        .min(2, 'Demasiado corto')
+        .max(50, 'Demasiado largo')
+        .required('Es necesario llenar esta información')
 })
 
 const MisEstrategias = () => {
-  const cantidad = section4_1.activities.length
-  console.log(cantidad)
-  const color = '#4cbeff'
+    const cantidad = section4_1.activities.length
+    console.log(cantidad)
+    const color = '#4cbeff'
 
-  useEffect(() => { setColorSelect(color) }, [])
+    useEffect(() => { setColorSelect(color) }, [])
 
-  const [activityIndex, setActivityIndex] = useState(0)
+    const [activityIndex, setActivityIndex] = useState(0)
 
-  return (
+    return (
 
         <div className="container">
             <div className="row">
@@ -38,6 +38,7 @@ const MisEstrategias = () => {
                             style={{ width: '150px', height: '150px' }}
                             className="card-img-left flex-auto d-block "
                             src={ganso_lupa_celular}
+                            alt="ganso_lupa_celular"
                         />
                         <div className="card-body d-flex flex-column align-items-start justify-content-center">
                             <h5 className="card-title">Actividad 4.1</h5>
@@ -74,20 +75,20 @@ const MisEstrategias = () => {
             <div className="container">
                 <Formik
                     initialValues={{
-                      Texto1: '',
-                      Texto2: ''
+                        Texto1: '',
+                        Texto2: ''
                     }}
                     validationSchema={Schema}
                     onSubmit={(values, { resetForm }) => {
-                      console.log(values)
-                      RetroalimentacionAlert(undefined, section4_1.activities[activityIndex].text).then(function () {
-                        if (activityIndex + 1 < cantidad) {
-                          setActivityIndex(activityIndex + 1)
-                        } else {
-                          console.log('Final')
-                        }
-                      })
-                      resetForm()
+                        console.log(values)
+                        RetroalimentacionAlert(undefined, section4_1.activities[activityIndex].text).then(function () {
+                            if (activityIndex + 1 < cantidad) {
+                                setActivityIndex(activityIndex + 1)
+                            } else {
+                                console.log('Final')
+                            }
+                        })
+                        resetForm()
                     }}
                 >
                     {({ errors, touched }) => (
@@ -101,6 +102,7 @@ const MisEstrategias = () => {
                                         style={{ width: '100%' }}
                                         className="card-img-left flex-auto d-block mx-auto"
                                         src={section4_1.activities[activityIndex].imagen}
+                                        alt="imagen_actividad"
                                     />
                                 </div>
                                 <div className="col-sm mb-4">
@@ -116,14 +118,14 @@ const MisEstrategias = () => {
                                         <div className="float-left d-flex flex-column" key={'AnswerActivity' + activityIndex}>
                                             <Field name="Texto1" as="textarea" rows="3" />
                                             {errors.Texto1 && touched.Texto1
-                                              ? (
+                                                ? (
                                                     <div
                                                         style={{ color: 'red' }}
                                                     >
                                                         {errors.Texto1}
                                                     </div>
                                                 )
-                                              : null}
+                                                : null}
                                         </div>
                                     </div>
                                 </div>
@@ -140,14 +142,14 @@ const MisEstrategias = () => {
                                         <div className="float-left d-flex flex-column" key={'AnswerActivity' + activityIndex}>
                                             <Field name="Texto2" as="textarea" rows="3" />
                                             {errors.Texto2 && touched.Texto2
-                                              ? (
+                                                ? (
                                                     <div
                                                         style={{ color: 'red' }}
                                                     >
                                                         {errors.Texto2}
                                                     </div>
                                                 )
-                                              : null}
+                                                : null}
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +171,7 @@ const MisEstrategias = () => {
             </div>
 
         </div>
-  )
+    )
 }
 
 export default MisEstrategias

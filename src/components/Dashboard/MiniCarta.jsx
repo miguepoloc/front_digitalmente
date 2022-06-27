@@ -1,7 +1,7 @@
 import React from 'react'
 
 const MiniCarta = () => {
-  return (
+    return (
         <>
             <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                 <div className="card">
@@ -26,7 +26,7 @@ const MiniCarta = () => {
                 </div>
             </div>
         </>
-  )
+    )
 }
 
 export default MiniCarta

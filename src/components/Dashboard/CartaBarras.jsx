@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CartaBarras = () => {
-  return (
+    return (
         <>
             <div className="col-lg-5 mb-lg-0 mb-4">
                 <div className="card z-index-2">
@@ -154,7 +154,7 @@ const CartaBarras = () => {
                 </div>
             </div>
         </>
-  )
+    )
 }
 
 export default CartaBarras

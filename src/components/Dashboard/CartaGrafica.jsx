@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CartaGrafica = () => {
-  return (
+    return (
         <>
             <div className="col-lg-7">
                 <div className="card z-index-2">
@@ -20,7 +20,7 @@ const CartaGrafica = () => {
                 </div>
             </div>
         </>
-  )
+    )
 }
 
 export default CartaGrafica

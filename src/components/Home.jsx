@@ -5,7 +5,7 @@ import Logo from '../assets/img/logo.svg'
 import '../assets/css/Home.scss'
 
 const Home = ({ style, section }) => {
-  return (
+    return (
         <>
             <section id={section.id}>
                 <div className="hero">
@@ -16,9 +16,10 @@ const Home = ({ style, section }) => {
                         {
                             // Esto es temporal mientras se decide cual es la mejor idea para el inicio.
                             (() => {
-                              switch (style) {
-                                case 'onlyLogo':
-                                  return (
+                                // eslint-disable-next-line default-case
+                                switch (style) {
+                                    case 'onlyLogo':
+                                        return (
                                             <div className="logo">
                                                 <img
                                                     src={Logo}
@@ -26,9 +27,9 @@ const Home = ({ style, section }) => {
                                                     alt=""
                                                 />
                                             </div>
-                                  )
-                                case 'onlyText':
-                                  return (
+                                        )
+                                    case 'onlyText':
+                                        return (
                                             <div className="use_home_grid">
                                                 <h1 className="title_home">
                                                     Digitalmente
@@ -37,9 +38,9 @@ const Home = ({ style, section }) => {
                                                     Plataforma de salud mental
                                                 </p>
                                             </div>
-                                  )
-                                case 'oneCharacter':
-                                  return (
+                                        )
+                                    case 'oneCharacter':
+                                        return (
                                             <div className="image_home">
                                                 <img
                                                     src="img/personajeHome.svg"
@@ -47,9 +48,9 @@ const Home = ({ style, section }) => {
                                                     alt="Logotipo del proyecto"
                                                 />
                                             </div>
-                                  )
-                                case 'twoCharacters':
-                                  return (
+                                        )
+                                    case 'twoCharacters':
+                                        return (
                                             <>
                                                 <div className="image_home">
                                                     <img
@@ -66,8 +67,8 @@ const Home = ({ style, section }) => {
                                                     />
                                                 </div>
                                             </>
-                                  )
-                              }
+                                        )
+                                }
                             })()
                         }
                         {/* <div className="hero" id="particles-js"> */}
@@ -80,11 +81,11 @@ const Home = ({ style, section }) => {
                 </div>
             </section>
         </>
-  )
+    )
 }
 
 Home.propTypes = {
-  style: PropTypes.string
+    style: PropTypes.string
 }
 
 export default Home

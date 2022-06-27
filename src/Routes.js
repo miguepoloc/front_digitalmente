@@ -18,103 +18,103 @@ const PasswordReset = lazy(() => import('./pages/PasswordReset'))
 const LoadingFallback = () => <Loading />
 
 const AuthenticatedRoute = ({ children, ...rest }) => {
-  const auth = useContext(AuthContext)
-  // console.log(auth.isAuthenticated())
-  return (
-    <Route
-      {...rest}
-      render={() =>
-        auth.isAuthenticated()
-          ? (children)
-          : (
-            <Redirect to="/login" />)
-      }
-    />
-  )
+    const auth = useContext(AuthContext)
+    // console.log(auth.isAuthenticated())
+    return (
+        <Route
+            {...rest}
+            render={() =>
+                auth.isAuthenticated()
+                    ? (children)
+                    : (
+                        <Redirect to="/login" />)
+            }
+        />
+    )
 }
 
 const LoginRoute = ({ children, ...rest }) => {
-  const auth = useContext(AuthContext)
-  return (
-    <Route
-      {...rest}
-      render={() =>
-        auth.isAuthenticated()
-          ? (<Redirect to="/dashboard" />)
-          : (children)
-      }
-    />
-  )
+    const auth = useContext(AuthContext)
+    return (
+        <Route
+            {...rest}
+            render={() =>
+                auth.isAuthenticated()
+                    ? (<Redirect to="/dashboard" />)
+                    : (children)
+            }
+        />
+    )
 }
 
 const AdminRoute = ({ children, ...rest }) => {
-  const auth = useContext(AuthContext)
-  return (
-    <Route
-      {...rest}
-      render={() =>
-        auth.isAuthenticated() && auth.isAdmin()
-          ? (
-            <div>{children}</div>
-          )
-          : (
-            <Redirect to="/" />
-          )
-      }
-    />
-  )
+    const auth = useContext(AuthContext)
+    return (
+        <Route
+            {...rest}
+            render={() =>
+                auth.isAuthenticated() && auth.isAdmin()
+                    ? (
+                        <div>{children}</div>
+                    )
+                    : (
+                        <Redirect to="/" />
+                    )
+            }
+        />
+    )
 }
 
 const AppRoutes = () => (
-  <>
-    <Suspense fallback={<LoadingFallback />}>
-      <Switch>
-        <Route exact path="/">
-          <LandingPage style="onlyLogo" />
-        </Route>
+    <>
+        <Suspense fallback={<LoadingFallback />}>
+            <Switch>
+                <Route exact path="/">
+                    <LandingPage style="onlyLogo" />
+                </Route>
 
-        <LoginRoute path="/login">
-          <Login />
-        </LoginRoute>
+                <LoginRoute path="/login">
+                    <Login />
+                </LoginRoute>
 
-        <LoginRoute path="/sign-up">
-          <SignUp />
-        </LoginRoute>
+                <LoginRoute path="/sign-up">
+                    <SignUp />
+                </LoginRoute>
 
-        <Route path="/recover">
-          <EmailRecover />
-        </Route>
+                <Route path="/recover">
+                    <EmailRecover />
+                </Route>
 
-        <Route path="/reset">
-          <PasswordReset />
-        </Route>
+                <Route path="/reset">
+                    <PasswordReset />
+                </Route>
 
-        <AuthenticatedRoute path="/dashboard">
-          <Dashboard />
-        </AuthenticatedRoute>
+                <AuthenticatedRoute path="/dashboard">
+                    <Dashboard />
+                </AuthenticatedRoute>
 
-        <AuthenticatedRoute path="/autoevaluativo">
-          <ModuloAutoevaluativo />
-        </AuthenticatedRoute>
+                <AuthenticatedRoute path="/autoevaluativo">
+                    <ModuloAutoevaluativo />
+                </AuthenticatedRoute>
 
-        <AuthenticatedRoute exact path="/emocional:slug">
-          <ModuloEmocional />
-        </AuthenticatedRoute>
+                <AuthenticatedRoute exact path="/emocional:slug">
+                    <ModuloEmocional />
+                </AuthenticatedRoute>
 
-        <AuthenticatedRoute path="/auth">
-          <PageAuth />
-        </AuthenticatedRoute>
+                <AuthenticatedRoute path="/auth">
+                    <PageAuth />
+                </AuthenticatedRoute>
 
-        <AdminRoute path="/admin">
-          <PageAdmin />
-        </AdminRoute>
+                <AdminRoute path="/admin">
+                    <PageAdmin />
+                </AdminRoute>
 
-        <Route path="*">
-          <PageNotFound />
-        </Route>
-      </Switch>
-    </Suspense>
-  </>
+                <Route path="*">
+                    <PageNotFound />
+                </Route>
+            </Switch>
+        </Suspense>
+    </>
 )
 
 export default AppRoutes

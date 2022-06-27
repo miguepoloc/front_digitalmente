@@ -1,7 +1,7 @@
 import React from 'react'
 
 const CartaLineaTiempo = () => {
-  return (
+    return (
         <>
             <div className="col-lg-4 col-md-6">
                 <div className="card h-100">
@@ -73,7 +73,7 @@ const CartaLineaTiempo = () => {
                 </div>
             </div>
         </>
-  )
+    )
 }
 
 export default CartaLineaTiempo

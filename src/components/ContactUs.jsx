@@ -1,10 +1,9 @@
 import React from 'react'
-import DigitalmenteProyectoImg from '../assets/img/digitalmente.jpg'
 import '../assets/css/ContactUs.scss'
-import { FaInstagram, FaFacebook, FaEnvelopeOpenText, FaGlobe, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa'
+import { FaInstagram, FaFacebook, FaEnvelopeOpenText, FaGlobe, FaPhoneAlt } from 'react-icons/fa'
 
 const ContactUs = ({ section }) => {
-  return (
+    return (
         <>
             <section id={section.id}>
 
@@ -76,7 +75,7 @@ const ContactUs = ({ section }) => {
 
             </section>
         </>
-  )
+    )
 }
 
 export default ContactUs
