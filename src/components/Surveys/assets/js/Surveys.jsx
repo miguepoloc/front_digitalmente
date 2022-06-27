@@ -1,4 +1,4 @@
-const { Question } = require('./Question');
+/* eslint-disable array-callback-return */
 const { Survey } = require('./Survey')
 const { SurveysLocalStorage } = require('./Surveys_localStorage')
 
@@ -215,7 +215,7 @@ class Surveys {
     const pointsClaridad = this.sumAnyQuestions(depresionTest, [9, 10, 11, 12, 13, 14, 15, 16]);
     const pointsReparacion = this.sumAnyQuestions(depresionTest, [17, 18, 19, 20, 21, 22, 23, 24]);
 
-    if (sexo.toLowerCase() == "m") {
+    if (sexo.toLowerCase() === "m") {
       if (pointsAtencion <= 21) {
         objJson.result.atencion.text = resultado.atencion.debeMejorar;
       }
@@ -242,7 +242,7 @@ class Surveys {
         objJson.result.reparacion.text = resultado.reparacion.excelente;
       }
     }
-    else if (sexo.toLowerCase() == "f") {
+    else if (sexo.toLowerCase() === "f") {
       if (pointsAtencion <= 24) {
         objJson.result.atencion.text = resultado.atencion.debeMejorar;
       }
@@ -342,7 +342,7 @@ class Surveys {
         this.indiceActual + 1 <= this.IndiceMaximo
           ? this.indiceActual + 1
           : this.IndiceMaximo;
-      return valorEntrante != this.indiceActual; //Si se incrementa retorna true.
+      return valorEntrante !== this.indiceActual; //Si se incrementa retorna true.
     }
     return false;
   }
@@ -354,7 +354,7 @@ class Surveys {
   decIndiceActual() {
     let valorEntrante = this.indiceActual;
     this.indiceActual = this.indiceActual - 1 >= 0 ? this.indiceActual - 1 : 0;
-    return valorEntrante != this.indiceActual; //Si se decrementa retorna true.
+    return valorEntrante !== this.indiceActual; //Si se decrementa retorna true.
   }
 
   getjson() {
@@ -383,7 +383,7 @@ class Surveys {
           // console.count("Cree una nueva por primera vez.");
           //debugger
           this.pushSurvey(surveyRecent);
-        } else if (survey.id_survey == surveyRecent.id_survey) {
+        } else if (survey.id_survey === surveyRecent.id_survey) {
           surveyRecent.addQuestion(survey);
         } else {
           let objSurvey = this.searchSurvey(survey.id_survey);
@@ -407,7 +407,7 @@ class Surveys {
    * @returns {Survey}
    */
   searchSurvey(id) {
-    let search = this.jsonSurvey.filter((survey) => survey.id_survey == id);
+    let search = this.jsonSurvey.filter((survey) => survey.id_survey === id);
     return search.length ? search[0] : null;
   }
 

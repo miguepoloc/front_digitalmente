@@ -31,7 +31,7 @@ class Survey {
       this.updateQuestionRecent(objQuestion);
     } else {
       //Si la pregunta existe en la lista, entonces , añadimos una posible respuesta.
-      if (this.questionRecent.id_question == json.id_question) {
+      if (this.questionRecent.id_question === json.id_question) {
         this.questionRecent.addAnswer(json)
       } else {
         //Como el array ya contiene preguntas (quesions), procedo a buscar la pregunta (si existe) 
@@ -50,7 +50,7 @@ class Survey {
   }
 
   searchQuestion(id) {
-    let search = this.questions.filter(question => question.id_question == id);
+    let search = this.questions.filter(question => question.id_question === id);
     return (search.length) ? search[0] : null;
   }
 

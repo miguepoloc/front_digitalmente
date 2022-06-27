@@ -5,7 +5,6 @@ import Axios from 'axios'
 
 import '../assets/css/nucleo-icons.scss'
 import '../assets/css/nucleo-svg.scss'
-import '../assets/css/soft-ui-dashboard.scss'
 import '../assets/css/ModuloEmocional.scss'
 import FooterDashboard from '../components/Dashboard/FooterDashboard'
 import ButtonLibro from '../components/Dashboard/ButtonLibro'
@@ -29,13 +28,7 @@ const ModuloEmocional = () => {
   const [datauser, setDatauser] = useState([])
 
   // Obtiene los datos de avance que lleva el usuario
-  const getAvance = async () => {
-    const avance = await Axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
-    })
-    return (avance.data)
-  }
+
 
   // Para el control de la ubicación
   const history = useHistory()
@@ -43,20 +36,27 @@ const ModuloEmocional = () => {
   // Estado de control de ubicación, se utiliza para actualizar la barra lateral
   const [control, setControl] = useState(1)
 
-  useEffect(async function () {
-    // Guarda en response el avance que lleva el usuario
-    const response = await getAvance()
-    if (response) {
-      console.log(response)
-      // Y lo coloca en el estado de datos del usuario
-      setDatauser(response)
-    } else {
-      console.log('No se pudieron traer los datos...')
-    }
-  }, [control]) // Se controla el cambio a partir del estado control
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await Axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
+      })
+      if (response) {
+        console.log(response.data)
+        // Y lo coloca en el estado de datos del usuario
+        setDatauser(response.data)
+      } else {
+        console.log('No se pudieron traer los datos...')
+      }
+    };
+
+    fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [control]);
 
   // Cuando se presione el botón de siguiente
-  const cambioBoton = async () => {
+  async function cambioBoton() {
     console.log(userInfo)
     console.log(datauser)
     const jsonx = {

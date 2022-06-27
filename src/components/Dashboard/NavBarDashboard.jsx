@@ -46,7 +46,7 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
               <img
                 src={LogoAlargado}
                 // width="130"
-                height="40"
+                height="50"
                 className="d-inline-block align-top"
                 alt="React Bootstrap logo"
               />

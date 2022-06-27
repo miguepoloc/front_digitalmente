@@ -5,7 +5,6 @@ import Axios from 'axios'
 
 import '../assets/css/nucleo-icons.scss'
 import '../assets/css/nucleo-svg.scss'
-import '../assets/css/soft-ui-dashboard.scss'
 import NavBarDashboard from '../components/Dashboard/NavBarDashboard'
 import FooterDashboard from '../components/Dashboard/FooterDashboard'
 
@@ -20,26 +19,24 @@ const ModuloAutoevaluativo = () => {
   // Datos del usuario
   const [datauser, setDatauser] = useState([])
 
-  // Obtiene los datos de avance que lleva el usuario
-  const getAvance = async () => {
-    const avance = await Axios({
-      method: 'get',
-      url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
-    })
-    return (avance.data)
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await Axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
+      })
+      if (response) {
+        console.log(response.data)
+        // Y lo coloca en el estado de datos del usuario
+        setDatauser(response.data)
+      } else {
+        console.log('No se pudieron traer los datos...')
+      }
+    };
 
-  useEffect(async function () {
-    // Guarda en response el avance que lleva el usuario
-    const response = await getAvance()
-    if (response) {
-      console.log(response)
-      // Y lo coloca en el estado de datos del usuario
-      setDatauser(response)
-    } else {
-      console.log('No se pudieron traer los datos...')
-    }
-  }, []) // Se controla el cambio a partir del estado control
+    fetchData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
