@@ -8,41 +8,41 @@ import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 
 const Schema = Yup.object().shape({
-  Texto1: Yup.string()
-    .min(2, 'Demasiado corto')
-    .max(50, 'Demasiado largo')
-    .required('Es necesario llenar esta información'),
-  Texto2: Yup.string()
-    .min(2, 'Demasiado corto')
-    .max(50, 'Demasiado largo')
-    .required('Es necesario llenar esta información'),
-  color1: Yup.string()
-    .required('Es necesario seleccionar un color'),
-  color2: Yup.string()
-    .required('Es necesario seleccionar un color'),
-  color3: Yup.string()
-    .required('Es necesario seleccionar un color'),
-  situacion: Yup.string()
-    .required('Es necesario seleccionar una situación'),
-  emocion: Yup.string()
-    .required('Es necesario seleccionar una emoción')
+    Texto1: Yup.string()
+        .min(2, 'Demasiado corto')
+        .max(50, 'Demasiado largo')
+        .required('Es necesario llenar esta información'),
+    Texto2: Yup.string()
+        .min(2, 'Demasiado corto')
+        .max(50, 'Demasiado largo')
+        .required('Es necesario llenar esta información'),
+    color1: Yup.string()
+        .required('Es necesario seleccionar un color'),
+    color2: Yup.string()
+        .required('Es necesario seleccionar un color'),
+    color3: Yup.string()
+        .required('Es necesario seleccionar un color'),
+    situacion: Yup.string()
+        .required('Es necesario seleccionar una situación'),
+    emocion: Yup.string()
+        .required('Es necesario seleccionar una emoción')
 })
 
 const ManejoSemaforo = () => {
-  const cantidad = section4_2.activities.length
-  const color = '#4cbeff'
-  const ObjetoColor = {
-    rojo: '#ff6961',
-    amarillo: '#fdfd96',
-    verde: '#77dd77'
-  }
-  const colorgris = '#f2f1f6'
+    const cantidad = section4_2.activities.length
+    const color = '#4cbeff'
+    const ObjetoColor = {
+        rojo: '#ff6961',
+        amarillo: '#fdfd96',
+        verde: '#77dd77'
+    }
+    const colorgris = '#f2f1f6'
 
-  useEffect(() => { setColorSelect(color) }, [])
+    useEffect(() => { setColorSelect(color) }, [])
 
-  const [activityIndex, setActivityIndex] = useState(0)
+    const [activityIndex, setActivityIndex] = useState(0)
 
-  return (
+    return (
 
         <div className="container">
             <div className="row">
@@ -52,6 +52,7 @@ const ManejoSemaforo = () => {
                             style={{ width: '150px', height: '150px' }}
                             className="card-img-left flex-auto d-block "
                             src={ganso_lupa_celular}
+                            alt="ganso_lupa_celular"
                         />
                         <div className="card-body d-flex flex-column align-items-start justify-content-center">
                             <h5 className="card-title">Actividad 4.2</h5>
@@ -84,39 +85,39 @@ const ManejoSemaforo = () => {
             <div className="container">
                 <Formik
                     initialValues={{
-                      Texto1: '',
-                      Texto2: '',
-                      color1: '',
-                      color2: '',
-                      color3: '',
-                      situacion: '',
-                      emocion: ''
+                        Texto1: '',
+                        Texto2: '',
+                        color1: '',
+                        color2: '',
+                        color3: '',
+                        situacion: '',
+                        emocion: ''
                     }}
                     validationSchema={Schema}
                     onSubmit={(values, { resetForm }) => {
-                      if (
-                        values.color1 === section4_2.activities[activityIndex].color1 &&
+                        if (
+                            values.color1 === section4_2.activities[activityIndex].color1 &&
                             values.color2 === section4_2.activities[activityIndex].color2 &&
                             values.color3 === section4_2.activities[activityIndex].color3 &&
                             section4_2.activities[activityIndex].situacion[values.situacion].isCorrect &&
                             section4_2.activities[activityIndex].emocion[values.emocion].isCorrect
-                      ) {
-                        console.log('Está correcto')
-                        resetForm()
-                        Correct_Alert(section4_2.titleSuccess, section4_2.successMsg).then(function () {
-                          if (activityIndex + 1 < cantidad) {
-                            setActivityIndex(activityIndex + 1)
-                          } else {
-                            //   TODO REDIRECCIÓN
-                            console.log('Final')
-                          }
-                        })
-                      } else {
-                        ErrorAlert(section4_2.titleError, section4_2.errorMsg)
-                        console.log('Equivocado')
-                      }
+                        ) {
+                            console.log('Está correcto')
+                            resetForm()
+                            Correct_Alert(section4_2.titleSuccess, section4_2.successMsg).then(function () {
+                                if (activityIndex + 1 < cantidad) {
+                                    setActivityIndex(activityIndex + 1)
+                                } else {
+                                    //   TODO REDIRECCIÓN
+                                    console.log('Final')
+                                }
+                            })
+                        } else {
+                            ErrorAlert(section4_2.titleError, section4_2.errorMsg)
+                            console.log('Equivocado')
+                        }
 
-                      console.log(values)
+                        console.log(values)
                     }}
                 >
                     {({ errors, values, touched, handleChange }) => (
@@ -156,14 +157,14 @@ const ManejoSemaforo = () => {
                                         <option value="verde">Verde</option>
                                     </Field>
                                     {errors.color1 && touched.color1
-                                      ? (
+                                        ? (
                                             <div
                                                 style={{ color: 'red' }}
                                             >
                                                 {errors.color1}
                                             </div>
                                         )
-                                      : null}
+                                        : null}
                                 </div>
                                 <div className="col-sm mb-4">
                                     <Field name="color2" as="select" className="form-select" value={values.color2 || ''}
@@ -174,14 +175,14 @@ const ManejoSemaforo = () => {
                                         <option value="verde">Verde</option>
                                     </Field>
                                     {errors.color2 && touched.color2
-                                      ? (
+                                        ? (
                                             <div
                                                 style={{ color: 'red' }}
                                             >
                                                 {errors.color2}
                                             </div>
                                         )
-                                      : null}
+                                        : null}
                                 </div>
                                 <div className="col-sm mb-4">
                                     <Field name="color3"
@@ -196,14 +197,14 @@ const ManejoSemaforo = () => {
                                         <option value="verde">Verde</option>
                                     </Field>
                                     {errors.color3 && touched.color3
-                                      ? (
+                                        ? (
                                             <div
                                                 style={{ color: 'red' }}
                                             >
                                                 {errors.color3}
                                             </div>
                                         )
-                                      : null}
+                                        : null}
                                 </div>
                             </div>
                             <div className="row  mb-4 mt-2">
@@ -227,21 +228,19 @@ const ManejoSemaforo = () => {
                                         <option value="" key="Prueba" disabled>Selecciona una situacion</option>
 
                                         {section4_2.activities[activityIndex].situacion.map((situacion, situacionindex) => (
-                                            <>
-                                                <option value={situacionindex} key={`Situacion_${situacionindex}`}>{situacion.option}</option>
-                                            </>
+                                            <option value={situacionindex} key={`Situacion_${situacionindex}`}>{situacion.option}</option>
                                         ))}
 
                                     </Field>
                                     {errors.situacion && touched.situacion
-                                      ? (
+                                        ? (
                                             <div
                                                 style={{ color: 'red' }}
                                             >
                                                 {errors.situacion}
                                             </div>
                                         )
-                                      : null}
+                                        : null}
                                 </div>
 
                                 <div className="col-sm">
@@ -264,21 +263,19 @@ const ManejoSemaforo = () => {
                                         <option value="" key="Prueba" disabled>Selecciona una emocion</option>
 
                                         {section4_2.activities[activityIndex].emocion.map((emocion, emocionindex) => (
-                                            <>
-                                                <option value={emocionindex} key={`Emocion_${emocionindex}`}>{emocion.option}</option>
-                                            </>
+                                            <option value={emocionindex} key={`Emocion_${emocionindex}`}>{emocion.option}</option>
                                         ))}
 
                                     </Field>
                                     {errors.emocion && touched.emocion
-                                      ? (
+                                        ? (
                                             <div
                                                 style={{ color: 'red' }}
                                             >
                                                 {errors.emocion}
                                             </div>
                                         )
-                                      : null}
+                                        : null}
                                 </div>
 
                             </div>
@@ -299,14 +296,14 @@ const ManejoSemaforo = () => {
                                         </div>
                                     </div>
                                     {errors.Texto1 && touched.Texto1
-                                      ? (
+                                        ? (
                                             <div
                                                 style={{ color: 'red' }}
                                             >
                                                 {errors.Texto1}
                                             </div>
                                         )
-                                      : null}
+                                        : null}
                                 </div>
                             </div>
                             <div className="row">
@@ -324,14 +321,14 @@ const ManejoSemaforo = () => {
 
                                     </div>
                                     {errors.Texto2 && touched.Texto2
-                                      ? (
+                                        ? (
                                             <div
                                                 style={{ color: 'red' }}
                                             >
                                                 {errors.Texto2}
                                             </div>
                                         )
-                                      : null}
+                                        : null}
                                 </div>
                             </div>
                             {
@@ -351,8 +348,8 @@ const ManejoSemaforo = () => {
                 </Formik>
             </div>
 
-        </div >
-  )
+        </div>
+    )
 }
 
 export default ManejoSemaforo

@@ -21,7 +21,7 @@ const CartaImagen = (userInfo) => {
               <h3 className="text-white font-weight-bolder mb-4 pt-2">"Hola"</h3>
               <p className="text-white">"Hola"</p>
               <p className="text-white">"Hola"</p>
-              <a className="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="#">
+              <a className="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="/">
                 <FaUserCog size="2em" />
                 Editar perfil
               </a>

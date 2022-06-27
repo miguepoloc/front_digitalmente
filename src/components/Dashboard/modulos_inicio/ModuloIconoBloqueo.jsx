@@ -7,7 +7,7 @@ export const ModuloIconoBloqueo = ({
   return (
     <div className="content_blocked_modulos_inicio">
       <div className="icon_blocked_modulo_inicio">
-        {bloqueado ? <BiLock size={20} /> : <BiLockOpen size={20} />}
+        {bloqueado ? <BiLock className='icon_blocked_unloked' /> : <BiLockOpen className='icon_blocked_unloked' />}
       </div>
     </div>
   )

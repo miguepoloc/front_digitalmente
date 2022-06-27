@@ -3,9 +3,8 @@ import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import logoInstagram from '../../assets/img/Logos/instagram.png'
 import logoFacebook from '../../assets/img/Logos/facebook.png'
 import './assets/css/JoinUp.scss'
-import { gansoPensandoAlert } from '../../helpers/helper_Swal_Alerts'
 export const Unete = ({ section }) => {
-  return (
+    return (
         <>
             <section id={section.id} className="bg-lightBlue" >
                 <div className="Team pb-5">
@@ -25,33 +24,35 @@ export const Unete = ({ section }) => {
                         </div>
                         <div className="row" >
                             <div className="col-12">
-                            <h3 className="font-Geomanist display-8 fw-bold text-center text-darkBlue mt-5 ">Y SÍGUENOS EN NUESTRAS REDES </h3>
+                                <h3 className="font-Geomanist display-8 fw-bold text-center text-darkBlue mt-5 ">Y SÍGUENOS EN NUESTRAS REDES </h3>
                             </div>
                         </div>
                         <div className="row" >
                             <div className="col-12 text-center">
-                            <a href="https://www.instagram.com/proyecto.dimente.unimag/" target="_blank" rel="noreferrer"><img src={logoInstagram} style={{ width: '56px' }}/></a> <a href="https://www.facebook.com/DigitalMenteUnimagdalena/" target="_blank" rel="noreferrer"><img src={logoFacebook} style={{ width: '50px' }}/></a>
+                                <a href="https://www.instagram.com/proyecto.dimente.unimag/" target="_blank" rel="noreferrer">
+                                    <img src={logoInstagram} style={{ width: '56px' }} alt="logoinstagram" /></a> <a href="https://www.facebook.com/DigitalMenteUnimagdalena/" target="_blank" rel="noreferrer"><img src={logoFacebook} style={{ width: '50px' }} alt="logofacebook" />
+                                </a>
                             </div>
                         </div>
 
                         <div className="row">
-                        <div className=" col-lg-6 col-md-12  col-12 justify-content-center align-self-center text-center mx-auto d-block d-lg-none">
-                            <img src={imgGanso.escribiendo_250x200 } className="gansoMobil_joinUp" />
+                            <div className=" col-lg-6 col-md-12  col-12 justify-content-center align-self-center text-center mx-auto d-block d-lg-none">
+                                <img src={imgGanso.escribiendo_250x200} className="gansoMobil_joinUp" alt="ganso"/>
+                            </div>
                         </div>
-                    </div>
 
                     </div>
                     <div style={{ position: 'relative' }} className="d-none d-lg-block" >
-                        <img src={imgGanso.escribiendo_250x200} className="ganso_joinUp" />
+                        <img src={imgGanso.escribiendo_250x200} className="ganso_joinUp" alt="ganso2" />
                     </div>
                 </div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path
-                    fill="#00659D"
-                    d="M0,128L80,133.3C160,139,320,149,480,170.7C640,192,800,224,960,224C1120,224,1280,192,1360,176L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
-                ></path>
-            </svg>
+                    <path
+                        fill="#00659D"
+                        d="M0,128L80,133.3C160,139,320,149,480,170.7C640,192,800,224,960,224C1120,224,1280,192,1360,176L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+                    ></path>
+                </svg>
             </section>
         </>
-  )
+    )
 }

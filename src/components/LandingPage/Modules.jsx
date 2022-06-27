@@ -11,7 +11,7 @@ const Modules = ({ section }) => {
         >
             <svg xmlns="http://www.w3.org/2000/svg" className='waveTop' viewBox="0 0 1440 320">
                 <path className='fill-darkBlue' d="M0,192L60,186.7C120,181,240,171,360,154.7C480,139,600,117,720,128C840,139,960,181,1080,197.3C1200,213,1320,203,1380,197.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>             </svg>
-            <div className="content-103 bg-darkBlue" style={{marginTop: "-6%"}}>
+            <div className="content-103 bg-darkBlue" style={{ marginTop: "-6%" }}>
                 <div className="container" id={section.id}>
 
                     <h2 className="font-Geomanist display-5 fw-bold text-center text-white py-4 ">Módulos </h2>
@@ -40,6 +40,7 @@ const Modules = ({ section }) => {
                                 </div>
                                 <div className="col-lg-4 pb-4 pb-lg-0 order-1 order-lg-2 justify-content-center align-self-center text-center">
                                     <img
+                                        alt='escribiendo'
                                         className="imgItemLarge"
                                         src={imgGanso.escribiendo_250x200}
                                     />
@@ -66,6 +67,7 @@ const Modules = ({ section }) => {
                                 </div>
                                 <div className="col-lg-4 pb-4 pb-lg-0 order-1 order-lg-2 justify-content-center align-self-center text-center">
                                     <img
+                                        alt='meditando'
                                         className="imgItem"
                                         src={imgGanso.meditando}
                                     />
@@ -87,6 +89,7 @@ const Modules = ({ section }) => {
                                 </div>
                                 <div className="col-lg-4 pb-4 pb-lg-0 order-1 order-lg-2 justify-content-center align-self-center text-center">
                                     <img
+                                        alt='feliz'
                                         className="imgItem"
                                         src={imgGanso.feliz_250x200}
                                     />
@@ -110,6 +113,7 @@ const Modules = ({ section }) => {
                                 </div>
                                 <div className="col-lg-4 pb-4 pb-lg-0 order-1 order-lg-2 justify-content-center align-self-center text-center">
                                     <img
+                                        alt='pensando'
                                         className="imgItem"
                                         src={imgGanso.pensando}
                                     />
@@ -133,6 +137,7 @@ const Modules = ({ section }) => {
                                 </div>
                                 <div className="col-lg-4 pb-4 pb-lg-0 order-1 order-lg-2 justify-content-center align-self-center text-center">
                                     <img
+                                        alt='leyendo'
                                         className="imgItem"
                                         src={imgGanso.leyendo}
                                     />

@@ -3,13 +3,13 @@ import { Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 
 const ItemCapsula = ({ clase, link, titulo, imgsvg, habilitado }) => {
-  const history = useHistory()
+    const history = useHistory()
 
-  const linkeo = () => {
-    history.push(link)
-  }
+    const linkeo = () => {
+        history.push(link)
+    }
 
-  return (
+    return (
         <>
             <li className="nav-item">
                 <Button variant="link"
@@ -25,7 +25,7 @@ const ItemCapsula = ({ clase, link, titulo, imgsvg, habilitado }) => {
                 </Button>
             </li>
         </>
-  )
+    )
 }
 
 export default ItemCapsula

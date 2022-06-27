@@ -3,15 +3,15 @@ import { AccordionContext, Button, useAccordionButton } from 'react-bootstrap'
 import { FaArrowRight, FaArrowDown } from 'react-icons/fa'
 
 const BotonFlecha = ({ children, eventKey, callback }) => {
-  const { activeEventKey } = useContext(AccordionContext)
+    const { activeEventKey } = useContext(AccordionContext)
 
-  const decoratedOnClick = useAccordionButton(
-    eventKey,
-    () => callback && callback(eventKey)
-  )
+    const decoratedOnClick = useAccordionButton(
+        eventKey,
+        () => callback && callback(eventKey)
+    )
 
-  const isCurrentEventKey = activeEventKey === eventKey
-  return (
+    const isCurrentEventKey = activeEventKey === eventKey
+    return (
         <>
             <Button
                 variant="link"
@@ -22,14 +22,14 @@ const BotonFlecha = ({ children, eventKey, callback }) => {
                 <div
                     className="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                     {isCurrentEventKey
-                      ? <FaArrowDown color="white" />
-                      : <FaArrowRight />}
+                        ? <FaArrowDown color="white" />
+                        : <FaArrowRight />}
                 </div>
                 <span className="nav-link-text ms-1">{children}</span>
 
             </Button>
         </>
-  )
+    )
 }
 
 export default BotonFlecha

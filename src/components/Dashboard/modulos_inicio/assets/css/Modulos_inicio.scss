@@ -2,73 +2,75 @@ $color_card_relax : #c9e26591;
 $color_card_misEmociones: #b274c19e;
 $color_card_piensalo: #14a0e19e;
 $color_card_misHabilidades: #ffc500a3;
-$color_card_ayuda: rgb(255 0 128 / 51%);;
+$color_card_ayuda: rgb(255 0 128 / 51%);
+;
 $color_card_moduloAutoevaluativo: rgb(235 235 235);
 
-.titleModulo{
+
+.titleModulo {
     font-size: 1rem;
     line-height: 1.325;
 }
 
 
-.titleBienvenida{
+.titleBienvenida {
     font-size: 1rem;
     line-height: 1.325;
 }
 
-.textBienvenida{
+.textBienvenida {
     font-size: 1rem;
     line-height: 1.325;
 }
 
-.imgGanso_Bienvenida{
+.imgGanso_Bienvenida {
     width: 117px;
 }
 
 
-.imgGanso_caminoFortaleza{
+.imgGanso_caminoFortaleza {
     width: 117px;
 }
 
-.card_relax{
+.card_relax {
     background-color: $color_card_relax;
-  }
+}
 
-  .card_ayuda{
+.card_ayuda {
     background-color: $color_card_ayuda;
-  }
-  
-  .card_misEmociones{
-    background-color: $color_card_misEmociones;
-  }
-  
-  .card_piensalo{
-    background-color:$color_card_piensalo ;
-  }
-  
-  .card_misHabilidades{
-    background-color: $color_card_misHabilidades;
-  }
-  
-  .card_moduloAutoevaluativo{
-    background-color: $color_card_moduloAutoevaluativo ;
-  }
+}
 
-.imgGanso-modulos{
+.card_misEmociones {
+    background-color: $color_card_misEmociones;
+}
+
+.card_piensalo {
+    background-color: $color_card_piensalo ;
+}
+
+.card_misHabilidades {
+    background-color: $color_card_misHabilidades;
+}
+
+.card_moduloAutoevaluativo {
+    background-color: $color_card_moduloAutoevaluativo ;
+}
+
+.imgGanso-modulos {
     width: 40% !important;
 }
 
-.img-moduloAutoEvaluativo{
+.img-moduloAutoEvaluativo {
     width: 120px !important;
 }
 
-.cards_modulos_inicio{
+.cards_modulos_inicio {
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 0.5rem;
 }
 
-.imgAyuda_modulos_inicio{
+.imgAyuda_modulos_inicio {
     width: 50% !important;
 }
 
@@ -78,97 +80,132 @@ $color_card_moduloAutoevaluativo: rgb(235 235 235);
 //     filter: brightness(0.1);
 // }
 
-.modulo_bloqueado{
-    .card_moduloAutoevaluativo{
-        background-color: rgba(235, 235, 235, 0.548); ;
-      }
+.modulo_bloqueado {
+    .card_moduloAutoevaluativo {
+        background-color: rgba(235, 235, 235, 0.548);
+        ;
+    }
+
     filter: brightness(0);
 
 }
 
 
-.modulo_desbloqueado:hover{
-        filter: opacity(0.91)
-}   
+.modulo_desbloqueado:hover {
+    filter: opacity(0.91)
+}
 
-.items_modulos_inicio{
+.items_modulos_inicio {
     border-radius: 5px;
 }
 
-.content_blocked_modulos_inicio{
+.content_blocked_modulos_inicio {
     position: relative;
 }
 
 
 
-.icon_blocked_modulo_inicio{
+.icon_blocked_modulo_inicio {
     position: absolute;
     /* margin-top: 1%; */
-    top:10px;
+    top: 10px;
     right: 0px;
-    color:white;
+    color: white;
 }
 
-.col-23{
+.icon_blocked_unloked {
+    font-size: 30px;
+}
+
+.col-23 {
     flex: 0 0 auto;
     width: 23%;
 }
 
+@media (max-width:500px) {
+    .icon_blocked_unloked {
+        font-size: 12px;
+    }
+
+    .icon_blocked_modulo_inicio {
+        position: absolute;
+        /* margin-top: 1%; */
+        margin: 2px;
+        right: -11px;
+        top: -3px;
+        color: white;
+    }
+}
+
+@media (min-width:500px) and(max-width:768px) {
+    .icon_blocked_unloked {
+        font-size: 16px;
+    }
+
+    .icon_blocked_modulo_inicio {
+        position: absolute;
+        /* margin-top: 1%; */
+        margin: 2px;
+        right: -7px;
+        top: -2px;
+        color: white;
+    }
+}
+
+
 @media (max-width:768px) {
-    .titleBienvenida{
+    .titleBienvenida {
         font-size: 0.8rem;
         line-height: 1.325;
     }
-    
-    .textBienvenida{
+
+    .textBienvenida {
         font-size: 0.7rem;
         line-height: 1.325;
     }
-    .imgGanso_Bienvenida{
+
+    .imgGanso_Bienvenida {
         width: 50px;
     }
-    .imgGanso_caminoFortaleza{
+
+    .imgGanso_caminoFortaleza {
         width: 70px;
     }
-    .titleModulo{
+
+    .titleModulo {
         font-size: 0.5rem;
         line-height: 1.325;
     }
 
-    .imgGanso-modulos{
+    .imgGanso-modulos {
         width: 60px !important;
-    }   
-
-    .icon_blocked_modulo_inicio{
-        position: absolute;
-        /* margin-top: 1%; */
-        margin:2px;
-        right: -10px;
-        top:3px;
-        color:white;
     }
 
-    .img-moduloAutoEvaluativo{
-        width:58px !important;
+    .img-moduloAutoEvaluativo {
+        width: 58px !important;
     }
 
-    .imgAyuda_modulos_inicio{
+    .imgAyuda_modulos_inicio {
         width: 85% !important;
         padding-top: 8px;
-    } 
+    }
 }
 
-@media (min-width:992px) and (max-width:1200px){
+@media (min-width:768px) and (max-width:992px) {
+    .icon_blocked_unloked {
+        font-size: 20px;
+    }
+}
 
-    .img-moduloAutoEvaluativo{
+@media (min-width:992px) and (max-width:1200px) {
+
+    .img-moduloAutoEvaluativo {
         width: 22% !important;
     }
 }
 
-@media (min-width:1400px){
-    .imgGanso-modulos{
+@media (min-width:1400px) {
+    .imgGanso-modulos {
         width: 90px !important;
-    } 
+    }
 }
-
-

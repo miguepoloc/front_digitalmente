@@ -11,7 +11,7 @@ export const ActividadConTip = ({ actividadSrc, actividadTitle, actividadSText,
             </div>
             <div className="w-100"></div>
             <div className="col">
-                <Tip title = {tipTitle} text = {tipText} color={tipColor}/>
+                <Tip title={tipTitle} text={tipText} color={tipColor} />
             </div>
         </div>
     )

@@ -12,56 +12,56 @@ import { AuthContext } from '../context/AuthContext'
 import Surveys from '../components/Surveys/Surveys'
 
 const ModuloAutoevaluativo = () => {
-  // Trae los datos del usuario
-  const { authState } = useContext(AuthContext)
-  // Se guardan en userInfo
-  const { userInfo } = authState
-  // Datos del usuario
-  const [datauser, setDatauser] = useState([])
+    // Trae los datos del usuario
+    const { authState } = useContext(AuthContext)
+    // Se guardan en userInfo
+    const { userInfo } = authState
+    // Datos del usuario
+    const [datauser, setDatauser] = useState([])
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await Axios({
-        method: 'get',
-        url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
-      })
-      if (response) {
-        console.log(response.data)
-        // Y lo coloca en el estado de datos del usuario
-        setDatauser(response.data)
-      } else {
-        console.log('No se pudieron traer los datos...')
-      }
-    };
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await Axios({
+                method: 'get',
+                url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
+            })
+            if (response) {
+                console.log(response.data)
+                // Y lo coloca en el estado de datos del usuario
+                setDatauser(response.data)
+            } else {
+                console.log('No se pudieron traer los datos...')
+            }
+        };
 
-    fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+        fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-  return (
-    <>
-      <div
-        className="g-sidenav-show bg-gray-100 "
-      >
+    return (
+        <>
+            <div
+                className="g-sidenav-show bg-gray-100 "
+            >
 
-        <main className="main-content position-relative h-100 border-radius-lg ">
-          <NavBarDashboard datauser={datauser} userInfo={userInfo} />
+                <main className="main-content position-relative h-100 border-radius-lg ">
+                    <NavBarDashboard datauser={datauser} userInfo={userInfo} />
 
-          <div className="container-fluid py-4">
+                    <div className="container-fluid py-4">
 
-            <div >
-              <Surveys />
+                        <div >
+                            <Surveys />
+                        </div>
+                        <hr />
+
+                        <FooterDashboard />
+
+                    </div>
+                </main>
             </div>
-            <hr />
 
-            <FooterDashboard />
-
-          </div>
-        </main>
-      </div>
-
-    </>
-  )
+        </>
+    )
 }
 
 export default ModuloAutoevaluativo
