@@ -2,13 +2,13 @@ export class SurveysLocalStorage {
     static NAME_ITEM = "data_survey_local";
     static TIEMPO_MAXIMO = 48; //HORAS
 
-    constructor() {
-    }
+    // eslint-disable-next-line no-useless-constructor
+    constructor() { }
 
     static buscarRespuestasUsuario(datos, id) {
         for (let i = 0; i < datos.length; i++) {
             console.log(id)
-            if (datos[i].id_user == id) {
+            if (datos[i].id_user === id) {
                 return i;
             }
         }
@@ -25,8 +25,8 @@ export class SurveysLocalStorage {
         console.log(datosJson)
         if (datosJson) {
             let idx_usuario = this.buscarRespuestasUsuario(datosJson, id);
-            
-            if (idx_usuario != -1) {
+
+            if (idx_usuario !== -1) {
                 const fechaDeInsercion = datosJson[idx_usuario].fechaDeInsercion
                 const fechaActual = Date.now()
                 const diffTime = Math.abs(fechaActual - fechaDeInsercion)
@@ -46,13 +46,14 @@ export class SurveysLocalStorage {
             }
         }
 
+        // eslint-disable-next-line no-throw-literal
         throw "No se encontró información";
     }
 
     static eliminarDatos(id) {
         const datosJson = this.leerLocalStorage();
         let idx_usuario = this.buscarRespuestasUsuario(datosJson, id);
-        if (idx_usuario != -1) {
+        if (idx_usuario !== -1) {
             datosJson.splice(idx_usuario, 1) //Elimino las respuestas de ese usuario.
             if (datosJson.length === 0) {
                 window.localStorage.removeItem(this.NAME_ITEM)
@@ -62,8 +63,8 @@ export class SurveysLocalStorage {
     }
 
 
-  static guardarEnLocalStorage(id_user, datos_surveys) {
-   // let _datos_surveys = 
+    static guardarEnLocalStorage(id_user, datos_surveys) {
+        // let _datos_surveys =
         let datos = {
             fechaDeInsercion: Date.now(),
             datosSurveys: datos_surveys,//this.generateJsonToSend(),
@@ -76,9 +77,9 @@ export class SurveysLocalStorage {
         }
         else {
             let idx = this.buscarRespuestasUsuario(datosLocalStorage, id_user);
-            if(idx == -1){
+            if (idx === -1) {
                 datosLocalStorage.push(datos);
-            }else{
+            } else {
                 datosLocalStorage[idx] = (datos);
             }
             /*
