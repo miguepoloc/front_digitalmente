@@ -431,4 +431,4 @@ class Surveys {
   }
 }
 
-module.exports = { default: Surveys }
+module.exports = { Surveys }
