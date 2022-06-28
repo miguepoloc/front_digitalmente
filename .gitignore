@@ -23,3 +23,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+dist/
+node_modules/
+./package-lock.json
+.firebase
+.DS_Store
+
+/build
