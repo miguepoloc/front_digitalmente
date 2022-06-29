@@ -154,8 +154,10 @@ const Surveys = () => {
             setIsBtnSendDisabled(() => true)
             SendAlert(undefined, 'Tus respuestas estan siendo enviadas y procesadas <b>Espera un momento</b>')
             // Debería esperar una respuesta de todo ok., si la respuesta es negativa el boton vuelve a quedar
-            const send = await SendSurveys(buildDataToSend())
-
+            const data = buildDataToSend();
+            data["fecha"] = new Date().toISOString()
+            const send = await SendSurveys(data)
+            console.log(data)
             if (send) {
                 // TODO: Redireccionar a un lugar....
                 console.log(surveys.jsonSurvey)
