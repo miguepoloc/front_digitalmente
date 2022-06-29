@@ -407,7 +407,7 @@ class Surveysx {
      * @returns {Survey}
      */
     searchSurvey(id) {
-        let search = this.jsonSurvey.filter((survey) => survey.id_survey === id);
+    let search = this.jsonSurvey.filter((survey) => survey.id_survey === parseInt(id));
         return search.length ? search[0] : null;
     }
 
