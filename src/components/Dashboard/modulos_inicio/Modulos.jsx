@@ -23,6 +23,7 @@ export const Modulos = ({ img, text, bloqueado, col, moduloClass, href, classImg
             <img
               className={classImg}
               src={img}
+              alt="Modulo"
             />
           </div>
           <div className={` ${classDivText} justify-content-center align-self-center`}>

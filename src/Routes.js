@@ -70,7 +70,7 @@ const AppRoutes = () => (
         <Suspense fallback={<LoadingFallback />}>
             <Switch>
                 <Route exact path="/">
-                    <LandingPage style="onlyLogo" />
+                    <LandingPage />
                 </Route>
 
                 <LoginRoute path="/login">
