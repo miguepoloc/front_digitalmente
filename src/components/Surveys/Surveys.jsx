@@ -1,7 +1,7 @@
 /* eslint-disable new-cap */
 /* eslint-disable camelcase */
 import React, { useContext, useEffect, useState } from 'react'
-import { Surveys as model_surveys } from './assets/js/Surveys'
+import { Surveysx as model_surveys } from './assets/js/Surveysx'
 import '../../assets/css/Surveys.scss'
 import Survey from './Survey'
 import ganso_pensando from '../../assets/img/ganso/ganso_pensando.png'
