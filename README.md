@@ -1,4 +1,5 @@
 # Getting Started with Create React App
+En el `npm install` toca colocar `npm install --legacy-peer-deps` para que funcione adecuadamente
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
