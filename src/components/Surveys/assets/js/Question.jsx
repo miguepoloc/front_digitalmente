@@ -1,4 +1,4 @@
-class Question {
+export class Question {
     constructor(json) {
         this.id_question = json.id_question;
         this.question = json.question;
@@ -31,5 +31,3 @@ class Question {
     }
 
 }
-
-module.exports = { Question }

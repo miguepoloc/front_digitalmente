@@ -1,8 +1,7 @@
-/* eslint-disable array-callback-return */
-const { Survey } = require('./Survey')
-const { SurveysLocalStorage } = require('./Surveys_localStorage')
+import { Survey } from './Survey'
+import { SurveysLocalStorage } from './Surveys_localStorage'
 
-class Surveysx {
+export class Surveysx {
 
     static id_user
 
@@ -430,5 +429,3 @@ class Surveysx {
         return json;
     }
 }
-
-module.exports = { Surveysx }

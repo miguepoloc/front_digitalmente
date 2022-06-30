@@ -1,7 +1,6 @@
+import { Question } from './Question'
 
-const { Question } = require('./Question')
-//ignore-no-unused-expressions
-class Survey {
+export class Survey {
     constructor(json) {
         this.id_survey = json.id_survey;
         this.name = json.name;
@@ -70,4 +69,3 @@ class Survey {
     }
 
 }
-module.exports = { Survey }
