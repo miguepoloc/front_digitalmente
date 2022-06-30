@@ -2,7 +2,7 @@
 const { Survey } = require('./Survey')
 const { SurveysLocalStorage } = require('./Surveys_localStorage')
 
-class Surveysx {
+export class Surveysx {
 
     static id_user
 
@@ -407,7 +407,7 @@ class Surveysx {
      * @returns {Survey}
      */
     searchSurvey(id) {
-        let search = this.jsonSurvey.filter((survey) => survey.id_survey === id);
+    let search = this.jsonSurvey.filter((survey) => survey.id_survey === parseInt(id));
         return search.length ? search[0] : null;
     }
 
@@ -430,5 +430,3 @@ class Surveysx {
         return json;
     }
 }
-
-module.exports = { Surveysx }

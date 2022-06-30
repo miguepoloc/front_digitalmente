@@ -9,7 +9,7 @@ import NavBarDashboard from '../components/Dashboard/NavBarDashboard'
 import FooterDashboard from '../components/Dashboard/FooterDashboard'
 
 import { AuthContext } from '../context/AuthContext'
-// import Surveys from '../components/Surveys/Surveys'
+import Surveys from '../components/Surveys/Surveys'
 
 const ModuloAutoevaluativo = () => {
     // Trae los datos del usuario
@@ -50,7 +50,7 @@ const ModuloAutoevaluativo = () => {
                     <div className="container-fluid py-4">
 
                         <div >
-                            {/* <Surveys /> */}
+                            <Surveys />
                         </div>
                         <hr />
 
