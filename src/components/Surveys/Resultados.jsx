@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Scroll from '../../helpers/helperScroll'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { gansoPensandoAlert } from '../../helpers/helper_Swal_Alerts'
+import { Tip } from '../Dashboard/Tip'
+import { FcInfo, FcHighPriority } from 'react-icons/fc'
 
 export const Resultados = ({ objResultados, setRenderResultados }) => {
 
@@ -32,11 +34,13 @@ export const Resultados = ({ objResultados, setRenderResultados }) => {
             `, "#FC8890").then(() => Scroll.scroll("resultados", true)
             )
         }
-
+       
     }
 
     mensajeDeAlerta();
-
+    useEffect(()=>{
+        window.scrollTo(0, 0)
+    },[])
     return (
         <div className='container' id="resultados">
             <div className='mx-4 my-4 px-4 py-4' style={{ backgroundColor: "#F0F0F0", borderRadius: "25px" }} >
@@ -59,6 +63,9 @@ export const Resultados = ({ objResultados, setRenderResultados }) => {
                     <p className='lh-base' style={text_justify}>
                         Por otro lado, en cuanto a otros factores importantes relacionados a tu salud mental, parece que te percibes con un nivel de ansiedad <b>{objResultados.ansiedad.result}</b>, <b>{objResultados.depresion.points <= 14 ? "sin" : "con"} </b> aparentes síntomas depresivos <b>{objResultados.depresion.result}</b>.
                     </p>
+
+                    <Tip color={"#2196F3"} icon={ <FcInfo className='mx-2'/>} _class="mb-2 my-3" title={"Recuerda que"}  text={"Aunque somos una estrategia psicoeducativa, en el marco de nuestro proyecto hermano Salud Mental SGR Unimagdalena, se tiene a disposición una serie de servicios de atención y orientación psicológica gratuita al cual puedes acceder, si lo deseas, a través de la página <a href='https://sgrsaludmental.unimagdalena.edu.co/' target='_blank'>Salud Mental SGR Unimagdalena</a> , donde tienes acceso a un chat virtual para atención inmediata, módulos de promoción y prevención psicoeducativas, solicitud de citas, entre otros."}/>
+
                     <p className='lh-base' style={text_justify}>
                         Finalmente, en lo que trata en torno a los pensamientos automáticos, estos son los niveles que pareces presentar en este tipo de pensamientos:
                     </p>
@@ -79,15 +86,15 @@ export const Resultados = ({ objResultados, setRenderResultados }) => {
                         <li className='my-2'>Tener razón: <b>{objResultados.inventarioDePensamientos.result.tener_razon.text}</b></li>
                         <li className='my-2'>Falacia de recompensa divina: <b>{objResultados.inventarioDePensamientos.result.falacia_de_recompensa_divina.text}</b></li>
                     </ul>
-
-                    <p className='lh-base text-center my-4' style={text_justify}>
+                    <p className='lh-base text-center mb-4 mt-2' style={text_justify}>
                         ¿Qué significa toda esa clasificación? Si quieres saber más de esto, así como de los otros factores, ¡DigitalMente te ayudará a conocer más!
                     </p>
-                    {/* TODO: porle un src al boton regresar cuando setRenderResultados es null */}
-                    {setRenderResultados ? (<><button className='btn-success text-center' onClick={() => setRenderResultados(null)}>Regresar</button></>) : (<><button className='btn btn-naranja text-center'>Regresar</button></>)}
+
+                    {setRenderResultados ? (<><button className='btn btn-azul  text-center' onClick={() => setRenderResultados(null)}>Regresar</button></>) : (<><button className='btn btn-azul text-center'>Regresar a la dashboard</button></>)}
 
                 </div>
             </div>
         </div>
+
     )
 }

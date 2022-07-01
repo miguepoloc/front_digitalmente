@@ -17,7 +17,7 @@ export const CartaResultados = () => {
                             alt="ganso"
                         />
                     </div>
-                    <button type="submit" className="btn btn-info w-75"><span className='textCard'>Consultar</span></button>
+                    <a href='/autoevaluativo_resultados' className="btn btn-info w-75" ><span className='textCard'>Consultar</span></a>
                 </div>
             </div>
 

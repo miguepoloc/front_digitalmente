@@ -7,6 +7,7 @@ import './assets/css/Resultados.scss'
 import { Surveysx as model_surveys } from '../../Surveys/assets/js/Surveysx'
 import Axios from 'axios'
 import { Loading } from '../../Loading'
+import { ErrorGanso } from '../../ErrorGanso';
 
 
 export const Resultados = () => {
@@ -20,6 +21,7 @@ export const Resultados = () => {
     const [renderResultados, setRenderResultados] = useState(null);
     const [surveys, setSurveys] = useState(new model_surveys(null, id_user, id_sexo_user, false))
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
 
     useEffect(() => {
@@ -31,22 +33,32 @@ export const Resultados = () => {
             }
             else {
                 //TODO: lanzar error
+                setError(true);
                 console.log('No se pudieron traer los datos...')
             }
         }
         const traerResultados = async () => {
-            const response = await Axios({
-                method: 'get',
-                url: `${process.env.REACT_APP_API_URL}/api/vista_usuario_respuestas`,
-                headers: {
-                    'authorization': `Bearer ${token}`
-                }
-            })
+            let response
+            try{
+                response = await Axios({
+                    method: 'get',
+                    url: `${process.env.REACT_APP_API_URL}/api/vista_usuario_respuestas`,
+                    headers: {
+                        'authorization': `Bearer ${token}`
+                    }
+                })
+
+            }catch{
+                setError(true);
+            }
+           
+            
             if (response) {
                 console.log("🚀 ~ file: Resultados.jsx ~ line 44 ~ traerResultados ~ response", response)
                 setResultados(response.data)
                 // Y lo coloca en el estado de datos del usuario
             } else {
+                
                 console.log('No se pudieron traer los datos...')
             }
             setLoading(false);
@@ -66,11 +78,19 @@ export const Resultados = () => {
         <>
             {loading ? <Loading /> : (
                 renderResultados !== null ? (<>{renderResultados}</>) : (
+                    error?(<ErrorGanso text={"Ups, parece que ha ocurrido un inconveniente."}/>):(
                     resultados != null && surveys.arrSurvey ? (
                         <>
+                        
                             <div className='text-center'>
+                            {resultados.length === 0?(<>
+                                <img src={imgGanso.sorprendido} className="imgGanso_AutoEvaluativo_resultados mt-2" alt="" />
+                                <h3 className='font-Geomanist mt-3'>Hola {userInfo.nombre.split(" ")[0]}, Parece que no has hecho ningun test.</h3>
+                            </>):(<> 
                                 <img src={imgGanso.leyendo} className="imgGanso_AutoEvaluativo_resultados mt-2" alt="" />
-                                <h3 className='font-Geomanist mt-3'>Hola {userInfo.nombre}, estos son los test que has hecho hasta el momento</h3>
+                                <h3 className='font-Geomanist mt-3'>Hola {userInfo.nombre.split(" ")[0]}, estos son los test que has hecho hasta el momento</h3></>)
+                            }
+                               
                             </div>
                             <div className='d-flex my-4  justify-content-evenly flex-wrap '>
                                 {
@@ -84,6 +104,7 @@ export const Resultados = () => {
                         </>
                     ) :
                         (<></>)
+                )
                 )
             )}
         </>

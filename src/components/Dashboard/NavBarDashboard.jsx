@@ -136,7 +136,7 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
                                 ))}
                             </NavDropdown>
                             <NavDropdown
-                                title={auth && <b>{auth?.authState?.userInfo?.nombre}</b>}
+                                title={auth && <b>{auth?.authState?.userInfo?.nombre.split(" ")[0]}</b>}
                                 id="basic-nav-dropdown"
                                 className='d-flex flex-column align-items-center justify-content-center'
                                 align="end"

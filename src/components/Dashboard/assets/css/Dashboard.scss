@@ -2,7 +2,13 @@ $ColorLightBlue: #D5F5F9;
 $ColorDarkBlue: #00659D;
 $ColorNaranja: #fc8890;
 
+.carta-dashboard {
+    background-image: url('../../../../assets/img/curved-images/white-curved.jpg');
+}
 
+.carta-dashboard2 {
+    background-image: url('../../../../assets/img/ganso/presentacion_personaje.png');
+}
 
 .bg-naranja {
     background-color: $ColorNaranja;
@@ -237,3 +243,50 @@ fieldset[disabled] .btn-amarillo.active {
     color: #FFC300;
     background-color: #ffffff;
 }
+
+
+.btn-naranja { 
+    color: #ffffff; 
+    background-color: #FC8890; 
+    border-color: #FFD4D7; 
+  } 
+   
+  .btn-naranja:hover, 
+  .btn-naranja:focus, 
+  .btn-naranja:active, 
+  .btn-naranja.active, 
+  .open .dropdown-toggle.btn-naranja { 
+    color: #ffffff; 
+    background-color: #E87B82; 
+    border-color: #FFD4D7; 
+  } 
+   
+  .btn-naranja:active, 
+  .btn-naranja.active, 
+  .open .dropdown-toggle.btn-naranja { 
+    background-image: none; 
+  } 
+   
+  .btn-naranja.disabled, 
+  .btn-naranja[disabled], 
+  fieldset[disabled] .btn-naranja, 
+  .btn-naranja.disabled:hover, 
+  .btn-naranja[disabled]:hover, 
+  fieldset[disabled] .btn-naranja:hover, 
+  .btn-naranja.disabled:focus, 
+  .btn-naranja[disabled]:focus, 
+  fieldset[disabled] .btn-naranja:focus, 
+  .btn-naranja.disabled:active, 
+  .btn-naranja[disabled]:active, 
+  fieldset[disabled] .btn-naranja:active, 
+  .btn-naranja.disabled.active, 
+  .btn-naranja[disabled].active, 
+  fieldset[disabled] .btn-naranja.active { 
+    background-color: #FC8890; 
+    border-color: #FFD4D7; 
+  } 
+   
+  .btn-naranja .badge { 
+    color: #FC8890; 
+    background-color: #ffffff; 
+  }

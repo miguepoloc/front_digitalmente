@@ -12,6 +12,7 @@ import { Loading } from '../Loading'
 import { Resultados } from './Resultados'
 import { AuthContext } from '../../context/AuthContext'
 import { SurveysLocalStorage } from './assets/js/Surveys_localStorage'
+import Scroll from '../../helpers/helperScroll'
 const errorFaltaPorResponder = () => {
     ErrorAlert('Ups...', 'Parece que alguna pregunta de esta encuesta ha quedado sin responder. por favor, asegurate de que <b> todas </b> las preguntas tengan respuesta')
 }
@@ -94,8 +95,8 @@ const Surveys = () => {
     )
 
     const moveToStart = () => {
-        // TODO: activar esto.
-        // Scroll.scroll("startSurvey",true);
+        // TODO: desactivar en pruebas, puede resultar molesto.
+        Scroll.scroll("startSurvey",true);
     }
     /**
        * La funcion se encarga de lanzar la siguiente o anterior encuesta
