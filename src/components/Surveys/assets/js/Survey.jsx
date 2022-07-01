@@ -1,6 +1,5 @@
+import { Question } from './Question'
 
-const { Question } = require('./Question')
-//ignore-no-unused-expressions
 export class Survey {
     constructor(json) {
         this.id_survey = json.id_survey;

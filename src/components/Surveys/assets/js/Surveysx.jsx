@@ -1,6 +1,5 @@
-/* eslint-disable array-callback-return */
-const { Survey } = require('./Survey')
-const { SurveysLocalStorage } = require('./Surveys_localStorage')
+import { Survey } from './Survey'
+import { SurveysLocalStorage } from './Surveys_localStorage'
 
 export class Surveysx {
 
