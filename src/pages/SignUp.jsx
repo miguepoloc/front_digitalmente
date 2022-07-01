@@ -64,15 +64,15 @@ const Schema = Yup.object().shape({
 })
 
 const ValoresIniciales = {
-    document: '1',
-    password: 'Contrasena1!',
-    email: 'prueba@gmail.com',
-    nombre: 'Prueba',
+    document: '',
+    password: '',
+    email: '',
+    nombre: '',
     edad: '20',
     tipo_documento: 'CC',
-    sexo: '1',
-    departamento_nacimiento: '',
-    ciudad_nacimiento: '',
+    sexo: '',
+    departamento_nacimiento: 'Magdalena',
+    ciudad_nacimiento: 'Algarrobo',
     fecha_nacimiento: '1996-08-20',
     estado_civil: '1',
     programa: 'Ing Pruefsadba',
