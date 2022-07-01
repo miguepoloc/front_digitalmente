@@ -99,7 +99,7 @@ const AppRoutes = () => (
                 </AuthenticatedRoute>
 
                 <AuthenticatedRoute path="/autoevaluativo_resultados">
-                     <Resultados /> 
+                    <Resultados />
                 </AuthenticatedRoute>
 
                 <AuthenticatedRoute exact path="/emocional:slug">

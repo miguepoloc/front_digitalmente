@@ -1,9 +1,10 @@
-.card_SurveyRealizada{
+.card_SurveyRealizada {
     display: flex;
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
     background-color: #90DAE1;
+    -webkit-background-clip: border-box;
     background-clip: border-box;
     border: 0 solid rgba(0, 0, 0, 0.125);
     border-radius: 1rem;
@@ -12,17 +13,17 @@
     height: 175px;
 }
 
-.imgGanso_AutoEvaluativo_resultados{
+.imgGanso_AutoEvaluativo_resultados {
     width: 180px;
 }
 
 @media (max-width:768px) {
-    .card_SurveyRealizada{
+    .card_SurveyRealizada {
         width: 140px;
         height: 140px;
     }
 
-    .imgGanso_AutoEvaluativo_resultados{
+    .imgGanso_AutoEvaluativo_resultados {
         width: 150px;
     }
 }

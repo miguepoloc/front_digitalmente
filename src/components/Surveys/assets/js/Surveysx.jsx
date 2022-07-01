@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import { Survey } from './Survey'
 import { SurveysLocalStorage } from './Surveys_localStorage'
 
@@ -21,14 +22,14 @@ export class Surveysx {
 
 
     loadDataLocalStorage(data) {
-        if(data?.id_usuario){
+        if (data?.id_usuario) {
             delete data['id_usuario']
         }
-        
+
         for (let key in data) {
             let value = data[key];
             let survey = this.searchSurvey(key);
-            console.log(survey.questions)
+            // console.log(survey.questions)
             survey.questions = survey.questions.map((question, index) => {
                 question.setSelected(value[index])
                 return question
@@ -40,12 +41,12 @@ export class Surveysx {
     }
 
     loadDataAnswerUser(arrObj) {
-        console.log("hoooola",arrObj)
+        // console.log("hoooola", arrObj)
         for (let obj of arrObj) {
-            console.log("hoooola",obj , obj.respuestas, obj.id_encuesta )
+            // console.log("hoooola", obj, obj.respuestas, obj.id_encuesta)
             let value = obj.respuestas;
             let survey = this.searchSurvey(obj.id_encuesta);
-            console.log(survey.questions)
+            // console.log(survey.questions)
             survey.questions = survey.questions.map((question, index) => {
                 question.setSelected(value[index])
                 return question
@@ -426,7 +427,7 @@ export class Surveysx {
      * @returns {Survey}
      */
     searchSurvey(id) {
-    let search = this.jsonSurvey.filter((survey) => survey.id_survey === parseInt(id));
+        let search = this.jsonSurvey.filter((survey) => survey.id_survey === parseInt(id));
         return search.length ? search[0] : null;
     }
 

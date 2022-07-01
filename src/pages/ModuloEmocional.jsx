@@ -40,7 +40,10 @@ const ModuloEmocional = () => {
         const fetchData = async () => {
             const response = await Axios({
                 method: 'get',
-                url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
+                url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`,
+                // headers: {
+                //     'authorization': 'Bearer YOUR_JWT_TOKEN_HERE'
+                // }
             })
             if (response) {
                 console.log(response.data)

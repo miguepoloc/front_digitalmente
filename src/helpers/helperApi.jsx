@@ -15,13 +15,14 @@ const createRequest = async (url, myMethod, dataToSend = null) => {
 
     const myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
+    myHeaders.append('Authorization', 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjU3ODc1MzA5fQ.fxdNS4ZZ5NM7G54-JnfEo7eJRRc-2bvStfnaE1qkz3Q')
     // TODO: Colocar token del usuario.
     const requestOptions = {
         method: myMethod,
         headers: myHeaders,
         body: dataToSend ? JSON.stringify(dataToSend) : null
     }
-    
+
     const response = await fetch(url, requestOptions)
         .then(response => response.json())
         .catch(() => { return { err: 'Ha ocurrido un error con la conexion' } })
@@ -127,7 +128,7 @@ export const GET_definiciones = async () => {
 
 export const GET_vista_usuario_respuestas = async (dataToSend) => {
     const url = `${URL_BASE}/api/vista_usuario_respuestas/`
-    return await createRequest(url, method.get,dataToSend)
+    return await createRequest(url, method.get, dataToSend)
 }
 
 export const PUT_avance_modulos = async (id, dataToSend) => {
