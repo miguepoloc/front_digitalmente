@@ -1,6 +1,5 @@
 import React, { lazy, Suspense, useContext } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import { Resultados } from './components/Dashboard/mod_autoevaluativo/Resultados'
 import { Loading } from './components/Loading'
 import { AuthContext } from './context/AuthContext'
 import ModuloAutoevaluativo from './pages/ModuloAutoevaluativo'
@@ -15,6 +14,7 @@ const Dashboard = lazy(() => import('./pages/Dashboard'))
 const ModuloEmocional = lazy(() => import('./pages/ModuloEmocional'))
 const EmailRecover = lazy(() => import('./pages/EmailRecover'))
 const PasswordReset = lazy(() => import('./pages/PasswordReset'))
+const ResultadosAutoevaluativo = lazy(() => import('./pages/AutoevaluativoResultados'))
 
 const LoadingFallback = () => <Loading />
 
@@ -99,7 +99,7 @@ const AppRoutes = () => (
                 </AuthenticatedRoute>
 
                 <AuthenticatedRoute path="/autoevaluativo_resultados">
-                    <Resultados />
+                    <ResultadosAutoevaluativo />
                 </AuthenticatedRoute>
 
                 <AuthenticatedRoute exact path="/emocional:slug">

@@ -3,7 +3,7 @@
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #90DAE1;
+    background-color: #fc8890;
     -webkit-background-clip: border-box;
     background-clip: border-box;
     border: 0 solid rgba(0, 0, 0, 0.125);
@@ -11,6 +11,7 @@
     box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
     width: 175px;
     height: 175px;
+    cursor: pointer;
 }
 
 .imgGanso_AutoEvaluativo_resultados {

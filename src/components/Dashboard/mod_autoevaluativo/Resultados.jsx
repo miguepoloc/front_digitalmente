@@ -6,6 +6,8 @@ import { Resultado } from './Resultado'
 import './assets/css/Resultados.scss'
 import { Surveysx as model_surveys } from '../../Surveys/assets/js/Surveysx'
 import Axios from 'axios'
+import { Loading } from '../../Loading'
+
 
 export const Resultados = () => {
 
@@ -13,10 +15,11 @@ export const Resultados = () => {
     const { userInfo, token } = authState
     const id_user = userInfo.id;
 
-    const id_sexo_user = 1
+    const id_sexo_user = userInfo.sexo;
     const [resultados, setResultados] = useState(null);
     const [renderResultados, setRenderResultados] = useState(null);
     const [surveys, setSurveys] = useState(new model_surveys(null, id_user, id_sexo_user, false))
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(() => {
@@ -46,6 +49,7 @@ export const Resultados = () => {
             } else {
                 console.log('No se pudieron traer los datos...')
             }
+            setLoading(false);
         };
 
         traerResultados();
@@ -57,8 +61,10 @@ export const Resultados = () => {
 
 
     return (
+
+
         <>
-            {
+            {loading ? <Loading /> : (
                 renderResultados !== null ? (<>{renderResultados}</>) : (
                     resultados != null && surveys.arrSurvey ? (
                         <>
@@ -79,7 +85,7 @@ export const Resultados = () => {
                     ) :
                         (<></>)
                 )
-            }
+            )}
         </>
     )
 }

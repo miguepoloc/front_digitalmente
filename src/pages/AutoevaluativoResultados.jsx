@@ -9,9 +9,9 @@ import NavBarDashboard from '../components/Dashboard/NavBarDashboard'
 import FooterDashboard from '../components/Dashboard/FooterDashboard'
 
 import { AuthContext } from '../context/AuthContext'
-import Surveys from '../components/Surveys/Surveys'
+import { Resultados } from '../components/Dashboard/mod_autoevaluativo/Resultados'
 
-const ModuloAutoevaluativo = () => {
+const AutoevaluativoResultados = () => {
     // Trae los datos del usuario
     const { authState } = useContext(AuthContext)
     // Se guardan en userInfo
@@ -50,7 +50,7 @@ const ModuloAutoevaluativo = () => {
                     <div className="container-fluid py-4">
 
                         <div >
-                            <Surveys />
+                            <Resultados />
                         </div>
                         <hr />
 
@@ -64,4 +64,4 @@ const ModuloAutoevaluativo = () => {
     )
 }
 
-export default ModuloAutoevaluativo
+export default AutoevaluativoResultados

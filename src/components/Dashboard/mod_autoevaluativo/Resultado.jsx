@@ -10,10 +10,14 @@ export const Resultado = ({ number, resultado, setRenderResultados, surveys }) =
             {surveys.arrSurvey ? (
                 <>
                     {
-                        <div className="m-2 card_SurveyRealizada d-flex align-items-center justify-content-center" onClick={() => { setRenderResultados(<Resultados setRenderResultados={setRenderResultados} objResultados={encuestaConRespuestas.results()}></Resultados>) }}>
+                        <div className="m-2 card_SurveyRealizada d-flex align-items-center justify-content-center"
+                            onClick={() => {
+                                setRenderResultados(<Resultados setRenderResultados={setRenderResultados} objResultados={encuestaConRespuestas.results()}
+                                ></Resultados>)
+                            }}>
                             <div className="text-center pb-0 d-flex flex-column align-items-center justify-content-center">
                                 <p className='display-1  m-0 text-white'><strong>{number}</strong></p>
-                                <p className='m-0 text-white'>{resultado.fecha}</p>
+                                <p className='m-0 text-white'>{resultado.fecha.split(".")[0]}</p>
                             </div>
                         </div>
                     }
