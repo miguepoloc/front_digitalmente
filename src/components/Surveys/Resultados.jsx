@@ -3,7 +3,7 @@ import Scroll from '../../helpers/helperScroll'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { gansoPensandoAlert } from '../../helpers/helper_Swal_Alerts'
 
-export const Resultados = ({ objResultados }) => {
+export const Resultados = ({ objResultados, setRenderResultados }) => {
     console.log(objResultados)
 
     const text_justify = {
@@ -83,6 +83,9 @@ export const Resultados = ({ objResultados }) => {
                     <p className='lh-base text-center my-4' style={text_justify}>
                         ¿Qué significa toda esa clasificación? Si quieres saber más de esto, así como de los otros factores, ¡DigitalMente te ayudará a conocer más!
                     </p>
+                    {/* TODO: porle un src al boton regresar cuando setRenderResultados es null */}
+                    {setRenderResultados?(<><button className='btn btn-naranja text-center' onClick={()=>setRenderResultados(null)}>Regresar</button></>):(<><button className='btn btn-naranja text-center'>Regresar</button></>)}
+                    
                 </div>
             </div>
         </div>

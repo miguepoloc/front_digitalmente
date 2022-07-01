@@ -2,7 +2,8 @@
 /****************************************************************************
  *                   Funciones/constantes más usadas.                       *
  ****************************************************************************/
-export const URL_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8002'
+export const URL_BASE = process.env.REACT_APP_API_URL //|| 'http://localhost:8002'
+
 /**
  *
  * @param {String} url
@@ -11,6 +12,7 @@ export const URL_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8002'
  * @returns {Any | Null}
  */
 const createRequest = async (url, myMethod, dataToSend = null) => {
+
     const myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
     // TODO: Colocar token del usuario.
@@ -19,7 +21,7 @@ const createRequest = async (url, myMethod, dataToSend = null) => {
         headers: myHeaders,
         body: dataToSend ? JSON.stringify(dataToSend) : null
     }
-
+    
     const response = await fetch(url, requestOptions)
         .then(response => response.json())
         .catch(() => { return { err: 'Ha ocurrido un error con la conexion' } })
@@ -121,6 +123,11 @@ export const POST_definiciones_usuario_bulk_update = async (dataToSend) => {
 export const GET_definiciones = async () => {
     const url = `${URL_BASE}/api/definiciones`
     return await createRequest(url, method.get)
+}
+
+export const GET_vista_usuario_respuestas = async (dataToSend) => {
+    const url = `${URL_BASE}/api/vista_usuario_respuestas/`
+    return await createRequest(url, method.get,dataToSend)
 }
 
 export const PUT_avance_modulos = async (id, dataToSend) => {
