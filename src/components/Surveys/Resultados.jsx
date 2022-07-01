@@ -83,6 +83,7 @@ export const Resultados = ({ objResultados, setRenderResultados }) => {
                     <p className='lh-base text-center my-4' style={text_justify}>
                         ¿Qué significa toda esa clasificación? Si quieres saber más de esto, así como de los otros factores, ¡DigitalMente te ayudará a conocer más!
                     </p>
+                    {/* TODO: porle un src al boton regresar cuando setRenderResultados es null */}
                     {setRenderResultados?(<><button className='btn btn-naranja text-center' onClick={()=>setRenderResultados(null)}>Regresar</button></>):(<><button className='btn btn-naranja text-center'>Regresar</button></>)}
                     
                 </div>
