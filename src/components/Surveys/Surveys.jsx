@@ -12,6 +12,10 @@ import { Loading } from '../Loading'
 import { Resultados } from './Resultados'
 import { AuthContext } from '../../context/AuthContext'
 import { SurveysLocalStorage } from './assets/js/Surveys_localStorage'
+import Scroll from '../../helpers/helperScroll'
+import { PUT_avance_modulos } from '../../helpers/helperApi'
+
+
 const errorFaltaPorResponder = () => {
     ErrorAlert('Ups...', 'Parece que alguna pregunta de esta encuesta ha quedado sin responder. por favor, asegurate de que <b> todas </b> las preguntas tengan respuesta')
 }
@@ -94,8 +98,8 @@ const Surveys = () => {
     )
 
     const moveToStart = () => {
-        // TODO: activar esto.
-        // Scroll.scroll("startSurvey",true);
+        // TODO: desactivar en pruebas, puede resultar molesto.
+        Scroll.scroll("startSurvey", true);
     }
     /**
        * La funcion se encarga de lanzar la siguiente o anterior encuesta
@@ -171,6 +175,13 @@ const Surveys = () => {
                 console.log(surveys.jsonSurvey)
 
                 SendOkAlert(undefined, '¡Enhorabuena! ¡Tus respuestas han sido procesadas y <b>he traído los resultados</b>!').then(() => { setShowResults(surveys.results()) })
+                const jsonx = {
+                    autoevaluativo: 2,
+                    usuario: userInfo.id
+                }
+                PUT_avance_modulos(userInfo.id, jsonx)
+
+
                 SurveysLocalStorage.eliminarDatos(id_user)
                 window.localStorage.removeItem('data_survey_local') // Borrando el local storage...
             } else {

@@ -119,7 +119,7 @@ class Scroll {
         }
     }
 
-    scroll(id, staticAccess = false, navbarId = 'navBar') {
+    static scroll(id, staticAccess = false, navbarId = 'navBar') {
         const element = document.getElementById(id)
         // Si se accede estaticamente sería conveniente mandar el id del navbar
         // de esa forma se hará bien el scroll.
@@ -133,6 +133,16 @@ class Scroll {
             // 75 el tamaño del navbar
             else console.log('No puedo hacer')
         }
+    }
+
+    scroll(id,  navbarId = 'navBar') {
+        const element = document.getElementById(id)
+        // Si se accede estaticamente sería conveniente mandar el id del navbar
+        // de esa forma se hará bien el scroll.
+            if (element && this.navBar) { window.scrollTo(0, element.offsetTop - this.navBar.offsetHeight + 5) } else if (element) window.scrollTo(0, element.offsetTop)
+            // 75 el tamaño del navbar
+            else console.log('No puedo hacer')
+      
     }
 }
 export default Scroll
