@@ -5,7 +5,9 @@ import { linksEmocional } from '../../helpers/helper_emocional'
 import { linksEstres } from '../../helpers/helperEstres'
 
 const CartaSeguimiento = ({ datauser }) => {
-    const pAutoevaluativo = '100'
+    const pAutoevaluativo = datauser.autoevaluativo === 1
+        ? '0'
+        : parseInt(datauser.autoevaluativo / 2 * 100).toString()
     const pEmocional = datauser.emocional === 1
         ? '0'
         : parseInt(datauser.emocional / linksEmocional.length * 100).toString()
