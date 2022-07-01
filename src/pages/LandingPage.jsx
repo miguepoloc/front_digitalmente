@@ -51,8 +51,6 @@ function LandingPage() {
             <Unete section={secciones.JoinUp} />
             <Footer />
             <ButtonToUp Scroll={scroll} seccionToUp={secciones.Home.id} />
-            {/* <ModulosInicio /> */}
-            {/* <Surveys/> */}
         </>
     )
 }

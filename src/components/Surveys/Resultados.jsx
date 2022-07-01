@@ -3,8 +3,7 @@ import Scroll from '../../helpers/helperScroll'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { gansoPensandoAlert } from '../../helpers/helper_Swal_Alerts'
 
-export const Resultados = ({ objResultados }) => {
-    console.log(objResultados)
+export const Resultados = ({ objResultados, setRenderResultados }) => {
 
     const text_justify = {
         textAlign: "justify",
@@ -23,14 +22,15 @@ export const Resultados = ({ objResultados }) => {
         }
         if (mensaje !== "") {
             gansoPensandoAlert(undefined, `<p style="text-align: justify;">¡Hola! Tus resultados parecen ser altos con respecto a ${mensaje}. ¿Deseas contactarte con algún apoyo psicológico? A través de nuestro proyecto hermano SaludMental-SGR Unimagdalena puedes acceder a orientación psicológica gratuita a través de su chat virtual. Están siempre dispuestos a apoyar cualquier necesidad. Pero esto solo es una recomendación y depende de tu decisión.
-    <br/>
-    <br/>
-    Si quieres acceder a este servicio gratuito, ve al botón del chat que aparece en la parte inferior derecha de la página del proyecto: <a href= "https://sgrsaludmental.unimagdalena.edu.co/" style='color:#FC8890;'>¡Click aquí!</a>
-    <br/>
-    <br/>
-    Si no deseas contactarte, solo cierra este cuadro.
-    </p>
-    `, "#FC8890").then(() => Scroll.scroll("resultados", true))
+            <br/>
+            <br/>
+            Si quieres acceder a este servicio gratuito, ve al botón del chat que aparece en la parte inferior derecha de la página del proyecto: <a href= "https://sgrsaludmental.unimagdalena.edu.co/" style='color:#FC8890;'>¡Click aquí!</a>
+            <br/>
+            <br/>
+            Si no deseas contactarte, solo cierra este cuadro.
+            </p>
+            `, "#FC8890").then(() => Scroll.scroll("resultados", true)
+            )
         }
 
     }
@@ -83,6 +83,9 @@ export const Resultados = ({ objResultados }) => {
                     <p className='lh-base text-center my-4' style={text_justify}>
                         ¿Qué significa toda esa clasificación? Si quieres saber más de esto, así como de los otros factores, ¡DigitalMente te ayudará a conocer más!
                     </p>
+                    {/* TODO: porle un src al boton regresar cuando setRenderResultados es null */}
+                    {setRenderResultados ? (<><button className='btn-success text-center' onClick={() => setRenderResultados(null)}>Regresar</button></>) : (<><button className='btn btn-naranja text-center'>Regresar</button></>)}
+
                 </div>
             </div>
         </div>

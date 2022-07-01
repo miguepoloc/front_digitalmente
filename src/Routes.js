@@ -14,6 +14,7 @@ const Dashboard = lazy(() => import('./pages/Dashboard'))
 const ModuloEmocional = lazy(() => import('./pages/ModuloEmocional'))
 const EmailRecover = lazy(() => import('./pages/EmailRecover'))
 const PasswordReset = lazy(() => import('./pages/PasswordReset'))
+const ResultadosAutoevaluativo = lazy(() => import('./pages/AutoevaluativoResultados'))
 
 const LoadingFallback = () => <Loading />
 
@@ -95,6 +96,10 @@ const AppRoutes = () => (
 
                 <AuthenticatedRoute path="/autoevaluativo">
                     <ModuloAutoevaluativo />
+                </AuthenticatedRoute>
+
+                <AuthenticatedRoute path="/autoevaluativo_resultados">
+                    <ResultadosAutoevaluativo />
                 </AuthenticatedRoute>
 
                 <AuthenticatedRoute exact path="/emocional:slug">

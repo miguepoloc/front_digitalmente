@@ -14,6 +14,8 @@ import { Loading } from '../Loading'
 import { Actividad } from '../Dashboard/Actividad'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { ErrorGanso } from '../ErrorGanso'
+
+
 export const Vocabulario = () => {
 
     const [validate, setValidate] = useState(false);
