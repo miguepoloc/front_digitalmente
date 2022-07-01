@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useContext } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
+import { Resultados } from './components/Dashboard/mod_autoevaluativo/Resultados'
 import { Loading } from './components/Loading'
 import { AuthContext } from './context/AuthContext'
 import ModuloAutoevaluativo from './pages/ModuloAutoevaluativo'
@@ -95,6 +96,10 @@ const AppRoutes = () => (
 
                 <AuthenticatedRoute path="/autoevaluativo">
                     <ModuloAutoevaluativo />
+                </AuthenticatedRoute>
+
+                <AuthenticatedRoute path="/autoevaluativo_resultados">
+                     <Resultados /> 
                 </AuthenticatedRoute>
 
                 <AuthenticatedRoute exact path="/emocional:slug">

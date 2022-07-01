@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import '../../assets/css/NavBarDashboard.scss'
-
 import { useHistory, useLocation } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
@@ -85,7 +84,7 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
                                     <span className='pe-2 d-flex align-items-center'><FcApproval size={22} /></span>
                                     Prueba
                                 </NavDropdown.Item>
-                                <NavDropdown.Item href="#" className='d-flex align-items-center' >
+                                <NavDropdown.Item href="/autoevaluativo_resultados" className='d-flex align-items-center' >
                                     <span className='pe-1 d-flex align-items-center'><FcBiomass size={22} /></span>
                                     Resultados
                                 </NavDropdown.Item>
