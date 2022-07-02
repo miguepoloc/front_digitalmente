@@ -99,7 +99,7 @@ const Surveys = () => {
 
     const moveToStart = () => {
         // TODO: desactivar en pruebas, puede resultar molesto.
-        Scroll.scroll("startSurvey", true);
+        !userInfo.is_staff ? Scroll.scroll("startSurvey", true) : <></>
     }
     /**
        * La funcion se encarga de lanzar la siguiente o anterior encuesta
