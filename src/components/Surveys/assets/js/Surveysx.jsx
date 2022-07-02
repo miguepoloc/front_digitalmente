@@ -160,9 +160,9 @@ export class Surveysx {
         const depresionTest = this.searchSurvey(depresionTestId);
         const points = this.sumAllQuestions(depresionTest);
 
-        if (points >= 0 && points <= 14) {
+        if (points >= 0 && points <= 20) {
             objJson.result = "" //Sin sintomas depresivos. lo dejo vacio porque en la plantialla decia lo mismo.
-        } else if (points >= 15 && points <= 30) {
+        } else if (points >= 21 && points <= 30) {
             objJson.result = "moderados"
         } else if (points >= 31) {
             objJson.result = "graves"

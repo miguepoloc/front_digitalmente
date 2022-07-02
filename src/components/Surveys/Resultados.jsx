@@ -64,7 +64,7 @@ export const Resultados = ({ objResultados, setRenderResultados }) => {
                         Ahora, en cuanto a tu estrés percibido, parece que te encuentras en un nivel <b>{objResultados.escalaDeEstresPercibido.result}</b>. Recuerda que esto se evalúa en cuanto al último mes y depende de tu autoinforme.
                     </p>
                     <p className='lh-base' style={text_justify}>
-                        Por otro lado, en cuanto a otros factores importantes relacionados a tu salud mental, parece que te percibes con un nivel de ansiedad <b>{objResultados.ansiedad.result}</b>, <b>{objResultados.depresion.points <= 14 ? "sin" : "con"} </b> aparentes síntomas depresivos <b>{objResultados.depresion.result}</b>.
+                        Por otro lado, en cuanto a otros factores importantes relacionados a tu salud mental, parece que te percibes con un nivel de ansiedad <b>{objResultados.ansiedad.result}</b>, <b>{objResultados.depresion.points <= 20 ? "sin" : "con"} </b> aparentes síntomas depresivos <b>{objResultados.depresion.result}</b>.
                     </p>
 
                     <Tip color={"#2196F3"} icon={<FcInfo className='mx-2' />} _class="mb-2 my-3" title={"Recuerda que"} text={"Aunque somos una estrategia psicoeducativa, en el marco de nuestro proyecto hermano Salud Mental SGR Unimagdalena, se tiene a disposición una serie de servicios de atención y orientación psicológica gratuita al cual puedes acceder, si lo deseas, a través de la página <a href='https://sgrsaludmental.unimagdalena.edu.co/' target='_blank'>Salud Mental SGR Unimagdalena</a> , donde tienes acceso a un chat virtual para atención inmediata, módulos de promoción y prevención psicoeducativas, solicitud de citas, entre otros."} />
