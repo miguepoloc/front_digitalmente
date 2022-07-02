@@ -81,9 +81,9 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
                                 className='d-flex flex-column align-items-center justify-content-center'
                                 autoClose="outside"
                             >
-                                <NavDropdown.Item href="/autoevaluativo" className='d-flex' disabled={(datauser.autoevaluativo === 2)}>
+                                <NavDropdown.Item href="/autoevaluativo" className='d-flex' disabled={(datauser.autoevaluativo === 2) && !userInfo.is_staff}>
                                     <span className='pe-2 d-flex align-items-center'>
-                                        {(datauser.autoevaluativo === 2) ? <FcCancel size={22} /> : <FcApproval size={22} />}
+                                        {((datauser.autoevaluativo === 2) && !userInfo.is_staff) ? <FcCancel size={22} /> : <FcApproval size={22} />}
                                     </span>
                                     Prueba
                                 </NavDropdown.Item>

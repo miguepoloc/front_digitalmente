@@ -36,7 +36,7 @@ export const ModulosInicio = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const bloqueo_ae = (datauser.autoevaluativo === 2 ? true : false)
+    const bloqueo_ae = (datauser.autoevaluativo === 2 && !userInfo.is_staff ? true : false)
     console.log("🚀 ~ file: ModulosInicio.jsx ~ line 13 ~ ModulosInicio ~ datauser.autoevaluativo", datauser.autoevaluativo)
 
     const modulos = {
