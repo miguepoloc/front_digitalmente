@@ -1,4 +1,4 @@
-import { Surveys as model_surveys } from "../../components/Surveys/assets/js/Surveys";
+import { Surveysx as model_surveys } from "../../components/Surveys/assets/js/Surveysx";
 
 const ObtenerDatos = [
     {
@@ -6255,26 +6255,26 @@ describe("Test Depresion", () => {
     })
 
     test("Test sin sintomas limite medio", () => {
-        let resultado = encuestas.loadDataLocalStorage({ 4: [21, 28, 29, 33, 40, 41, 48, 49, 53, 57] }).restultsDepresionTest(4);
-        expect(resultado.points).toBe(13);
+        let resultado = encuestas.loadDataLocalStorage({ 4: [23, 28, 29, 33, 40, 41, 48, 49, 53, 57] }).restultsDepresionTest(4);
+        expect(resultado.points).toBe(15);
         expect(resultado.result).toBe(depresion.sinSintomas);
     })
 
     test("Test sin sintomas limite superior", () => {
-        let resultado = encuestas.loadDataLocalStorage({ 4: [21, 25, 29, 33, 37, 41, 47, 49, 53, 57] }).restultsDepresionTest(4);
-        expect(resultado.points).toBe(14);
+        let resultado = encuestas.loadDataLocalStorage({ 4: [21, 25, 29, 33, 37, 44, 45, 49, 53, 58] }).restultsDepresionTest(4);
+        expect(resultado.points).toBe(20);
         expect(resultado.result).toBe(depresion.sinSintomas);
     })
 
     test("Test moderada limite inferior", () => {
-        let resultado = encuestas.loadDataLocalStorage({ 4: [22, 25, 29, 33, 37, 41, 47, 49, 53, 57] }).restultsDepresionTest(4);
-        expect(resultado.points).toBe(15);
+        let resultado = encuestas.loadDataLocalStorage({ 4: [22, 25, 29, 33, 37, 44, 45, 49, 53, 58] }).restultsDepresionTest(4);
+        expect(resultado.points).toBe(21);
         expect(resultado.result).toBe(depresion.moderada);
     })
 
     test("Test moderada limite medio", () => {
-        let resultado = encuestas.loadDataLocalStorage({ 4: [21, 25, 29, 33, 37, 44, 45, 49, 53, 57] }).restultsDepresionTest(4);
-        expect(resultado.points).toBe(19);
+        let resultado = encuestas.loadDataLocalStorage({ 4: [24, 26, 30, 33, 37, 44, 45, 49, 53, 58] }).restultsDepresionTest(4);
+        expect(resultado.points).toBe(25);
         expect(resultado.result).toBe(depresion.moderada);
     })
 
