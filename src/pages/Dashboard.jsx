@@ -15,6 +15,7 @@ import CartaBienvenido from '../components/Dashboard/CartaBienvenido'
 import { CartaResultados } from '../components/Dashboard/CartaResultados'
 import { CartaActividadesFomento } from '../components/Dashboard/CartaActividadesFomento'
 import '../assets/css/index.scss'
+import { Loading } from '../components/Loading'
 
 const Dashboard = () => {
     const { authState } = useContext(AuthContext)
@@ -23,6 +24,8 @@ const Dashboard = () => {
 
     // Obtención de datos
     const [datauser, setDatauser] = useState([])
+    const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,6 +40,7 @@ const Dashboard = () => {
             } else {
                 console.log('No se pudieron traer los datos...')
             }
+            setLoading(false);
         };
 
         fetchData();
@@ -45,29 +49,31 @@ const Dashboard = () => {
 
     return (
         <>
-            <div
-                className="g-sidenav-show  bg-gray-100 "
-            >
-                <main className="main-content position-relative h-100 border-radius-lg ">
-                    <NavBarDashboard datauser={datauser} userInfo={userInfo} />
-                    <div className="container-fluid py-4">
-                        <div className="row my-1">
-                            <CartaBienvenido />
-                        </div>
-                        <div className="row mt-1">
-                            <ModulosInicio />
-                        </div>
-                        <div className="row my-4">
-                            <CartaSeguimiento datauser={datauser} />
-                            <CartaResultados />
-                            <CartaActividadesFomento />
+            {loading ? <Loading /> : (
+                <div
+                    className="g-sidenav-show  bg-gray-100 "
+                >
+                    <main className="main-content position-relative h-100 border-radius-lg ">
+                        <NavBarDashboard datauser={datauser} userInfo={userInfo} />
+                        <div className="container-fluid py-4">
+                            <div className="row my-1">
+                                <CartaBienvenido />
+                            </div>
+                            <div className="row mt-1">
+                                <ModulosInicio />
+                            </div>
+                            <div className="row my-4">
+                                <CartaSeguimiento datauser={datauser} />
+                                <CartaResultados />
+                                <CartaActividadesFomento />
+                            </div>
+
+                            <FooterDashboard />
                         </div>
 
-                        <FooterDashboard />
-                    </div>
-
-                </main>
-            </div>
+                    </main>
+                </div>
+            )}
         </>
     )
 }
