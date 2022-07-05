@@ -39,7 +39,7 @@ export const Resultados = () => {
         }
         const traerResultados = async () => {
             let response
-            try{
+            try {
                 response = await Axios({
                     method: 'get',
                     url: `${process.env.REACT_APP_API_URL}/api/vista_usuario_respuestas`,
@@ -48,17 +48,17 @@ export const Resultados = () => {
                     }
                 })
 
-            }catch{
+            } catch {
                 setError(true);
             }
-           
-            
+
+
             if (response) {
                 console.log("🚀 ~ file: Resultados.jsx ~ line 44 ~ traerResultados ~ response", response)
                 setResultados(response.data)
                 // Y lo coloca en el estado de datos del usuario
             } else {
-                
+
                 console.log('No se pudieron traer los datos...')
             }
             setLoading(false);
@@ -78,33 +78,34 @@ export const Resultados = () => {
         <>
             {loading ? <Loading /> : (
                 renderResultados !== null ? (<>{renderResultados}</>) : (
-                    error?(<ErrorGanso text={"Ups, parece que ha ocurrido un inconveniente."}/>):(
-                    resultados != null && surveys.arrSurvey ? (
-                        <>
-                        
-                            <div className='text-center'>
-                            {resultados.length === 0?(<>
-                                <img src={imgGanso.sorprendido} className="imgGanso_AutoEvaluativo_resultados mt-2" alt="" />
-                                <h3 className='font-Geomanist mt-3'>Hola {userInfo.nombre.split(" ")[0]}, Parece que no has hecho ningun test.</h3>
-                            </>):(<> 
-                                <img src={imgGanso.leyendo} className="imgGanso_AutoEvaluativo_resultados mt-2" alt="" />
-                                <h3 className='font-Geomanist mt-3'>Hola {userInfo.nombre.split(" ")[0]}, estos son los test que has hecho hasta el momento</h3></>)
-                            }
-                               
-                            </div>
-                            <div className='d-flex my-4  justify-content-evenly flex-wrap '>
-                                {
-                                    resultados.map((resultado, i) => {
-                                        return (<Resultado key={i} number={i + 1} resultado={resultado} surveys={surveys} setRenderResultados={setRenderResultados} />)
+                    error ? (<ErrorGanso text={"Ups, parece que ha ocurrido un inconveniente."} />) : (
+                        resultados != null && surveys.arrSurvey ? (
+                            <>
 
-                                    })
-                                }
+                                <div className='text-center'>
+                                    {resultados.length === 0 ? (<>
+                                        <img src={imgGanso.sorprendido} className="imgGanso_AutoEvaluativo_resultados mt-2" alt="" />
+                                        <h3 className='font-Geomanist mt-3'>Hola {userInfo.nombre.split(" ")[0]}, Parece que no has hecho ningun test.</h3>
+                                    </>) : (<>
+                                        <img src={imgGanso.leyendo} className="imgGanso_AutoEvaluativo_resultados mt-2" alt="" />
+                                        <h3 className='font-Geomanist mt-3'>Hola {userInfo.nombre.split(" ")[0]}, estos son los test que has hecho hasta el momento</h3></>)
+                                    }
 
-                            </div>
-                        </>
-                    ) :
-                        (<></>)
-                )
+                                </div>
+                                <div className='d-flex my-4  justify-content-evenly flex-wrap '>
+                                    {
+                                        resultados.map((resultado, i) => {
+                                            console.log(resultado)
+                                            return (<Resultado key={i} number={i + 1} resultado={resultado} surveys={surveys} setRenderResultados={setRenderResultados} />)
+
+                                        })
+                                    }
+
+                                </div>
+                            </>
+                        ) :
+                            (<></>)
+                    )
                 )
             )}
         </>

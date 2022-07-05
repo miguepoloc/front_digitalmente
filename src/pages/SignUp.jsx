@@ -12,7 +12,7 @@ import {
     FaUser, FaVirusSlash, FaUniversity,
     FaUserFriends, FaRegAddressCard, FaIdCardAlt,
     FaAccessibleIcon, FaSyringe, FaEnvelopeOpenText,
-    FaChild, FaVenusMars, FaBlind,
+    FaChild, FaVenusMars, FaBlind, FaMapSigns,
     FaMapMarkedAlt, FaBirthdayCake, FaTools, FaLock,
     FaVirus, FaViruses, FaPhoneAlt, FaToolbox, FaShieldVirus
 } from 'react-icons/fa'
@@ -21,30 +21,9 @@ import Link from '@mui/material/Link'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import SvgIcon from "@mui/material/SvgIcon";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { Checkbox, FormControlLabel } from '@mui/material'
-
-const currencies = [
-    {
-        value: "USD",
-        label: "$"
-    },
-    {
-        value: "EUR",
-        label: "€"
-    },
-    {
-        value: "BTC",
-        label: "฿"
-    },
-    {
-        value: "JPY",
-        label: "¥"
-    }
-];
+import { Checkbox, FormControl, FormControlLabel, InputLabel } from '@mui/material'
 
 const Schema = Yup.object().shape({
     document: Yup.number()
@@ -106,10 +85,10 @@ const ValoresInicialesPrueba = {
     email: '',
     nombre: '',
     edad: '20',
-    tipo_documento: 'CC',
+    tipo_documento: '',
     sexo: '',
-    departamento_nacimiento: 'Magdalena',
-    ciudad_nacimiento: 'Algarrobo',
+    departamento_nacimiento: '',
+    ciudad_nacimiento: '',
     fecha_nacimiento: '1996-08-20',
     estado_civil: '1',
     programa: 'Ing Pruefsadba',
@@ -131,10 +110,10 @@ const ValoresIniciales = {
     email: 'as@as.com',
     nombre: 'migue',
     edad: '20',
-    tipo_documento: 'CC',
-    sexo: 'hombre',
-    departamento_nacimiento: 'Magdalena',
-    ciudad_nacimiento: 'Algarrobo',
+    tipo_documento: '',
+    sexo: '',
+    departamento_nacimiento: '',
+    ciudad_nacimiento: '',
     fecha_nacimiento: '1996-08-20',
     estado_civil: '1',
     programa: 'Ing Pruefsadba',
@@ -157,6 +136,7 @@ const SignUp = () => {
     const [messLogin, setMessLogin] = useState('')
     const [loading, setLoading] = useState(false)
     const [dataColombia, setdataColombia] = useState([])
+    const [dataSexo, setdataSexo] = useState([])
 
     const getColombia = async () => {
         const colombia = await Axios({
@@ -166,11 +146,27 @@ const SignUp = () => {
         return (colombia.data)
     }
 
+    const getSexo = async () => {
+        const sexo = await Axios({
+            method: 'get',
+            url: `${process.env.REACT_APP_API_URL}/api/sexo`
+        })
+        return (sexo.data)
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             // Guarda en response el avance que lleva el usuario
             const response = await getColombia()
+            const responseSexo = await getSexo()
 
+            if (responseSexo) {
+                // Y lo coloca en el estado de datos del usuario
+                setdataSexo(responseSexo)
+                console.log(dataSexo)
+            } else {
+                console.log('No se pudieron traer los datos del sexo...')
+            }
             if (response) {
                 // Y lo coloca en el estado de datos del usuario
                 setdataColombia(response)
@@ -179,7 +175,9 @@ const SignUp = () => {
                 console.log('No se pudieron traer los datos...')
             }
         }
+
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []) // Se controla el cambio a partir del estado control
 
     return (
@@ -248,31 +246,6 @@ const SignUp = () => {
                             }) => (
                                 <Form onSubmit={handleSubmit} className="form-login">
                                     {/* Aquí empieza el formulario */}
-
-                                    <Box>
-                                        <Select
-                                            sx={{ width: 130 }}
-                                            defaultValue=""
-                                            displayEmpty
-                                            renderValue={(value) => {
-                                                console.log(value);
-                                                return (
-                                                    <Box sx={{ display: "flex", gap: 1 }}>
-                                                        <SvgIcon color="primary">
-                                                            <LocationOnIcon />
-                                                        </SvgIcon>
-                                                        {value}
-                                                    </Box>
-                                                );
-                                            }}
-                                        >
-                                            {currencies.map((option) => (
-                                                <MenuItem key={option.value} value={option.value}>
-                                                    {option.value}
-                                                </MenuItem>
-                                            ))}
-                                        </Select>
-                                    </Box>
                                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                                             <FaUser
@@ -296,19 +269,26 @@ const SignUp = () => {
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                                             <FaIdCardAlt
                                                 style={{ color: '#00659D', fontSize: '1.3rem', marginRight: '0.5rem', marginBottom: '6px' }} />
-                                            <TextField
-                                                color={Boolean(errors.tipo_documento) ? 'error' : 'primary'}
-                                                variant="standard"
-                                                required
-                                                fullWidth
-                                                id="tipo_documento"
-                                                label="Tipo de documento"
-                                                name="tipo_documento"
-                                                autoComplete="tipo_documento"
-                                                value={values.tipo_documento}
-                                                onChange={handleChange}
-                                                error={Boolean(errors.tipo_documento)}
-                                                helperText={errors.tipo_documento} />
+                                            <Box sx={{ minWidth: 120 }}>
+                                                <FormControl fullWidth>
+                                                    <InputLabel id="tipo_documento-label">Tipo de documento</InputLabel>
+                                                    <Select
+                                                        labelId="tipo_documento-label"
+                                                        id="tipo_documento"
+                                                        name='tipo_documento'
+                                                        label="Tipo de documento"
+                                                        value={values.tipo_documento}
+                                                        required
+                                                        onChange={handleChange}
+                                                    >
+                                                        <MenuItem value={"PA"}>PA</MenuItem>
+                                                        <MenuItem value={"CE"}>CÉDULA DE EXTRANJERÍA</MenuItem>
+                                                        <MenuItem value={"CC"}>CÉDULA DE CIUDADANÍA</MenuItem>
+                                                        <MenuItem value={"TI"}>TARJETA DE IDENTIDAD</MenuItem>
+                                                        <MenuItem value={"RC"}>REGISTRO CIVIL</MenuItem>
+                                                    </Select>
+                                                </FormControl>
+                                            </Box>
                                         </Box>
                                     </Box>
                                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
@@ -321,7 +301,7 @@ const SignUp = () => {
                                                 required
                                                 fullWidth
                                                 id="document"
-                                                label="Documento"
+                                                label="Número de documento"
                                                 name="document"
                                                 autoComplete="document"
                                                 value={values.document}
@@ -369,23 +349,32 @@ const SignUp = () => {
                                                 helperText={errors.password} />
                                         </Box>
                                     </Box>
-                                    <Box sx={{ '& > :not(style)': { m: 1 } }}>
+                                    <Box sx={{ '& > :not(style)': { m: 1, minWidth: 120 } }}>
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                                             <FaVenusMars
                                                 style={{ color: '#00659D', fontSize: '1.3rem', marginRight: '0.5rem', marginBottom: '6px' }} />
-                                            <TextField
-                                                color={Boolean(errors.sexo) ? 'error' : 'primary'}
-                                                variant="standard"
-                                                required
-                                                fullWidth
-                                                id="sexo"
-                                                label="Sexo"
-                                                name="sexo"
-                                                autoComplete="sexo"
-                                                value={values.sexo}
-                                                onChange={handleChange}
-                                                error={Boolean(errors.sexo)}
-                                                helperText={errors.sexo} />
+                                            <Box sx={{ minWidth: 120 }}>
+                                                <FormControl fullWidth>
+                                                    <InputLabel id="sexo-label">Sexo</InputLabel>
+                                                    <Select
+                                                        color={Boolean(errors.sexo) ? 'error' : 'primary'}
+                                                        labelId="sexo-label"
+                                                        id="sexo"
+                                                        name='sexo'
+                                                        fullWidth
+                                                        label="Sexo"
+                                                        value={values.sexo}
+                                                        onChange={handleChange}
+                                                        error={Boolean(errors.sexo)}
+                                                    >
+                                                        {
+                                                            dataSexo.map((sexo, index) => (
+                                                                <MenuItem value={sexo.id} key={index}>{sexo.sexo}</MenuItem>
+                                                            ))
+                                                        }
+                                                    </Select>
+                                                </FormControl>
+                                            </Box>
                                         </Box>
                                     </Box>
                                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
@@ -407,42 +396,61 @@ const SignUp = () => {
                                                 helperText={errors.edad} />
                                         </Box>
                                     </Box>
-                                    <Box sx={{ '& > :not(style)': { m: 1 } }}>
+                                    <Box sx={{ '& > :not(style)': { m: 1, minWidth: 120 } }}>
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                                             <FaMapMarkedAlt
                                                 style={{ color: '#00659D', fontSize: '1.3rem', marginRight: '0.5rem', marginBottom: '6px' }} />
-                                            <TextField
-                                                color={Boolean(errors.departamento_nacimiento) ? 'error' : 'primary'}
-                                                variant="standard"
-                                                required
-                                                fullWidth
-                                                id="departamento_nacimiento"
-                                                label="Departamento de nacimieento"
-                                                name="departamento_nacimiento"
-                                                autoComplete="departamento_nacimiento"
-                                                value={values.departamento_nacimiento}
-                                                onChange={handleChange}
-                                                error={Boolean(errors.departamento_nacimiento)}
-                                                helperText={errors.departamento_nacimiento} />
+                                            <Box sx={{ minWidth: 120 }}>
+                                                <FormControl fullWidth>
+                                                    <InputLabel id="departamento_nacimiento-label">Departamento de nacimiento</InputLabel>
+                                                    <Select
+                                                        labelId="departamento_nacimiento-label"
+                                                        id="departamento_nacimiento"
+                                                        name='departamento_nacimiento'
+                                                        label="Departamento de nacimiento"
+                                                        value={values.departamento_nacimiento}
+                                                        onChange={handleChange}
+                                                    >
+                                                        {
+                                                            dataColombia.map((answer, index) => (
+                                                                <MenuItem value={answer.departamento} key={index}>{answer.departamento}</MenuItem>
+                                                            ))
+                                                        }
+                                                    </Select>
+                                                </FormControl>
+                                            </Box>
                                         </Box>
                                     </Box>
-                                    <Box sx={{ '& > :not(style)': { m: 1 } }}>
+
+                                    <Box sx={{ '& > :not(style)': { m: 1, minWidth: 120 } }}>
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                                            <FaMapMarkedAlt
+                                            <FaMapSigns
                                                 style={{ color: '#00659D', fontSize: '1.3rem', marginRight: '0.5rem', marginBottom: '6px' }} />
-                                            <TextField
-                                                color={Boolean(errors.ciudad_nacimiento) ? 'error' : 'primary'}
-                                                variant="standard"
-                                                required
-                                                fullWidth
-                                                id="ciudad_nacimiento"
-                                                label="Ciudad de nacimieento"
-                                                name="ciudad_nacimiento"
-                                                autoComplete="ciudad_nacimiento"
-                                                value={values.ciudad_nacimiento}
-                                                onChange={handleChange}
-                                                error={Boolean(errors.ciudad_nacimiento)}
-                                                helperText={errors.ciudad_nacimiento} />
+                                            <Box sx={{ minWidth: 120 }}>
+                                                <FormControl fullWidth>
+                                                    <InputLabel id="ciudad_nacimiento-label">Ciudad de nacimiento</InputLabel>
+                                                    <Select
+                                                        labelId="ciudad_nacimiento-label"
+                                                        id="ciudad_nacimiento"
+                                                        name='ciudad_nacimiento'
+                                                        label="Ciudad de nacimiento"
+                                                        value={values.ciudad_nacimiento}
+                                                        onChange={handleChange}
+                                                    >
+                                                        {dataColombia.find((dept) => { return dept.departamento === values.departamento_nacimiento })?.ciudades?.map((answer, i) => {
+                                                            return (
+                                                                <MenuItem
+                                                                    key={i}
+                                                                    value={answer}
+                                                                >
+                                                                    {answer}
+                                                                </MenuItem>
+                                                            )
+                                                        })
+                                                        }
+                                                    </Select>
+                                                </FormControl>
+                                            </Box>
                                         </Box>
                                     </Box>
                                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
@@ -573,18 +581,25 @@ const SignUp = () => {
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                                             <FaVirusSlash
                                                 style={{ color: '#00659D', fontSize: '1.3rem', marginRight: '0.5rem', marginBottom: '6px' }} />
-                                            <TextField
-                                                color={Boolean(errors.covid_tipo_vacuna) ? 'error' : 'primary'}
-                                                variant="standard"
-                                                fullWidth
-                                                id="covid_tipo_vacuna"
-                                                label="Tipo contra covid"
-                                                name="covid_tipo_vacuna"
-                                                autoComplete="covid_tipo_vacuna"
-                                                value={values.covid_tipo_vacuna}
-                                                onChange={handleChange}
-                                                error={Boolean(errors.covid_tipo_vacuna)}
-                                                helperText={errors.covid_tipo_vacuna} />
+                                            <Box sx={{ minWidth: 120 }}>
+                                                <FormControl fullWidth>
+                                                    <InputLabel id="covid_tipo_vacuna-label">¿Qué vacuna le aplicaron?</InputLabel>
+                                                    <Select
+                                                        labelId="covid_tipo_vacuna-label"
+                                                        id="covid_tipo_vacuna"
+                                                        name='covid_tipo_vacuna'
+                                                        label="¿Qué vacuna le aplicaron?"
+                                                        value={values.covid_tipo_vacuna}
+                                                        onChange={handleChange}
+                                                    >
+                                                        <MenuItem value={"P"}>Pfizer</MenuItem>
+                                                        <MenuItem value={"M"}>Moderna</MenuItem>
+                                                        <MenuItem value={"S"}>Sinovac</MenuItem>
+                                                        <MenuItem value={"A"}>Astrazeneca</MenuItem>
+                                                        <MenuItem value={"J"}>Janssen</MenuItem>
+                                                    </Select>
+                                                </FormControl>
+                                            </Box>
                                         </Box>
                                     </Box>
                                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
@@ -623,18 +638,26 @@ const SignUp = () => {
                                         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                                             <FaBlind
                                                 style={{ color: '#00659D', fontSize: '1.3rem', marginRight: '0.5rem', marginBottom: '6px' }} />
-                                            <TextField
-                                                color={Boolean(errors.discapacidad_tipo) ? 'error' : 'primary'}
-                                                variant="standard"
-                                                fullWidth
-                                                id="discapacidad_tipo"
-                                                label="Tipo de discapacidad"
-                                                name="discapacidad_tipo"
-                                                autoComplete="discapacidad_tipo"
-                                                value={values.discapacidad_tipo}
-                                                onChange={handleChange}
-                                                error={Boolean(errors.discapacidad_tipo)}
-                                                helperText={errors.discapacidad_tipo} />
+                                            <Box sx={{ minWidth: 120 }}>
+                                                <FormControl fullWidth>
+                                                    <InputLabel id="discapacidad_tipo-label">¿Qué tipo de discapacidad?</InputLabel>
+                                                    <Select
+                                                        labelId="discapacidad_tipo-label"
+                                                        id="discapacidad_tipo"
+                                                        name='discapacidad_tipo'
+                                                        label="¿Qué tipo de discapacidad?"
+                                                        value={values.discapacidad_tipo}
+                                                        onChange={handleChange}
+                                                    >
+                                                        <MenuItem value={"P"}>Auditiva</MenuItem>
+                                                        <MenuItem value={"V"}>Visual</MenuItem>
+                                                        <MenuItem value={"S"}>Sordoceguera</MenuItem>
+                                                        <MenuItem value={"I"}>Intelectual</MenuItem>
+                                                        <MenuItem value={"P"}>Psicosocial (mental)</MenuItem>
+                                                        <MenuItem value={"M"}>Múltiple</MenuItem>
+                                                    </Select>
+                                                </FormControl>
+                                            </Box>
                                         </Box>
                                     </Box>
                                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
@@ -647,7 +670,7 @@ const SignUp = () => {
                                                 required
                                                 fullWidth
                                                 id="telefono"
-                                                label="Teléfono"
+                                                label="Número de eléfono"
                                                 name="telefono"
                                                 autoComplete="telefono"
                                                 value={values.telefono}
