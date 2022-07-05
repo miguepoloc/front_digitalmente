@@ -13,7 +13,6 @@ import TextField from '@mui/material/TextField'
 import Link from '@mui/material/Link'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import { Loading } from '../components/Loading'
 const Schema = Yup.object().shape({
     document: Yup
         .number()
@@ -32,11 +31,10 @@ const Login = () => {
     const { setAuthState } = useContext(AuthContext)
     const [messLogin, setMessLogin] = useState('')
     const [loading, setLoading] = useState(false)
-    console.log(process.env)
     return (
         <>
-        {loading?(<><Loading/></>):(<>
-        <img src={Ola} id="Ola" alt="" className="wave" />
+
+            <img src={Ola} id="Ola" alt="" className="wave" />
             <div className="container-login">
                 <div className="img-login">
                     <img src={Cel} id="Cel" alt="" />
@@ -91,7 +89,11 @@ const Login = () => {
                         >
 
                             {({
-                                touched, errors, values, handleSubmit, handleChange
+                                touched,
+                                errors,
+                                values,
+                                handleSubmit,
+                                handleChange
                             }) => (
                                 <Form onSubmit={handleSubmit} className="form-login">
                                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
@@ -99,7 +101,7 @@ const Login = () => {
                                             <FaUser
                                                 style={{ color: '#00659D', fontSize: '1.3rem', marginRight: '0.5rem', marginBottom: '6px' }} />
                                             <TextField
-                                                color={touched.password && Boolean(errors.password) ? 'error' : 'primary'}
+                                                color={touched.document && Boolean(errors.document) ? 'error' : 'primary'}
                                                 variant="standard"
                                                 required
                                                 fullWidth
@@ -144,7 +146,10 @@ const Login = () => {
                                         sx={{ mt: 3, mb: 2 }}
                                         className="btn-login btn-primary btn-block"
                                     >
-                                        Iniciar Sesión
+                                        {loading ? (<>Cargando...</>) : (
+
+                                            <>Iniciar Sesión</>)
+                                        }
                                     </button>
                                     <Grid container>
                                         <Grid item xs>
@@ -164,8 +169,8 @@ const Login = () => {
                         </Formik>
                     </Box>
                 </Grid>
-            </div></>)}
-            
+            </div>
+
         </>
     )
 }
