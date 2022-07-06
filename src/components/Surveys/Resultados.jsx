@@ -1,15 +1,13 @@
-import React, { useEffect } from 'react'
-import Scroll from '../../helpers/helperScroll'
+import React, { useEffect} from 'react'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { gansoPensandoAlert } from '../../helpers/helper_Swal_Alerts'
 import { Tip } from '../Dashboard/Tip'
 import { FcInfo } from 'react-icons/fc'
 import { useHistory } from 'react-router-dom'
 
-export const Resultados = ({ objResultados, setRenderResultados }) => {
+export const Resultados = ({ objResultados, setRenderResultados, mostrarMensajeDeAlerta = true}) => {
 
     const history = useHistory()
-
     const text_justify = {
         textAlign: "justify",
         textJustify: "inter-word"
@@ -34,15 +32,18 @@ export const Resultados = ({ objResultados, setRenderResultados }) => {
             <br/>
             Si no deseas contactarte, solo cierra este cuadro.
             </p>
-            `, "#FC8890").then(() => Scroll.scroll("resultados", true)
+            `, "#FC8890").then(window.scrollTo(0, 0)
             )
         }
 
     }
 
-    mensajeDeAlerta();
+    if(mostrarMensajeDeAlerta){
+        mensajeDeAlerta();
+    }
+    
     useEffect(() => {
-        window.scrollTo(0, 0)
+        window.scroll(0, 0)
     }, [])
     return (
         <div className='container' id="resultados">

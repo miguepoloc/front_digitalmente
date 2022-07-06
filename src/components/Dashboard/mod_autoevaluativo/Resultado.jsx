@@ -19,7 +19,7 @@ export const Resultado = ({ number, resultado, setRenderResultados, surveys }) =
                     {
                         <div className="m-2 card_SurveyRealizada d-flex align-items-center justify-content-center"
                             onClick={() => {
-                                setRenderResultados(<Resultados setRenderResultados={setRenderResultados} objResultados={encuestaConRespuestas.results()}
+                                setRenderResultados(<Resultados setRenderResultados={setRenderResultados} objResultados={encuestaConRespuestas.results()} mostrarMensajeDeAlerta={false}
                                 ></Resultados>)
                             }}>
                             <div className="text-center pb-0 d-flex flex-column align-items-center justify-content-center">
