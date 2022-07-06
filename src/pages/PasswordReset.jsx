@@ -25,7 +25,7 @@ const Schema = Yup.object().shape({
 const PasswordReset = () => {
     const history = useHistory()
     const location = useLocation()
-    console.log('🚀 ~ file: PasswordReset.jsx ~ line 65 ~ PasswordReset ~ location', location)
+    //console.log('🚀 ~ file: PasswordReset.jsx ~ line 65 ~ PasswordReset ~ location', location)
 
     const token = location.search.split('?token=')[1]
     const { setAuthState } = useContext(AuthContext)
@@ -74,7 +74,7 @@ const PasswordReset = () => {
                                     })
 
                                     const { data } = respuesta
-                                    console.log('🚀 ~ file: PasswordReset.jsx ~ line 126 ~ onSubmit={ ~ data', data)
+                                    //console.log('🚀 ~ file: PasswordReset.jsx ~ line 126 ~ onSubmit={ ~ data', data)
                                     setAuthState(data)
 
                                     history.push('/dashboard')

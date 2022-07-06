@@ -7,7 +7,7 @@ export class SurveysLocalStorage {
 
     static buscarRespuestasUsuario(datos, id) {
         for (let i = 0; i < datos.length; i++) {
-            console.log(id)
+            //console.log(id)
             if (datos[i].id_user === id) {
                 return i;
             }
@@ -22,7 +22,7 @@ export class SurveysLocalStorage {
 
     static recuperarDatosLocalStorage(id) {
         const datosJson = this.leerLocalStorage();
-        console.log(datosJson)
+        //console.log(datosJson)
         if (datosJson) {
             let idx_usuario = this.buscarRespuestasUsuario(datosJson, id);
 

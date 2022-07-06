@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import '../../assets/css/Surveys.scss'
@@ -13,7 +13,11 @@ import { Loading } from '../Loading'
 import { ActividadConTip } from '../Dashboard/ActividadConTip'
 
 import { IoMdCheckboxOutline } from "react-icons/io";
+import { AuthContext } from '../../context/AuthContext'
 const RuletaEmociones = () => {
+    const { authState } = useContext(AuthContext)
+
+    const { token } = authState
 
     const [definicionesUsuario, setDefinicionesUsuario] = useState(null);
     const [emociones, setEmociones] = useState(null)
@@ -35,7 +39,7 @@ const RuletaEmociones = () => {
                     removeSelectedEmocion();
                     removeSelectedDefiniciones();
                     setAnswer(answerDefault);
-                    console.log(emociones.length)
+                    //console.log(emociones.length)
                     if (emociones.length - 1 === 0) {
                         Correct_Alert("¡En horabuena!", "Completaste satisfactoriamente la actividad.");
                         //TODO: mandar o redireccionar.
@@ -76,11 +80,11 @@ const RuletaEmociones = () => {
     useEffect(() => {
         const fetchData = async () => {
             let idUser = 15;
-            let definicionesResponse = await getDefinicionesUsuario(idUser);
-            let emocionResponse = await getEmociones();
-            console.log(definicionesResponse)
+            let definicionesResponse = await getDefinicionesUsuario(idUser, token);
+            let emocionResponse = await getEmociones(token);
+            //console.log(definicionesResponse)
             if (emocionResponse !== null && definicionesResponse !== null) {
-                console.log(emocionResponse)
+                //console.log(emocionResponse)
                 setEmociones(emocionResponse);
                 setDefinicionesUsuario(definicionesResponse);
             } else {

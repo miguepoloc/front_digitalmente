@@ -29,7 +29,7 @@ export class Surveysx {
         for (let key in data) {
             let value = data[key].sort((a, b) => { return a - b; });
             let survey = this.searchSurvey(key);
-            // console.log(survey.questions)
+            // //console.log(survey.questions)
             survey.questions = survey.questions.map((question, index) => {
                 question.setSelected(value[index])
                 return question
@@ -41,12 +41,12 @@ export class Surveysx {
     }
 
     loadDataAnswerUser(arrObj) {
-        // console.log("hoooola", arrObj)
+        // //console.log("hoooola", arrObj)
         for (let obj of arrObj) {
-            // console.log("hoooola", obj, obj.respuestas, obj.id_encuesta)
+            // //console.log("hoooola", obj, obj.respuestas, obj.id_encuesta)
             let value = obj.respuestas.sort((a, b) => { return a - b; });
             let survey = this.searchSurvey(obj.id_encuesta);
-            // console.log(survey.questions)
+            // //console.log(survey.questions)
             survey.questions = survey.questions.map((question, index) => {
                 question.setSelected(value[index])
                 return question
@@ -73,7 +73,7 @@ export class Surveysx {
                 .setSelected(id_answer);
             this.guardarEnLocalStorage()
         } catch (e) {
-            console.log(e);
+            //console.log(e);
         }
     }
 
@@ -89,7 +89,7 @@ export class Surveysx {
             });
             this.guardarEnLocalStorage();
         } catch (e) {
-            console.log(e);
+            //console.log(e);
         }
     }
 
@@ -298,7 +298,7 @@ export class Surveysx {
     }
 
     sumAllQuestions(encuesta) {
-        console.log("🚀 ~ file: Surveysx.jsx ~ line 301 ~ Surveysx ~ sumAllQuestions ~ encuesta", encuesta)
+        //console.log("🚀 ~ file: Surveysx.jsx ~ line 301 ~ Surveysx ~ sumAllQuestions ~ encuesta", encuesta)
 
         return encuesta.questions.reduce((accumulator, question) => accumulator + question.getObjSelected().value, 0)
     }

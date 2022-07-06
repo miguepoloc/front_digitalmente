@@ -80,7 +80,7 @@ const Part2 = () => {
                 moveToEjercicio() // sube el scroll. muy util en dispositivos moviles.
             } else {
                 // TODO: Se debe redireccionar.
-                console.log('terminaste crack.')
+                // //console.log('terminaste crack.')
             }
         }
 

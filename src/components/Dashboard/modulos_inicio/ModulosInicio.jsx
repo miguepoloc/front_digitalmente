@@ -24,11 +24,11 @@ export const ModulosInicio = () => {
                 url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
             })
             if (response) {
-                console.log(response.data)
+                //console.log(response.data)
                 // Y lo coloca en el estado de datos del usuario
                 setDatauser(response.data)
             } else {
-                console.log('No se pudieron traer los datos...')
+                //console.log('No se pudieron traer los datos...')
             }
         };
 
@@ -37,7 +37,7 @@ export const ModulosInicio = () => {
     }, []);
 
     const bloqueo_ae = (datauser.autoevaluativo === 2 && !userInfo.is_staff ? true : false)
-    console.log("🚀 ~ file: ModulosInicio.jsx ~ line 13 ~ ModulosInicio ~ datauser.autoevaluativo", datauser.autoevaluativo)
+    //console.log("🚀 ~ file: ModulosInicio.jsx ~ line 13 ~ ModulosInicio ~ datauser.autoevaluativo", datauser.autoevaluativo)
 
     const modulos = {
         modulo_alternativo: {

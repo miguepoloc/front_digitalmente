@@ -163,16 +163,16 @@ const SignUp = () => {
             if (responseSexo) {
                 // Y lo coloca en el estado de datos del usuario
                 setdataSexo(responseSexo)
-                console.log(dataSexo)
+                //console.log(dataSexo)
             } else {
-                console.log('No se pudieron traer los datos del sexo...')
+                //console.log('No se pudieron traer los datos del sexo...')
             }
             if (response) {
                 // Y lo coloca en el estado de datos del usuario
                 setdataColombia(response)
-                console.log(dataColombia)
+                //console.log(dataColombia)
             } else {
-                console.log('No se pudieron traer los datos...')
+                //console.log('No se pudieron traer los datos...')
             }
         }
 
@@ -214,7 +214,7 @@ const SignUp = () => {
                             validationSchema={Schema}
 
                             onSubmit={async (values) => {
-                                console.log(values)
+                                //console.log(values)
                                 setLoading(true);
                                 try {
                                     const respuesta = await Axios({
@@ -224,13 +224,13 @@ const SignUp = () => {
                                     })
 
                                     const { data } = respuesta
-                                    console.log(data)
+                                    //console.log(data)
                                     setAuthState(data)
                                     history.push('/dashboard')
                                 } catch (error) {
-                                    console.log(error.response.data)
+                                    //console.log(error.response.data)
                                     setMessLogin(error.response.data.errors)
-                                    console.log(messLogin.document)
+                                    //console.log(messLogin.document)
 
                                 }
                                 setLoading(false)

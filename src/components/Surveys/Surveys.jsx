@@ -23,7 +23,7 @@ const errorFaltaPorResponder = () => {
 const Surveys = () => {
     const { authState } = useContext(AuthContext)
 
-    const { userInfo } = authState
+    const { userInfo, token } = authState
 
     const id_user = userInfo.id
     const id_sexo_user = userInfo.sexo.id
@@ -58,14 +58,14 @@ const Surveys = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getSurveys()
-            console.log(response)
+            const response = await getSurveys(token)
+            //console.log(response)
             if (response) {
                 try {
                     const data = recuperarDatosLocalStorage()
-                    console.log(data)
+                    //console.log(data)
                     if (data) {
-                        console.log(data.datosSurveys)
+                        //console.log(data.datosSurveys)
                         setSurveys(new model_surveys(response, id_user, id_sexo_user).loadDataLocalStorage(data.datosSurveys))
                     } else {
                         setSurveys(new model_surveys(response, id_user, id_sexo_user))
@@ -73,7 +73,7 @@ const Surveys = () => {
                     // setSurveys(surveys.loadDataLocalStorage(recuperarDatosLocalStorage()).clone());
                     setLoading(false)
                 } catch (e) {
-                    console.log(e)
+                    //console.log(e)
                     setLoading(false)
                     setError(true)
                 }
@@ -168,24 +168,24 @@ const Surveys = () => {
                 return item
             }
             )
-            console.log(data);
-            const send = await SendSurveys(data)
+            //console.log(data);
+            const send = await SendSurveys(data, token)
             if (send) {
                 // TODO: Redireccionar a un lugar....
-                console.log(surveys.jsonSurvey)
+                //console.log(surveys.jsonSurvey)
 
                 SendOkAlert(undefined, '¡Enhorabuena! ¡Tus respuestas han sido procesadas y <b>he traído los resultados</b>!').then(() => { setShowResults(surveys.results()) })
                 const jsonx = {
                     autoevaluativo: 2,
                     usuario: userInfo.id
                 }
-                PUT_avance_modulos(userInfo.id, jsonx)
+                PUT_avance_modulos(userInfo.id, jsonx, token)
 
 
                 SurveysLocalStorage.eliminarDatos(id_user)
                 window.localStorage.removeItem('data_survey_local') // Borrando el local storage...
             } else {
-                console.log(send)
+                //console.log(send)
                 SendBadAlert()
             }
         } else {

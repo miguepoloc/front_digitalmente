@@ -21,7 +21,7 @@ const Schema = Yup.object().shape({
 
 const MisEstrategias = () => {
     const cantidad = section4_1.activities.length
-    console.log(cantidad)
+    //console.log(cantidad)
     const color = '#4cbeff'
 
     useEffect(() => { setColorSelect(color) }, [])
@@ -80,12 +80,12 @@ const MisEstrategias = () => {
                     }}
                     validationSchema={Schema}
                     onSubmit={(values, { resetForm }) => {
-                        console.log(values)
+                        //console.log(values)
                         RetroalimentacionAlert(undefined, section4_1.activities[activityIndex].text).then(function () {
                             if (activityIndex + 1 < cantidad) {
                                 setActivityIndex(activityIndex + 1)
                             } else {
-                                console.log('Final')
+                                //console.log('Final')
                             }
                         })
                         resetForm()

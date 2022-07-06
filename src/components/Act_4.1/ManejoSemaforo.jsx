@@ -102,22 +102,22 @@ const ManejoSemaforo = () => {
                             section4_2.activities[activityIndex].situacion[values.situacion].isCorrect &&
                             section4_2.activities[activityIndex].emocion[values.emocion].isCorrect
                         ) {
-                            console.log('Está correcto')
+                            //console.log('Está correcto')
                             resetForm()
                             Correct_Alert(section4_2.titleSuccess, section4_2.successMsg).then(function () {
                                 if (activityIndex + 1 < cantidad) {
                                     setActivityIndex(activityIndex + 1)
                                 } else {
                                     //   TODO REDIRECCIÓN
-                                    console.log('Final')
+                                    //console.log('Final')
                                 }
                             })
                         } else {
                             ErrorAlert(section4_2.titleError, section4_2.errorMsg)
-                            console.log('Equivocado')
+                            //console.log('Equivocado')
                         }
 
-                        console.log(values)
+                        //console.log(values)
                     }}
                 >
                     {({ errors, values, touched, handleChange }) => (

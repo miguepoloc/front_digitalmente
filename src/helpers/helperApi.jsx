@@ -11,12 +11,11 @@ export const URL_BASE = process.env.REACT_APP_API_URL //|| 'http://localhost:800
  * @param {Array<JSON>| JSON} dataToSend
  * @returns {Any | Null}
  */
-const createRequest = async (url, myMethod, dataToSend = null) => {
+const CreateRequest = async (url, myMethod, dataToSend = null, token) => {
 
     const myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-    myHeaders.append('Authorization', 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNjU3ODc1MzA5fQ.fxdNS4ZZ5NM7G54-JnfEo7eJRRc-2bvStfnaE1qkz3Q')
-    // TODO: Colocar token del usuario.
+    myHeaders.append('Authorization', `Bearer ${token}`)
     const requestOptions = {
         method: myMethod,
         headers: myHeaders,
@@ -26,7 +25,7 @@ const createRequest = async (url, myMethod, dataToSend = null) => {
     const response = await fetch(url, requestOptions)
         .then(response => response.json())
         .catch(() => { return { err: 'Ha ocurrido un error con la conexion' } })
-    // console.log(response);
+    // //console.log(response);
     return isResponseValid(response)
 }
 
@@ -46,7 +45,7 @@ const isResponseValid = (response) => {
     if (!response?.err) {
         return response
     } else {
-        console.log('No se pudieron traer los datos de los datos...')
+        //console.log('No se pudieron traer los datos de los datos...')
         return null
     }
 }
@@ -79,9 +78,9 @@ const wasSentWithoutError = async (promesas) => {
  *
  * @returns Array<JSON> | null
  */
-export const GET_vista_pregunta_respuesta = async () => {
+export const GET_vista_pregunta_respuesta = async (token) => {
     const url = `${URL_BASE}/api/vista_pregunta_respuesta`
-    return await createRequest(url, method.get)
+    return await CreateRequest(url, method.get, null, token)
 }
 
 /**
@@ -89,49 +88,49 @@ export const GET_vista_pregunta_respuesta = async () => {
 * @param {Array<JSON>} userId
 * @returns Boolean
 */
-export const POST_usuario_encuesta = async (arrDataToSend) => {
+export const POST_usuario_encuesta = async (arrDataToSend, token) => {
     const countSurveys = arrDataToSend.length
     const url = `${URL_BASE}/api/usuario_encuesta/`
     const ArrPromesas = []
 
     for (let i = 0; i < countSurveys; i++) {
-        ArrPromesas.push(createRequest(url, method.post, arrDataToSend[i]))
+        ArrPromesas.push(CreateRequest(url, method.post, arrDataToSend[i], token))
     }
 
     return await wasSentWithoutError(ArrPromesas)
 }
 
-export const GET_emocion = async () => {
+export const GET_emocion = async (token) => {
     const url = `${URL_BASE}/api/emocion`
-    return await createRequest(url, method.get)
+    return await CreateRequest(url, method.get, null, token)
 }
 
-export const GET_definiciones_usuario = async (idUser) => {
+export const GET_definiciones_usuario = async (idUser, token) => {
     const url = `${URL_BASE}/api/definiciones_usuario/?id_usuario=${idUser}`
-    return await createRequest(url, method.get)
+    return await CreateRequest(url, method.get, null, token)
 }
 
-export const POST_definiciones_usuario = async (dataToSend) => {
+export const POST_definiciones_usuario = async (dataToSend, token) => {
     const url = `${URL_BASE}/api/definiciones_usuario/`
-    return createRequest(url, method.post, dataToSend)
+    return CreateRequest(url, method.post, dataToSend, token)
 }
 
-export const POST_definiciones_usuario_bulk_update = async (dataToSend) => {
+export const POST_definiciones_usuario_bulk_update = async (dataToSend, token) => {
     const url = `${URL_BASE}/api/definiciones_usuario/bulk_update/`
-    return createRequest(url, method.post, dataToSend)
+    return CreateRequest(url, method.post, dataToSend, token)
 }
 
-export const GET_definiciones = async () => {
+export const GET_definiciones = async (token) => {
     const url = `${URL_BASE}/api/definiciones`
-    return await createRequest(url, method.get)
+    return await CreateRequest(url, method.get, null, token)
 }
 
-export const GET_vista_usuario_respuestas = async (dataToSend) => {
+export const GET_vista_usuario_respuestas = async (dataToSend, token) => {
     const url = `${URL_BASE}/api/vista_usuario_respuestas/`
-    return await createRequest(url, method.get, dataToSend)
+    return await CreateRequest(url, method.get, dataToSend, token)
 }
 
-export const PUT_avance_modulos = async (id, dataToSend) => {
+export const PUT_avance_modulos = async (id, dataToSend, token) => {
     const url = `${process.env.REACT_APP_API_URL}/api/avance_modulos/${id}/`
-    return createRequest(url, method.put, dataToSend)
+    return CreateRequest(url, method.put, dataToSend, token)
 }

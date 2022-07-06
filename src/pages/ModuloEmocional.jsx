@@ -23,7 +23,7 @@ const ModuloEmocional = () => {
     // Trae los datos del usuario
     const { authState } = useContext(AuthContext)
     // Se guardan en userInfo
-    const { userInfo } = authState
+    const { userInfo, token } = authState
     // Datos del usuario
     const [datauser, setDatauser] = useState([])
 
@@ -46,11 +46,11 @@ const ModuloEmocional = () => {
                 // }
             })
             if (response) {
-                console.log(response.data)
+                //console.log(response.data)
                 // Y lo coloca en el estado de datos del usuario
                 setDatauser(response.data)
             } else {
-                console.log('No se pudieron traer los datos...')
+                //console.log('No se pudieron traer los datos...')
             }
         };
 
@@ -60,14 +60,14 @@ const ModuloEmocional = () => {
 
     // Cuando se presione el botón de siguiente
     async function cambioBoton() {
-        console.log(userInfo)
-        console.log(datauser)
+        //console.log(userInfo)
+        //console.log(datauser)
         const jsonx = {
             emocional: (parseInt(slug) + 1),
             usuario: userInfo.id
         }
         if (parseInt(slug) === datauser.emocional) {
-            PUT_avance_modulos(userInfo.id, jsonx)
+            PUT_avance_modulos(userInfo.id, jsonx, token)
             setControl(control + 1)
         }
 

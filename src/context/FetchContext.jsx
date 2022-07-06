@@ -28,7 +28,7 @@ const FetchProvider = ({ children }) => {
         (error) => {
             const code = error?.response?.status
             if (code === 401 || code === 403) {
-                console.log('error code', code)
+                //console.log('error code', code)
             }
             return Promise.reject(error)
         }

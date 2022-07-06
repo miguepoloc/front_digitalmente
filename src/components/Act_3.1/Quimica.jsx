@@ -81,13 +81,13 @@ const Quimica = () => {
     }
 
     const handleBtnClickSend = (name, values) => {
-        console.log(respuestas[name])
-        console.log(values)
+        //console.log(respuestas[name])
+        //console.log(values)
 
         if (name === "situacion1") {
 
             if (values.Emocion1 === respuestas[name].emocion1 && values.Nivel1 === respuestas[name].nivel1 && values.Emocion12 === respuestas[name].emocion2 && values.Nivel12 === respuestas[name].nivel2) {
-                console.log(respuestas[name].ok_ambas)
+                //console.log(respuestas[name].ok_ambas)
                 setRetroPrimera(respuestas[name].ok_ambas)
             }
             else if (values.Emocion12 === respuestas[name].emocion1 && values.Nivel12 === respuestas[name].nivel1 && values.Emocion1 === respuestas[name].emocion2 && values.Nivel1 === respuestas[name].nivel2) {
@@ -130,7 +130,7 @@ const Quimica = () => {
         if (response.data) {
             return response.data
         } else {
-            console.log('No se pudieron traer los datos de las Definiciones...')
+            //console.log('No se pudieron traer los datos de las Definiciones...')
             return null
         }
     }
@@ -139,7 +139,7 @@ const Quimica = () => {
     useEffect(() => {
         const fetchData = async () => {
             let response = await getEmociones()
-            console.log(response)
+            //console.log(response)
             if (response !== null) {
                 setEmociones(response)
             }
@@ -213,7 +213,7 @@ const Quimica = () => {
                 }}
                 validationSchema={Schema}
                 onSubmit={(values) => {
-                    console.log(values)
+                    //console.log(values)
                 }}
             >
 

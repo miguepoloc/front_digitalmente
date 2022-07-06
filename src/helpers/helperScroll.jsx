@@ -115,7 +115,7 @@ class Scroll {
                 this.navBar.classList.add('bg-transparent')
             }
         } else {
-            console.log(this.navBar)
+            //console.log(this.navBar)
         }
     }
 
@@ -127,22 +127,22 @@ class Scroll {
             const navBar = document.getElementById(navbarId)
             if (element && navBar) { window.scrollTo(0, element.offsetTop - navBar.offsetHeight + 5) } else if (element) window.scrollTo(0, element.offsetTop)
             // 75 el tamaño del navbar
-            else console.log('No puedo hacer')
+            // else //console.log('No puedo hacer')
         } else {
             if (element && this.navBar) { window.scrollTo(0, element.offsetTop - this.navBar.offsetHeight + 5) } else if (element) window.scrollTo(0, element.offsetTop)
             // 75 el tamaño del navbar
-            else console.log('No puedo hacer')
+            // else //console.log('No puedo hacer')
         }
     }
 
-    scroll(id,  navbarId = 'navBar') {
+    scroll(id, navbarId = 'navBar') {
         const element = document.getElementById(id)
         // Si se accede estaticamente sería conveniente mandar el id del navbar
         // de esa forma se hará bien el scroll.
-            if (element && this.navBar) { window.scrollTo(0, element.offsetTop - this.navBar.offsetHeight + 5) } else if (element) window.scrollTo(0, element.offsetTop)
-            // 75 el tamaño del navbar
-            else console.log('No puedo hacer')
-      
+        if (element && this.navBar) { window.scrollTo(0, element.offsetTop - this.navBar.offsetHeight + 5) } else if (element) window.scrollTo(0, element.offsetTop)
+        // 75 el tamaño del navbar
+        // else //console.log('No puedo hacer')
+
     }
 }
 export default Scroll

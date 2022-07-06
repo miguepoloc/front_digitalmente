@@ -26,15 +26,15 @@ export const Resultados = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await getSurveys()
-            console.log(response)
+            const response = await getSurveys(token)
+            //console.log(response)
             if (response) {
                 setSurveys(new model_surveys(response, id_user, id_sexo_user));
             }
             else {
                 //TODO: lanzar error
                 setError(true);
-                console.log('No se pudieron traer los datos...')
+                //console.log('No se pudieron traer los datos...')
             }
         }
         const traerResultados = async () => {
@@ -54,12 +54,12 @@ export const Resultados = () => {
 
 
             if (response) {
-                console.log("🚀 ~ file: Resultados.jsx ~ line 44 ~ traerResultados ~ response", response)
+                //console.log("🚀 ~ file: Resultados.jsx ~ line 44 ~ traerResultados ~ response", response)
                 setResultados(response.data)
                 // Y lo coloca en el estado de datos del usuario
             } else {
 
-                console.log('No se pudieron traer los datos...')
+                //console.log('No se pudieron traer los datos...')
             }
             setLoading(false);
         };
@@ -95,7 +95,7 @@ export const Resultados = () => {
                                 <div className='d-flex my-4  justify-content-evenly flex-wrap '>
                                     {
                                         resultados.map((resultado, i) => {
-                                            console.log(resultado)
+                                            //console.log(resultado)
                                             return (<Resultado key={i} number={i + 1} resultado={resultado} surveys={surveys} setRenderResultados={setRenderResultados} />)
 
                                         })

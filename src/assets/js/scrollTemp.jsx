@@ -89,7 +89,7 @@ class Scroll {
     scroll(id) {
         const element = document.getElementById(id)
         if (element) element.scrollIntoView()
-        else console.log('No puedo hacer')
+        // else //console.log('No puedo hacer')
     };
 }
 export default Scroll

@@ -13,21 +13,21 @@ const Part1 = () => {
     const [optionIndex, setOptionIndex] = useState(-1)
     const [activityIndex, setActivityIndex] = useState(0)
     const handleButtonOption = () => {
-        console.log(section1.activities[activityIndex].correctAnswerIndex)
+        // //console.log(section1.activities[activityIndex].correctAnswerIndex)
         if (optionIndex >= 0) {
             if (
                 optionIndex === section1.activities[activityIndex].correctAnswerIndex
             ) {
-                console.log(
-                    section1.activities[activityIndex].correctAnswerIndex
-                )
+                // //console.log(
+                //     section1.activities[activityIndex].correctAnswerIndex
+                // )
                 Correct_Alert(undefined, section1.activities[activityIndex].text).then(function () {
                     setOptionIndex(-1)
                     if (activityIndex + 1 < section1.options.length) {
                         setActivityIndex(activityIndex + 1)
                     } else {
                         // TODO: redireccionar a algun lugar.
-                        console.log('Final.')
+                        // //console.log('Final.')
                     }
                 })
             } else {

@@ -32,11 +32,11 @@ const ControlUser = () => {
         // Guarda en response el avance que lleva el usuario
         const response = await getAvance()
         if (response) {
-            console.log(response)
+            //console.log(response)
             // Y lo coloca en el estado de datos del usuario
             setDatauser(response)
         } else {
-            console.log('No se pudieron traer los datos...')
+            //console.log('No se pudieron traer los datos...')
         }
     }, [control]) // Se controla el cambio a partir del estado control
 

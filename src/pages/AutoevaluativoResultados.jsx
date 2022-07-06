@@ -26,11 +26,11 @@ const AutoevaluativoResultados = () => {
                 url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
             })
             if (response) {
-                console.log(response.data)
+                //console.log(response.data)
                 // Y lo coloca en el estado de datos del usuario
                 setDatauser(response.data)
             } else {
-                console.log('No se pudieron traer los datos...')
+                //console.log('No se pudieron traer los datos...')
             }
         };
 

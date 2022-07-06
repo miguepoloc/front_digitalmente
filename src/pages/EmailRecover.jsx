@@ -72,10 +72,10 @@ const EmailRecover = () => {
                                     })
                                     const { data } = respuesta
                                     Correct_Alert(undefined, data.message)
-                                    console.log('🚀 ~ file: EmailRecover.jsx ~ line 106 ~ onSubmit={ ~ data', data)
+                                    //console.log('🚀 ~ file: EmailRecover.jsx ~ line 106 ~ onSubmit={ ~ data', data)
                                     history.push('/dashboard')
                                 } catch (error) {
-                                    console.log(error.response.data.message)
+                                    //console.log(error.response.data.message)
                                     setMessLogin({ data: { message: error.response.data.message } })
                                 }
                             }}

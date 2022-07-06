@@ -109,11 +109,11 @@ const SignUpForm = () => {
             const response = await getColombia()
 
             if (response) {
-                console.log(response)
+                //console.log(response)
                 // Y lo coloca en el estado de datos del usuario
                 setdataColombia(response)
             } else {
-                console.log('No se pudieron traer los datos...')
+                //console.log('No se pudieron traer los datos...')
             }
         }
         fetchData();
@@ -138,7 +138,7 @@ const SignUpForm = () => {
                         validationSchema={Schema}
 
                         onSubmit={async (values) => {
-                            console.log(JSON.stringify(values, null, 2))
+                            //console.log(JSON.stringify(values, null, 2))
                             try {
                                 const respuesta = await Axios({
                                     method: 'post',
@@ -147,11 +147,11 @@ const SignUpForm = () => {
                                 })
 
                                 const { data } = respuesta
-                                console.log(data)
+                                //console.log(data)
                                 setAuthState(data)
                                 history.push('/dashboard')
                             } catch (error) {
-                                console.log(error.response.data)
+                                //console.log(error.response.data)
                                 setMessLogin(error.response.data.errors)
                             }
                         }}

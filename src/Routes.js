@@ -20,7 +20,7 @@ const LoadingFallback = () => <Loading />
 
 const AuthenticatedRoute = ({ children, ...rest }) => {
     const auth = useContext(AuthContext)
-    // console.log(auth.isAuthenticated())
+    // //console.log(auth.isAuthenticated())
     return (
         <Route
             {...rest}

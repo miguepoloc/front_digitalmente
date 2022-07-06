@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import { FaArrowRight, FaClipboardCheck, FaPaperPlane } from 'react-icons/fa'
@@ -14,9 +14,12 @@ import { Loading } from '../Loading'
 import { Actividad } from '../Dashboard/Actividad'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { ErrorGanso } from '../ErrorGanso'
-
+import { AuthContext } from '../../context/AuthContext'
 
 export const Vocabulario = () => {
+    const { authState } = useContext(AuthContext)
+
+    const { token } = authState
 
     const [validate, setValidate] = useState(false);
     const [error, setError] = useState(false);
@@ -29,14 +32,14 @@ export const Vocabulario = () => {
     useEffect(() => {
         const fetchData = async () => {
             let idUser = 15;
-            let definicionesUsuario = await getDefinicionesUsuario(idUser);
-            let definiciones_Arr = await getDefiniciones()
+            let definicionesUsuario = await getDefinicionesUsuario(idUser, token);
+            let definiciones_Arr = await getDefiniciones(token)
 
             if (definiciones_Arr !== null && definicionesUsuario !== null) {
                 setDefiniciones(definiciones_Arr)
 
                 if (definicionesUsuario?.length > 0) {
-                    console.log(definicionesUsuario);
+                    //console.log(definicionesUsuario);
                     setDefinicionesUsuario(definicionesUsuario);
                     setIsThereInformation(true);
                 }
@@ -67,21 +70,21 @@ export const Vocabulario = () => {
 
     const SendOrUpdateVocabulario = async (isUpdate, jsonToSend) => {
         if (jsonToSend) {
-            let response = isUpdate ? await postDefinicionesUsuario_bulk_update(jsonToSend) : await postDefinicionesUsuario(jsonToSend);
+            let response = isUpdate ? await postDefinicionesUsuario_bulk_update(jsonToSend, token) : await postDefinicionesUsuario(jsonToSend, token);
 
             if (response === null) {
                 throw new Error(response.err)
             }
 
             if (response.errors?.length !== 0) {
-                console.log(response)
+                //console.log(response)
                 return false
             }
 
             return true;
         }
         else {
-            console.log("Hay campos vacios.")
+            //console.log("Hay campos vacios.")
             return false;
         }
     }
@@ -95,11 +98,11 @@ export const Vocabulario = () => {
         const jsonToSend = createJsonToSend(userId);
 
         if (jsonToSend) {
-            console.log(jsonToSend);
+            //console.log(jsonToSend);
             SendAlert(undefined, 'Tus respuestas estan siendo enviadas y procesadas <b>Espera un momento</b>')
             try {
                 let response = await SendOrUpdateVocabulario(isUpdate, jsonToSend);
-                console.log(response)
+                //console.log(response)
                 if (response) {
                     //TODO: redireccionar Aquí.
                     SendOkAlert();
@@ -111,7 +114,7 @@ export const Vocabulario = () => {
             }
 
         } else {
-            console.log("Hay campos vacios.")
+            //console.log("Hay campos vacios.")
         }
 
         setValidate(true);
