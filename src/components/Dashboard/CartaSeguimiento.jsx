@@ -2,7 +2,7 @@ import React from 'react'
 
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { linksEmocional } from '../../helpers/helper_emocional'
-import { linksEstres } from '../../helpers/helperEstres'
+import { linksRelax } from '../../helpers/helperRelax'
 
 const CartaSeguimiento = ({ datauser }) => {
     const pAutoevaluativo = datauser.autoevaluativo === 1
@@ -13,7 +13,7 @@ const CartaSeguimiento = ({ datauser }) => {
         : parseInt(datauser.emocional / linksEmocional.length * 100).toString()
     const pRelax = datauser.estres === 1
         ? '0'
-        : parseInt(datauser.estres / linksEstres.length * 100).toString()
+        : parseInt(datauser.estres / linksRelax.length * 100).toString()
     const pPiensalo = '0'
     const pHabilidades = '0'
     return (

@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { Loading } from './components/Loading'
 import { AuthContext } from './context/AuthContext'
 import ModuloAutoevaluativo from './pages/ModuloAutoevaluativo'
+import ModuloRelax from './pages/ModuloRelax'
 
 const LandingPage = lazy(() => import('./pages/LandingPage'))
 const PageAuth = lazy(() => import('./pages/pageAuth'))
@@ -104,6 +105,10 @@ const AppRoutes = () => (
 
                 <AuthenticatedRoute exact path="/emocional:slug">
                     <ModuloEmocional />
+                </AuthenticatedRoute>
+
+                <AuthenticatedRoute exact path="/relax:slug">
+                    <ModuloRelax />
                 </AuthenticatedRoute>
 
                 <AuthenticatedRoute path="/auth">

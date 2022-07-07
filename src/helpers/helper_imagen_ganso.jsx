@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import ganso_lupa_celular from '../assets/img/ganso/ganso_lupa_celular.png'
+import ganso_ejercicio from '../assets/img/ganso/ganso_ejercicio.png'
 import ganso_pensando from '../assets/img/ganso/ganso_pensando.png'
 import ganso_elegante from '../assets/img/ganso/ganso_elegante.png'
 import ganso_leyendo from '../assets/img/ganso/ganso_leyendo.png'
@@ -29,5 +30,6 @@ export const imgGanso = {
     stop_250x200: ganso_stop_250x200,
     escribiendo_250x200: ganso_escribiendo_250x200,
     feliz_250x200: ganso_feliz_250x200,
-    triste_250x200: ganso_triste_250x200
+    triste_250x200: ganso_triste_250x200,
+    ganso_ejercicio: ganso_ejercicio,
 }
