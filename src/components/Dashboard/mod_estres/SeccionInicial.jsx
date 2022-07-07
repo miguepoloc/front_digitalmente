@@ -3,6 +3,7 @@ import { Actividad } from "../Actividad"
 import { Descripcion } from '../Descripcion'
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import { FcSurvey } from 'react-icons/fc'
+import { ActivityCards } from './ActivityCards'
 export const SeccionInicial = () => {
     return (
         <>
@@ -42,9 +43,11 @@ export const SeccionInicial = () => {
         <li>	Tiene una función adaptativa en el ser humano	</li>
       </ul>`} showIcon={false} />
 
-            <div className='mt-4'>
-                <h6 className='text-center'>A continuación encontrarás actividades que te podrán ofrecer estrategias para el manejo del estrés, esperemos que te sean útiles y puedas emplear la que mejor se ajuste a tus preferencias y necesidades.</h6>
+            <div style={{marginBottom:"2.5rem",marginTop:"4rem"}}>
+                <h4 className='text-center'>A continuación encontrarás actividades que te podrán ofrecer estrategias para el manejo del estrés, esperemos que te sean útiles y puedas emplear la que mejor se ajuste a tus preferencias y necesidades.</h4>
             </div>
+
+        <ActivityCards/>
 
         </>
 
