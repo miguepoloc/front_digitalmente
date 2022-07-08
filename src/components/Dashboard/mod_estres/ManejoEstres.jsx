@@ -8,45 +8,44 @@ import Iframe from 'react-iframe'
 export const ManejoEstres = () => {
     return (
         <>
-            <Actividad src={imgGanso.meditando} title="<span class='d-flex align-items-center justify-content-center w-100'>Técnica de Ejercicio para el manejo de estrés</span> <br/> ¿Para qué me servirá esta actividad?"
-                text={`Realizar actividad física es una alternativa eficaz en la reducción de los síntomas de estrés puesto que permite que el cuerpo en movimiento realice un gasto importante de energía acumulada, liberando endorfinas y otorgando una sensación de bienestar que permite disminuir la tensión que normalmente genera el estrés (Ávila 2014). Por ende, realizar ejercicio es una de las técnicas más recomendables para el manejo adecuado del estrés en los quehaceres diarios y en relación al estrés académico que genera la vida universitaria. 
-    `} showIcon={false} />
+            <h2 className='text-center'>Técnica de Ejercicio para el manejo de estrés</h2>
 
-            <Actividad src={imgGanso.explicando} title="Existen diferentes tipos de ejercicios de respiración en el manejo del estrés, sin embargo, aquí te explicaremos algunos, para poder intentarlo debes tomar una postura corporal cómoda y seguir los pasos a continuación:"
-                text={`<ul class="ms-4">
-        <li>	Identifica el ritmo actual de tu respiración	</li>
-        <li>	Controla el aire que entra en tus pulmones llenando solo su parte inferior, para hacerlo, recibe el aire por la nariz y toca tu estómago, cuando sientas que tu mano se mueve lo estarás haciendo bien.	</li>
-        <li>	Luego recibe el aire por la nariz y llena tus pulmones en la parte superior, para lograrlo podrás poner tu mano en el pecho como en el ejercicio anterior	</li>
-        <li>	Podrás realizar este ejercicio de forma repetitiva teniendo en cuenta que debe ser pausado y sosteniendo el aire de tres a 4 segundos	</li>
-        <li>	Además, puedes hacerlo las veces que consideres necesario.	</li>
-      </ul>`} showIcon={false} />
+            <div className='row justify-content-center align-items-center'>
+                <div className='col-lg-5'>
+                    <Actividad src={imgGanso.meditando} title="¿Para qué me servirá esta actividad?"
+                        text={`<br>Realizar actividad física es una alternativa eficaz en la reducción de los síntomas de estrés puesto que permite que el cuerpo en movimiento realice un gasto importante de energía acumulada, liberando endorfinas y otorgando una sensación de bienestar que permite disminuir la tensión que normalmente genera el estrés (Ávila 2014). Por ende, realizar ejercicio es una de las técnicas más recomendables para el manejo adecuado del estrés en los quehaceres diarios y en relación al estrés académico que genera la vida universitaria.
+                        <br></br>
+                        ¡Hacer ejercicio no solo es la opción comúnmente observada de ir al gym, aquí te damos otras opciones para que observes otras posibles alternativas que podrían resultar mucho más divertidas!`} showIcon={false} />
+                </div>
+                <div className='col-lg-7'>
+                    <Actividad siImange={false} src={imgGanso.explicando} title="Ejercicios para principiantes en casa"
+                        video={
+                            <div>
+                                <p className='text-justify'>
+                                    Esta alternativa propone realizar actividad física desde tu casa con un espacio reducido, brinda explicaciones claras sobre la realización de cada uno de los ejercicios y no emplea de otro recurso más que tu propio cuerpo, de este modo es una excelente opción, si como a muchos, no te llama la atención ir a un gimnasio.
+                                </p>
+                                <Iframe url="https://www.youtube.com/embed/wXC2EXuXoIc"
+                                    width="100%"
+                                    height="315px"
+                                    id="myId"
+                                    display="initial"
+                                    position="relative" />
+                            </div>
+                        } showIcon={false} />
+                </div>
+            </div>
 
+            <div className='row justify-content-center align-items-center'>
+                <div className='col-lg-6'>
+                    <Actividad src={imgGanso.ganso_ejercicio} title="Manejar bicicleta"
+                        text={`<br>Esta actividad te permitirá ejercitarte de una forma agradable, puedes hacerlo de camino a la universidad o los fines de semana con un grupo de amigos, también hacerlo individualmente mientras escuchas música, resultará siendo una actividad antiestrés y que además podría ahorrarte el gasto de dinero en transporte, llegarás a tiempo y mejorarás tu salud. (Jakovcevic, Franco, Dalla & Ledesma 2016)`} showIcon={false} />
+                </div>
+                <div className='col-lg-6'>
+                    <Actividad src={imgGanso.feliz_250x200} title="Salir a caminar con amigos o mascota"
+                        text={`<br>Caminar diariamente puede mejorar la salud física y mental de las personas, cuando das aproximadamente 10000 pasos diarios puedes mantener bienestar ya que podrías reducir el riesgo de adquirir enfermedades crónico degenerativas y además traería beneficios para tu salud mental, podrías hacerlo con tu mascota, con amigos o familiares sin necesidad de ser un deportista de alto rendimiento. (Hernández 2011)`} showIcon={false} />
+                </div>
 
-            <Descripcion title={"Tenemos otra manera didáctica en la que aprenderás a respirar "}
-                text={`
-                Observando a la pantalla con atención y respirando al ritmo en el que se te indica en la misma, notarás cómo experimentas una sensación de relajación
-    <ul class="ms-4">
-      <li>	Inhalar 5 segundos	</li>
-      <li>	Sostener la respiración 2 segundos	</li>
-      <li>	Exhalar 3 segundos 	</li>
-    </ul>
-    `} icon={<FcSurvey style={{ fontSize: '2rem' }} />} color="#03A9F4" />
-
-            <Actividad title="Video"
-                showIcon={false}
-                video={<Iframe url="https://www.youtube.com/embed/adpR2UQTElk"
-                    width="560px"
-                    height="315px"
-                    id="myId"
-                    className="myClassname"
-                    display="initial"
-                    position="relative" />}
-
-            />
-
-
-            <Actividad src={imgGanso.feliz_250x200} title="Logro"
-                text={`Afrontar situaciones de estrés de manera inmediata manejando por sí mismos las respuestas de estrés asociadas a conductas desadaptativas y poco funcionales.`} showIcon={false} />
+            </div>
         </>
     )
 }

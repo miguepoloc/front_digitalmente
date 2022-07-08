@@ -91,7 +91,7 @@ const ModuloRelax = () => {
                             }
 
                         </div>
-                        <hr />
+                        {/* <hr /> */}
                         <Button
                             className='botoncentrado'
                             variant="info"
