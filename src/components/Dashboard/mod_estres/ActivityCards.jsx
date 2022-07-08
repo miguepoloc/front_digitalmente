@@ -1,6 +1,7 @@
 import React from 'react'
 import { ActivityCard } from './ActivityCard'
 import "./assets/css/ActivityCard.scss"
+import { FcPuzzle } from 'react-icons/fc'
 
 export const ActivityCards = () => {
 
@@ -9,7 +10,7 @@ export const ActivityCards = () => {
             title: "Resolución de problemas",
             desc: "La solución de problemas está enfocada en mejorar la capacidad para enfrentarse a estresores o acontecimientos traumáticos, problemas cotidianos crónicos y a reducir los problemas de salud mental y física. Con esta se buscaría la adopción de una visión adaptativa hacia los problemas presentes en la vida, con una perspectiva optimista que admita a los problemas como sucesos vitales normales y la implantación eficaz de conductas concretas de solución de problemas, con regulación y gestión emocional y planificación de estrategias para enfrentar problemas. (Nezu, Nezu y D’Zurilla 2014).",
             color: "#1452cc",
-            icon: "icon xd",
+            icon: <FcPuzzle/>,
             _class:"activityCard_useRow"
         },
         {
