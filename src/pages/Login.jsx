@@ -157,11 +157,11 @@ const Login = () => {
                                                 Olvidé mi contraseña
                                             </Link>
                                         </Grid>
-                                        <Grid item xs>
-                                            <Link href="/sign-up" variant="body2">
+                                        {/* <Grid item xs>
+                                            <Link href="/login" variant="body2">
                                                 ¿No tienes cuenta? ¡RegÍstrate!
                                             </Link>
-                                        </Grid>
+                                        </Grid> */}
                                     </Grid>
                                 </Form>
                             )}

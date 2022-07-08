@@ -120,5 +120,9 @@ export const linksEmocional = [
         link: 'emocional15',
         imagen: Capsula8,
         tipoCapsula: true
+    },
+    {
+        id: 16,
+        nombre: 'FIN no se muestra',
     }
 ]

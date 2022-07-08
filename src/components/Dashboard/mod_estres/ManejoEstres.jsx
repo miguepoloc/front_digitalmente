@@ -1,8 +1,6 @@
 import React from 'react'
 import { Actividad } from "../Actividad"
-import { Descripcion } from '../Descripcion'
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
-import { FcSurvey } from 'react-icons/fc'
 import Iframe from 'react-iframe'
 
 export const ManejoEstres = () => {

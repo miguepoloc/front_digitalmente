@@ -65,13 +65,18 @@ const ModuloRelax = () => {
             estres: (parseInt(slug) + 1),
             usuario: userInfo.id
         }
-        console.log(jsonx)
+
         if (parseInt(slug) === datauser.estres) {
             PUT_avance_modulos(userInfo.id, jsonx, token)
             setControl(control + 1)
         }
+        if ((linksRelax.length - 1) === parseInt(slug)) {
+            history.push(`/dashboard`)
+        }
+        else {
+            history.push(`/relax${parseInt(slug) + 1}`)
+        }
 
-        history.push(`/relax${parseInt(slug) + 1}`)
     }
     return (
         <>
@@ -91,7 +96,7 @@ const ModuloRelax = () => {
                             }
 
                         </div>
-                        {/* <hr /> */}
+                        <hr />
                         <Button
                             className='botoncentrado'
                             variant="info"

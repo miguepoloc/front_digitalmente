@@ -23,6 +23,10 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
 
 
     const grupoControl = false
+
+    // Para borrar el último elemento de los módulos y poder llegar al 100%
+    delete linksRelax[linksRelax.length - 1]
+    delete linksEmocional[linksEmocional.length - 1]
     return (
         <>
             <Navbar

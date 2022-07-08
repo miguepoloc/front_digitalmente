@@ -71,7 +71,14 @@ const ModuloEmocional = () => {
             setControl(control + 1)
         }
 
-        history.push(`/emocional${parseInt(slug) + 1}`)
+        if ((linksEmocional.length - 1) === parseInt(slug)) {
+            history.push(`/dashboard`)
+        }
+        else {
+            history.push(`/emocional${parseInt(slug) + 1}`)
+        }
+
+
     }
     return (
         <>
