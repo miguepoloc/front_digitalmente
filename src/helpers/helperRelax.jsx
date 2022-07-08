@@ -2,6 +2,7 @@
 import { SeccionInicial } from '../components/Dashboard/mod_estres/SeccionInicial'
 import { ManejoRespiracion } from '../components/Dashboard/mod_estres/ManejoRespiracion'
 import { RelajacionProgresiva } from '../components/Dashboard/mod_estres/RelajacionProgresiva'
+import { ManejoEstres } from '../components/Dashboard/mod_estres/ManejoEstres'
 
 export const linksRelax = [
     {
@@ -38,7 +39,7 @@ export const linksRelax = [
         id: 6,
         nombre: 'Actividad 5',
         link: 'relax6',
-        actividad: <></>,
+        actividad: <ManejoEstres />,
     },
     {
         id: 7,
