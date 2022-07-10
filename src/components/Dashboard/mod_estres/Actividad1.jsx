@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import { Actividad } from '../Actividad'
 import imgCuadroEjemplo from "./assets/img/relaxActividadUnoEjemploCuadro.png"
@@ -6,8 +6,22 @@ import { ErrorAlert, Correct_Alert, SendOkAlert } from '../../../helpers/helper_
 import { BiGift } from "react-icons/bi"
 
 import documento from "./assets/documents/AUTOREGISTRO.pdf"
+import { AuthContext } from '../../../context/AuthContext'
 
 export const Actividad1 = () => {
+
+    const { authState } = useContext(AuthContext)
+    const { userInfo, token } = authState
+
+    const [Datos, setDatos] = useState({
+        user_id: userInfo.id,
+        Texto1: "",
+        Texto2: "",
+        Texto3: "",
+        Texto4: "",
+        Texto5: ""
+    })
+
 
     const [ActividadCompletada, setActividadCompletada] = useState(false)
 
@@ -33,10 +47,20 @@ export const Actividad1 = () => {
         `).then(() => SendOkAlert("¡Te he traido un regalo!", "Ahora Puedes descargar un documento PDF para imprimirlo y realizar la misma actividad"))
     }
 
+    const handleChange = (event)=>{
+            setDatos({
+                ...Datos,
+                [event.target.name] : event.target.value
+            })
+            console.log(Datos)
+    }
+
 
     return (
 
-        <><h2 className='text-center'>Técnica de Ejercicio para el manejo de estrés</h2>
+        <>
+        
+        <h2 className='text-center'>Técnica de Ejercicio para el manejo de estrés</h2>
 
             <div className='row justify-content-center align-items-center'>
                 <div className='col-lg-6'>
@@ -64,7 +88,7 @@ export const Actividad1 = () => {
             </div>
 
             <div className='d-flex flex-column justify-content-center align-items-center'>
-                <h4 className='my-4'>Tabla guía</h4>
+                <h4 className='my-4'>Ejemplo</h4>
                 <img src={imgCuadroEjemplo} alt="" srcset="" />
                 <p className='mt-2 mb-4 text-center'><small>Tabla 1 de elaboración propia basada en Guía para el mármol del estrés académico. Pérez, García, & Pérez (s.f.)</small></p>
             </div>
@@ -98,7 +122,7 @@ export const Actividad1 = () => {
                         </div>
                         <div className="border shadow  ">
                             <div className="float-left d-flex flex-column">
-                                <textarea name="Texto1" rows="3" className="w-100" >
+                                <textarea name="Texto1" rows="3" className="w-100" onChange={handleChange}>
                                 </textarea>
                                 {/* <div style="color: red;">Es necesario llenar esta información</div> */}
                             </div>
@@ -111,7 +135,7 @@ export const Actividad1 = () => {
                         </div>
                         <div className="border shadow  ">
                             <div className="float-left d-flex flex-column">
-                                <textarea name="Texto2" rows="3" className="w-100">
+                                <textarea name="Texto2" rows="3" className="w-100" onChange={handleChange}>
                                 </textarea>
                                 {/* <div style="color: red;">Es necesario llenar esta información</div> */}
                             </div>
@@ -124,7 +148,7 @@ export const Actividad1 = () => {
                         </div>
                         <div className="border shadow  ">
                             <div className="float-left d-flex flex-column">
-                                <textarea name="Texto3" rows="3" className="w-100">
+                                <textarea name="Texto3" rows="3" className="w-100" onChange={handleChange}>
                                 </textarea>
                                 {/* <div style="color: red;">Es necesario llenar esta información</div> */}
                             </div>
@@ -136,7 +160,7 @@ export const Actividad1 = () => {
                         </div>
                         <div className="border shadow  ">
                             <div className="float-left d-flex flex-column">
-                                <textarea name="Texto4" rows="3" className="w-100">
+                                <textarea name="Texto4" rows="3" className="w-100" onChange={handleChange}>
                                 </textarea>
                                 {/* <div style="color: red;">Es necesario llenar esta información</div> */}
                             </div>
@@ -149,7 +173,7 @@ export const Actividad1 = () => {
                         </div>
                         <div className="border shadow  ">
                             <div className="float-left d-flex flex-column">
-                                <textarea name="Texto5" rows="3" className="w-100">
+                                <textarea name="Texto5" rows="3" className="w-100" onChange={handleChange}>
                                 </textarea>
                                 {/* <div style="color: red;">Es necesario llenar esta información</div> */}
                             </div>
