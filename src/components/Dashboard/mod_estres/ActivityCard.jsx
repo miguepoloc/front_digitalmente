@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaLeaf } from 'react-icons/fa'
-export const ActivityCard = ({title,desc,_class}) => {
+export const ActivityCard = ({title,desc,_class,url}) => {
 
   return (
     <div class={"activityCard-card d-flex flex-column " + (_class? _class:"")}>
@@ -13,7 +13,9 @@ export const ActivityCard = ({title,desc,_class}) => {
         {desc}
     </div>
     <div class="activityCard-card-buttons">
+      <a href={"/"+url}>
         <button class="search-buttons card-buttons">Ver actividad</button>
+        </a>
     </div>
 </div>
   )
