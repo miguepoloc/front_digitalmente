@@ -28,6 +28,8 @@ const ModuloRelax = () => {
     // Datos del usuario
     const [datauser, setDatauser] = useState([])
 
+    const [BotonAtrasState, setBotonAtrasState] = useState(false)
+
     const { BotonState } = useContext(BotonContext)
 
     // Para el control de la ubicación
@@ -58,8 +60,19 @@ const ModuloRelax = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [control]);
 
+    useEffect(() => {
+        if (parseInt(slug) === 1) {
+            setBotonAtrasState(true)
+        }
+        else {
+            setBotonAtrasState(false)
+        }
+    }
+        , [slug])
+
+
     // Cuando se presione el botón de siguiente
-    async function cambioBoton() {
+    async function cambioBotonAdelante() {
         //console.log(userInfo)
         console.log(datauser)
         const jsonx = {
@@ -78,6 +91,12 @@ const ModuloRelax = () => {
             history.push(`/relax${parseInt(slug) + 1}`)
         }
 
+    }
+
+
+    // Cuando se presione el botón de Atrás
+    async function cambioBotonAtras() {
+        history.push(`/relax${parseInt(slug) - 1}`)
     }
     return (
         <>
@@ -102,7 +121,16 @@ const ModuloRelax = () => {
                             className='botoncentrado'
                             variant="info"
                             size="lg"
-                            onClick={cambioBoton}
+                            onClick={cambioBotonAtras}
+                            disabled={BotonAtrasState}
+                        >
+                            Atrás
+                        </Button>
+                        <Button
+                            className='botoncentrado'
+                            variant="info"
+                            size="lg"
+                            onClick={cambioBotonAdelante}
                             disabled={BotonState}
                         >
                             Siguiente
