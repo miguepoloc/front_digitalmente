@@ -27,7 +27,8 @@ export const ManejoEstres = () => {
                                     height="315px"
                                     id="myId"
                                     display="initial"
-                                    position="relative" />
+                                    position="relative" 
+                                    className='rounded-3'/>
                             </div>
                         } showIcon={false} />
                 </div>
