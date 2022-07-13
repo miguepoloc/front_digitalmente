@@ -16,7 +16,7 @@ export const Actividad1 = () => {
     //con el fin de mostar directamente las descargas de los archivos
 
     const { authState } = useContext(AuthContext)
-    const { userInfo, token } = authState
+    const { userInfo } = authState
 
     const [Datos, setDatos] = useState({
         user_id: userInfo.id,
@@ -94,7 +94,7 @@ export const Actividad1 = () => {
 
             <div className='d-flex flex-column justify-content-center align-items-center'>
                 <h4 className='my-4'>Ejemplo</h4>
-                <img src={imgCuadroEjemplo} alt="" srcset="" />
+                <img src={imgCuadroEjemplo} alt=""  />
                 <p className='mt-2 mb-4 text-center'><small>Tabla 1 de elaboración propia basada en Guía para el mármol del estrés académico. Pérez, García, & Pérez (s.f.)</small></p>
             </div>
 

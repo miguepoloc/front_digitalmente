@@ -55,12 +55,12 @@ export const ActivityCards = () => {
     ]
 
     return (
-        <div class="">
+        <div className="">
 
-            <div class="activityCard-cards">
+            <div className="activityCard-cards">
                 {
-                    actividades.map(({ title, desc, color, icon, _class,url }) => {
-                        return <ActivityCard title={title} desc={desc} _class={_class} url={url}  />
+                    actividades.map(({ title, desc, color, icon, _class,url },i) => {
+                        return <ActivityCard title={title} desc={desc} _class={_class} url={url} key={`activityCard${i}`}  />
                     })
                 }
 

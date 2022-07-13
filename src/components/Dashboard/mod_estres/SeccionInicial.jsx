@@ -16,9 +16,9 @@ export const SeccionInicial = () => {
 
             <Actividad src={imgGanso.elegante} title="¿Qué es el estrés?"
                 text={`Es la sensación de tensión que se origina en nosotros cuando consideramos que una determinada situación se sale de nuestro control y nos obliga a recurrir a nuevas estrategias o habilidades, dando la idea de que será imposible enfrentar a la misma, puede ocurrir con muchos casos de nuestra cotidianidad.`} showIcon={false} />
-<div class="d-sm-none">
-            <Descripcion title={"Algunos de sus signos:"}
-                text={`
+            <div className="d-sm-none">
+                <Descripcion title={"Algunos de sus signos:"}
+                    text={`
                 
     <ul class="ms-4">
       <li>	Aceleración del ritmo cardiaco.	</li>
@@ -36,64 +36,64 @@ export const SeccionInicial = () => {
       <li>	Desorden en hábitos saludables.	</li>
     </ul>
     `} icon={<FcSurvey />} color="#03A9F4" />
-</div>
-<div class="frame d-none d-sm-block titulo_sup_card w-100">
+            </div>
+            <div className="frame d-none d-sm-block titulo_sup_card w-100">
 
-<h4 className='text-center mb-4 '> Algunos de sus signos </h4>
+                <h4 className='text-center mb-4 '> Algunos de sus signos </h4>
 
-    <button class="btn btn-primary rounded-pill mx-1">
-        Aceleración del ritmo cardiaco
-    </button>
-    <button class="btn btn-primary rounded-pill mx-1">
-        Temblores
-    </button>
-    <button class="btn btn-primary rounded-pill mx-1">
-        Dolor de cabeza
-    </button>
-    <button class="btn btn-primary rounded-pill mx-1">
-        Respiración agitada.
-    </button>
+                <button className="btn btn-primary rounded-pill mx-1">
+                    Aceleración del ritmo cardiaco
+                </button>
+                <button className="btn btn-primary rounded-pill mx-1">
+                    Temblores
+                </button>
+                <button className="btn btn-primary rounded-pill mx-1">
+                    Dolor de cabeza
+                </button>
+                <button className="btn btn-primary rounded-pill mx-1">
+                    Respiración agitada.
+                </button>
 
-    <button class="btn btn-primary rounded-pill mx-1">
-        Malestares digestivos.
-    </button>
-
-
-    <button class="btn btn-primary rounded-pill mx-1">
-        Irritabilidad.
-    </button>
+                <button className="btn btn-primary rounded-pill mx-1">
+                    Malestares digestivos.
+                </button>
 
 
-    <button class="btn btn-primary rounded-pill mx-1">
-        Desorden en hábitos saludables.
-    </button>
+                <button className="btn btn-primary rounded-pill mx-1">
+                    Irritabilidad.
+                </button>
 
 
-    <button class="btn btn-primary rounded-pill mx-1">
-        Frustración.
-    </button>
+                <button className="btn btn-primary rounded-pill mx-1">
+                    Desorden en hábitos saludables.
+                </button>
 
 
-    <button class="btn btn-primary rounded-pill mx-1">
-        Pensamientos de incapacidad.
-    </button>
+                <button className="btn btn-primary rounded-pill mx-1">
+                    Frustración.
+                </button>
 
 
-    <button class="btn btn-primary rounded-pill mx-1">
-        Inadaptabilidad al cambio.
-    </button>
+                <button className="btn btn-primary rounded-pill mx-1">
+                    Pensamientos de incapacidad.
+                </button>
 
-    <button class="btn btn-primary rounded-pill mx-1">
-        Problemas de concentración.
-    </button>
 
-    <button class="btn btn-primary rounded-pill mx-1">
-        Poca agilidad para la realización de tareas.
-    </button>
-    <button class="btn btn-primary rounded-pill mx-1">
-        Tristeza
-    </button>
-    </div>
+                <button className="btn btn-primary rounded-pill mx-1">
+                    Inadaptabilidad al cambio.
+                </button>
+
+                <button className="btn btn-primary rounded-pill mx-1">
+                    Problemas de concentración.
+                </button>
+
+                <button className="btn btn-primary rounded-pill mx-1">
+                    Poca agilidad para la realización de tareas.
+                </button>
+                <button className="btn btn-primary rounded-pill mx-1">
+                    Tristeza
+                </button>
+            </div>
 
             <Actividad src={imgGanso.escribiendo_250x200} title="Datos curiosos sobre el estrés"
                 text={`<ul class="ms-4">
