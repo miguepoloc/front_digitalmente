@@ -3,7 +3,7 @@ import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import { Actividad } from '../Actividad'
 import imgCuadroEjemplo from "./assets/img/relaxActividadUnoEjemploCuadro.png"
 import { ErrorAlert, Correct_Alert, SendOkAlert } from '../../../helpers/helper_Swal_Alerts'
-import { BiGift } from "react-icons/bi"
+// import { BiGift } from "react-icons/bi"
 import { AiOutlineFileWord } from 'react-icons/ai'
 import { VscFilePdf } from "react-icons/vsc"
 import { TbBrandGoogleDrive } from "react-icons/tb"

@@ -5,6 +5,10 @@ import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import { FcSurvey } from 'react-icons/fc'
 import Iframe from 'react-iframe'
 
+// import './assets/css/Respiracion.scss'
+// import './assets/js/Respiracion.js'
+
+
 export const ManejoRespiracion = () => {
     return (
         <>
@@ -46,7 +50,6 @@ export const ManejoRespiracion = () => {
                 </div>
 
                 <div className='col-lg-6'>
-
                     <Iframe url="https://www.youtube.com/embed/adpR2UQTElk"
                         width="100%"
                         height="315px"
