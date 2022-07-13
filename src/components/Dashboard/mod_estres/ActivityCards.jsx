@@ -12,21 +12,21 @@ export const ActivityCards = () => {
             color: "#1452cc",
             icon: <FcPuzzle/>,
             _class:"activityCard_useRow",
-            url:"relax2"
+            url:"relax7"
         },
         {
             title: "Manejo adecuado del estrés",
             desc: "En muchas ocasiones de nuestra vida podemos llegar a sentirnos abrumados, preocupados e irritados ante las situaciones estresantes que se presentan en el día a día, generando respuestas fisiológicas que entorpecen la búsqueda de soluciones y la generación de estrategias eficaces para la superación de estos obstáculos que serán comunes a lo largo de la vida",
             color: "#1452cc",
             icon: "icon xd",
-            url:"relax3"
+            url:"relax2"
         },
         {
             title: "Técnicas de meditación",
             desc: "La meditación es una alternativa práctica para relajar el cuerpo, la mente y el espíritu y que ofrece una sensación de bienestar y salud mental, por lo cual ésta técnica termina siendo una buena opción  para disminuir los síntomas asociados al estrés para las personas que disfrutan de este tipo de actividades. (Aguilar & Musso 2008)",
             color: "#1452cc",
             icon: "icon xd",
-            url:"relax4"
+            url:"relax3"
         },
         {
             title: "Técnica Manejo respiración",
@@ -47,7 +47,7 @@ export const ActivityCards = () => {
             desc: "Realizar actividad física es una alternativa eficaz en la reducción de los síntomas de estrés puesto que permite que el cuerpo en movimiento realice un gasto importante de energía acumulada, liberando endorfinas y otorgando una sensación de bienestar que permite disminuir la tensión que normalmente genera el estrés (Ávila 2014).",
             color: "#1452cc",
             icon: "icon xd",
-            url:"relax7"
+            url:"relax6"
         },
 
 

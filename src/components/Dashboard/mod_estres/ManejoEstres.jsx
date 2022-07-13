@@ -9,13 +9,13 @@ export const ManejoEstres = () => {
             <h2 className='text-center'>Técnica de Ejercicio para el manejo de estrés</h2>
 
             <div className='row justify-content-center align-items-center'>
-                <div className='col-lg-5'>
+                <div className='col-lg-6'>
                     <Actividad src={imgGanso.meditando} title="¿Para qué me servirá esta actividad?"
                         text={`<br>Realizar actividad física es una alternativa eficaz en la reducción de los síntomas de estrés puesto que permite que el cuerpo en movimiento realice un gasto importante de energía acumulada, liberando endorfinas y otorgando una sensación de bienestar que permite disminuir la tensión que normalmente genera el estrés (Ávila 2014). Por ende, realizar ejercicio es una de las técnicas más recomendables para el manejo adecuado del estrés en los quehaceres diarios y en relación al estrés académico que genera la vida universitaria.
                         <br></br>
                         ¡Hacer ejercicio no solo es la opción comúnmente observada de ir al gym, aquí te damos otras opciones para que observes otras posibles alternativas que podrían resultar mucho más divertidas!`} showIcon={false} />
                 </div>
-                <div className='col-lg-7'>
+                <div className='col-lg-6'>
                     <Actividad siImange={false} src={imgGanso.explicando} title="Ejercicios para principiantes en casa"
                         video={
                             <div>
