@@ -17,6 +17,8 @@ import { PUT_avance_modulos } from '../helpers/helperApi'
 import { AuthContext } from '../context/AuthContext'
 import { linksRelax } from '../helpers/helperRelax'
 import NavBarDashboard from '../components/Dashboard/NavBarDashboard'
+import { BotonContext } from '../context/BotonContext'
+
 // import ControlUser from '../components/Dashboard/ControlUser'
 
 const ModuloRelax = () => {
@@ -29,8 +31,7 @@ const ModuloRelax = () => {
     // Datos del usuario
     const [datauser, setDatauser] = useState([])
 
-    // Obtiene los datos de avance que lleva el usuario
-
+    const { BotonState } = useContext(BotonContext)
 
     // Para el control de la ubicación
     const history = useHistory()
@@ -105,6 +106,7 @@ const ModuloRelax = () => {
                             variant="info"
                             size="lg"
                             onClick={cambioBoton}
+                            disabled={BotonState}
                         >
                             Siguiente
                         </Button>

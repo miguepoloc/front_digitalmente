@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Actividad } from "../Actividad"
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 
@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import { Box, CardActionArea, Checkbox, FormControlLabel } from '@mui/material';
 import { Formik, Form } from 'formik'
 import { Correct_Alert, ErrorAlert } from '../../../helpers/helper_Swal_Alerts';
+import { BotonContext } from '../../../context/BotonContext'
 
 const ValoresIniciales = {
     pregunta1: false,
@@ -22,6 +23,13 @@ const ValoresIniciales = {
 
 
 export const ResolucionProblemas = () => {
+    const { setBotonState } = useContext(BotonContext)
+
+    useEffect(() => {
+        setBotonState(true)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
 
     const [CartaColor, setCartaColor] = useState(0)
     const [Siguiente, setSiguiente] = useState(0)
@@ -90,6 +98,7 @@ export const ResolucionProblemas = () => {
                             Correct_Alert("¡Excelente!", "Me agrada que estés conectado con Cristopher, ahora puedes continuar con las siguientes actividades.")
                             setSiguiente(1)
 
+
                         } else {
                             ErrorAlert("¡Estás cerca!", "Revisa algunas de las opciones seleccionadas e intenta de nuevo.")
                             console.log('Equivocado')
@@ -101,8 +110,7 @@ export const ResolucionProblemas = () => {
                         ) {
                             console.log('Está correcto')
                             Correct_Alert("¡Excelente!", "Me agrada que estés conectado con Cristopher, ahora puedes continuar con las siguientes actividades.")
-                            //   TODO REDIRECCIÓN
-
+                            setBotonState(false)
                         } else {
                             ErrorAlert("¡Estás cerca!", "Revisa algunas de las opciones seleccionadas e intenta de nuevo.")
                             console.log('Equivocado')
