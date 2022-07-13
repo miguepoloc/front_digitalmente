@@ -4,11 +4,16 @@ import { Actividad } from '../Actividad'
 import imgCuadroEjemplo from "./assets/img/relaxActividadUnoEjemploCuadro.png"
 import { ErrorAlert, Correct_Alert, SendOkAlert } from '../../../helpers/helper_Swal_Alerts'
 import { BiGift } from "react-icons/bi"
-
+import { AiOutlineFileWord } from 'react-icons/ai'
+import { VscFilePdf } from "react-icons/vsc"
+import { TbBrandGoogleDrive } from "react-icons/tb"
 import documento from "./assets/documents/AUTOREGISTRO.pdf"
 import { AuthContext } from '../../../context/AuthContext'
 
 export const Actividad1 = () => {
+
+    //TODO: se debe validar si esta actividad se hizo anteriormente
+    //con el fin de mostar directamente las descargas de los archivos
 
     const { authState } = useContext(AuthContext)
     const { userInfo, token } = authState
@@ -44,23 +49,23 @@ export const Actividad1 = () => {
 
         Correct_Alert("¡Felicidades has realizado tu autorregistro antiestrés!", `Reconocer de forma objetiva las situaciones estresantes que se nos presentan en la vida permite que podamos formular mejores estrategias de solución frente a las mismas y tener una conducta adaptativa que favorecerá nuestro bienestar y salud mental.
         <br/>
-        `).then(() => SendOkAlert("¡Te he traido un regalo!", "Ahora Puedes descargar un documento PDF para imprimirlo."))
+        `).then(() => SendOkAlert("¡Te he traido un regalo!", "Ahora puedes descargar un documento PDF para imprimirlo."))
     }
 
-    const handleChange = (event)=>{
-            setDatos({
-                ...Datos,
-                [event.target.name] : event.target.value
-            })
-            console.log(Datos)
+    const handleChange = (event) => {
+        setDatos({
+            ...Datos,
+            [event.target.name]: event.target.value
+        })
+        console.log(Datos)
     }
 
 
     return (
 
         <>
-        
-        <h2 className='text-center'>Técnica de Ejercicio para el manejo de estrés</h2>
+
+            <h2 className='text-center'>Técnica de Ejercicio para el manejo de estrés</h2>
 
             <div className='row justify-content-center align-items-center'>
                 <div className='col-lg-6'>
@@ -93,9 +98,25 @@ export const Actividad1 = () => {
                 <p className='mt-2 mb-4 text-center'><small>Tabla 1 de elaboración propia basada en Guía para el mármol del estrés académico. Pérez, García, & Pérez (s.f.)</small></p>
             </div>
 
-            <div className='mb-4'>
-                <Actividad src={imgGanso.elegante} title="¿Qué tal si lo practicamos?"
-                    text={`<br><p class="text-center">A continuación tendrás la oportudidad de realizar un autorregistro didáctico en el que podrás analizar la información de tus situaciones de estrés y plantear soluciones apropiadas para diferentes momentos relacionados al mismo.
+            {ActividadCompletada ? (<>
+                <div className=' text-center'>
+                    <a href={documento} download="Autoregistro" className='d-flex justify-content-center'>
+                        <button className='w-50 btn-radius btn-pdf d-flex justify-content-center align-items-center '> Descargar PDF <VscFilePdf size={25} color="white" className='mx-1' /></button>
+                    </a>
+
+                    <a href={documento} download="Autoregistro" className='d-flex justify-content-center'>
+                        <button className='w-50 btn-radius btn-word d-flex justify-content-center align-items-center '>  Descargar documento editable DOC <AiOutlineFileWord size={25} color="white" className='mx-1' /></button>
+                    </a>
+
+                    <a href={documento} download="Autoregistro" className='d-flex justify-content-center'>
+                        <button className='w-50 btn-radius btn-googleDocs d-flex justify-content-center align-items-center '>  Crear una copia en la nube <TbBrandGoogleDrive size={25} color="white" className='mx-1' /></button>
+                    </a>
+                </div>
+            </>) : (
+                <>
+                    <div className='mb-4'>
+                        <Actividad src={imgGanso.elegante} title="¿Qué tal si lo practicamos?"
+                            text={`<br><p class="text-center">A continuación tendrás la oportudidad de realizar un autorregistro didáctico en el que podrás analizar la información de tus situaciones de estrés y plantear soluciones apropiadas para diferentes momentos relacionados al mismo.
                         <br>
                         <br>
                         Al finalizar cuack te dará un regalo 
@@ -103,85 +124,78 @@ export const Actividad1 = () => {
                         </p>
                         `
 
-                    }
-                    showIcon={true} />
-            </div>
+                            }
+                            showIcon={true} />
+                    </div>
+                    <div className='row'>
 
-            {ActividadCompletada ? (<>
-                <div className=' text-center'>
-                    <a href={documento} download="Autoregistro" className='d-flex justify-content-center'>
-                        <button className='w-50 search-buttons card-buttons d-flex justify-content-center align-items-center '> <BiGift size={25} color="white" className='mx-1'/> Descargar PDF</button>
-                    </a>
-                </div>
-            </>) : (
-                <div className='row'>
-
-                    <div className="col-lg  mb-4 p-2">
-                        <div className="card-header  d-flex align-items-center justify-content-center" style={{ background: "#7DAAF1", minHeight: "69px" }}>
-                            <h5 className="my-0 font-weight-normal text-white  text-center" style={{ fontSize: "0.9em" }}>Situación estresante</h5>
-                        </div>
-                        <div className="border shadow  ">
-                            <div className="float-left d-flex flex-column">
-                                <textarea name="Texto1" rows="3" className="w-100" onChange={handleChange}>
-                                </textarea>
-                                {/* <div style="color: red;">Es necesario llenar esta información</div> */}
+                        <div className="col-lg  mb-4 p-2">
+                            <div className="card-header  d-flex align-items-center justify-content-center" style={{ background: "#7DAAF1", minHeight: "69px" }}>
+                                <h5 className="my-0 font-weight-normal text-white  text-center" style={{ fontSize: "0.9em" }}>Situación estresante</h5>
+                            </div>
+                            <div className="border shadow  ">
+                                <div className="float-left d-flex flex-column">
+                                    <textarea name="Texto1" rows="3" className="w-100" onChange={handleChange}>
+                                    </textarea>
+                                    {/* <div style="color: red;">Es necesario llenar esta información</div> */}
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="col-lg mb-4 p-2">
-                        <div className="card-header  d-flex align-items-center justify-content-center" style={{ background: "#7DAAF1", minHeight: "69px" }}>
-                            <h5 className="my-0 font-weight-normal text-white  text-center" style={{ fontSize: "0.9em" }}>Mi acción frente a la situación estresante</h5>
-                        </div>
-                        <div className="border shadow  ">
-                            <div className="float-left d-flex flex-column">
-                                <textarea name="Texto2" rows="3" className="w-100" onChange={handleChange}>
-                                </textarea>
-                                {/* <div style="color: red;">Es necesario llenar esta información</div> */}
+                        <div className="col-lg mb-4 p-2">
+                            <div className="card-header  d-flex align-items-center justify-content-center" style={{ background: "#7DAAF1", minHeight: "69px" }}>
+                                <h5 className="my-0 font-weight-normal text-white  text-center" style={{ fontSize: "0.9em" }}>Mi acción frente a la situación estresante</h5>
+                            </div>
+                            <div className="border shadow  ">
+                                <div className="float-left d-flex flex-column">
+                                    <textarea name="Texto2" rows="3" className="w-100" onChange={handleChange}>
+                                    </textarea>
+                                    {/* <div style="color: red;">Es necesario llenar esta información</div> */}
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="col-lg mb-4 p-2">
-                        <div className="card-header  d-flex align-items-center justify-content-center " style={{ background: "#7DAAF1", minHeight: "69px" }}>
-                            <h5 className="my-0 font-weight-normal text-white  text-center" style={{ fontSize: "0.825em" }}>Cosas que me digo ante la situación estresante</h5>
-                        </div>
-                        <div className="border shadow  ">
-                            <div className="float-left d-flex flex-column">
-                                <textarea name="Texto3" rows="3" className="w-100" onChange={handleChange}>
-                                </textarea>
-                                {/* <div style="color: red;">Es necesario llenar esta información</div> */}
+                        <div className="col-lg mb-4 p-2">
+                            <div className="card-header  d-flex align-items-center justify-content-center " style={{ background: "#7DAAF1", minHeight: "69px" }}>
+                                <h5 className="my-0 font-weight-normal text-white  text-center" style={{ fontSize: "0.825em" }}>Cosas que me digo ante la situación estresante</h5>
+                            </div>
+                            <div className="border shadow  ">
+                                <div className="float-left d-flex flex-column">
+                                    <textarea name="Texto3" rows="3" className="w-100" onChange={handleChange}>
+                                    </textarea>
+                                    {/* <div style="color: red;">Es necesario llenar esta información</div> */}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-lg mb-4 p-2">
-                        <div className="card-header  d-flex align-items-center justify-content-center" style={{ background: "#7DAAF1", minHeight: "69px" }}>
-                            <h5 className="my-0 font-weight-normal text-white  text-center" style={{ fontSize: "0.9em" }}>¿Es funcional?</h5>
-                        </div>
-                        <div className="border shadow  ">
-                            <div className="float-left d-flex flex-column">
-                                <textarea name="Texto4" rows="3" className="w-100" onChange={handleChange}>
-                                </textarea>
-                                {/* <div style="color: red;">Es necesario llenar esta información</div> */}
+                        <div className="col-lg mb-4 p-2">
+                            <div className="card-header  d-flex align-items-center justify-content-center" style={{ background: "#7DAAF1", minHeight: "69px" }}>
+                                <h5 className="my-0 font-weight-normal text-white  text-center" style={{ fontSize: "0.9em" }}>¿Es funcional?</h5>
+                            </div>
+                            <div className="border shadow  ">
+                                <div className="float-left d-flex flex-column">
+                                    <textarea name="Texto4" rows="3" className="w-100" onChange={handleChange}>
+                                    </textarea>
+                                    {/* <div style="color: red;">Es necesario llenar esta información</div> */}
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="col-lg mb-4 p-2">
-                        <div className="card-header  d-flex align-items-center justify-content-center " style={{ background: "#7DAAF1", minHeight: "69px" }}>
-                            <h5 className="my-0 font-weight-normal text-white  text-center" style={{ fontSize: "0.9em" }}>¿Qué cosas podría hacer?</h5>
-                        </div>
-                        <div className="border shadow  ">
-                            <div className="float-left d-flex flex-column">
-                                <textarea name="Texto5" rows="3" className="w-100" onChange={handleChange}>
-                                </textarea>
-                                {/* <div style="color: red;">Es necesario llenar esta información</div> */}
+                        <div className="col-lg mb-4 p-2">
+                            <div className="card-header  d-flex align-items-center justify-content-center " style={{ background: "#7DAAF1", minHeight: "69px" }}>
+                                <h5 className="my-0 font-weight-normal text-white  text-center" style={{ fontSize: "0.9em" }}>¿Qué cosas podría hacer?</h5>
+                            </div>
+                            <div className="border shadow  ">
+                                <div className="float-left d-flex flex-column">
+                                    <textarea name="Texto5" rows="3" className="w-100" onChange={handleChange}>
+                                    </textarea>
+                                    {/* <div style="color: red;">Es necesario llenar esta información</div> */}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className=' text-center'><button className='w-50 search-buttons card-buttons' onClick={() => handleBtnEnviar()}>Enviar</button></div>
+                        <div className=' text-center'><button className='w-50 search-buttons card-buttons' onClick={() => handleBtnEnviar()}>Enviar</button></div>
 
-                </div>)}
+                    </div>
+                </>)}
 
 
 

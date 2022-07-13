@@ -3,9 +3,6 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import Axios from 'axios'
 
-import '../assets/css/nucleo-icons.scss'
-import '../assets/css/nucleo-svg.scss'
-import '../assets/css/index.scss'
 import '../assets/css/soft-ui-dashboard.scss'
 import '../components/Dashboard/assets/css/Dashboard.scss'
 import FooterDashboard from '../components/Dashboard/FooterDashboard'

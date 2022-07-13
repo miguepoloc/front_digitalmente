@@ -290,3 +290,151 @@ fieldset[disabled] .btn-amarillo.active {
     color: #FC8890; 
     background-color: #ffffff; 
   }
+
+  .btn-pdf { 
+    color: #FFFFFF; 
+    background-color: #B30B00; 
+    border-color: #B30B00; 
+  } 
+   
+  .btn-pdf:hover, 
+  .btn-pdf:focus, 
+  .btn-pdf:active, 
+  .btn-pdf.active, 
+  .open .dropdown-toggle.btn-pdf { 
+    color: #FFFFFF; 
+    background-color: #C2433A; 
+    border-color: #B30B00; 
+  } 
+   
+  .btn-pdf:active, 
+  .btn-pdf.active, 
+  .open .dropdown-toggle.btn-pdf { 
+    background-image: none; 
+  } 
+   
+  .btn-pdf.disabled, 
+  .btn-pdf[disabled], 
+  fieldset[disabled] .btn-pdf, 
+  .btn-pdf.disabled:hover, 
+  .btn-pdf[disabled]:hover, 
+  fieldset[disabled] .btn-pdf:hover, 
+  .btn-pdf.disabled:focus, 
+  .btn-pdf[disabled]:focus, 
+  fieldset[disabled] .btn-pdf:focus, 
+  .btn-pdf.disabled:active, 
+  .btn-pdf[disabled]:active, 
+  fieldset[disabled] .btn-pdf:active, 
+  .btn-pdf.disabled.active, 
+  .btn-pdf[disabled].active, 
+  fieldset[disabled] .btn-pdf.active { 
+    background-color: #B30B00; 
+    border-color: #B30B00; 
+  } 
+   
+  .btn-pdf .badge { 
+    color: #B30B00; 
+    background-color: #FFFFFF; 
+  }
+
+  .btn-word { 
+    color: #FFFFFF; 
+    background-color: #25559A; 
+    border-color: #25559A; 
+  } 
+   
+  .btn-word:hover, 
+  .btn-word:focus, 
+  .btn-word:active, 
+  .btn-word.active, 
+  .open .dropdown-toggle.btn-word { 
+    color: #FFFFFF; 
+    background-color: #4172B5; 
+    border-color: #25559A; 
+  } 
+   
+  .btn-word:active, 
+  .btn-word.active, 
+  .open .dropdown-toggle.btn-word { 
+    background-image: none; 
+  } 
+   
+  .btn-word.disabled, 
+  .btn-word[disabled], 
+  fieldset[disabled] .btn-word, 
+  .btn-word.disabled:hover, 
+  .btn-word[disabled]:hover, 
+  fieldset[disabled] .btn-word:hover, 
+  .btn-word.disabled:focus, 
+  .btn-word[disabled]:focus, 
+  fieldset[disabled] .btn-word:focus, 
+  .btn-word.disabled:active, 
+  .btn-word[disabled]:active, 
+  fieldset[disabled] .btn-word:active, 
+  .btn-word.disabled.active, 
+  .btn-word[disabled].active, 
+  fieldset[disabled] .btn-word.active { 
+    background-color: #25559A; 
+    border-color: #25559A; 
+  } 
+   
+  .btn-word .badge { 
+    color: #25559A; 
+    background-color: #FFFFFF; 
+  }
+  .btn-googleDocs { 
+    color: #FFFFFF; 
+    background-color: #4486F4; 
+    border-color: #4486F4; 
+  } 
+   
+  .btn-googleDocs:hover, 
+  .btn-googleDocs:focus, 
+  .btn-googleDocs:active, 
+  .btn-googleDocs.active, 
+  .open .dropdown-toggle.btn-googleDocs { 
+    color: #FFFFFF; 
+    background-color: #6EA1FA; 
+    border-color: #4486F4; 
+  } 
+   
+  .btn-googleDocs:active, 
+  .btn-googleDocs.active, 
+  .open .dropdown-toggle.btn-googleDocs { 
+    background-image: none; 
+  } 
+   
+  .btn-googleDocs.disabled, 
+  .btn-googleDocs[disabled], 
+  fieldset[disabled] .btn-googleDocs, 
+  .btn-googleDocs.disabled:hover, 
+  .btn-googleDocs[disabled]:hover, 
+  fieldset[disabled] .btn-googleDocs:hover, 
+  .btn-googleDocs.disabled:focus, 
+  .btn-googleDocs[disabled]:focus, 
+  fieldset[disabled] .btn-googleDocs:focus, 
+  .btn-googleDocs.disabled:active, 
+  .btn-googleDocs[disabled]:active, 
+  fieldset[disabled] .btn-googleDocs:active, 
+  .btn-googleDocs.disabled.active, 
+  .btn-googleDocs[disabled].active, 
+  fieldset[disabled] .btn-googleDocs.active { 
+    background-color: #4486F4; 
+    border-color: #4486F4; 
+  } 
+   
+  .btn-googleDocs .badge { 
+    color: #4486F4; 
+    background-color: #FFFFFF; 
+  }
+
+  .btn-radius {
+    border: none;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    align-self: flex-end;
+    margin-top: 14px;
+  }
