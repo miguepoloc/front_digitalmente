@@ -66,6 +66,18 @@ body {
     border-color: #A770B5;
 }
 
+.btn-radius {
+    border: none;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    align-self: flex-end;
+    margin-top: 14px;
+  }
+
+
 .btn-morado:hover,
 .btn-morado:focus,
 .btn-morado:active,
@@ -428,13 +440,50 @@ fieldset[disabled] .btn-amarillo.active {
     background-color: #FFFFFF; 
   }
 
-  .btn-radius {
-    border: none;
-    color: white;
-    padding: 8px 10px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    align-self: flex-end;
-    margin-top: 14px;
+
+
+  .btn-backNext-relax { 
+    color: #ffffff; 
+    background-color: #689CF0; 
+    border-color: #689CF0; 
+  } 
+   
+  .btn-backNext-relax:hover, 
+  .btn-backNext-relax:focus, 
+  .btn-backNext-relax:active, 
+  .btn-backNext-relax.active, 
+  .open .dropdown-toggle.btn-backNext-relax { 
+    color: #ffffff; 
+    background-color: #588FE8; 
+    border-color: #689CF0; 
+  } 
+   
+  .btn-backNext-relax:active, 
+  .btn-backNext-relax.active, 
+  .open .dropdown-toggle.btn-backNext-relax { 
+    background-image: none; 
+  } 
+   
+  .btn-backNext-relax.disabled, 
+  .btn-backNext-relax[disabled], 
+  fieldset[disabled] .btn-backNext-relax, 
+  .btn-backNext-relax.disabled:hover, 
+  .btn-backNext-relax[disabled]:hover, 
+  fieldset[disabled] .btn-backNext-relax:hover, 
+  .btn-backNext-relax.disabled:focus, 
+  .btn-backNext-relax[disabled]:focus, 
+  fieldset[disabled] .btn-backNext-relax:focus, 
+  .btn-backNext-relax.disabled:active, 
+  .btn-backNext-relax[disabled]:active, 
+  fieldset[disabled] .btn-backNext-relax:active, 
+  .btn-backNext-relax.disabled.active, 
+  .btn-backNext-relax[disabled].active, 
+  fieldset[disabled] .btn-backNext-relax.active { 
+    background-color: #a7c1eb; 
+    border-color: #a7c1eb; 
+  } 
+   
+  .btn-backNext-relax .badge { 
+    color: #689CF0; 
+    background-color: #ffffff; 
   }
