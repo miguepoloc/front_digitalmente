@@ -24,7 +24,7 @@ export const Team = ({ section }) => {
 
                                 <h3 className='text-center text_Team text-darkBlue'>
                                     Somos jóvenes investigadores, profesionales y de
-                                    pregrado financiados por Minciencias, a través, de la
+                                    pregrado financiados por Minciencias, a través de la
                                     iniciativa Talento Joven en Salud. Esta investigación se
                                     desarrolla en el marco del proyecto “Identificación de la
                                     coparticipación del cronotipo, las inteligencias múltiples,

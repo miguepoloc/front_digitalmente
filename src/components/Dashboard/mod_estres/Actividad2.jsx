@@ -11,7 +11,7 @@ export const Actividad2 = () => {
 <div className='row justify-content-center align-items-center'>
     <div className='col-lg-6'>
         <Actividad src={imgGanso.meditando} title="¿Para qué me servirá esta actividad?"
-            text={`<br>La meditación es una alternativa práctica para relajar el cuerpo, la mente y el espíritu y que ofrece una sensación de bienestar y salud mental, por lo cual ésta técnica termina siendo una buena opción  para disminuir los síntomas asociados al estrés para las personas que disfrutan de este tipo de actividades. <small>(Aguilar & Musso 2008).</small>`
+            text={`<br>La meditación es una alternativa práctica para relajar el cuerpo, la mente y el espíritu. Ofrece una sensación de bienestar y salud mental, por lo cual termina siendo una buena opción para disminuir los síntomas asociados al estrés para las personas que disfrutan de este tipo de actividades <small>(Aguilar y Musso 2008).</small>`
 
             }
             showIcon={false} />
@@ -22,7 +22,7 @@ export const Actividad2 = () => {
             src={imgGanso.explicando}
             style={{ width: "110px", height: "110px" }}
             title="¿Cómo realizar esta actividad?"
-            text={`¡Para realizar la misma se puede encontrar diverso material que permita conocer con cuál tipo de meditación te sientes identificado y si resulta ser funcional para tí, recuerda que puede funcionar una estrategia diferente en cada persona y no está mal! aquí te recomendamos algunas opciones que podrías tomar en cuenta si estás interesad@:`}
+            text={`Para realizarla se pueden encontrar diversos materiales que permitan conocer con cuál tipo de meditación te sientes identificado y si resulta ser funcional para ti. Recuerda que puede funcionar una estrategia diferente en cada persona y no está mal. Aquí te recomendamos algunas opciones que podrías tomar en cuenta si estás interesad@:`}
             showIcon={false} />
     </div>
 </div>
@@ -37,7 +37,7 @@ export const Actividad2 = () => {
                         className="myClassname"
                         display="initial"
                         position="relative" />
-    <p className='text-center mb-0'><small><i><b>Nota:</b> Para escuchar completamente este podcast deberás darle click y escucharlo en spotify</i></small></p>
+    <p className='text-center mb-0'><small><i><b>Nota:</b> Para escuchar completamente este podcast deberás darle <a href="https://open.spotify.com/episode/686IzXbrSYYnMYe4d1ZTmu?go=1&sp_cid=0b8781ab5942a3f9240b00f3999531ef&utm_source=embed_player_p&utm_medium=desktop&nd=1" target={"_blank"} style={{color:"#282888"}}><b><u>click aquí</u></b></a> para escucharlo en spotify</i></small></p>
 
 </div>
 <div className='card p-4 my-4'>
@@ -52,7 +52,7 @@ export const Actividad2 = () => {
                         position="relative"
 
                         style={{borderRadius:"100px !important"}} />
-                        <p className='text-center mb-0'><small><i><b>Nota:</b> Para escuchar completamente este audio deberás darle click y escucharlo en spotify</i></small></p>
+                        <p className='text-center mb-0'><small><i><b>Nota:</b> Para escuchar completamente este audio deberás darle <a href="https://open.spotify.com/track/1AOkl6s50A2PgqY2qMamko?go=1&sp_cid=0b8781ab5942a3f9240b00f3999531ef&utm_source=embed_player_m&utm_medium=desktop&nd=1" target={"_blank"} style={{color:"#534A4D"}}><b><u>click aquí</u></b></a> para escucharlo en spotify</i></small></p>
 </div>
     </>
   )

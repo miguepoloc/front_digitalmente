@@ -8,7 +8,7 @@ export const ActivityCards = () => {
     const actividades = [
         {
             title: "Resolución de problemas",
-            desc: "La solución de problemas está enfocada en mejorar la capacidad para enfrentarse a estresores o acontecimientos traumáticos, problemas cotidianos crónicos y a reducir los problemas de salud mental y física. Con esta se buscaría la adopción de una visión adaptativa hacia los problemas presentes en la vida, con una perspectiva optimista que admita a los problemas como sucesos vitales normales y la implantación eficaz de conductas concretas de solución de problemas, con regulación y gestión emocional y planificación de estrategias para enfrentar problemas. (Nezu, Nezu y D’Zurilla 2014).",
+            desc: "La solución de problemas está enfocada en mejorar la capacidad para enfrentarse a estresores o acontecimientos traumáticos, problemas cotidianos crónicos y a reducir los problemas de salud mental y física. Con esta se buscaría la adopción de una visión adaptativa hacia los problemas presentes en la vida, con una perspectiva optimista que admita a los problemas como sucesos vitales normales y la implantación eficaz de conductas concretas de solución de problemas, con regulación y gestión emocional y planificación de estrategias para enfrentar problemas (Nezu et al., 2014).",
             color: "#1452cc",
             icon: <FcPuzzle/>,
             _class:"activityCard_useRow",
@@ -16,7 +16,7 @@ export const ActivityCards = () => {
         },
         {
             title: "Manejo adecuado del estrés",
-            desc: "En muchas ocasiones de nuestra vida podemos llegar a sentirnos abrumados, preocupados e irritados ante las situaciones estresantes que se presentan en el día a día, generando respuestas fisiológicas que entorpecen la búsqueda de soluciones y la generación de estrategias eficaces para la superación de estos obstáculos que serán comunes a lo largo de la vida",
+            desc: "En muchas ocasiones de nuestra vida podemos llegar a sentirnos abrumados, preocupados e irritados ante las situaciones estresantes que se presentan en el día a día, generando en nosotros sensaciones que hacen difícil buscar soluciones y tener maneras efectivas de superar esos obstáculos, que a lo largo de la vida serán comunes. [...]",
             color: "#1452cc",
             icon: "icon xd",
             url:"relax2"
@@ -44,10 +44,11 @@ export const ActivityCards = () => {
         },
         {
             title: "Actividad fisica para el manejo de estrés",
-            desc: "Realizar actividad física es una alternativa eficaz en la reducción de los síntomas de estrés puesto que permite que el cuerpo en movimiento realice un gasto importante de energía acumulada, liberando endorfinas y otorgando una sensación de bienestar que permite disminuir la tensión que normalmente genera el estrés (Ávila 2014).",
+            desc: "Realizar actividad física es una alternativa eficaz en la reducción de los síntomas de estrés puesto que permite que el cuerpo en movimiento realice un gasto importante de energía acumulada, liberando endorfinas y otorgando una sensación de bienestar que permite disminuir la tensión que normalmente genera el estrés (Ávila, 2014).",
             color: "#1452cc",
             icon: "icon xd",
-            url:"relax6"
+            url:"relax6",
+            _class:"activityCard_useRow",
         },
 
 

@@ -17,10 +17,10 @@ export const ManejoRespiracion = () => {
             <div className='row justify-content-center align-items-center'>
                 <div className='col-lg-5'>
                     <Actividad src={imgGanso.meditando} title="¿Para qué me servirá esta actividad?"
-                        text={`Esta técnica permite ejercer control sobre la sensación de estrés por medio de la respiración, debido a que estimula la activación del sistema nervioso parasimpático enviando reflejos que originan en nosotros una respuesta fisiológica positiva ante la sensación de estrés (Villen 2016).`} showIcon={false} />
+                        text={`Esta técnica permite ejercer control sobre la sensación de estrés por medio de la respiración, debido a que estimula la activación del sistema nervioso parasimpático enviando reflejos que originan en nosotros una respuesta fisiológica positiva ante la sensación de estrés (Villen, 2016).`} showIcon={false} />
                 </div>
                 <div className='col-lg-7'>
-                    <Actividad siImange={true} src={imgGanso.explicando} title="Existen diferentes tipos de ejercicios de respiración en el manejo del estrés, sin embargo, aquí te explicaremos algunos, para poder intentarlo debes tomar una postura corporal cómoda y seguir los pasos a continuación:"
+                    <Actividad siImange={true} src={imgGanso.explicando} title="Existen diferentes tipos de ejercicios de respiración en el manejo del estrés, sin embargo, aquí te explicaremos algunos. Para poder intentarlo debes tomar una postura corporal cómoda y seguir los pasos a continuación:"
                         text={`<ul class="ms-4">
                             <li>	Identifica el ritmo actual de tu respiración	</li>
                             <li>	Controla el aire que entra en tus pulmones llenando solo su parte inferior, para hacerlo, recibe el aire por la nariz y toca tu estómago, cuando sientas que tu mano se mueve lo estarás haciendo bien.	</li>
@@ -38,9 +38,9 @@ export const ManejoRespiracion = () => {
                         text={`
                 Tenemos otras dos maneras didácticas en la que aprenderás a respirar, una de ellas es observando el video con atención y respirando al ritmo en el que se te indica en la misma, notarás cómo experimentas una sensación de relajación. 
                 <br><br>
-                Otra de ellas es escuchando el audio de abajo y respiar según lo indicado para manejar el ritmo de tu respiración.
+                Otra de ellas es escuchando el audio de abajo y respirar según lo indicado para manejar el ritmo de tu respiración.
                 <br><br>
-                Todo lo anterior siguiendo el ritmo que te indican con la ayuda de un video o audio y en los tiempos presentados a continuación:
+                Todo lo anterior siguiendo el ritmo que te indican con la ayuda del audio o video mencionados y en los tiempos descritos a continuación:
                 <ul class="ms-4">
                     <li>	Inhalar 5 segundos	</li>
                     <li>	Sostener la respiración 2 segundos	</li>

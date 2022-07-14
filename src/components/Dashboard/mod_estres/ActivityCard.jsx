@@ -12,11 +12,12 @@ export const ActivityCard = ({title,desc,_class,url}) => {
     <div className="activityCard-card-subtitle">
         {desc}
     </div>
-    <div className="activityCard-card-buttons">
+    {/* TODO: Desactivar esto cuando la plataforma no esté en pilotaje */}
+    {/* <div className="activityCard-card-buttons">
       <a href={"/"+url}>
         <button className="search-buttons card-buttons">Ver actividad</button>
         </a>
-    </div>
+    </div> */}
 </div>
   )
 }

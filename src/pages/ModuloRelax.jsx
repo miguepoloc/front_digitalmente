@@ -74,9 +74,9 @@ const ModuloRelax = () => {
     }
         , [slug])
 
-
     // Cuando se presione el botón de siguiente
     async function cambioBotonAdelante() {
+        
         //console.log(userInfo)
         console.log(datauser)
         const jsonx = {
@@ -87,6 +87,7 @@ const ModuloRelax = () => {
         if (parseInt(slug) === datauser.estres) {
             PUT_avance_modulos(userInfo.id, jsonx, token)
             setControl(control + 1)
+            
         }
         if ((linksRelax.length - 1) === parseInt(slug)) {
             history.push(`/dashboard`)
@@ -96,6 +97,8 @@ const ModuloRelax = () => {
         }
 
     }
+
+    useEffect(()=>{window.scroll(0, 0)},[linksRelax[slug - 1].nombre])
 
 
     // Cuando se presione el botón de Atrás
@@ -113,7 +116,7 @@ const ModuloRelax = () => {
 
                     <div className="container-fluid py-4">
 
-                        <div >
+                        <div>
 
                             {
                                 linksRelax[slug - 1].actividad

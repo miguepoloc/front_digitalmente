@@ -22,12 +22,12 @@ const ButtonLibro = ({ text, title }) => {
                 className="buttonFixed topRight text-white"
                 onClick={handleShow}
             >
-                <FaBookOpen size="2em" />
+                <FaBookOpen size="1.8em" />
             </div>
             <Modal show={show} size="lg" onHide={handleClose} aria-labelledby="contained-modal-title-vcenter"
                 centered>
-                <Modal.Header style={styleCenter}>
-                    <Modal.Title>{title}</Modal.Title>
+                <Modal.Header  closeButton={true} closeVariant={"white"}>
+                    <Modal.Title className='text-center w-100'>{title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={styleCenter} dangerouslySetInnerHTML={{ __html: text }}>
 
