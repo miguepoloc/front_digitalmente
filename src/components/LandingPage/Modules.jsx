@@ -57,7 +57,7 @@ const Modules = ({ section }) => {
                         <div className="col-md-6 mb-md-0 mb-4">
                             <div className="row h-100  card_relax modules_cards flex-center">
                                 <div className="col-lg-8 order-2 order-lg-1 justify-content-center align-self-center">
-                                    <h2 className="font-Geomanist">
+                                    <h2 className="font-Geomanist text-white">
                                         Relax
                                     </h2>
                                     <p className="pt-2">
@@ -77,7 +77,7 @@ const Modules = ({ section }) => {
                         <div className="col-md-6">
                             <div className="row h-100  modules_cards card_misEmociones flex-center ">
                                 <div className="col-lg-8 order-2 order-lg-1 justify-content-center align-self-center">
-                                    <h2 className="font-Geomanist">
+                                    <h2 className="font-Geomanist text-white">
                                         Mis emociones
 
                                     </h2>
@@ -101,7 +101,7 @@ const Modules = ({ section }) => {
                         <div className="col-md-6 mb-md-0 mb-4">
                             <div className="row h-100 card_piensalo modules_cards flex-center ">
                                 <div className="col-lg-8 order-2 order-lg-1 justify-content-center align-self-center ">
-                                    <h2 className="font-Geomanist">
+                                    <h2 className="font-Geomanist text-white">
                                         Piénsalo
 
                                     </h2>
@@ -124,7 +124,7 @@ const Modules = ({ section }) => {
                         <div className="col-md-6">
                             <div className="row h-100  modules_cards card_misHabilidades flex-center ">
                                 <div className="col-lg-8 order-2 order-lg-1 justify-content-center align-self-center">
-                                    <h2 className="font-Geomanist">
+                                    <h2 className="font-Geomanist text-white">
                                         Mis habilidades
 
                                     </h2>

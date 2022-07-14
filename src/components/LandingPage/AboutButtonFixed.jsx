@@ -23,7 +23,7 @@ export const AboutButtonFixed = ({ section }) => {
                         </div>
                         <div className=" col-lg-7 col-md-12 mt-md-0 mt-3 col-12 justify-content-center align-self-center text-white mb-2">
 
-                            <h5 className='text-center'>
+                            <h5 className='text-center text-white'>
                                 Somos una estrategia de promoción en salud mental basada en la
                                 psicoeducación y el entrenamiento de habilidades orientada al desarrollo
                                 a diversas actividades. No estamos enfocados a dar atención clínica u
@@ -41,7 +41,7 @@ export const AboutButtonFixed = ({ section }) => {
                                 </a>
                             </div>
 
-                            <h5 className='text-center mt-5 mb-5'>A través del chat virtual disponible en esa página,
+                            <h5 className='text-center mt-5 mb-5 text-white'>A través del chat virtual disponible en esa página,
                                 podrás recibir orientación psicológica gratuita.
                             </h5>
                         </div>
