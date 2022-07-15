@@ -17,10 +17,10 @@ export const SeccionInicial = () => {
     <li>Identificar los patrones conductuales relacionados al estrés.</li>
     <li>Desarrollar habilidades enfocadas al manejo adecuado del estrés propio o ajeno en situaciones cotidianas.</li>
     </ul>
-    <small class="d-flex justify-content-center"><span style="color:red">*</span>${renderToString(<div className='mx-1'>
+    <small class="d-flex justify-content-center"><span style="color:red">*</span>${renderToString(<div className='mx-1' >
             
             <div
-                className={" buttonReferenciaNoFixed text-white"}    
+                className={" buttonReferenciaNoFixed text-white"}   style={{cursor: "auto"}} 
             >
                 <FaBookOpen size={14} />
             </div>
