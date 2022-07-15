@@ -3,19 +3,30 @@ import { Actividad } from "../Actividad"
 import { Descripcion } from '../Descripcion'
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import { FcSurvey } from 'react-icons/fc'
+import Carrusel from '../Carrusel'
 
 export const RelajacionProgresiva = () => {
 
     return (
         <>
-            <Actividad src={imgGanso.meditando} title="<span class='d-flex align-items-center justify-content-center w-100'>Técnica de Relajación Progresiva de Jacobson Duración: 20-30 minutos (según disponibilidad del estudiante)</span> <br/> ¿Para qué me servirá este módulo?"
-                text={`<ul class="ms-2">
-    <li><b>Objetivo:</b> Generar estrategias conductuales enfocadas en reducir las sensaciones de estrés.</li>
-    <li><b>Recursos:</b> Ilustración, “Click” en los grupos musculares para ver su contenido individual.</li>
-    <li><b>Descripción: </b>En la imagen a continuación se muestra la forma en la que se realizará ésta actividad, puedes hacerlo si te encuentras en una situación de estrés en este momento, si tienes tiempo puedes realizar todos los grupos musculares, sin embargo si realizas solo uno también tendrás una sensación de relajación muscular que querrás repetir. Te recomendamos estar sentado en una posición cómoda.  </li>
-    </ul>
-    
-    `} showIcon={false} />
+
+            <h2 className='text-center'>Técnica de Relajación Progresiva de Jacobson</h2>
+
+            <div className='row justify-content-center align-items-center'>
+                <div className='col-lg-9'>
+                    <Actividad src={imgGanso.meditando} title="¿Para qué me servirá esta actividad?"
+                        text={`En la imagen a continuación se muestra la forma en la que se realizará ésta actividad, puedes hacerlo si te encuentras en una situación de estrés en este momento, si tienes tiempo puedes realizar todos los grupos musculares, sin embargo si realizas solo uno también tendrás una sensación de relajación muscular que querrás repetir. Te recomendamos estar sentado en una posición cómoda. `} showIcon={false} />
+                </div>
+            </div>
+
+            <div className='row justify-content-center align-items-center'>
+                <div className='col-lg-6'>
+                    <Carrusel />
+                </div>
+                <div className='col-lg-6'>
+                    <Carrusel />
+                </div>
+            </div>
 
             <Actividad src={imgGanso.ganso_ejercicio} title="Grupo muscular I: Mano, antebrazo y bíceps.  "
                 text={`<ul class="ms-4">
