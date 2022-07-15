@@ -22,7 +22,7 @@ const Modules = ({ section }) => {
                         <div className="col-lg-12 ">
                             <div className="row h-100 modules_cards card_moduloAutoevaluativo  flex-center ">
                                 <div className="col-lg-8 order-2 order-lg-1 justify-content-center align-self-center ">
-                                    <h2 className="font-Geomanist">
+                                    <h2 className="font-Geomanist text-white">
                                         Módulo autoevaluativo
 
                                     </h2>

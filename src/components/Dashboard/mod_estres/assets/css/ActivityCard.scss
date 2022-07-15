@@ -1,5 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
+.referencias{
+    width: 30px;
+    height: 30px;
+    background-color: #fc8890;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 12;
+    box-shadow: 4px 4px 37px -12px rgb(0 0 0 / 50%);
+    cursor: pointer;
+}
+
 * {
  outline: none;
  box-sizing: border-box;

@@ -1,21 +1,35 @@
-import React from 'react'
+import React,{render} from 'react'
+import { renderToString } from "react-dom/server";
 import { Actividad } from "../Actividad"
 import { Descripcion } from '../Descripcion'
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import { FcSurvey } from 'react-icons/fc'
 import { ActivityCards } from './ActivityCards'
+import ButtonLibro from '../ButtonLibro'
+import { FaBookOpen } from 'react-icons/fa'
 export const SeccionInicial = () => {
     return (
         <>
+        
             <Actividad src={imgGanso.meditando} title="<h3 class='d-flex align-items-center justify-content-center w-100 mb-0'>Bienvenido al Módulo Relax</h3> <hr class='mt-1 mb-2' /> ¿Para qué me servirá este módulo?"
                 text={`<ul class="ms-2">
     <li>Reconocer el concepto de estrés.</li>
     <li>Identificar los patrones conductuales relacionados al estrés.</li>
     <li>Desarrollar habilidades enfocadas al manejo adecuado del estrés propio o ajeno en situaciones cotidianas.</li>
-    </ul>`} showIcon={false} />
+    </ul>
+    <small class="d-flex justify-content-center"><span style="color:red">*</span>${renderToString(<div className='mx-1'>
+            
+            <div
+                className={" buttonReferenciaNoFixed text-white"}    
+            >
+                <FaBookOpen size={14} />
+            </div>
+            <ButtonLibro asImg={true} size={14} />
+
+        </div>)} Aquí podrás encontrar referencias bibliográficas del contenido de este módulo  e información adicional sobre el tema de estrés.</small>`} showIcon={false} />
 
             <Actividad src={imgGanso.elegante} title="¿Qué es el estrés?"
-                text={`Es la sensación de tensión que se origina en nosotros cuando consideramos que una determinada situación se sale de nuestro control y nos obliga a recurrir a nuevas estrategias o habilidades, dando la idea de que será imposible enfrentar a la misma, puede ocurrir con muchos casos de nuestra cotidianidad.`} showIcon={false} />
+                text={`Es la sensación de tensión que se origina en nosotros cuando consideramos que una determinada situación se sale de nuestro control y nos obliga a recurrir a nuevas estrategias o habilidades, dando la idea de que será imposible enfrentar a la misma, puede ocurrir con muchos casos de nuestra cotidianidad (Ávila, 2014).`} showIcon={false} />
             <div className="d-sm-none">
                 <Descripcion title={"Algunos de sus signos:"}
                     text={`
@@ -43,56 +57,56 @@ export const SeccionInicial = () => {
 
                 <h4 className='text-center mb-2 '> Algunos de sus signos </h4>
 
-                <button className="search-buttons rounded-pill mx-1">
+                <button className="search-buttons rounded-pill mx-1" style={{cursor: "auto"}}>
                     Aceleración del ritmo cardiaco
                 </button>
-                <button className="search-buttons rounded-pill mx-1">
+                <button className="search-buttons rounded-pill mx-1" style={{cursor: "auto"}}>
                     Temblores
                 </button>
-                <button className="search-buttons rounded-pill mx-1">
+                <button className="search-buttons rounded-pill mx-1" style={{cursor: "auto"}}>
                     Dolor de cabeza
                 </button>
-                <button className="search-buttons rounded-pill mx-1">
+                <button className="search-buttons rounded-pill mx-1" style={{cursor: "auto"}}>
                     Respiración agitada.
                 </button>
 
-                <button className="search-buttons rounded-pill mx-1">
+                <button className="search-buttons rounded-pill mx-1" style={{cursor: "auto"}}>
                     Malestares digestivos.
                 </button>
 
 
-                <button className="search-buttons rounded-pill mx-1">
+                <button className="search-buttons rounded-pill mx-1" style={{cursor: "auto"}}>
                     Irritabilidad.
                 </button>
 
 
-                <button className="search-buttons rounded-pill mx-1">
+                <button className="search-buttons rounded-pill mx-1" style={{cursor: "auto"}}>
                     Desorden en hábitos saludables.
                 </button>
 
 
-                <button className="search-buttons rounded-pill mx-1">
+                <button className="search-buttons rounded-pill mx-1" style={{cursor: "auto"}}>
                     Frustración.
                 </button>
 
 
-                <button className="search-buttons rounded-pill mx-1">
+                <button className="search-buttons rounded-pill mx-1" style={{cursor: "auto"}}>
                     Pensamientos de incapacidad.
                 </button>
 
 
-                <button className="search-buttons rounded-pill mx-1">
+                <button className="search-buttons rounded-pill mx-1" style={{cursor: "auto"}}>
                     Inadaptabilidad al cambio.
                 </button>
 
-                <button className="search-buttons rounded-pill mx-1">
+                <button className="search-buttons rounded-pill mx-1" style={{cursor: "auto"}}>
                     Problemas de concentración.
                 </button>
 
-                <button className="search-buttons rounded-pill mx-1">
+                <button className="search-buttons rounded-pill mx-1" style={{cursor: "auto"}}>
                     Poca agilidad para la realización de tareas.
                 </button>
-                <button className="search-buttons rounded-pill mx-1">
+                <button className="search-buttons rounded-pill mx-1" style={{cursor: "auto"}}>
                     Tristeza
                 </button>
             </div>

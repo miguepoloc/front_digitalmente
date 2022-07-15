@@ -89,7 +89,7 @@ export const Actividad1 = () => {
                                 <li>	Anotando primero la situación estresante a la que planeo hacer frente. 	</li>
                                 <li>	Luego escribir las conductas que estoy realizando ante la situación problema (funcionales o no). </li>
                                 <li>	Después anotar las cosas que pienso y me digo a mí mism@ sobre la situación estresante que experimentó.	</li>
-                                <li>	Reconocer si las cosas que pienso y me digo resultan funcionales para poder afrontar la situación estresante y escribir si lo son o no. 	</li>
+                                <li>	Reconocer si los pensamientos que tengo al respecto resultan funcionales, es decir útiles y con un impacto positivo en el proceso de afrontamiento de una situación estresante, posteriormente anotar si estos son o no útiles. 	</li>
                                 <li>	Finalmente, apuntar las cosas que puedo hacer y que son factibles para realizar ante las situaciones de estrés que estoy vivenciando, teniendo en cuenta diferentes alternativas, redes de apoyo y herramientas con las que cuento actualmente.	</li>
                             </ol>`}
                         showIcon={false} />
@@ -99,10 +99,20 @@ export const Actividad1 = () => {
             <div className='d-flex flex-column justify-content-center align-items-center'>
                 <h4 className='my-4'>Ejemplo</h4>
                 <img src={imgCuadroEjemplo} alt=""  />
-                <p className='mt-2 mb-4 text-center'><small>Tabla 1 de elaboración propia basada en Guía para el mármol del estrés académico. Elaboración propia basada en Pérez et al. (s.f.)</small></p>
+                <p className='mt-2 mb-4 text-center'><small><b>Fuente.</b> Elaboración propia basada en Pérez <i>et al.</i> (s.f.) </small></p>
             </div>
 
             {ActividadCompletada ? (<>
+
+                <Actividad src={imgGanso.lupa_celular} title="¡En construcción!"
+                            text={`<br><p class="text-center">¡En construcción .
+                        <br>
+                        <br>
+                        `
+
+                            }
+                            showIcon={true} />
+
                 <div className=' text-center'>
                     <a href={documento} download="Autoregistro" className='d-flex justify-content-center'>
                         <button className='w-50 btn-radius btn-pdf d-flex justify-content-center align-items-center '> Descargar PDF <VscFilePdf size={25} color="white" className='mx-1' /></button>

@@ -21,7 +21,7 @@ export const ManejoEstres = () => {
             <div className='row justify-content-center align-items-center'>
                 <div className='col-lg-6'>
                     <Actividad src={imgGanso.ganso_ejercicio} title="Manejar bicicleta"
-                        text={`<br>Esta actividad te permitirá ejercitarte de una forma agradable. Puedes hacerlo de camino a la universidad o los fines de semana con un grupo de amigos. También hacerlo individualmente mientras escuchas música. Resultará siendo una actividad antiestrés y que además podría ahorrarte el gasto de dinero en transporte, llegarás a tiempo y mejorarás tu salud (Jakovcevic et al., 2016).`} showIcon={false} />
+                        text={`<br>Esta actividad te permitirá ejercitarte de una forma agradable. Puedes hacerlo de camino a la universidad o los fines de semana con un grupo de amigos. También hacerlo individualmente mientras escuchas música. Resultará siendo una actividad antiestrés y que además podría ahorrarte el gasto de dinero en transporte, llegarás a tiempo y mejorarás tu salud (Jakovcevic <i>et al.</i>, 2016).`} showIcon={false} />
                 </div>
                 <div className='col-lg-6'>
                     <Actividad src={imgGanso.feliz_250x200} title="Salir a caminar con amigos o mascota"

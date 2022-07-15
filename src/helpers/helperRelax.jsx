@@ -6,6 +6,7 @@ import { ManejoEstres } from '../components/Dashboard/mod_estres/ManejoEstres'
 import { ResolucionProblemas } from '../components/Dashboard/mod_estres/ResolucionProblemas'
 import { Actividad1 } from '../components/Dashboard/mod_estres/Actividad1'
 import { Actividad2 } from '../components/Dashboard/mod_estres/Actividad2'
+import { ActividadDeFomentoRelax } from '../components/Dashboard/mod_estres/ActividadDeFomentoRelax'
 
 export const linksRelax = [
     {
@@ -52,6 +53,12 @@ export const linksRelax = [
     },
     {
         id: 8,
+        nombre: 'Actividad de fomento',
+        link: 'relax8',
+        actividad: <ActividadDeFomentoRelax />,
+    },
+    {
+        id: 9,
         nombre: 'FIN no se muestra',
     }
 ]
