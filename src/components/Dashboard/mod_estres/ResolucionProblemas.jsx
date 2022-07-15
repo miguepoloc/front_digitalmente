@@ -365,7 +365,7 @@ export const ResolucionProblemas = () => {
                                 type="submit"
                                 className="text-white btn btn-info "
                             >
-                                Siguiente
+                                Enviar
                             </button>
                         </div>
                     </Form>

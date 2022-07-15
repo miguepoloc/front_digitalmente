@@ -1,22 +1,16 @@
-/* eslint-disable camelcase */
 import React, { useContext, useEffect, useState } from 'react'
 
 import Axios from 'axios'
-
 import '../assets/css/soft-ui-dashboard.scss'
 import '../components/Dashboard/assets/css/Dashboard.scss'
 import FooterDashboard from '../components/Dashboard/FooterDashboard'
 import ButtonLibro from '../components/Dashboard/ButtonLibro'
-
 import { useHistory, useParams } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
 import { PUT_avance_modulos } from '../helpers/helperApi'
 import { AuthContext } from '../context/AuthContext'
 import { linksRelax } from '../helpers/helperRelax'
 import NavBarDashboard from '../components/Dashboard/NavBarDashboard'
 import { BotonContext } from '../context/BotonContext'
-
-// import ControlUser from '../components/Dashboard/ControlUser'
 
 const ModuloRelax = () => {
     //TODO: La logica del boton de siguiente funciona, pero, se debe analizar cuando no se tenga tanto sueño.
@@ -68,15 +62,16 @@ const ModuloRelax = () => {
         else {
             setBotonAtrasState(false)
         }
-        if(parseInt(slug) !== linksRelax.length - 1 ){
+        if (parseInt(slug) !== linksRelax.length - 1) {
             setBotonState(false)
         }
     }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         , [slug])
 
     // Cuando se presione el botón de siguiente
     async function cambioBotonAdelante() {
-        
+
         //console.log(userInfo)
         console.log(datauser)
         const jsonx = {
@@ -85,9 +80,10 @@ const ModuloRelax = () => {
         }
 
         if (parseInt(slug) === datauser.estres) {
-            PUT_avance_modulos(userInfo.id, jsonx, token)
+            // eslint-disable-next-line no-unused-vars
+            const algo = await PUT_avance_modulos(userInfo.id, jsonx, token)
             setControl(control + 1)
-            
+
         }
         if ((linksRelax.length - 1) === parseInt(slug)) {
             history.push(`/dashboard`)
@@ -98,7 +94,10 @@ const ModuloRelax = () => {
 
     }
 
-    useEffect(()=>{window.scroll(0, 0)},[linksRelax[slug - 1].nombre])
+
+    useEffect(() => {
+        window.scroll(0, 0)
+    }, [slug])
 
 
     // Cuando se presione el botón de Atrás
@@ -126,8 +125,8 @@ const ModuloRelax = () => {
                         <hr />
                         <div className='d-flex justify-content-between'>
                             <button
-                            type="button"
-   
+                                type="button"
+
                                 className='botoncentrado btn-backNext-relax btn-radius btn-lg'
                                 onClick={cambioBotonAtras}
                                 disabled={BotonAtrasState}
@@ -135,7 +134,7 @@ const ModuloRelax = () => {
                                 Atrás
                             </button>
                             <button
-                             type="button"
+                                type="button"
                                 className='botoncentrado btn-backNext-relax btn-radius btn-lg'
                                 onClick={cambioBotonAdelante}
                                 disabled={BotonState}

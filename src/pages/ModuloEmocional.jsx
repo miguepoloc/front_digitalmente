@@ -67,7 +67,8 @@ const ModuloEmocional = () => {
             usuario: userInfo.id
         }
         if (parseInt(slug) === datauser.emocional) {
-            PUT_avance_modulos(userInfo.id, jsonx, token)
+            // eslint-disable-next-line no-unused-vars
+            const algo = await PUT_avance_modulos(userInfo.id, jsonx, token)
             setControl(control + 1)
         }
 
