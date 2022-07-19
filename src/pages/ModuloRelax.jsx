@@ -12,7 +12,9 @@ import { linksRelax } from '../helpers/helperRelax'
 import NavBarDashboard from '../components/Dashboard/NavBarDashboard'
 import { BotonContext } from '../context/BotonContext'
 
+
 const ModuloRelax = () => {
+
     //TODO: La logica del boton de siguiente funciona, pero, se debe analizar cuando no se tenga tanto sueño.
     const { slug } = useParams()
 
@@ -21,7 +23,7 @@ const ModuloRelax = () => {
     // Se guardan en userInfo
     const { userInfo, token } = authState
     // Datos del usuario
-    const [datauser, setDatauser] = useState([])
+    const [datauser, setDatauser] = useState(false)
 
     const [BotonAtrasState, setBotonAtrasState] = useState(false)
 
@@ -104,6 +106,7 @@ const ModuloRelax = () => {
     async function cambioBotonAtras() {
         history.push(`/relax${parseInt(slug) - 1}`)
     }
+
     return (
         <>
             <div
@@ -118,7 +121,7 @@ const ModuloRelax = () => {
                         <div>
 
                             {
-                                linksRelax[slug - 1].actividad
+                                datauser.estres < parseInt(slug) && parseInt(slug) !== 8? history.push(`/dashboard`): linksRelax[slug - 1].actividad
                             }
 
                         </div>
@@ -128,7 +131,7 @@ const ModuloRelax = () => {
                                 type="button"
                                 className='botoncentrado btn-backNext-relax btn-radius btn-lg'
                                 onClick={cambioBotonAtras}
-                                disabled={BotonAtrasState}
+                                disabled={datauser.estres < 8 && parseInt(slug) === 8 ? true: BotonAtrasState}
                             >
                                 Atrás
                             </button>
