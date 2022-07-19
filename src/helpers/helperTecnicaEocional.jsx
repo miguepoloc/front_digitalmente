@@ -1,4 +1,3 @@
-import Imagen3 from "../assets/img/imgprueba3.jpg"
 import grupo1_2 from "../components/Dashboard/mod_estres/assets/img/tecnica_de_relajacion/grupo_1/grupo1_2.jpg"
 import grupo1_3 from "../components/Dashboard/mod_estres/assets/img/tecnica_de_relajacion/grupo_1/grupo1_3.jpg"
 import grupo1_4 from "../components/Dashboard/mod_estres/assets/img/tecnica_de_relajacion/grupo_1/grupo1_4.jpg"
@@ -14,9 +13,6 @@ import grupo4_1 from "../components/Dashboard/mod_estres/assets/img/tecnica_de_r
 import grupo4_2 from "../components/Dashboard/mod_estres/assets/img/tecnica_de_relajacion/grupo_4/grupo4_2.jpg"
 import grupo4_3 from "../components/Dashboard/mod_estres/assets/img/tecnica_de_relajacion/grupo_4/grupo4_3.jpg"
 import grupo4_4 from "../components/Dashboard/mod_estres/assets/img/tecnica_de_relajacion/grupo_4/grupo4_4.jpg"
-
-
-const Antebrazo = "https://image.shutterstock.com/image-photo/young-woman-reaching-hand-shake-260nw-1493812289.jpg"
 
 
 export const TecnicaEmocional = [

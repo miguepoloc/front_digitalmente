@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import { Actividad } from '../Actividad'
 import imgCuadroEjemplo from "./assets/img/relaxActividadUnoEjemploCuadro.png"
-import { ErrorAlert, Correct_Alert, SendOkAlert } from '../../../helpers/helper_Swal_Alerts'
+import { ErrorAlert, Correct_Alert } from '../../../helpers/helper_Swal_Alerts'
 
 import { AuthContext } from '../../../context/AuthContext'
 import { DescargablesActFomento } from './actividadDeFomento/DescargablesActFomento'
@@ -10,7 +10,7 @@ import Axios from 'axios'
 import { BotonContext } from '../../../context/BotonContext'
 
 export const Actividad1 = () => {
-    const { BotonState, setBotonState } = useContext(BotonContext)
+    const { setBotonState } = useContext(BotonContext)
 
     const [datauser, setDatauser] = useState([])
     const [ActividadCompletada, setActividadCompletada] = useState(false)
@@ -34,14 +34,13 @@ export const Actividad1 = () => {
         window.scroll(0, 0)
     }, [])
     useEffect(() => {
-        if( ActividadCompletada ){
+        if (ActividadCompletada) {
             setBotonState(false)
-       }
-       else if( datauser.estres <= 2)
+        }
+        else if (datauser.estres <= 2)
             setBotonState(true)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [datauser,ActividadCompletada])
-    
+    }, [datauser, ActividadCompletada])
     useEffect(() => {
         const fetchData = async () => {
             const response = await Axios({
@@ -63,7 +62,7 @@ export const Actividad1 = () => {
     }, []);
 
 
-   
+
 
     const validarTextArea = (name) => {
         let textArea = document.getElementsByName(name)[0].value;
@@ -132,7 +131,7 @@ export const Actividad1 = () => {
                 <p className='mt-2 mb-4 text-center'><small><b>Fuente.</b> Elaboración propia basada en Pérez <i>et al.</i> (s.f.) </small></p>
             </div>
 
-            {ActividadCompletada || datauser.estres > 2  ? (<>
+            {ActividadCompletada || datauser.estres > 2 ? (<>
 
                 <Actividad src={imgGanso.lupa_celular} title="¡Actividad de fomento!"
                     text={`<br><p class="text-center">¡Esta es una actividad de fomento. Eso significa que es un ejercicio para que practiques la habilidad orientada en el módulo a tu ritmo y cuando tu desees. Completamente voluntario. Los tres botones abajo presentados te permitirán: a) descargar una versión en pdf que puedes imprimir si quieres, b) una versión en Word editable para que llenes en tu celular y c) una versión en Excel que se unirá a tu nube en Drive para que llenes también cuando quieras. ¿Lo mejor de estas opciones? Solo tú tienes acceso a estas y solo tú puedes ver lo que escribes allí. Nadie más. Esperamos que sea una herramienta que te ayude a fortalecer tu salud mental.
