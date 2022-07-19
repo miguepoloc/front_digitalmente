@@ -1,12 +1,11 @@
 import React from 'react'
-import { imgGanso } from '../../../helpers/helper_imagen_ganso'
-import { Actividad } from '../Actividad'
-import imgCuadroEjemplo from "./assets/img/relaxActividadUnoEjemploCuadro.png"
+import { imgGanso } from '../../../../helpers/helper_imagen_ganso'
+import { Actividad } from '../../Actividad'
 // import { BiGift } from "react-icons/bi"
-import { AiOutlineFileWord } from 'react-icons/ai'
-import { VscFilePdf } from "react-icons/vsc"
-import { TbBrandGoogleDrive } from "react-icons/tb"
-import documento from "./assets/documents/AUTOREGISTRO.pdf"
+
+import imgCuadroEjemplo from "../assets/img/relaxActividadUnoEjemploCuadro.png"
+import { Descargables, DescargablesActFomento } from './DescargablesActFomento'
+
 export const ActividadDeFomentoRelax = () => {
     return (
         <>
@@ -32,19 +31,14 @@ export const ActividadDeFomentoRelax = () => {
                 <p className='mt-2 mb-4 text-center'><small><b>Fuente.</b> Elaboración propia basada en Pérez <i>et al.</i> (s.f.)</small></p>
             </div>
 
-            <div className=' text-center'>
-                    <a href={documento} download="Autoregistro" className='d-flex justify-content-center'>
-                        <button className='w-50 btn-radius btn-pdf d-flex justify-content-center align-items-center '> Descargar PDF <VscFilePdf size={25} color="white" className='mx-1' /></button>
-                    </a>
+            <Actividad src={imgGanso.lupa_celular} title="¡Actividad de fomento!"
+                    text={`<br><p class="text-center">¡Esto significa que es un ejercicio para que practiques la habilidad orientada en el módulo a tu ritmo y cuando tu desees. Completamente voluntario. Los tres botones abajo presentados te permitirán: a) descargar una versión en pdf que puedes imprimir si quieres, b) una versión en Word editable para que llenes en tu celular y c) una versión en Excel que se unirá a tu nube en Drive para que llenes también cuando quieras. ¿Lo mejor de estas opciones? Solo tú tienes acceso a estas y solo tú puedes ver lo que escribes allí. Nadie más. Esperamos que sea una herramienta que te ayude a fortalecer tu salud mental.
+                        <br>
+                        `
+                    }
+                    showIcon={true} />
 
-                    <a href={documento} download="Autoregistro" className='d-flex justify-content-center'>
-                        <button className='w-50 btn-radius btn-word d-flex justify-content-center align-items-center '>  Descargar documento editable DOC <AiOutlineFileWord size={25} color="white" className='mx-1' /></button>
-                    </a>
-
-                    <a href={documento} download="Autoregistro" className='d-flex justify-content-center'>
-                        <button className='w-50 btn-radius btn-googleDocs d-flex justify-content-center align-items-center '>  Crear una copia en la nube <TbBrandGoogleDrive size={25} color="white" className='mx-1' /></button>
-                    </a>
-                </div>
+            <DescargablesActFomento />
         </>
 
     )

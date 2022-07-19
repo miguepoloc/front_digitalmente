@@ -9,6 +9,10 @@ import { Box, CardActionArea, Checkbox, FormControlLabel } from '@mui/material';
 import { Formik, Form } from 'formik'
 import { Correct_Alert, ErrorAlert } from '../../../helpers/helper_Swal_Alerts';
 import { BotonContext } from '../../../context/BotonContext'
+import Axios from 'axios'
+
+import { AuthContext } from '../../../context/AuthContext'
+
 
 const ValoresIniciales = {
     pregunta1: false,
@@ -23,12 +27,37 @@ const ValoresIniciales = {
 
 
 export const ResolucionProblemas = () => {
-    const { setBotonState } = useContext(BotonContext)
+    const { setBotonState } = useContext(BotonContext);
+    const { authState } = useContext(AuthContext)
+    const { userInfo } = authState
+    const [datauser, setDatauser] = useState([]);
 
     useEffect(() => {
-        setBotonState(true)
+        const fetchData = async () => {
+            const response = await Axios({
+                method: 'get',
+                url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
+            })
+            console.log(response)
+            if (response) {
+                //console.log(response.data)
+                // Y lo coloca en el estado de datos del usuario
+                setDatauser(response.data)
+            } else {
+                //console.log('No se pudieron traer los datos...')
+            }
+        };
+
+        fetchData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        if( datauser.estres <= 7)
+            setBotonState(true)
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [datauser])
 
 
     const [CartaColor, setCartaColor] = useState(0)

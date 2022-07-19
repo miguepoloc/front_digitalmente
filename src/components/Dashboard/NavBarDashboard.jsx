@@ -6,7 +6,8 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import LogoAlargado from '../../assets/img/LogoAlargado.svg'
 import { linksEmocional } from '../../helpers/helper_emocional'
 import { linksRelax } from '../../helpers/helperRelax'
-import { FcApproval, FcCancel, FcBiomass, FcHome, FcScatterPlot, FcUnlock, FcImport } from 'react-icons/fc'
+import { FcApproval, FcCancel, FcBiomass, FcHome, FcScatterPlot, FcUnlock, FcImport, FcInfo } from 'react-icons/fc'
+import { GiReturnArrow } from 'react-icons/gi'
 
 const NavBarDashboard = ({ datauser, userInfo }) => {
     const history = useHistory()
@@ -44,7 +45,7 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
                     >
                         <Nav.Link
                             className="nameNav font-Geomanist"
-                            onClick={() => history.push('/')}
+                            onClick={() => history.push('/dashboard')}
                             style={{ padding: 2 }}
 
                         >
@@ -71,6 +72,11 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
                                 className='d-flex align-items-center justify-content-center'>
                                 <span className='pe-1 d-flex align-items-center'><FcHome size={20} /></span>
                                 Dashboard
+                            </Nav.Link>
+                            <Nav.Link href="/"
+                                className='d-flex align-items-center justify-content-center'>
+                                <span className='pe-1 d-flex align-items-center'><GiReturnArrow color='#F68B93' size={20} /></span>
+                                Principal
                             </Nav.Link>
                             {userInfo.is_staff
                                 ? <Nav.Link href="#link" className='d-flex align-items-center  justify-content-center'>

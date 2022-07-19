@@ -6,7 +6,7 @@ import { ManejoEstres } from '../components/Dashboard/mod_estres/ManejoEstres'
 import { ResolucionProblemas } from '../components/Dashboard/mod_estres/ResolucionProblemas'
 import { Actividad1 } from '../components/Dashboard/mod_estres/Actividad1'
 import { Actividad2 } from '../components/Dashboard/mod_estres/Actividad2'
-import { ActividadDeFomentoRelax } from '../components/Dashboard/mod_estres/ActividadDeFomentoRelax'
+import { ActividadDeFomentoRelax } from '../components/Dashboard/mod_estres/actividadDeFomento/ActividadDeFomentoRelax'
 
 export const linksRelax = [
     {

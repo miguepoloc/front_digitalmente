@@ -1,16 +1,19 @@
-import React, { useContext, useState,useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import { Actividad } from '../Actividad'
 import imgCuadroEjemplo from "./assets/img/relaxActividadUnoEjemploCuadro.png"
 import { ErrorAlert, Correct_Alert, SendOkAlert } from '../../../helpers/helper_Swal_Alerts'
-// import { BiGift } from "react-icons/bi"
-import { AiOutlineFileWord } from 'react-icons/ai'
-import { VscFilePdf } from "react-icons/vsc"
-import { TbBrandGoogleDrive } from "react-icons/tb"
-import documento from "./assets/documents/AUTOREGISTRO.pdf"
+
 import { AuthContext } from '../../../context/AuthContext'
+import { DescargablesActFomento } from './actividadDeFomento/DescargablesActFomento'
+import Axios from 'axios'
+import { BotonContext } from '../../../context/BotonContext'
 
 export const Actividad1 = () => {
+    const { BotonState, setBotonState } = useContext(BotonContext)
+
+    const [datauser, setDatauser] = useState([])
+    const [ActividadCompletada, setActividadCompletada] = useState(false)
 
     //TODO: se debe validar si esta actividad se hizo anteriormente
     //con el fin de mostar directamente las descargas de los archivos
@@ -30,9 +33,36 @@ export const Actividad1 = () => {
     useEffect(() => {
         window.scroll(0, 0)
     }, [])
-    
+    useEffect(() => {
+        if( ActividadCompletada ){
+            setBotonState(false)
+       }
+       else if( datauser.estres <= 2)
+            setBotonState(true)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [datauser,ActividadCompletada])
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await Axios({
+                method: 'get',
+                url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
+            })
+            console.log(response)
+            if (response) {
+                //console.log(response.data)
+                // Y lo coloca en el estado de datos del usuario
+                setDatauser(response.data)
+            } else {
+                //console.log('No se pudieron traer los datos...')
+            }
+        };
 
-    const [ActividadCompletada, setActividadCompletada] = useState(false)
+        fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+
+   
 
     const validarTextArea = (name) => {
         let textArea = document.getElementsByName(name)[0].value;
@@ -50,10 +80,9 @@ export const Actividad1 = () => {
         }
 
         setActividadCompletada(true)
-
         Correct_Alert("¡Felicidades has realizado tu autorregistro antiestrés!", `Reconocer de forma objetiva las situaciones estresantes que se nos presentan en la vida permite que podamos formular mejores estrategias de solución frente a las mismas y tener una conducta adaptativa que favorecerá nuestro bienestar y salud mental.
         <br/>
-        `).then(() => SendOkAlert("¡Te he traido un regalo!", "Ahora puedes descargar un documento PDF para imprimirlo."))
+        `)
     }
 
     const handleChange = (event) => {
@@ -98,34 +127,22 @@ export const Actividad1 = () => {
 
             <div className='d-flex flex-column justify-content-center align-items-center'>
                 <h4 className='my-4'>Ejemplo</h4>
-                <img src={imgCuadroEjemplo} alt=""  />
+                <img src={imgCuadroEjemplo} alt="" />
                 <p className='mt-2 mb-4 text-center'><small><b>Fuente.</b> Elaboración propia basada en Pérez <i>et al.</i> (s.f.) </small></p>
             </div>
 
-            {ActividadCompletada ? (<>
+            {ActividadCompletada || datauser.estres > 2  ? (<>
 
-                <Actividad src={imgGanso.lupa_celular} title="¡En construcción!"
-                            text={`<br><p class="text-center">¡En construcción .
-                        <br>
+                <Actividad src={imgGanso.lupa_celular} title="¡Actividad de fomento!"
+                    text={`<br><p class="text-center">¡Esta es una actividad de fomento. Eso significa que es un ejercicio para que practiques la habilidad orientada en el módulo a tu ritmo y cuando tu desees. Completamente voluntario. Los tres botones abajo presentados te permitirán: a) descargar una versión en pdf que puedes imprimir si quieres, b) una versión en Word editable para que llenes en tu celular y c) una versión en Excel que se unirá a tu nube en Drive para que llenes también cuando quieras. ¿Lo mejor de estas opciones? Solo tú tienes acceso a estas y solo tú puedes ver lo que escribes allí. Nadie más. Esperamos que sea una herramienta que te ayude a fortalecer tu salud mental.
                         <br>
                         `
 
-                            }
-                            showIcon={true} />
+                    }
+                    showIcon={true} />
 
-                <div className=' text-center'>
-                    <a href={documento} download="Autoregistro" className='d-flex justify-content-center'>
-                        <button className='w-50 btn-radius btn-pdf d-flex justify-content-center align-items-center '> Descargar PDF <VscFilePdf size={25} color="white" className='mx-1' /></button>
-                    </a>
+                <DescargablesActFomento />
 
-                    <a href={documento} download="Autoregistro" className='d-flex justify-content-center'>
-                        <button className='w-50 btn-radius btn-word d-flex justify-content-center align-items-center '>  Descargar documento editable DOC <AiOutlineFileWord size={25} color="white" className='mx-1' /></button>
-                    </a>
-
-                    <a href={documento} download="Autoregistro" className='d-flex justify-content-center'>
-                        <button className='w-50 btn-radius btn-googleDocs d-flex justify-content-center align-items-center '>  Crear una copia en la nube <TbBrandGoogleDrive size={25} color="white" className='mx-1' /></button>
-                    </a>
-                </div>
             </>) : (
                 <>
                     <div className='mb-4'>
