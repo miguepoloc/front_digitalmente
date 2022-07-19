@@ -11,6 +11,7 @@ import { AuthContext } from '../context/AuthContext'
 import { linksRelax } from '../helpers/helperRelax'
 import NavBarDashboard from '../components/Dashboard/NavBarDashboard'
 import { BotonContext } from '../context/BotonContext'
+import { Correct_Alert } from '../helpers/helper_Swal_Alerts'
 
 const ModuloRelax = () => {
     //TODO: La logica del boton de siguiente funciona, pero, se debe analizar cuando no se tenga tanto sueño.
@@ -77,6 +78,10 @@ const ModuloRelax = () => {
         const jsonx = {
             estres: (parseInt(slug) + 1),
             usuario: userInfo.id
+        }
+
+        if (parseInt(slug) === linksRelax.length - 2 && datauser.estres === linksRelax.length - 2) {
+            Correct_Alert("Felicidades!", "Terminaste el módulo Relax")
         }
 
         if (parseInt(slug) === datauser.estres) {

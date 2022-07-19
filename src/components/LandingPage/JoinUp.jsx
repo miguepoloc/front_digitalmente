@@ -19,7 +19,7 @@ export const Unete = ({ section }) => {
 
                         <div className="row gx-5 text-center">
                             <div className='w-100'>
-                                <a className='w-50 w-md-25 btn-naranja ms-2 me-2 btn btn-primary btn-lg' href="/sign-up">¡Registrate aquí!</a>
+                                <a className='w-50 w-md-25 btn-naranja ms-2 me-2 btn btn-primary btn-lg' href="/login">¡Registrate aquí!</a>
                             </div>
                         </div>
                         <div className="row" >
@@ -37,7 +37,7 @@ export const Unete = ({ section }) => {
 
                         <div className="row">
                             <div className=" col-lg-6 col-md-12  col-12 justify-content-center align-self-center text-center mx-auto d-block d-lg-none">
-                                <img src={imgGanso.escribiendo_250x200} className="gansoMobil_joinUp" alt="ganso"/>
+                                <img src={imgGanso.escribiendo_250x200} className="gansoMobil_joinUp" alt="ganso" />
                             </div>
                         </div>
 
