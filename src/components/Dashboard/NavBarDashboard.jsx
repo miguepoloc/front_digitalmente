@@ -6,7 +6,7 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import LogoAlargado from '../../assets/img/LogoAlargado.svg'
 import { linksEmocional } from '../../helpers/helper_emocional'
 import { linksRelax } from '../../helpers/helperRelax'
-import { FcApproval, FcCancel, FcBiomass, FcHome, FcScatterPlot, FcUnlock, FcImport, FcInfo } from 'react-icons/fc'
+import { FcApproval, FcCancel, FcBiomass, FcHome, FcScatterPlot, FcUnlock, FcImport } from 'react-icons/fc'
 import { GiReturnArrow } from 'react-icons/gi'
 
 const NavBarDashboard = ({ datauser, userInfo }) => {
@@ -134,7 +134,7 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
                                     title="Relax "
                                     id="basic-nav-dropdown"
                                     className='d-flex flex-column align-items-center justify-content-center'
-                                    align="start"
+                                    align="end"
                                 >
                                     <span className='mt-0'></span>
                                     {linksRelax.map((capsula, capsulaIndex) => (
