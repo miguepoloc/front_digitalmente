@@ -126,7 +126,6 @@ const ModuloRelax = () => {
                         <div className='d-flex justify-content-between'>
                             <button
                                 type="button"
-
                                 className='botoncentrado btn-backNext-relax btn-radius btn-lg'
                                 onClick={cambioBotonAtras}
                                 disabled={BotonAtrasState}

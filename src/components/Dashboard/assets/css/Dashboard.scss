@@ -116,52 +116,50 @@ fieldset[disabled] .btn-morado.active {
 .btn-morado .badge {
     color: #B276C1;
     background-color: #ffffff;
-}
-
-.btn-verde {
-    color: #ffffff;
-    background-color: #C9E265;
-    border-color: #E9EBDF;
-}
-
-.btn-verde:hover,
-.btn-verde:focus,
-.btn-verde:active,
-.btn-verde.active,
-.open .dropdown-toggle.btn-verde {
-    color: #ffffff;
-    background-color: #D0EB65;
-    border-color: #E9EBDF;
-}
-
-.btn-verde:active,
-.btn-verde.active,
-.open .dropdown-toggle.btn-verde {
-    background-image: none;
-}
-
-.btn-verde.disabled,
-.btn-verde[disabled],
-fieldset[disabled] .btn-verde,
-.btn-verde.disabled:hover,
-.btn-verde[disabled]:hover,
-fieldset[disabled] .btn-verde:hover,
-.btn-verde.disabled:focus,
-.btn-verde[disabled]:focus,
-fieldset[disabled] .btn-verde:focus,
-.btn-verde.disabled:active,
-.btn-verde[disabled]:active,
-fieldset[disabled] .btn-verde:active,
-.btn-verde.disabled.active,
-.btn-verde[disabled].active,
-fieldset[disabled] .btn-verde.active {
-    background-color: #C9E265;
-    border-color: #E9EBDF;
-}
-
-.btn-verde .badge {
-    color: #C9E265;
-    background-color: #ffffff;
+}.btn-verde { 
+  color: #ffffff; 
+  background-color: #ADC748; 
+  border-color: #ADC748; 
+} 
+ 
+.btn-verde:hover, 
+.btn-verde:focus, 
+.btn-verde:active, 
+.btn-verde.active, 
+.open .dropdown-toggle.btn-verde { 
+  color: #ffffff; 
+  background-color: #ABBD64; 
+  border-color: #ADC748; 
+} 
+ 
+.btn-verde:active, 
+.btn-verde.active, 
+.open .dropdown-toggle.btn-verde { 
+  background-image: none; 
+} 
+ 
+.btn-verde.disabled, 
+.btn-verde[disabled], 
+fieldset[disabled] .btn-verde, 
+.btn-verde.disabled:hover, 
+.btn-verde[disabled]:hover, 
+fieldset[disabled] .btn-verde:hover, 
+.btn-verde.disabled:focus, 
+.btn-verde[disabled]:focus, 
+fieldset[disabled] .btn-verde:focus, 
+.btn-verde.disabled:active, 
+.btn-verde[disabled]:active, 
+fieldset[disabled] .btn-verde:active, 
+.btn-verde.disabled.active, 
+.btn-verde[disabled].active, 
+fieldset[disabled] .btn-verde.active { 
+  background-color: #ADC748; 
+  border-color: #ADC748; 
+} 
+ 
+.btn-verde .badge { 
+  color: #ADC748; 
+  background-color: #ffffff; 
 }
 
 .btn-azul {
@@ -485,5 +483,50 @@ fieldset[disabled] .btn-amarillo.active {
    
   .btn-backNext-relax .badge { 
     color: #689CF0; 
+    background-color: #ffffff; 
+  }
+  .btn-excel { 
+    color: #ffffff; 
+    background-color: #1A7343; 
+    border-color: #1A7343; 
+  } 
+   
+  .btn-excel:hover, 
+  .btn-excel:focus, 
+  .btn-excel:active, 
+  .btn-excel.active, 
+  .open .dropdown-toggle.btn-excel { 
+    color: #ffffff; 
+    background-color: #21593B; 
+    border-color: #1A7343; 
+  } 
+   
+  .btn-excel:active, 
+  .btn-excel.active, 
+  .open .dropdown-toggle.btn-excel { 
+    background-image: none; 
+  } 
+   
+  .btn-excel.disabled, 
+  .btn-excel[disabled], 
+  fieldset[disabled] .btn-excel, 
+  .btn-excel.disabled:hover, 
+  .btn-excel[disabled]:hover, 
+  fieldset[disabled] .btn-excel:hover, 
+  .btn-excel.disabled:focus, 
+  .btn-excel[disabled]:focus, 
+  fieldset[disabled] .btn-excel:focus, 
+  .btn-excel.disabled:active, 
+  .btn-excel[disabled]:active, 
+  fieldset[disabled] .btn-excel:active, 
+  .btn-excel.disabled.active, 
+  .btn-excel[disabled].active, 
+  fieldset[disabled] .btn-excel.active { 
+    background-color: #1A7343; 
+    border-color: #1A7343; 
+  } 
+   
+  .btn-excel .badge { 
+    color: #1A7343; 
     background-color: #ffffff; 
   }

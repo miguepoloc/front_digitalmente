@@ -14,7 +14,9 @@ const Carrusel = (carrusel) => {
         <div className="card flex-md-row mb-2 box-shadow h-md-250 px-4  py-4 mt-3  ">
             <div className="card-body d-flex flex-column align-items-start justify-content-center w-100">
                 <div>
-                    <h1>{carrusel.nombre_grupo}</h1>
+                    <h3 className='text-center mb-4'>{carrusel.nombre_grupo}</h3>
+
+                    <div dangerouslySetInnerHTML={{__html:carrusel.texto_grupo}}></div>
 
                     <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
 
@@ -33,10 +35,7 @@ const Carrusel = (carrusel) => {
 
                     </Carousel>
 
-                    <h4>{carrusel.carrusel[index].titulo}</h4>
-                    <p>
-                        {carrusel.carrusel[index].texto}
-                    </p>
+                    
                 </div>
             </div>
         </div>

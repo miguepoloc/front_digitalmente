@@ -5,7 +5,7 @@ import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import './assets/css/Modulos_inicio.scss'
 import CartaImagen from '../CartaImagen'
 import Axios from 'axios'
-
+import {linksRelax} from '../../../helpers/helperRelax'
 import { Modulos } from './Modulos'
 import { AuthContext } from '../../../context/AuthContext'
 // import { Modulo_IconoBloqueo } from './Modulo_IconoBloqueo'
@@ -16,6 +16,7 @@ export const ModulosInicio = () => {
     const { userInfo } = authState
     // Obtención de datos
     const [datauser, setDatauser] = useState([])
+  
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,6 +24,7 @@ export const ModulosInicio = () => {
                 method: 'get',
                 url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
             })
+            console.log(response)
             if (response) {
                 //console.log(response.data)
                 // Y lo coloca en el estado de datos del usuario
@@ -36,10 +38,15 @@ export const ModulosInicio = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    useEffect(()=>{
+
+    },[datauser])
+
     const bloqueo_ae = (datauser.autoevaluativo === 2 && !userInfo.is_staff ? true : false)
     //console.log("🚀 ~ file: ModulosInicio.jsx ~ line 13 ~ ModulosInicio ~ datauser.autoevaluativo", datauser.autoevaluativo)
-
-    const modulos = {
+    console.log(linksRelax.length - 1, datauser.estres)
+    
+    let modulos = {
         modulo_alternativo: {
             col: 'col-8',
             img: imgGanso.escribiendo_250x200,
@@ -49,6 +56,7 @@ export const ModulosInicio = () => {
             bloqueado: bloqueo_ae,
             href: '/autoevaluativo'
         },
+        // TODO: data user
         otros_modulos: [
             {
                 col: 'col-3',
@@ -56,8 +64,8 @@ export const ModulosInicio = () => {
                 text: 'Relax',
                 classImg: 'imgGanso-modulos',
                 moduloClass: 'card_relax',
-                bloqueado: true,
-                href: ''
+                bloqueado: !userInfo.is_staff, //TODO: habilitar luego para grupo intervencion
+                href: `/relax${datauser.estres === linksRelax.length?  (linksRelax.length - 1): datauser.estres }`
             },
             {
                 col: 'col-3',

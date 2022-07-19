@@ -97,11 +97,10 @@ html, body {
     color: #B276C1; 
     background-color: #ffffff; 
   }
-
   .btn-verde { 
     color: #ffffff; 
-    background-color: #C3DD5D; 
-    border-color: #C8E067; 
+    background-color: #ADC748; 
+    border-color: #ADC748; 
   } 
    
   .btn-verde:hover, 
@@ -110,8 +109,8 @@ html, body {
   .btn-verde.active, 
   .open .dropdown-toggle.btn-verde { 
     color: #ffffff; 
-    background-color: #C6E05E; 
-    border-color: #C8E067; 
+    background-color: #ABBD64; 
+    border-color: #ADC748; 
   } 
    
   .btn-verde:active, 
@@ -135,15 +134,14 @@ html, body {
   .btn-verde.disabled.active, 
   .btn-verde[disabled].active, 
   fieldset[disabled] .btn-verde.active { 
-    background-color: #C3DD5D; 
-    border-color: #C8E067; 
+    background-color: #ADC748; 
+    border-color: #ADC748; 
   } 
    
   .btn-verde .badge { 
-    color: #C3DD5D; 
+    color: #ADC748; 
     background-color: #ffffff; 
   }
-
   .btn-azul { 
     color: #ffffff; 
     background-color: #14A0E1; 
