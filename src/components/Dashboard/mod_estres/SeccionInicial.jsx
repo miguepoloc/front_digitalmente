@@ -6,7 +6,8 @@ import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import { FcSurvey } from 'react-icons/fc'
 import { ActivityCards } from './ActivityCards'
 import ButtonLibro from '../ButtonLibro'
-import { FaBookOpen } from 'react-icons/fa'
+import { FaBolt, FaBookOpen } from 'react-icons/fa'
+import { Tip } from '../Tip';
 export const SeccionInicial = () => {
     return (
         <>
@@ -123,6 +124,8 @@ export const SeccionInicial = () => {
             </div>
 
             <ActivityCards />
+
+            <Actividad  showIcon={false} src={imgGanso.explicando} title={"¿Cómo empiezo?"} color={"#A1B7EF"} text={"<span class='d-flex justify-content-center'>¡Puedes hacerlo dandole click al boton siguiente!</span>"} />
 
         </>
 

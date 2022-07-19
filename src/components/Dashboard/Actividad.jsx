@@ -23,7 +23,7 @@ export const Actividad = ({ src, title, text, showIcon = true, video, siImange =
 
             <div className="card-body d-flex flex-column align-items-start justify-content-center w-100">
                 <div className='d-flex align-items-center justify-content-center w-100'><h5 className="card-title d-flex align-items-center justify-content-center"> {icon} <span className='mx-1 w-100 text-center' dangerouslySetInnerHTML={{ __html: title }}></span> {icon}</h5></div>
-                <p className="card-text" dangerouslySetInnerHTML={{ __html: text }}></p>
+                <p className="card-text w-100" dangerouslySetInnerHTML={{ __html: text }}></p>
                 {video}
             </div>
         </div>

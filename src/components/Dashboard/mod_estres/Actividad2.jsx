@@ -29,7 +29,7 @@ export const Actividad2 = () => {
 
 <div className='card p-4 my-4'>
     <h4 className='mt-2 mb-3 text-center'> Meditación guiada para reducir el estrés, Podcast</h4>
-    <p className='text-center'>Este podcast ofrece una opción auditiva para meditar, relajarse y reducir las sensaciones de estrés del día a día con diferentes capítulos y de manera gratuita accediendo a Spotify.</p>
+    <p className='text-center'>Este podcast <small>(El Espectador, 2020-presente)</small> ofrece una opción auditiva para meditar, relajarse y reducir las sensaciones de estrés del día a día con diferentes capítulos y de manera gratuita accediendo a Spotify.</p>
     <Iframe url="https://open.spotify.com/embed/episode/686IzXbrSYYnMYe4d1ZTmu?utm_source=generator"
                         width="100%"
                         height="152px"
@@ -42,7 +42,7 @@ export const Actividad2 = () => {
 </div>
 <div className='card p-4 my-4'>
     <h4 className='mt-2 mb-3 text-center'> Meditación guiada</h4>
-    <p className='text-center'>Este podcast permite realizar meditación, brindando una guía clara del paso a paso para realizarla en situaciones de ansiedad y estrés o cuando se busca un momento de tranquilidad en el cual se propicie paz y sensaciones de bienestar. Inténtalo.</p>
+    <p className='text-center'>Este podcast <small>(Muñoz, 2009-presente)</small> permite realizar meditación, brindando una guía clara del paso a paso para realizarla en situaciones de ansiedad y estrés o cuando se busca un momento de tranquilidad en el cual se propicie paz y sensaciones de bienestar. Inténtalo.</p>
     <Iframe url="https://open.spotify.com/embed/track/1AOkl6s50A2PgqY2qMamko?utm_source=generator"
                         width="100%"
                         height="80px"

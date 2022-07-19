@@ -134,7 +134,7 @@ export const Actividad1 = () => {
             {ActividadCompletada || datauser.estres > 2 ? (<>
 
                 <Actividad src={imgGanso.lupa_celular} title="¡Actividad de fomento!"
-                    text={`<br><p class="text-center">¡Esta es una actividad de fomento. Eso significa que es un ejercicio para que practiques la habilidad orientada en el módulo a tu ritmo y cuando tu desees. Completamente voluntario. Los tres botones abajo presentados te permitirán: a) descargar una versión en pdf que puedes imprimir si quieres, b) una versión en Word editable para que llenes en tu celular y c) una versión en Excel que se unirá a tu nube en Drive para que llenes también cuando quieras. ¿Lo mejor de estas opciones? Solo tú tienes acceso a estas y solo tú puedes ver lo que escribes allí. Nadie más. Esperamos que sea una herramienta que te ayude a fortalecer tu salud mental.
+                    text={`<br><p class="text-center">Te he traído un regalo. Aquí tienes unas versiones editables del ejercicio para que realices cuando quieras, de forma privada y a tu propio ritmo. Esto hace parte de una actividad de fomento, una actividad voluntaria de fortalecimiento que estará disponible al final de módulo y en tu Dashboard, cuando quieras acceder a él.
                         <br>
                         `
                     }

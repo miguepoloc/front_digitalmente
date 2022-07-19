@@ -14,8 +14,13 @@ $ColorNaranja: #fc8890;
     background-color: $ColorNaranja;
 }
 
+
 .fill-naranja {
     fill: $ColorNaranja;
+}
+
+.text-naranja{
+  color: $ColorNaranja;
 }
 
 .text-darkBlue {
@@ -530,3 +535,12 @@ fieldset[disabled] .btn-amarillo.active {
     color: #1A7343; 
     background-color: #ffffff; 
   }
+
+  @media (max-width:768px) {
+    .btn-sm-lg{
+    padding: 0.25rem 0.5rem !important;
+    font-size: .875rem !important;
+    line-height: 1.5 !important;
+    }
+  
+}

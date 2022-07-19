@@ -10,7 +10,7 @@ export const Tip = ({ title, text, color, icon = <FaBolt />, _class = "mb-5" }) 
             style={{ borderLeftColor: color ? color : colorDefault }}
         >
             <h5 className='d-flex align-items-center' style={{ color: color ? color : colorDefault }}>
-                {icon}  <span dangerouslySetInnerHTML={{ __html: title ? title : "Tip importante" }}></span>
+                <span className='me-2'>{icon}</span>  <span dangerouslySetInnerHTML={{ __html: title ? title : "Tip importante" }}></span>
             </h5>
 
             <p dangerouslySetInnerHTML={{ __html: text }}></p>

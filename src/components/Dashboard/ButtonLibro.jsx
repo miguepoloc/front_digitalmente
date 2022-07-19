@@ -29,7 +29,7 @@ const ButtonLibro = ({ text, title }) => {
                 <Modal.Header  closeButton={true} closeVariant={"white"}>
                     <Modal.Title className='text-center w-100'>{title}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body style={styleCenter} dangerouslySetInnerHTML={{ __html: text }}>
+                <Modal.Body  dangerouslySetInnerHTML={{ __html: text }}>
 
                 </Modal.Body>
                 <Modal.Footer style={styleCenter}>

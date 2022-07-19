@@ -49,7 +49,7 @@ export const ManejoEstres = () => {
                                 </span>
                                 <div>
                                     <p className='text-center'>
-                                        Esta alternativa propone realizar actividad física desde tu casa con un espacio reducido, brinda explicaciones claras sobre la realización de cada uno de los ejercicios y no emplea de otro recurso más que tu propio cuerpo. De este modo es una excelente opción, si como a muchos, no te llama la atención ir a un gimnasio.
+                                        Esta alternativa <small>(Lumowell-Fitness-ES, 2016)</small> propone realizar actividad física desde tu casa con un espacio reducido, brinda explicaciones claras sobre la realización de cada uno de los ejercicios y no emplea de otro recurso más que tu propio cuerpo. De este modo es una excelente opción, si como a muchos, no te llama la atención ir a un gimnasio.
                                     </p>
                                 </div>
                                 
