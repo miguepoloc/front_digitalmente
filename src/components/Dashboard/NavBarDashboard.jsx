@@ -128,7 +128,7 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
                                 : <></>
                             }
 
-                            {grupoControl || userInfo.is_staff
+                            {userInfo.is_staff || (!userInfo.is_controlgroup && datauser.autoevaluativo === 2)
                                 ?
                                 <NavDropdown
                                     title="Relax "

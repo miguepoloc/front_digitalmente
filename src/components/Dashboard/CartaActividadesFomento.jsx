@@ -14,7 +14,6 @@ export const CartaActividadesFomento = () => {
                 method: 'get',
                 url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
             })
-            console.log(response)
             if (response) {
                 //console.log(response.data)
                 // Y lo coloca en el estado de datos del usuario
@@ -39,7 +38,7 @@ export const CartaActividadesFomento = () => {
                     </div>
                     <div className=" pb-2 w-100  text-center d-flex  flex-column justify-items-center">
                         <div className="">
-                           <button type="submit" className="btn btn-verde w-75  mx-4 "  onClick={datauser.estres > 2?()=>history.push('/relax8'):""}  disabled={datauser.estres > 2? false: true}><span className='textCard'>Módlulo relax</span></button>
+                           <button type="submit" className="btn btn-verde w-75  mx-4 "  onClick={()=>datauser.estres > 2?history.push('/relax8'):""}  disabled={datauser.estres > 2? false: true}><span className='textCard'>Módlulo relax</span></button>
                         </div>
                         <div className="">
                             <button type="submit" className="btn btn-morado w-75  mx-4 " disabled><span className='textCard'>- - - - - - - - - - - - - - - - - - - - - -</span></button>

@@ -47,7 +47,6 @@ export const Actividad1 = () => {
                 method: 'get',
                 url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
             })
-            console.log(response)
             if (response) {
                 //console.log(response.data)
                 // Y lo coloca en el estado de datos del usuario
@@ -66,7 +65,6 @@ export const Actividad1 = () => {
 
     const validarTextArea = (name) => {
         let textArea = document.getElementsByName(name)[0].value;
-        console.log(name)
         return textArea.trim().length > 5
     }
 
@@ -90,7 +88,6 @@ export const Actividad1 = () => {
             ...Datos,
             [event.target.name]: event.target.value
         })
-        console.log(Datos)
     }
 
 

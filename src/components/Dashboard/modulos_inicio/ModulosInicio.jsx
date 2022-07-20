@@ -24,7 +24,6 @@ export const ModulosInicio = () => {
                 method: 'get',
                 url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
             })
-            console.log(response)
             if (response) {
                 //console.log(response.data)
                 // Y lo coloca en el estado de datos del usuario
@@ -44,7 +43,6 @@ export const ModulosInicio = () => {
 
     const bloqueo_ae = (datauser.autoevaluativo === 2 && !userInfo.is_staff ? true : false)
     //console.log("🚀 ~ file: ModulosInicio.jsx ~ line 13 ~ ModulosInicio ~ datauser.autoevaluativo", datauser.autoevaluativo)
-    console.log(linksRelax.length - 1, datauser.estres)
     
     let modulos = {
         modulo_alternativo: {
@@ -64,7 +62,7 @@ export const ModulosInicio = () => {
                 text: 'Relax',
                 classImg: 'imgGanso-modulos',
                 moduloClass: 'card_relax',
-                bloqueado: !userInfo.is_staff, //TODO: habilitar luego para grupo intervencion
+                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && datauser.autoevaluativo === 2)), //TODO: habilitar luego para grupo intervencion
                 href: `/relax${datauser.estres === linksRelax.length?  (linksRelax.length - 1): datauser.estres }`
             },
             {

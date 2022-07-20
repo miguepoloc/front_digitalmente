@@ -13,7 +13,7 @@ import NavBarDashboard from '../components/Dashboard/NavBarDashboard'
 import { BotonContext } from '../context/BotonContext'
 import { Correct_Alert } from '../helpers/helper_Swal_Alerts'
 import { Loading } from '../components/Loading'
-import { AiFillHome, AiOutlineArrowLeft, AiOutlineArrowRight, AiTwotoneHome } from 'react-icons/ai'
+import { AiFillHome, AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 
 
 const ModuloRelax = () => {
@@ -92,9 +92,8 @@ const ModuloRelax = () => {
 
     // Cuando se presione el botón de siguiente
     async function cambioBotonAdelante() {
-
         //console.log(userInfo)
-        console.log(datauser)
+
         const jsonx = {
             estres: (parseInt(slug) + 1),
             usuario: userInfo.id
