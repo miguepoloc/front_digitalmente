@@ -54,8 +54,17 @@ const ModuloRelax = () => {
                 setDatauser(response.data)
 
                 if (response.data.estres < parseInt(slug) && parseInt(slug) !== 8) {
-
                     history.push(`/dashboard`)
+                }else{
+                    if(response.data.estres === 8 && parseInt(slug) === 8){
+                        const jsonx = {
+                            estres: (parseInt(slug) + 1),
+                            usuario: userInfo.id
+                        }
+                        await PUT_avance_modulos(userInfo.id, jsonx, token);
+                        setControl(control + 1);
+                    }
+                        //cambioBotonAdelante()
                 }
 
             } else {
@@ -99,7 +108,6 @@ const ModuloRelax = () => {
             // eslint-disable-next-line no-unused-vars
             const algo = await PUT_avance_modulos(userInfo.id, jsonx, token)
             setControl(control + 1);
-
 
         }
         if ((linksRelax.length - 1) === parseInt(slug)) {
@@ -146,7 +154,7 @@ const ModuloRelax = () => {
                             
                             <button
                                     type="button"
-                                    className='botoncentrado btn-backNext-relax btn-radius btn-lg  d-flex justify-content-center align-items-center'
+                                    className='botoncentrado mx-2 btn-backNext-relax btn-radius btn-lg  d-flex justify-content-center align-items-center'
                                     onClick={cambioBotonAtras}
                                     disabled={datauser.estres < 8 && parseInt(slug) === 8 ? true : BotonAtrasState}
                                 >
@@ -155,9 +163,9 @@ const ModuloRelax = () => {
                            { parseInt(slug) === 8 ? (
                                 <button
                                     type="button"
-                                    className='botoncentrado btn-naranja btn-radius btn-lg d-flex justify-content-center align-items-center'
-                                    onClick={()=>{history.push(`/dashboard`)}}
-                                    disabled={datauser.estres < 8 && parseInt(slug) === 8 ? true : BotonAtrasState}
+                                    className='botoncentrado mx-2 btn-naranja btn-radius btn-lg d-flex justify-content-center align-items-center'
+                                    onClick={()=>{if(datauser.estres < 8 && parseInt(slug) === 8){history.push(`/dashboard`) } else{; history.push(`/dashboard`)}}}
+                                    disabled={false}
                                 >
                                    Regresar  <AiFillHome
                                     color='white' size={18} className='ms-2' />
