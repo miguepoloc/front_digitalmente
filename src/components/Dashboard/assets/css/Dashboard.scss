@@ -2,6 +2,11 @@ $ColorLightBlue: #D5F5F9;
 $ColorDarkBlue: #00659D;
 $ColorNaranja: #fc8890;
 
+.objLista_referencias{
+  font-size: 1rem!important;
+  margin-left: 1rem !important;
+}
+
 .carta-dashboard {
     background-image: url('../../../../assets/img/curved-images/white-curved.jpg');
 }
@@ -541,6 +546,12 @@ fieldset[disabled] .btn-amarillo.active {
     padding: 0.25rem 0.5rem !important;
     font-size: .875rem !important;
     line-height: 1.5 !important;
+    }
+
+    @media (max-width:1000px) {
+      .objLista_referencias{
+        font-size: 0.8rem!important;
+      }
     }
   
 }

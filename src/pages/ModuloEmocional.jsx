@@ -171,7 +171,7 @@ const ModuloEmocional = () => {
                             {parseInt(slug) === linksEmocional.length - 1 ? (
                                 <button
                                     type="button"
-                                    className='botoncentrado mx-2 btn-naranja btn-radius btn-lg d-flex justify-content-center align-items-center'
+                                    className=' mx-2 btn-naranja btn-radius btn-lg d-flex justify-content-center align-items-center'
                                     onClick={() => { if (datauser.emocional < linksEmocional.length - 1 && parseInt(slug) === linksEmocional.length - 1) { history.push(`/dashboard`) } else { ; history.push(`/dashboard`) } }}
                                     disabled={false}
                                 >
@@ -181,7 +181,7 @@ const ModuloEmocional = () => {
                             ) : (
                                 <button
                                     type="button"
-                                    className='botoncentrado btn-backNext-relax btn-radius btn-lg d-flex justify-content-center align-items-center'
+                                    className=' btn-backNext-relax btn-radius btn-lg d-flex justify-content-center align-items-center'
                                     onClick={cambioBotonAdelante}
                                     disabled={BotonState}
                                 >
@@ -192,8 +192,23 @@ const ModuloEmocional = () => {
                         </div>
 
                         <FooterDashboard />
-                        <ButtonLibro text={'Calderón Rodríguez, M., González Mora, G., Salazar Segnini, P. y Washburn Madrigal, S. (2012). Aprendiendo sobre las emociones: manual de educación emocional. Coordinación Educativa y Cultural Centroamericana.'} title={'Referencia'} />
-
+                        <ButtonLibro text={`
+                        <ul>
+                        <h5>Principales fuentes de apoyo:</h5>
+                        <h6 class="mx-0">Sobre el semáforo emocional:</h6>
+                        <li class="objLista_referencias">	Calderón Rodríguez, M., González Mora, G., Salazar Segnini, P. y Washburn Madrigal, S. (2012). <i>Aprendiendo sobre las emociones: manual de educación emocional.</i> Coordinación Educativa y Cultural Centroamericana.	</li>
+                        <h6>Sobre emociones, afrontamiento e inteligencia emocional:</h6>
+                        <li class="objLista_referencias">	Extremera, N. y Fernández-Berrocal, P. (2006). Emotional intelligence as predictor of mental, social, and physical health in university students [La inteligencia emocional como predictor de la salud mental, social y física en estudiantes universitarios]. <i>The Spanish journal of psychology, 9</i>(1), 45-51	</li>
+                        <li class="objLista_referencias">	Fernandéz-Abascal, E. G., García Rodríguez, B. G., Jiménez Sánchez, M.P., Martín Díaz, M. D. y Domínguez Sánchez, F. J. (2010). <i>Psicología de la Emoción </i>. UNED.	</li>
+                        <li class="objLista_referencias">	Fernández-Berrocal, P., y Extremera Pacheco, N. (2005). La Inteligencia Emocional y la educación de las emociones desde el Modelo de Mayer y Salovey.  <i>Revista Interuniversitaria de Formación del profesorado, 19 </i>(3), 63-93.	</li>
+                        <li class="objLista_referencias">	González, R.C., Gualda, R. C., Gallego, P. R., y Fernández-Berrocal, P. (2016). Programa INTEMO +: <i>Mejorar la inteligencia emocional de los adolescentes</i>. Ediciones Pirámide.	</li>
+                        <li class="objLista_referencias">	Jaramillo, C. (s.f.).<i> "Aplanando la curva del malestar emocional" -más allá de la clinica tradicional-</i>.<a target="_blank" class="text-naranja"  href='https://www.psicologos.org.uy/aplanando-la-curva.pdf'>Link URL</a> 	</li>
+                        <li class="objLista_referencias">	Mayer, J. D., Salovey, P., y Caruso, D. R. (2008). Emotional intelligence: New ability or eclectic traits? [La inteligencia emocional: ¿Nueva capacidad o rasgos eclécticos?] <i>American Psychologist, 63</i>(6), 503–517. <a target="_blank" class="text-naranja"  href='https://doi.org/10.1037/0003-066X.63.6.503'>DOI</a>	</li>
+                        <li class="objLista_referencias">	Valverde, C. V., López, M. C. y Ring, J. M. (2003). Estrategias de afrontamiento. En A. Bulbena Vilarrasa, G. E. Barrios y P. F. De Larrinoa Palacios (Eds.), <i>Medicina Clínica en Psiquiatría y Psicología </i>(425-435). Editorial Masson.	</li>
+                        <h6>Inspiración para diario emocional:</h6>
+                        <li class="objLista_referencias">	Hervas, G. y Moral, G. (2017). <i>Regulación emocional aplicada al campo clínico</i>. FOCAD para División de Psicoterapia. Universidad Complutense de Madrid.	</li>
+                        
+                        </ul>`} title={'Referencia'} />
                     </div>
                 </main>
             </div>
