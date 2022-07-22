@@ -18,7 +18,7 @@ const ModuloAutoevaluativo = () => {
     // Se guardan en userInfo
     const { userInfo } = authState
     // Datos del usuario
-    const [datauser, setDatauser] = useState([])
+    const [datauser, setDatauser] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {

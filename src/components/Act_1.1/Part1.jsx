@@ -50,8 +50,7 @@ const Part1 = () => {
                 descText={`A continuación, tienes un rompecabezas de cada una de las
               emociones básicas. Cuando lo termines de armar, busca entre las
               opciones anexas y selecciona la emoción que creas que representa.
-              Si logras identificar la emoción correcta, !----Nombre del
-              ganso---! te dará unas pistas de esa emoción. ¡Préstale atención
+              Si logras identificar la emoción correcta, ¡Cuack! te dará unas pistas de esa emoción. ¡Préstale atención
               porque lo necesitaras para más adelante!`}
             />
             <div className="row">

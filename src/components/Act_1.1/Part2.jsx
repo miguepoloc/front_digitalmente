@@ -191,7 +191,7 @@ const Part2 = () => {
                 <div className="col-sm-12 col-lg-4">
                     {SinAcciones
                         ? (<>
-                            <p className="text-justify">{seccion2.ejercicios[activityIndex].SinAcciones}</p>
+                            <p className="text-justify" dangerouslySetInnerHTML={{ __html: seccion2.ejercicios[activityIndex].SinAcciones }}></p>
                         </>)
                         : (<>
                             <h5 style={{ color: color }} className="text-center">

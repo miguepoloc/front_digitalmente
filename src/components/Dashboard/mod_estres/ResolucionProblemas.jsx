@@ -30,7 +30,7 @@ export const ResolucionProblemas = () => {
     const { setBotonState } = useContext(BotonContext);
     const { authState } = useContext(AuthContext)
     const { userInfo } = authState
-    const [datauser, setDatauser] = useState([]);
+    const [datauser, setDatauser] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -53,7 +53,7 @@ export const ResolucionProblemas = () => {
     }, []);
 
     useEffect(() => {
-        if( datauser.estres <= 7)
+        if (datauser.estres <= 7)
             setBotonState(true)
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -186,7 +186,7 @@ export const ResolucionProblemas = () => {
                                                         Solución 1
                                                     </Typography>
                                                     <Typography variant="body2" {...(CartaColor === 1 ? { className: 'card-text text-primary' } : { className: 'card-text' })}>
-                                                    Cristopher debe decirle a su hermano menor que se vaya a jugar donde sus vecinos en los horarios en los cuales él estudia en casa, con el fin de aplicar habilidades comunicativas con su entorno familiar que lo lleven a soluciones cómodas para sí mismo.                                                    </Typography>
+                                                        Cristopher debe decirle a su hermano menor que se vaya a jugar donde sus vecinos en los horarios en los cuales él estudia en casa, con el fin de aplicar habilidades comunicativas con su entorno familiar que lo lleven a soluciones cómodas para sí mismo.                                                    </Typography>
                                                 </CardContent>
                                             </CardActionArea>
                                         </Card>
@@ -203,7 +203,7 @@ export const ResolucionProblemas = () => {
                                                         Solución 2
                                                     </Typography>
                                                     <Typography variant="body2" {...(CartaColor === 2 ? { className: 'card-text text-primary' } : { className: 'card-text' })}>
-                                                    Cristopher debería decirle a un compañero que le explique los temas de la clase y enfocarse en aprenderlos, ahorrando tiempo de almuerzo comiendo algo de la cafetería y planeando su tiempo enfocándose en la asignatura, formulando además estrategias que le permitirá tener redes sociales de apoyo sólidas y cuidar de su salud física y mental, mientras adquiere conocimientos vitales para la carrera.                                                    </Typography>
+                                                        Cristopher debería decirle a un compañero que le explique los temas de la clase y enfocarse en aprenderlos, ahorrando tiempo de almuerzo comiendo algo de la cafetería y planeando su tiempo enfocándose en la asignatura, formulando además estrategias que le permitirá tener redes sociales de apoyo sólidas y cuidar de su salud física y mental, mientras adquiere conocimientos vitales para la carrera.                                                    </Typography>
                                                 </CardContent>
                                             </CardActionArea>
                                         </Card>
@@ -223,7 +223,7 @@ export const ResolucionProblemas = () => {
                                                         Solución 3
                                                     </Typography>
                                                     <Typography variant="body2" {...(CartaColor === 3 ? { className: 'card-text text-primary' } : { className: 'card-text' })}>
-                                                    Cristopher debería analizar la situación identificando qué cosas de la materia no está comprendiendo, planificar sus horarios y reunirse con compañeros que le podrían explicar, ahorrar tiempo en transporte llevando su almuerzo a la universidad e invirtiendo el mismo en estudiar en la biblioteca, además de verse a sí mismo desde una perspectiva centrada en la realidad notando que en otras asignaturas le va mucho mejor y que con esfuerzos individuales y apoyo de sus compañeros puede ganar el parcial y hacer un muy buen trabajo final.                                                    </Typography>
+                                                        Cristopher debería analizar la situación identificando qué cosas de la materia no está comprendiendo, planificar sus horarios y reunirse con compañeros que le podrían explicar, ahorrar tiempo en transporte llevando su almuerzo a la universidad e invirtiendo el mismo en estudiar en la biblioteca, además de verse a sí mismo desde una perspectiva centrada en la realidad notando que en otras asignaturas le va mucho mejor y que con esfuerzos individuales y apoyo de sus compañeros puede ganar el parcial y hacer un muy buen trabajo final.                                                    </Typography>
                                                 </CardContent>
                                             </CardActionArea>
                                         </Card>
@@ -240,7 +240,7 @@ export const ResolucionProblemas = () => {
                                                         Solución 4
                                                     </Typography>
                                                     <Typography variant="body2" {...(CartaColor === 4 ? { className: 'card-text text-primary' } : { className: 'card-text' })}>
-                                                    Cristopher debe usar todo su tiempo en estudiar para esa asignatura, evitar ir a almorzar y faltar a otras clases si es necesario ya que mientras más tiempo y esfuerzos le dedique a tener horarios de estudio, tendrá mayores posibilidades de aprender para los parciales, además no se distraerá con nada que no sea relacionado a lo académico y eso será muy necesario durante toda la vida académica.                                                    </Typography>
+                                                        Cristopher debe usar todo su tiempo en estudiar para esa asignatura, evitar ir a almorzar y faltar a otras clases si es necesario ya que mientras más tiempo y esfuerzos le dedique a tener horarios de estudio, tendrá mayores posibilidades de aprender para los parciales, además no se distraerá con nada que no sea relacionado a lo académico y eso será muy necesario durante toda la vida académica.                                                    </Typography>
                                                 </CardContent>
                                             </CardActionArea>
                                         </Card>

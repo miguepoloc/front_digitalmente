@@ -3,7 +3,7 @@ import Axios from 'axios'
 import { AuthContext } from '../../context/AuthContext'
 import { useHistory } from 'react-router-dom'
 export const CartaActividadesFomento = () => {
-    const [datauser, setDatauser] = useState([])
+    const [datauser, setDatauser] = useState(false)
     const { authState } = useContext(AuthContext)
     const { userInfo } = authState
     const history = useHistory()

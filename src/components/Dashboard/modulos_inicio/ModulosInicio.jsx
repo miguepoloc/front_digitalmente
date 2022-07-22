@@ -5,7 +5,7 @@ import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import './assets/css/Modulos_inicio.scss'
 import CartaImagen from '../CartaImagen'
 import Axios from 'axios'
-import {linksRelax} from '../../../helpers/helperRelax'
+import { linksRelax } from '../../../helpers/helperRelax'
 import { Modulos } from './Modulos'
 import { AuthContext } from '../../../context/AuthContext'
 // import { Modulo_IconoBloqueo } from './Modulo_IconoBloqueo'
@@ -15,8 +15,8 @@ export const ModulosInicio = () => {
 
     const { userInfo } = authState
     // Obtención de datos
-    const [datauser, setDatauser] = useState([])
-  
+    const [datauser, setDatauser] = useState(false)
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,13 +37,13 @@ export const ModulosInicio = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
 
-    },[datauser])
+    }, [datauser])
 
     const bloqueo_ae = (datauser.autoevaluativo === 2 && !userInfo.is_staff ? true : false)
     //console.log("🚀 ~ file: ModulosInicio.jsx ~ line 13 ~ ModulosInicio ~ datauser.autoevaluativo", datauser.autoevaluativo)
-    
+
     let modulos = {
         modulo_alternativo: {
             col: 'col-8',
@@ -63,7 +63,7 @@ export const ModulosInicio = () => {
                 classImg: 'imgGanso-modulos',
                 moduloClass: 'card_relax',
                 bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && datauser.autoevaluativo === 2)), //TODO: habilitar luego para grupo intervencion
-                href: `/relax${datauser.estres === linksRelax.length?  (linksRelax.length - 1): datauser.estres }`
+                href: `/relax${datauser.estres === linksRelax.length ? (linksRelax.length - 1) : datauser.estres}`
             },
             {
                 col: 'col-3',
@@ -71,7 +71,7 @@ export const ModulosInicio = () => {
                 text: 'Mis emociones',
                 moduloClass: 'card_misEmociones',
                 classImg: 'imgGanso-modulos',
-                bloqueado: true,
+                bloqueado: !userInfo.is_staff,
                 href: '/emocional1'
             },
             {

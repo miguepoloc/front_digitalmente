@@ -21,7 +21,7 @@ export const section4_1 = {
         {
             name: 'Ejercicio 1',
             imagen: situacion1,
-            text: 'Es importante recordar que, en este tipo de situaciones, si bien las emociones pueden llevarnos a actuar de forma impulsiva y a veces de forma espontanean, el ejercicio de detenerse, reconocer lo que experimentamos y reflexionar se vuelve un punto clave que tendrá un impacto en nuestra salud mental y en las consecuencias en nuestro entorno ¡Gestionar nuestras emociones es posible!'
+            text: 'Es importante recordar que, en este tipo de situaciones, si bien las emociones pueden llevarnos a actuar de forma impulsiva y a veces de forma espontánea, el ejercicio de detenerse, reconocer lo que experimentamos y reflexionar se vuelve un punto clave que tendrá un impacto en nuestra salud mental y en las consecuencias en nuestro entorno ¡Gestionar nuestras emociones es posible!'
         },
         {
             name: 'Ejercicio 2',
@@ -36,7 +36,7 @@ export const section4_1 = {
         {
             name: 'Ejercicio 4',
             imagen: situacion4,
-            text: 'Las estrategias que utilizamos en si no son buenas o malas, es algo importante a tener en cuenta. Siempre dependerá de los diferentes factores que rodean tanto a la situación como a ti como persona. Lo importante es sabes comprender y aceptar las emociones para poder manejarlas de la mejor forma posible, y, siempre que lo necesites, saber pedir ayuda a los demás cuando sientes que todo se desborda.'
+            text: 'Las estrategias que utilizamos en si no son buenas o malas, es algo importante a tener en cuenta. Siempre dependerá de los diferentes factores que rodean tanto a la situación como a ti como persona. Lo importante es saber comprender y aceptar las emociones para poder manejarlas de la mejor forma posible, y, siempre que lo necesites, saber pedir ayuda a los demás cuando sientes que todo se desborda.'
         }
     ]
 }

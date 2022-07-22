@@ -62,11 +62,7 @@ const MisEstrategias = () => {
                         </h5>
 
                         <p>
-                            A continuación, veras una serie de situaciones que podrían ocurrirte.
-                            Ponte en el papel y responde en los cuadros que crees que sentirías en esa
-                            situación y qué harías para manejarlo y darle clic al botón de cada línea a
-                            medida que lo vas completando. ¡Nombre del ganso te ira dando unos tips a medida
-                            que vayas respondiendo!¡Adelante!
+                            A continuación, veras una serie de situaciones que podrían ocurrirte. Ponte en el papel, responde en los cuadros que crees que sentirías en esa situación y qué harías para manejarlo y dale clic al botón de cada línea a medida que lo vas completando. ¡Cuack te ira dando unos tips a medida que vayas respondiendo!¡Adelante!
                         </p>
                     </div>
                 </div>

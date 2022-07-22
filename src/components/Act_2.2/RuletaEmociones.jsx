@@ -116,8 +116,9 @@ const RuletaEmociones = () => {
 
                         <ActividadConTip
                             actividadTitle={"Actividad 2.2"}
-                            actividadSText={`¡Le has dado nombre a las experiencias emocionales! Pero… ¿sabes en que familia emocional se ubican? Si recuerdas las funciones de las emociones, como te recomendó Nombre del ganso, no te será difícil la siguiente parte del ejercicio.En la ruleta que ves aquí están los nombres de las emociones básicas. Girala y te aparecerá una emoción. Dale click al botón azul que dice “Remove”. Luego, selecciona la emoción que te salió en “Coloca la emoción”.
-                               Ahora, aquí está la tarea, debes ir a las dos barras de abajo y seleccionar en cada una tú definición, sabiendo a que se refieren, que consideres que pertenece o se relacionan con esa emoción. Cada emoción está relacionada con por lo menos dos de las definiciones que has nombrado. Una vez lo selecciones, darle al botón de <b>“Enviar”</b> para comprobar tu respuesta.`}
+                            actividadSText={`¡Le has dado nombre a las experiencias emocionales! Pero… ¿sabes en que familia emocional se ubican? Si recuerdas las funciones de las emociones, como te recomendó Cuack, no te será difícil la siguiente parte del ejercicio. En la ruleta que ves aquí están los nombres de las emociones básicas. Gírala y te aparecerá una emoción. Luego, selecciona la emoción que te salió en “Selecciona una emoción”. 
+                                <br />
+                                Ahora, aquí está la tare: debes ir a las dos barras de abajo y seleccionar en cada una tú definición, sabiendo a que se refieren, que consideres que pertenece o se relacionan con esa emoción. Cada emoción está relacionada con por lo menos dos de las definiciones que has nombrado. Una vez lo selecciones, darle al botón de “Validar” para comprobar tu respuesta.`}
                             actividadSrc={imgGanso.lupa_celular}
                             tipText={"Cuando tengas la respuesta correcta de una emoción, vuelve a girar la rueda y repite el ejercicio hasta que no quede ya ninguna emoción en la ruleta. No te preocupes, despues de 5 segundos la opción seleccionada aleatoriamente se eliminará automaticamente."}
                         />

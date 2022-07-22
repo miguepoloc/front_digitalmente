@@ -10,3 +10,10 @@
 .carta-semaforo {
     flex: 1;
 }
+
+
+@media all and (min-width: 570px) {
+    .margen-izquierdo {
+        margin-left: 25px;
+    }
+}

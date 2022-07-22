@@ -69,7 +69,7 @@ export const seccion2 = {
     ejercicios: [{
         name: "Ejercicio 1",
         image: asco,
-        text: "Cuando experimentas asco, ¿cómo has sentido que lo expresas?",
+        text: "¿Cuáles características consideras que podrían relacionarse al asco?",
         //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
         successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. Identificar, por ejemplo, como experimentamos en nuestro cuerpo las emociones es un paso esencial para la gestión emocional. ",
         sensaciones: [
@@ -100,7 +100,7 @@ export const seccion2 = {
     {
         name: "Ejercicio 2",
         image: miedo,
-        text: "Cuando experimentas miedo, ¿cómo has sentido que lo expresas?",
+        text: "¿Cuáles características consideras que podrían relacionarse al miedo?",
         //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
         successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. Recuerda que, por ejemplo, las acciones tienden a ser respuestas impulsivas que debemos saber identificar para gestionar.",
         sensaciones: [
@@ -130,7 +130,7 @@ export const seccion2 = {
     {
         name: "Ejercicio 3",
         image: tristeza,
-        text: "Cuando experimentas tristeza, ¿cómo has sentido que lo expresas?",
+        text: "¿Cuáles características consideras que podrían relacionarse a la tristeza?",
         //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
         successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. Los pensamientos que tienden a surgir cuando se experimenta una emoción pueden ser distorsionados o exagerados con respecto a la situación. ¡Por eso es importante reconocerlos!",
         sensaciones: [
@@ -161,7 +161,7 @@ export const seccion2 = {
     {
         name: "Ejercicio 4",
         image: ira,
-        text: "Cuando experimentas ira, ¿cómo has sentido que lo expresas?",
+        text: "¿Cuáles características consideras que podrían relacionarse a la ira?",
         //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
         successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¿Te han dicho cuando estás muy molesto y has tomado una decisión que mejor lo pienses “con cabeza fría”? Precisamente, de aquí parte el saber identificar y aceptar nuestras emociones. Esto no significa que todos se lanzan a la acción de agredir o se irritan internamente, dado que depende de muchos factores tanto de la persona como de la situación y el ambiente para una reacción u otra.",
         sensaciones: [
@@ -191,7 +191,7 @@ export const seccion2 = {
     {
         name: "Ejercicio 5",
         image: alegria,
-        text: "Cuando experimentas alegría, ¿cómo has sentido que lo expresas?",
+        text: "¿Cuáles características consideras que podrían relacionarse a la alegría?",
         //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
         successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Recuerda valorar todas las emociones y aceptarlas, son parte de tu vida y te permiten adaptarte a tu entorno!",
         sensaciones: [
@@ -204,18 +204,18 @@ export const seccion2 = {
         ],
         pensamientos: [
             { option: "“¿Qué pasó?”", isCorrect: false },
-            { option: "Pensamientos impulsivos.", isCorrect: true },
-            { option: "Acción antes que consideración de la situación.", isCorrect: true },
-            { option: "Poca reflexión sobre situaciones.", isCorrect: true },
-            { option: "“¡Esto es lo peor!”", isCorrect: false },
+            { option: "“¡Esto es genial!”", isCorrect: true },
+            { option: "Pensamientos positivos.", isCorrect: true },
+            { option: "Fijación en una idea.", isCorrect: false },
+            { option: "Pensamientos optimistas.", isCorrect: true },
 
         ],
-        SinAcciones: "La alegría facilita la interacción social, mejora el rendimiento cognitivo y la actitud frente a las situaciones, entre otros puntos. De aquí se pueden derivar muchas acciones dependiendo de tu personalidad, puede que estés más propenso a hablar con otras personas, o a prestar atención a lo que te comentan o a compartir algo determinado. La importancia de identificar las emociones nos permite observar su impacto (Fernández-Abascal et al., 2010)"
+        SinAcciones: "La alegría facilita la interacción social, mejora el rendimiento cognitivo y la actitud frente a las situaciones, entre otros puntos. De aquí se pueden derivar muchas acciones dependiendo de tu personalidad, puede que estés más propenso a hablar con otras personas, o a prestar atención a lo que te comentan o a compartir algo determinado. La importancia de identificar las emociones nos permite observar su impacto (Fernández-Abascal <i>et al.</i>, 2010)"
     },
     {
         name: "Ejercicio 6",
         image: sorpresa,
-        text: "Cuando experimentas sorpresa, ¿cómo has sentido que lo expresas?",
+        text: "¿Cuáles características consideras que podrían relacionarse a la sorpresa?",
         //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
         successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Ejercita la identificación de tus emociones como paso fundamental para tu gestión emocional!",
         sensaciones: [
@@ -234,7 +234,7 @@ export const seccion2 = {
             { option: "“¿Qué hora es?”", isCorrect: false },
             { option: "Mente en blanco.", isCorrect: true },
         ],
-        SinAcciones: "La sorpresa facilita que aparezcan acciones relacionadas a explorar, investigar. Es decir, en torno al interés o curiosidad por la situación. Siempre dependerá del tipo de factor al que te enfrentas, lo que hará que después determine uno u otro tipo de acción (Fernández-Abascal et al., 2010)"
+        SinAcciones: "La sorpresa facilita que aparezcan acciones relacionadas a explorar, investigar. Es decir, en torno al interés o curiosidad por la situación. Siempre dependerá del tipo de factor al que te enfrentas, lo que hará que después determine uno u otro tipo de acción (Fernández-Abascal <i>et al.</i>, 2010)"
     },
     ]
 }

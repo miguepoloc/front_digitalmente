@@ -68,16 +68,16 @@ const ManejoSemaforo = () => {
                 <div className="w-100"></div>
                 <div className="col">
                     <div
-                        className="callout mb-5  h-md-250 "
+                        className="callout mb-3 mt-4 h-md-250 "
                         style={{ borderLeftColor: color }}
                     >
                         <h5 style={{ color: color }}>
                             {section4_2.activities[activityIndex].name}
                         </h5>
 
-                        <p>
+                        {/* <p>
                             {section4_2.activities[activityIndex].ejercicio}
-                        </p>
+                        </p> */}
                     </div>
                 </div>
             </div>
@@ -131,15 +131,15 @@ const ManejoSemaforo = () => {
 
                                     </h5>
                                 </div>
-                                <div className="col-sm mb-4 card-header d-flex align-items-center ml-1"
-                                    style={{ backgroundColor: ObjetoColor[values.color2] || colorgris, borderRadius: '10px', marginLeft: '25px' }}
+                                <div className="col-sm mb-4 card-header d-flex align-items-center ml-1 margen-izquierdo"
+                                    style={{ backgroundColor: ObjetoColor[values.color2] || colorgris, borderRadius: '10px' }}
                                 >
                                     <h5 className="my-auto font-weight-normal centrado mb-2 mt-2">
                                         {section4_2.activities[activityIndex].opcion2}
                                     </h5>
                                 </div>
-                                <div className="col-sm mb-4 card-header d-flex align-items-center"
-                                    style={{ backgroundColor: ObjetoColor[values.color3] || colorgris, borderRadius: '10px', marginLeft: '25px' }}
+                                <div className="col-sm mb-4 card-header d-flex align-items-center margen-izquierdo"
+                                    style={{ backgroundColor: ObjetoColor[values.color3] || colorgris, borderRadius: '10px' }}
                                 >
                                     <h5 className="my-auto font-weight-normal centrado mb-2 mt-2">
                                         {section4_2.activities[activityIndex].opcion3}

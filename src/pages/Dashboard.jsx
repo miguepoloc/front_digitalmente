@@ -23,7 +23,7 @@ const Dashboard = () => {
     const { userInfo } = authState
 
     // Obtención de datos
-    const [datauser, setDatauser] = useState([])
+    const [datauser, setDatauser] = useState(false)
     const [loading, setLoading] = useState(true);
 
 

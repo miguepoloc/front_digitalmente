@@ -12,7 +12,7 @@ import { BotonContext } from '../../../context/BotonContext'
 export const Actividad1 = () => {
     const { setBotonState } = useContext(BotonContext)
 
-    const [datauser, setDatauser] = useState([])
+    const [datauser, setDatauser] = useState(false)
     const [ActividadCompletada, setActividadCompletada] = useState(false)
 
     //TODO: se debe validar si esta actividad se hizo anteriormente

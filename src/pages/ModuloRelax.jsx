@@ -55,8 +55,8 @@ const ModuloRelax = () => {
 
                 if (response.data.estres < parseInt(slug) && parseInt(slug) !== 8) {
                     history.push(`/dashboard`)
-                }else{
-                    if(response.data.estres === 8 && parseInt(slug) === 8){
+                } else {
+                    if (response.data.estres === 8 && parseInt(slug) === 8) {
                         const jsonx = {
                             estres: (parseInt(slug) + 1),
                             usuario: userInfo.id
@@ -64,7 +64,7 @@ const ModuloRelax = () => {
                         await PUT_avance_modulos(userInfo.id, jsonx, token);
                         setControl(control + 1);
                     }
-                        //cambioBotonAdelante()
+                    //cambioBotonAdelante()
                 }
 
             } else {
@@ -104,8 +104,7 @@ const ModuloRelax = () => {
         }
 
         if (parseInt(slug) === datauser.estres) {
-            // eslint-disable-next-line no-unused-vars
-            const algo = await PUT_avance_modulos(userInfo.id, jsonx, token)
+            await PUT_avance_modulos(userInfo.id, jsonx, token)
             setControl(control + 1);
 
         }
@@ -148,40 +147,40 @@ const ModuloRelax = () => {
 
                         </div>
                         <hr />
-                            
-                            <div className='d-flex justify-content-center justify-content-sm-between  flex-wrap'> 
-                            
+
+                        <div className='d-flex justify-content-center justify-content-sm-between  flex-wrap'>
+
                             <button
-                                    type="button"
-                                    className='botoncentrado mx-2 btn-backNext-relax btn-radius btn-lg  d-flex justify-content-center align-items-center'
-                                    onClick={cambioBotonAtras}
-                                    disabled={datauser.estres < 8 && parseInt(slug) === 8 ? true : BotonAtrasState}
-                                >
-                                   <AiOutlineArrowLeft color='white' size={18} className='me-2' /> Atrás
-                                </button>
-                           { parseInt(slug) === 8 ? (
+                                type="button"
+                                className='botoncentrado mx-2 btn-backNext-relax btn-radius btn-lg  d-flex justify-content-center align-items-center'
+                                onClick={cambioBotonAtras}
+                                disabled={datauser.estres < 8 && parseInt(slug) === 8 ? true : BotonAtrasState}
+                            >
+                                <AiOutlineArrowLeft color='white' size={18} className='me-2' /> Atrás
+                            </button>
+                            {parseInt(slug) === 8 ? (
                                 <button
                                     type="button"
                                     className='botoncentrado mx-2 btn-naranja btn-radius btn-lg d-flex justify-content-center align-items-center'
-                                    onClick={()=>{if(datauser.estres < 8 && parseInt(slug) === 8){history.push(`/dashboard`) } else{; history.push(`/dashboard`)}}}
+                                    onClick={() => { if (datauser.estres < 8 && parseInt(slug) === 8) { history.push(`/dashboard`) } else { ; history.push(`/dashboard`) } }}
                                     disabled={false}
                                 >
-                                   Regresar  <AiFillHome
-                                    color='white' size={18} className='ms-2' />
+                                    Regresar  <AiFillHome
+                                        color='white' size={18} className='ms-2' />
                                 </button>
-                           ) : (
+                            ) : (
                                 <button
                                     type="button"
                                     className='botoncentrado btn-backNext-relax btn-radius btn-lg d-flex justify-content-center align-items-center'
                                     onClick={cambioBotonAdelante}
                                     disabled={BotonState}
                                 >
-                                    Siguiente <AiOutlineArrowRight color='white' size={18} className='ms-2'/>
+                                    Siguiente <AiOutlineArrowRight color='white' size={18} className='ms-2' />
                                 </button>
-                            
+
                             )}
-                            </div>
-                        
+                        </div>
+
 
                         <FooterDashboard />
                         <ButtonLibro text={`
