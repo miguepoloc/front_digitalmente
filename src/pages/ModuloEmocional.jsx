@@ -19,6 +19,7 @@ import NavBarDashboard from '../components/Dashboard/NavBarDashboard'
 import { AiFillHome, AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
 import { BotonContext } from '../context/BotonContext'
 import { Correct_Alert } from '../helpers/helper_Swal_Alerts'
+import { Loading } from '../components/Loading'
 
 const ModuloEmocional = () => {
     const { slug } = useParams()
@@ -147,11 +148,12 @@ const ModuloEmocional = () => {
                         <div >
 
                             {
-
-                                (linksEmocional[slug - 1].tipoCapsula
-                                    ? < img src={linksEmocional[slug - 1].imagen} alt="capsula" className='img-capsula' />
-                                    : linksEmocional[slug - 1].actividad)
-
+                                datauser ?
+                                    (linksEmocional[slug - 1].tipoCapsula
+                                        ? < img src={linksEmocional[slug - 1].imagen} alt="capsula" className='img-capsula' />
+                                        : linksEmocional[slug - 1].actividad)
+                                    :
+                                    <Loading />
                             }
 
                         </div>
@@ -162,15 +164,15 @@ const ModuloEmocional = () => {
                                 type="button"
                                 className='botoncentrado mx-2 btn-backNext-relax btn-radius btn-lg  d-flex justify-content-center align-items-center'
                                 onClick={cambioBotonAtras}
-                                disabled={datauser.emocional < 8 && parseInt(slug) === 8 ? true : BotonAtrasState}
+                                disabled={datauser.emocional < linksEmocional.length - 1 && parseInt(slug) === linksEmocional.length - 1 ? true : BotonAtrasState}
                             >
                                 <AiOutlineArrowLeft color='white' size={18} className='me-2' /> Atrás
                             </button>
-                            {parseInt(slug) === 8 ? (
+                            {parseInt(slug) === linksEmocional.length - 1 ? (
                                 <button
                                     type="button"
                                     className='botoncentrado mx-2 btn-naranja btn-radius btn-lg d-flex justify-content-center align-items-center'
-                                    onClick={() => { if (datauser.emocional < 8 && parseInt(slug) === 8) { history.push(`/dashboard`) } else { ; history.push(`/dashboard`) } }}
+                                    onClick={() => { if (datauser.emocional < linksEmocional.length - 1 && parseInt(slug) === linksEmocional.length - 1) { history.push(`/dashboard`) } else { ; history.push(`/dashboard`) } }}
                                     disabled={false}
                                 >
                                     Regresar  <AiFillHome
