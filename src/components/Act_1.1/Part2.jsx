@@ -7,7 +7,6 @@ import { FaHandSparkles, FaBrain, FaPencilAlt } from 'react-icons/fa'
 import { BiCurrentLocation } from 'react-icons/bi'
 import '../../assets/css/Surveys.scss'
 import Scroll from '../../helpers/helperScroll'
-import ButtonLibro from '../Dashboard/ButtonLibro'
 import { Warning_Alert, Correct_Alert } from '../../helpers/helper_Swal_Alerts'
 import { seccion2, initialOptions, areValidValues, areCorrectAnswers } from '../../helpers/helper_Reg_Emoc_act_1'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
@@ -114,28 +113,15 @@ const Part2 = () => {
 
     return (
         <div className="container">
-            <ButtonLibro title={'Glosario'}
-                text={`
-        <ul class="mb-0">
+
+        <Actividad showIcon={false} src={imgGanso.explicando} title={"Glosario"} color={"#A1B7EF"} text={`  <ul class="mb-0">
             <li class="my-1"><i>Aumento de las inhalaciones:</i> aumento de las aspiraciones al respirar. </li>
             <li class="my-1"><i>Frecuencia cardiaca:</i> número de veces que se contrae el corazón en un minuto.</li>
             <li class="my-1"><i>Frecuencia respiratoria:</i> número de veces en respiraciones.</li>
             <li class="my-1"><i>Interrupción puntual:</i> Que se detiene en ese momento por un instante.</li>
             <li class="my-1"><i>Presión sanguínea:</i> tensión de la sangre.</li>
             <li class="my-1"><i>Tensión muscular:</i> rigidez en algún o varios grupos de músculos.</li>
-        </ul>
-            `}
-            ></ButtonLibro>
-
-        <Actividad showIcon={false} src={imgGanso.explicando} title={"Glosario"} color={"#A1B7EF"} text={`<span class=''> 
-
-            <p>Aumento de las inhalaciones:</i> aumento de las aspiraciones al respirar. <p>
-            <p>Frecuencia cardiaca:</i> número de veces que se contrae el corazón en un minuto.</p>
-            <li class="my-1"><i>Frecuencia respiratoria:</i> número de veces en respiraciones.</li>
-            <li class="my-1"><i>Interrupción puntual:</i> Que se detiene en ese momento por un instante.</li>
-            <li class="my-1"><i>Presión sanguínea:</i> tensión de la sangre.</li>
-            <li class="my-1"><i>Tensión muscular:</i> rigidez en algún o varios grupos de músculos.</li>
-        </ul></span>`} />
+        </ul>`} />
 
 
             <ActividadConTip

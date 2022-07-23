@@ -65,7 +65,7 @@ export const Actividad1 = () => {
 
     const validarTextArea = (name) => {
         let textArea = document.getElementsByName(name)[0].value;
-        return textArea.trim().length > 5
+        return textArea.trim().length >= 1
     }
 
     const handleBtnEnviar = () => {
