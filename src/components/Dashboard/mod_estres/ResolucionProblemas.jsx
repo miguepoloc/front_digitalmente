@@ -30,7 +30,7 @@ export const ResolucionProblemas = () => {
     const { setBotonState } = useContext(BotonContext);
     const { authState } = useContext(AuthContext)
     const { userInfo } = authState
-    const [datauser, setDatauser] = useState(false);
+    const [dataAvance, setdataAvance] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,7 +42,7 @@ export const ResolucionProblemas = () => {
             if (response) {
                 //console.log(response.data)
                 // Y lo coloca en el estado de datos del usuario
-                setDatauser(response.data)
+                setdataAvance(response.data)
             } else {
                 //console.log('No se pudieron traer los datos...')
             }
@@ -53,11 +53,11 @@ export const ResolucionProblemas = () => {
     }, []);
 
     useEffect(() => {
-        if (datauser.estres <= 7)
+        if (dataAvance.estres <= 7)
             setBotonState(true)
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [datauser])
+    }, [dataAvance])
 
 
     const [CartaColor, setCartaColor] = useState(0)

@@ -8,8 +8,9 @@ import { linksEmocional } from '../../helpers/helper_emocional'
 import { linksRelax } from '../../helpers/helperRelax'
 import { FcApproval, FcCancel, FcBiomass, FcHome, FcScatterPlot, FcUnlock, FcImport } from 'react-icons/fc'
 import { GiReturnArrow } from 'react-icons/gi'
+import { AvanceContext } from '../../context/AvanceContext'
 
-const NavBarDashboard = ({ datauser, userInfo }) => {
+const NavBarDashboard = ({ userInfo }) => {
     const history = useHistory()
     const auth = useContext(AuthContext)
 
@@ -22,6 +23,8 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
     // Javascript split method to get the name of the path in array
     const splitLocation = pathname.split('/')
 
+    // Datos del avance que lleva el usuario
+    const { AvanceState } = useContext(AvanceContext);
 
     const grupoControl = false
 
@@ -91,9 +94,9 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
                                 className='d-flex flex-column align-items-center justify-content-center'
                                 autoClose="outside"
                             >
-                                <NavDropdown.Item href="/autoevaluativo" className='d-flex' disabled={(datauser.autoevaluativo === 2) && !userInfo.is_staff}>
+                                <NavDropdown.Item href="/autoevaluativo" className='d-flex' disabled={(AvanceState.autoevaluativo === 2) && !userInfo.is_staff}>
                                     <span className='pe-2 d-flex align-items-center'>
-                                        {((datauser.autoevaluativo === 2) && !userInfo.is_staff) ? <FcCancel size={22} /> : <FcApproval size={22} />}
+                                        {((AvanceState.autoevaluativo === 2) && !userInfo.is_staff) ? <FcCancel size={22} /> : <FcApproval size={22} />}
                                     </span>
                                     Prueba
                                 </NavDropdown.Item>
@@ -113,12 +116,12 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
                                             href={`/${capsula.link}`}
                                             eventKey={capsulaIndex}
                                             key={`key-${capsulaIndex}`}
-                                            disabled={!(datauser.emocional >= capsula.id)}
+                                            disabled={!(AvanceState.emocional >= capsula.id)}
                                             className="  d-flex align-items-center"
                                         ><span className='pe-2 d-flex align-items-center'>
-                                                {!(datauser.emocional >= capsula.id)
+                                                {!(AvanceState.emocional >= capsula.id)
                                                     ? <FcCancel size={22} />
-                                                    : (datauser.emocional === capsula.id) ? <FcBiomass size={22} /> : <FcApproval size={22} color={splitLocation[1] === capsula.link ? 'black' : ''} />}
+                                                    : (AvanceState.emocional === capsula.id) ? <FcBiomass size={22} /> : <FcApproval size={22} color={splitLocation[1] === capsula.link ? 'black' : ''} />}
                                             </span>
                                             {capsula.nombre}
                                         </NavDropdown.Item>
@@ -128,7 +131,7 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
                                 : <></>
                             }
 
-                            {userInfo.is_staff || (!userInfo.is_controlgroup && datauser.autoevaluativo === 2)
+                            {userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)
                                 ?
                                 <NavDropdown
                                     title="Relax "
@@ -143,12 +146,12 @@ const NavBarDashboard = ({ datauser, userInfo }) => {
                                             href={`/${capsula.link}`}
                                             eventKey={capsulaIndex}
                                             key={`key-${capsulaIndex}`}
-                                            disabled={!(datauser.estres >= capsula.id)}
+                                            disabled={!(AvanceState.estres >= capsula.id)}
                                             className="d-flex"
                                         ><span className='pe-2 d-flex align-items-center'>
-                                                {!(datauser.estres >= capsula.id)
+                                                {!(AvanceState.estres >= capsula.id)
                                                     ? <FcCancel size={22} />
-                                                    : (datauser.estres === capsula.id) ? <FcBiomass size={22} /> : <FcApproval size={22} color={splitLocation[1] === capsula.link ? 'black' : ''} />}
+                                                    : (AvanceState.estres === capsula.id) ? <FcBiomass size={22} /> : <FcApproval size={22} color={splitLocation[1] === capsula.link ? 'black' : ''} />}
                                             </span>
                                             {capsula.nombre}
                                         </NavDropdown.Item>

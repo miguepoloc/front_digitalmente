@@ -15,7 +15,7 @@ export const ModulosInicio = () => {
 
     const { userInfo } = authState
     // Obtención de datos
-    const [datauser, setDatauser] = useState(false)
+    const [dataAvance, setdataAvance] = useState(false)
 
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export const ModulosInicio = () => {
             if (response) {
                 //console.log(response.data)
                 // Y lo coloca en el estado de datos del usuario
-                setDatauser(response.data)
+                setdataAvance(response.data)
             } else {
                 //console.log('No se pudieron traer los datos...')
             }
@@ -39,10 +39,10 @@ export const ModulosInicio = () => {
 
     useEffect(() => {
 
-    }, [datauser])
+    }, [dataAvance])
 
-    const bloqueo_ae = (datauser.autoevaluativo === 2 && !userInfo.is_staff ? true : false)
-    //console.log("🚀 ~ file: ModulosInicio.jsx ~ line 13 ~ ModulosInicio ~ datauser.autoevaluativo", datauser.autoevaluativo)
+    const bloqueo_ae = (dataAvance.autoevaluativo === 2 && !userInfo.is_staff ? true : false)
+    //console.log("🚀 ~ file: ModulosInicio.jsx ~ line 13 ~ ModulosInicio ~ dataAvance.autoevaluativo", dataAvance.autoevaluativo)
 
     let modulos = {
         modulo_alternativo: {
@@ -62,8 +62,8 @@ export const ModulosInicio = () => {
                 text: 'Relax',
                 classImg: 'imgGanso-modulos',
                 moduloClass: 'card_relax',
-                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && datauser.autoevaluativo === 2)), //TODO: habilitar luego para grupo intervencion
-                href: `/relax${datauser.estres === linksRelax.length ? (linksRelax.length - 1) : datauser.estres}`
+                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && dataAvance.autoevaluativo === 2)), //TODO: habilitar luego para grupo intervencion
+                href: `/relax${dataAvance.estres === linksRelax.length ? (linksRelax.length - 1) : dataAvance.estres}`
             },
             {
                 col: 'col-3',

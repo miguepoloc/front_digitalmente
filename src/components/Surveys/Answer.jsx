@@ -11,7 +11,7 @@ const Answer = ({ _name, _text_answer, _id, _value, handleClickAnswer, answerSel
                 name={_name}
                 // value={_value}
                 onClick={handleClickAnswer}
-                defaultChecked={answerSelected === id_answerDB}
+                // defaultChecked={answerSelected === id_answerDB}
                 id={_id}
             />
             {_text_answer}

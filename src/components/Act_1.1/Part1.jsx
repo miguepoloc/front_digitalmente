@@ -1,33 +1,45 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
+
 import '../../assets/css/Surveys.scss'
 import Answer from '../Surveys/Answer'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { Warning_Alert, Correct_Alert } from '../../helpers/helper_Swal_Alerts'
 import { section1, setColorSelect } from '../../helpers/helper_Reg_Emoc_act_1'
 import { ActividadConDesc } from '../Dashboard/ActividadConDesc'
+import { BotonContext } from '../../context/BotonContext'
+import { AvanceContext } from '../../context/AvanceContext'
 
 const Part1 = () => {
+    const { setBotonState } = useContext(BotonContext);
+    // Datos del avance que lleva el usuario
+    const { AvanceState } = useContext(AvanceContext);
+
+    useEffect(() => {
+        if (AvanceState.emocional <= 3) {
+            setBotonState(true)
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [AvanceState])
+
     const color = '#4cbeff'
 
     useEffect(() => { setColorSelect(color) }, [])
     const [optionIndex, setOptionIndex] = useState(-1)
     const [activityIndex, setActivityIndex] = useState(0)
     const handleButtonOption = () => {
-        // //console.log(section1.activities[activityIndex].correctAnswerIndex)
         if (optionIndex >= 0) {
             if (
                 optionIndex === section1.activities[activityIndex].correctAnswerIndex
             ) {
-                // //console.log(
-                //     section1.activities[activityIndex].correctAnswerIndex
-                // )
+
                 Correct_Alert(undefined, section1.activities[activityIndex].text).then(function () {
                     setOptionIndex(-1)
                     if (activityIndex + 1 < section1.options.length) {
                         setActivityIndex(activityIndex + 1)
                     } else {
+                        setBotonState(false)
                         // TODO: redireccionar a algun lugar.
-                        // //console.log('Final.')
                     }
                 })
             } else {
@@ -35,6 +47,8 @@ const Part1 = () => {
             }
         }
     }
+
+
 
     return (
         <div className="container">
@@ -100,7 +114,7 @@ const Part1 = () => {
                                             disabled={optionIndex === -1}
                                             onClick={handleButtonOption}
                                         >
-                                            Submit
+                                            Enviar
                                         </button>
                                     </div>
                                 }
