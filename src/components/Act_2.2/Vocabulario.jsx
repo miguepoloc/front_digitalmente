@@ -19,7 +19,7 @@ import { AuthContext } from '../../context/AuthContext'
 export const Vocabulario = () => {
     const { authState } = useContext(AuthContext)
 
-    const { token } = authState
+    const { userInfo, token } = authState
 
     const [validate, setValidate] = useState(false);
     const [error, setError] = useState(false);
@@ -31,7 +31,7 @@ export const Vocabulario = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            let idUser = 15;
+            let idUser = userInfo.id;
             let definicionesUsuario = await getDefinicionesUsuario(idUser, token);
             let definiciones_Arr = await getDefiniciones(token)
 

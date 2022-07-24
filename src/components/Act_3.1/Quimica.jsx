@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Button } from 'react-bootstrap'
 import { Formik, Form, Field } from 'formik'
-
 import ganso_celular from "../../assets/img/ganso/ganso_celular.png"
 
 import situacion1 from "../../assets/img/situaciones/situacion_1.png"
@@ -9,17 +8,31 @@ import situacion2 from "../../assets/img/situaciones/situacion_2.png"
 
 import situacion3 from "../../assets/img/situaciones/situacion_3.png"
 
-// import ReactSpeedometer from "react-d3-speedometer"
+import ReactSpeedometer from "react-d3-speedometer"
 import * as Yup from 'yup'
 import { FetchContext } from '../../context/FetchContext'
 import { AuthContext } from '../../context/AuthContext'
+import { AvanceContext } from '../../context/AvanceContext'
+import { BotonContext } from '../../context/BotonContext'
 
 const Quimica = () => {
+    const { setBotonState } = useContext(BotonContext);
+    // Datos del avance que lleva el usuario
+    const { AvanceState } = useContext(AvanceContext);
+
+    useEffect(() => {
+        if (AvanceState.emocional <= 3) {
+            setBotonState(true)
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [AvanceState])
     const { authAxios } = useContext(FetchContext)
 
     const [retroPrimera, setRetroPrimera] = useState(null)
     const [retroSegunda, setRetroSegunda] = useState(null)
     const [retroTercera, setRetroTercera] = useState(null)
+    const [validate, setValidate] = useState(false);
     const [emociones, setEmociones] = useState(null);
 
     const Schema = Yup.object().shape({
@@ -120,6 +133,11 @@ const Quimica = () => {
         }
     }
 
+    // const handleOnChange = () => {
+    //     if (validate)
+    //         setValidate(false);
+    // }
+
 
     const { authState } = useContext(AuthContext)
 
@@ -133,6 +151,14 @@ const Quimica = () => {
             //console.log('No se pudieron traer los datos de las Definiciones...')
             return null
         }
+    }
+
+    const getNivel = (nivel) => {
+        if (nivel === "alto") return 166
+        if (nivel === "medio") return 500
+        if (nivel === "bajo") return 832
+        return 0
+
     }
 
 
@@ -213,7 +239,7 @@ const Quimica = () => {
                 }}
                 validationSchema={Schema}
                 onSubmit={(values) => {
-                    //console.log(values)
+                    console.log(values)
                 }}
             >
 
@@ -299,22 +325,22 @@ const Quimica = () => {
 
                                         <div className="row text-center align-items-center">
                                             <div className='col-md-6 mb-md-0' >
-                                                {/* <ReactSpeedometer
-                          width={200}
-                          height={160}
-                          needleHeightRatio={0.7}
-                          value={getNivel(values.Nivel1)}
-                          segments={3}
-                          segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
-                          currentValueText={"Selecciona un nivel"}
-                          maxSegmentLabels={0}
-                          ringWidth={47}
-                          needleTransitionDuration={1500}
-                          needleTransition="easeElastic"
-                          needleColor={'#333333'}
-                          textColor={'#000000'}
-                          style={{ marginBottom: '-50px' }}
-                        /> */}
+                                                <ReactSpeedometer
+                                                    width={200}
+                                                    height={160}
+                                                    needleHeightRatio={0.7}
+                                                    value={getNivel(values.Nivel1)}
+                                                    segments={3}
+                                                    segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
+                                                    currentValueText={"Selecciona un nivel"}
+                                                    maxSegmentLabels={0}
+                                                    ringWidth={47}
+                                                    needleTransitionDuration={1500}
+                                                    needleTransition="easeElastic"
+                                                    needleColor={'#333333'}
+                                                    textColor={'#000000'}
+                                                    style={{ marginBottom: '-50px' }}
+                                                />
                                                 <div style={{ marginTop: '-2em' }} className="mx-auto">
                                                     <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel1", "alto")} >Alto </Button>
                                                     <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel1", "medio")} >Medio </Button>
@@ -322,23 +348,23 @@ const Quimica = () => {
                                                 </div>
                                             </div>
                                             <div className='col-md-6 mb-md-0' >
-                                                {/* <ReactSpeedometer
-                          width={200}
-                          height={160}
-                          needleHeightRatio={0.7}
-                          value={getNivel(values.Nivel12)}
-                          segments={3}
-                          segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
-                          currentValueText={"Selecciona un nivel"}
-                          maxSegmentLabels={0}
-                          ringWidth={47}
-                          needleTransitionDuration={1500}
-                          needleTransition="easeElastic"
-                          needleColor={'#333333'}
-                          textColor={'#000000'}
+                                                <ReactSpeedometer
+                                                    width={200}
+                                                    height={160}
+                                                    needleHeightRatio={0.7}
+                                                    value={getNivel(values.Nivel12)}
+                                                    segments={3}
+                                                    segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
+                                                    currentValueText={"Selecciona un nivel"}
+                                                    maxSegmentLabels={0}
+                                                    ringWidth={47}
+                                                    needleTransitionDuration={1500}
+                                                    needleTransition="easeElastic"
+                                                    needleColor={'#333333'}
+                                                    textColor={'#000000'}
 
 
-                        /> */}
+                                                />
 
                                                 <div style={{ marginTop: '-2em' }} className="mx-auto">
                                                     <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel12", "alto")} >Alto </Button>
@@ -418,21 +444,21 @@ const Quimica = () => {
 
                                         <div className="row text-center align-items-center">
                                             <div className='col' >
-                                                {/* <ReactSpeedometer
-                          width={200}
-                          height={160}
-                          needleHeightRatio={0.7}
-                          value={getNivel(values.Nivel2)}
-                          segments={3}
-                          segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
-                          currentValueText={"Selecciona un nivel"}
-                          maxSegmentLabels={0}
-                          ringWidth={47}
-                          needleTransitionDuration={1500}
-                          needleTransition="easeElastic"
-                          needleColor={'#333333'}
-                          textColor={'#000000'}
-                        /> */}
+                                                <ReactSpeedometer
+                                                    width={200}
+                                                    height={160}
+                                                    needleHeightRatio={0.7}
+                                                    value={getNivel(values.Nivel2)}
+                                                    segments={3}
+                                                    segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
+                                                    currentValueText={"Selecciona un nivel"}
+                                                    maxSegmentLabels={0}
+                                                    ringWidth={47}
+                                                    needleTransitionDuration={1500}
+                                                    needleTransition="easeElastic"
+                                                    needleColor={'#333333'}
+                                                    textColor={'#000000'}
+                                                />
                                                 <div style={{ marginTop: '-2em' }} className="mx-auto">
                                                     <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel2", "alto")} >Alto </Button>
                                                     <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel2", "medio")} >Medio </Button>
@@ -516,21 +542,21 @@ const Quimica = () => {
 
                                         <div className="row text-center align-items-center">
                                             <div className='col-md-6 mb-md-0' >
-                                                {/* <ReactSpeedometer
-                          width={200}
-                          height={160}
-                          needleHeightRatio={0.7}
-                          value={getNivel(values.Nivel3)}
-                          segments={3}
-                          segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
-                          currentValueText={"Selecciona un nivel"}
-                          maxSegmentLabels={0}
-                          ringWidth={47}
-                          needleTransitionDuration={1500}
-                          needleTransition="easeElastic"
-                          needleColor={'#333333'}
-                          textColor={'#000000'}
-                        /> */}
+                                                <ReactSpeedometer
+                                                    width={200}
+                                                    height={160}
+                                                    needleHeightRatio={0.7}
+                                                    value={getNivel(values.Nivel3)}
+                                                    segments={3}
+                                                    segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
+                                                    currentValueText={"Selecciona un nivel"}
+                                                    maxSegmentLabels={0}
+                                                    ringWidth={47}
+                                                    needleTransitionDuration={1500}
+                                                    needleTransition="easeElastic"
+                                                    needleColor={'#333333'}
+                                                    textColor={'#000000'}
+                                                />
                                                 <div style={{ marginTop: '-2em' }} className="mx-auto">
                                                     <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel3", "alto")} >Alto </Button>
                                                     <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel3", "medio")} >Medio </Button>
@@ -568,7 +594,7 @@ const Quimica = () => {
                                             <Field name="Respuesta3" as="textarea" rows="3" className="form-control" />
                                         </div>
                                         <div className="row mt-4">
-                                            <Button name="situacion3" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }} >Guardar </Button>
+                                            <Button name="situacion3" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }} >Enviar </Button>
                                         </div>
                                     </div>
                                 </div>
@@ -580,23 +606,12 @@ const Quimica = () => {
                                 }
                             </div>
 
-                        </div >
-
-
-                        <div className="row mt-4 mb-4 text-center">
-                            <button
-                                type="submit"
-                                className="text-white btn btn-info "
-                            // disabled={!dirty || !isValid}
-                            >
-                                Siguiente
-                            </button>
                         </div>
 
-                    </Form >
+                    </Form>
                 )}
-            </Formik >
-        </div >
+            </Formik>
+        </div>
     )
 }
 

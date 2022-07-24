@@ -8,14 +8,17 @@ import { section1, setColorSelect } from '../../helpers/helper_Reg_Emoc_act_1'
 import { ActividadConDesc } from '../Dashboard/ActividadConDesc'
 import { BotonContext } from '../../context/BotonContext'
 import { AvanceContext } from '../../context/AvanceContext'
+import { useParams } from 'react-router-dom'
 
 const Part1 = () => {
+    // Variable del url
+    const { slug } = useParams()
     const { setBotonState } = useContext(BotonContext);
     // Datos del avance que lleva el usuario
     const { AvanceState } = useContext(AvanceContext);
 
     useEffect(() => {
-        if (AvanceState.emocional <= 3) {
+        if (AvanceState.emocional <= parseInt(slug)) {
             setBotonState(true)
         }
 

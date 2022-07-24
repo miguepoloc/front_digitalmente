@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/jsx-key */
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { FaHandSparkles, FaBrain, FaPencilAlt } from 'react-icons/fa'
@@ -12,8 +12,23 @@ import { seccion2, initialOptions, areValidValues, areCorrectAnswers } from '../
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { ActividadConTip } from '../Dashboard/ActividadConTip'
 import { Actividad } from '../Dashboard/Actividad'
+import { BotonContext } from '../../context/BotonContext'
+import { AvanceContext } from '../../context/AvanceContext'
+import { useParams } from 'react-router-dom'
 
 const Part2 = () => {
+    // Variable del url
+    const { slug } = useParams()
+    const { setBotonState } = useContext(BotonContext);
+    // Datos del avance que lleva el usuario
+    const { AvanceState } = useContext(AvanceContext);
+    useEffect(() => {
+        if (AvanceState.emocional <= parseInt(slug)) {
+            setBotonState(true)
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [AvanceState])
     const color = '#4cbeff'
     const [selectOption, setSelectOption] = useState(initialOptions)
     const [activityIndex, setActivityIndex] = useState(0)
@@ -79,8 +94,8 @@ const Part2 = () => {
                 setActivityIndex(activityIndex + 1)
                 moveToEjercicio() // sube el scroll. muy util en dispositivos moviles.
             } else {
+                setBotonState(false)
                 // TODO: Se debe redireccionar.
-                // //console.log('terminaste crack.')
             }
         }
 
@@ -114,7 +129,7 @@ const Part2 = () => {
     return (
         <div className="container">
 
-        <Actividad showIcon={false} src={imgGanso.explicando} title={"Glosario"} color={"#A1B7EF"} text={`  <ul class="mb-0">
+            <Actividad showIcon={false} src={imgGanso.explicando} title={"Glosario"} color={"#A1B7EF"} text={`  <ul class="mb-0">
             <li class="my-1"><i>Aumento de las inhalaciones:</i> aumento de las aspiraciones al respirar. </li>
             <li class="my-1"><i>Frecuencia cardiaca:</i> número de veces que se contrae el corazón en un minuto.</li>
             <li class="my-1"><i>Frecuencia respiratoria:</i> número de veces en respiraciones.</li>
@@ -158,11 +173,34 @@ const Part2 = () => {
                     </h5>
 
                     {[...Array(3)].map((element, indexSelect) => (
-                        <Form.Select defaultValue={'-1'} className="mb-4 mt-3" name={`select_sensaciones_${indexSelect}`} onChange={handleChange} key={`sensaciones_${activityIndex}_${indexSelect}`}>
-                            <option value="-1" disabled>Seleccciona una opcion</option>
+                        <Form.Select
+                            defaultValue={'-1'}
+                            className="mb-4 mt-3"
+                            name={`select_sensaciones_${indexSelect}`}
+                            onChange={handleChange}
+                            key={`sensaciones_${activityIndex}_${indexSelect}`}
+                        >
+                            <option
+                                value="-1"
+                                disabled
+                                key={indexSelect}
+                            >
+                                Seleccciona una opcion
+                            </option>
                             {seccion2.ejercicios[activityIndex].sensaciones.map((sensacion, index) => (
                                 <>
-                                    {isValidOption(indexSelect, 'sensaciones', index) ? <option value={index} key={`${seccion2.ejercicios[activityIndex].name}_select_sensaciones_${indexSelect}-${index}`}>{sensacion.option}</option> : <></>}
+                                    {isValidOption(indexSelect, 'sensaciones', index)
+                                        ?
+                                        <option
+                                            value={index}
+                                            key={`${seccion2.ejercicios[activityIndex].name}
+                                            _select_sensaciones_${indexSelect}-${index}`}
+                                        >
+                                            {sensacion.option}
+                                        </option>
+                                        :
+                                        <></>
+                                    }
                                 </>
                             ))}
                         </Form.Select>
@@ -177,7 +215,7 @@ const Part2 = () => {
 
                     {[...Array(3)].map((element, indexSelect) => (
                         <Form.Select defaultValue={'-1'} className="mb-4 mt-3" name={`select_pensamientos_${indexSelect}`} onChange={handleChange} key={`pensamientos_${activityIndex}_${indexSelect}`}>
-                            <option value="-1" disabled >Seleccciona una opcion</option>
+                            <option value="-1" disabled key={indexSelect}>Seleccciona una opcion</option>
                             {seccion2.ejercicios[activityIndex].pensamientos.map((sensacion, index) => (
                                 <>
                                     {isValidOption(indexSelect, 'pensamientos', index) ? <option value={index} key={`${seccion2.ejercicios[activityIndex].name}_select_pensamientos_${indexSelect}-${index}`}>{sensacion.option}</option> : <></>}
@@ -199,7 +237,7 @@ const Part2 = () => {
 
                             {[...Array(3)].map((element, indexSelect) => (
                                 <Form.Select defaultValue={'-1'} className="mb-4 mt-3" name={`select_acciones_${indexSelect}`} onChange={handleChange} key={`acciones_${activityIndex}_${indexSelect}`}>
-                                    <option value="-1" disabled>Seleccciona una opcion</option>
+                                    <option value="-1" disabled key={indexSelect}>Seleccciona una opcion</option>
                                     {seccion2.ejercicios[activityIndex].acciones.map((sensacion, index) => (
                                         <>
                                             {isValidOption(indexSelect, 'acciones', index) ? <option value={index} key={`${seccion2.ejercicios[activityIndex].name}_select_acciones_${indexSelect}-${index}`}>{sensacion.option}</option> : <></>}
@@ -211,7 +249,7 @@ const Part2 = () => {
 
                 </div>
                 <Button variant="info" size="lg" className="my-3" style={{ color: 'white', backgroundColor: color }} onClick={handleSubmit} >
-                    Submit
+                    Enviar
                 </Button>
             </div>
 

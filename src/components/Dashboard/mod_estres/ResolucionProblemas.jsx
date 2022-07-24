@@ -12,6 +12,7 @@ import { BotonContext } from '../../../context/BotonContext'
 import Axios from 'axios'
 
 import { AuthContext } from '../../../context/AuthContext'
+import { useParams } from 'react-router-dom';
 
 
 const ValoresIniciales = {
@@ -27,6 +28,8 @@ const ValoresIniciales = {
 
 
 export const ResolucionProblemas = () => {
+    // Variable del url
+    const { slug } = useParams()
     const { setBotonState } = useContext(BotonContext);
     const { authState } = useContext(AuthContext)
     const { userInfo } = authState
@@ -53,7 +56,7 @@ export const ResolucionProblemas = () => {
     }, []);
 
     useEffect(() => {
-        if (dataAvance.estres <= 7)
+        if (dataAvance.estres <= parseInt(slug))
             setBotonState(true)
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
