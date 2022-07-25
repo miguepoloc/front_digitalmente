@@ -351,7 +351,7 @@ const ManejoSemaforo = () => {
                                         className="text-white btn btn-info "
                                     // disabled={!dirty || !isValid}
                                     >
-                                        Enviar
+                                        Validar
                                     </button>
                                 </div>
                             }

@@ -393,7 +393,7 @@ export const ResolucionProblemas = () => {
                                 type="submit"
                                 className="text-white btn btn-info "
                             >
-                                Enviar
+                                Validar
                             </button>
                         </div>
                     </Form>

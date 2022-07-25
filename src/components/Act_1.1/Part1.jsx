@@ -117,7 +117,7 @@ const Part1 = () => {
                                             disabled={optionIndex === -1}
                                             onClick={handleButtonOption}
                                         >
-                                            Enviar
+                                            Validar
                                         </button>
                                     </div>
                                 }

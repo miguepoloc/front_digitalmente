@@ -249,7 +249,7 @@ const Part2 = () => {
 
                 </div>
                 <Button variant="info" size="lg" className="my-3" style={{ color: 'white', backgroundColor: color }} onClick={handleSubmit} >
-                    Enviar
+                    Validar
                 </Button>
             </div>
 

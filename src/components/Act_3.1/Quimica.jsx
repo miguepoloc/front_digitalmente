@@ -32,19 +32,19 @@ const Quimica = () => {
     const [retroPrimera, setRetroPrimera] = useState(null)
     const [retroSegunda, setRetroSegunda] = useState(null)
     const [retroTercera, setRetroTercera] = useState(null)
-    const [validate, setValidate] = useState(false);
+    // const [validate, setValidate] = useState(false);
     const [emociones, setEmociones] = useState(null);
 
     const Schema = Yup.object().shape({
 
         Emocion1: Yup.string()
-            .required('Es necesario escojer dos emociones'),
+            .required('Es necesario escoger dos emociones'),
         Emocion12: Yup.string()
-            .required('Es necesario escojer dos emociones'),
+            .required('Es necesario escoger dos emociones'),
         Nivel1: Yup.string()
-            .required('Es necesario escojer dos niveles'),
+            .required('Es necesario escoger dos niveles'),
         Nivel12: Yup.string()
-            .required('Es necesario escojer dos niveles'),
+            .required('Es necesario escoger dos niveles'),
         Respuesta1: Yup.string().min(2, 'Demasiado corto')
             .max(50, 'Demasiado largo')
             .required('Es necesario llenar esta información'),
@@ -144,7 +144,7 @@ const Quimica = () => {
     const { userInfo } = authState
 
     const getEmociones = async () => {
-        const response = await authAxios.get(`/definiciones_usuario/?id_usuario=${userInfo.id}`)
+        const response = await authAxios.get(`/api/definiciones_usuario/?id_usuario=${userInfo.id}`)
         if (response.data) {
             return response.data
         } else {
@@ -272,7 +272,7 @@ const Quimica = () => {
                                                     <Field as='select' name="Emocion1" className="form-select" value={values.Emocion1 || ''}
                                                         onChange={handleChange}
                                                     >
-                                                        <option value="" disabled>Escoje una emocion</option>
+                                                        <option value="" disabled>Escoge una emocion</option>
 
                                                         {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
 
@@ -296,7 +296,7 @@ const Quimica = () => {
                                                     <Field name="Emocion12" as="select" className="form-select" value={values.Emocion12 || ''}
                                                         onChange={handleChange}
                                                     >
-                                                        <option value="" disabled>Escoje una emocion</option>
+                                                        <option value="" disabled>Escoge una emocion</option>
 
                                                         {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
 
@@ -378,7 +378,7 @@ const Quimica = () => {
                                             <Field name="Respuesta1" as="textarea" rows="3" className="form-control" />
                                         </div>
                                         <div className="row mt-4">
-                                            <Button name="situacion1" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }} >Guardar </Button>
+                                            <Button name="situacion1" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }} >Validar </Button>
                                         </div>
                                     </div>
                                 </div>
@@ -415,7 +415,7 @@ const Quimica = () => {
                                                 <Field as='select' name="Emocion2" className="form-select" value={values.Emocion2 || ''}
                                                     onChange={handleChange}
                                                 >
-                                                    <option value="" disabled>Escoje una emocion</option>
+                                                    <option value="" disabled>Escoge una emocion</option>
 
                                                     {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
 
@@ -473,7 +473,7 @@ const Quimica = () => {
                                             <Field name="Respuesta2" as="textarea" rows="3" className="form-control" />
                                         </div>
                                         <div className="row mt-4">
-                                            <Button name="situacion2" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }}>Guardar </Button>
+                                            <Button name="situacion2" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }}>Validar </Button>
                                         </div>
                                     </div>
                                 </div>
@@ -514,7 +514,7 @@ const Quimica = () => {
                                                 <Field as='select' name="Emocion3" className="form-select" value={values.Emocion3 || ''}
                                                     onChange={handleChange}
                                                 >
-                                                    <option value="" disabled>Escoje una emocion</option>
+                                                    <option value="" disabled>Escoge una emocion</option>
 
                                                     {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
 
@@ -571,7 +571,7 @@ const Quimica = () => {
                                                     <Field as='select' name="Accion3" className="form-select" value={values.Accion3 || ''}
                                                         onChange={handleChange}
                                                     >
-                                                        <option value="" disabled>Escoje una accion</option>
+                                                        <option value="" disabled>Escoge una accion</option>
                                                         <option value="1" > Tumbar a la persona y sacarla de la fila.</option>
                                                         <option value="2" > Expresar tu opinión de manera firme y con respeto.</option>
                                                         <option value="3" > No decir nada y esperar que salga de la fila.</option>
@@ -594,7 +594,7 @@ const Quimica = () => {
                                             <Field name="Respuesta3" as="textarea" rows="3" className="form-control" />
                                         </div>
                                         <div className="row mt-4">
-                                            <Button name="situacion3" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }} >Enviar </Button>
+                                            <Button name="situacion3" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }} >Validar </Button>
                                         </div>
                                     </div>
                                 </div>

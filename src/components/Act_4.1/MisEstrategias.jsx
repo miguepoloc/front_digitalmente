@@ -169,7 +169,7 @@ const MisEstrategias = () => {
                                         type="submit"
                                         className="text-white btn btn-info "
                                     >
-                                        Enviar
+                                        Validar
                                     </button>
                                 </div>
                             }
