@@ -23,7 +23,7 @@ const Dashboard = () => {
     const { userInfo } = authState
 
     // Obtención de datos
-    const [datauser, setDatauser] = useState(false)
+    const [dataAvance, setdataAvance] = useState(false)
     const [loading, setLoading] = useState(true);
 
 
@@ -36,7 +36,7 @@ const Dashboard = () => {
             if (response) {
                 //console.log(response.data)
                 // Y lo coloca en el estado de datos del usuario
-                setDatauser(response.data)
+                setdataAvance(response.data)
             } else {
                 //console.log('No se pudieron traer los datos...')
             }
@@ -54,7 +54,7 @@ const Dashboard = () => {
                     className="g-sidenav-show  bg-gray-100 "
                 >
                     <main className="main-content position-relative h-100 border-radius-lg ">
-                        <NavBarDashboard datauser={datauser} userInfo={userInfo} />
+                        <NavBarDashboard userInfo={userInfo} />
                         <div className="container-fluid py-4">
                             <div className="row my-1">
                                 <CartaBienvenido />
@@ -63,7 +63,7 @@ const Dashboard = () => {
                                 <ModulosInicio />
                             </div>
                             <div className="row my-4">
-                                <CartaSeguimiento datauser={datauser} />
+                                <CartaSeguimiento dataAvance={dataAvance} />
                                 <CartaResultados />
                                 <CartaActividadesFomento />
                             </div>

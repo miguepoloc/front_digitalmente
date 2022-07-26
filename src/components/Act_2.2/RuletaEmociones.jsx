@@ -14,10 +14,26 @@ import { ActividadConTip } from '../Dashboard/ActividadConTip'
 
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { AuthContext } from '../../context/AuthContext'
+import { useParams } from 'react-router-dom'
+import { BotonContext } from '../../context/BotonContext'
+import { AvanceContext } from '../../context/AvanceContext'
 const RuletaEmociones = () => {
+    // Variable del url
+    const { slug } = useParams()
+    const { setBotonState } = useContext(BotonContext);
+    // Datos del avance que lleva el usuario
+    const { AvanceState } = useContext(AvanceContext);
+
+    useEffect(() => {
+        if (AvanceState.emocional <= parseInt(slug)) {
+            setBotonState(true)
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [AvanceState])
     const { authState } = useContext(AuthContext)
 
-    const { token } = authState
+    const { token, userInfo } = authState
 
     const [definicionesUsuario, setDefinicionesUsuario] = useState(null);
     const [emociones, setEmociones] = useState(null)
@@ -42,6 +58,8 @@ const RuletaEmociones = () => {
                     //console.log(emociones.length)
                     if (emociones.length - 1 === 0) {
                         Correct_Alert("¡En horabuena!", "Completaste satisfactoriamente la actividad.");
+                        setBotonState(false)
+
                         //TODO: mandar o redireccionar.
                     } else {
                         Correct_Alert("¡Excelente!", "Estas experiencias emocionales se relacionan o hacen parte de esta emoción. Si hay más emociones en la rueda, ¡continua! Si no, es hora de pasar a la siguiente fase. ");
@@ -79,8 +97,7 @@ const RuletaEmociones = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            let idUser = 15;
-            let definicionesResponse = await getDefinicionesUsuario(idUser, token);
+            let definicionesResponse = await getDefinicionesUsuario(userInfo.id, token);
             let emocionResponse = await getEmociones(token);
             //console.log(definicionesResponse)
             if (emocionResponse !== null && definicionesResponse !== null) {

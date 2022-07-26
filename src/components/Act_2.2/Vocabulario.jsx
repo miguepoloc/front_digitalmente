@@ -15,11 +15,28 @@ import { Actividad } from '../Dashboard/Actividad'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { ErrorGanso } from '../ErrorGanso'
 import { AuthContext } from '../../context/AuthContext'
+import { useParams } from 'react-router-dom'
+import { BotonContext } from '../../context/BotonContext'
+import { AvanceContext } from '../../context/AvanceContext'
 
 export const Vocabulario = () => {
+    // Variable del url
+    const { slug } = useParams()
+    const { setBotonState } = useContext(BotonContext);
+    // Datos del avance que lleva el usuario
+    const { AvanceState } = useContext(AvanceContext);
+
+    useEffect(() => {
+        if (AvanceState.emocional <= parseInt(slug)) {
+            setBotonState(true)
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [AvanceState])
+
     const { authState } = useContext(AuthContext)
 
-    const { token } = authState
+    const { userInfo, token } = authState
 
     const [validate, setValidate] = useState(false);
     const [error, setError] = useState(false);
@@ -31,8 +48,7 @@ export const Vocabulario = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            let idUser = 15;
-            let definicionesUsuario = await getDefinicionesUsuario(idUser, token);
+            let definicionesUsuario = await getDefinicionesUsuario(userInfo.id, token);
             let definiciones_Arr = await getDefiniciones(token)
 
             if (definiciones_Arr !== null && definicionesUsuario !== null) {
@@ -42,6 +58,7 @@ export const Vocabulario = () => {
                     //console.log(definicionesUsuario);
                     setDefinicionesUsuario(definicionesUsuario);
                     setIsThereInformation(true);
+                    setBotonState(false)
                 }
             } else {
                 setError(true)
@@ -94,8 +111,7 @@ export const Vocabulario = () => {
     const handleBtnClickSendOrUpdate = async (isUpdate, e) => {
         e.preventDefault();
 
-        let userId = 15;
-        const jsonToSend = createJsonToSend(userId);
+        const jsonToSend = createJsonToSend(userInfo.id);
 
         if (jsonToSend) {
             //console.log(jsonToSend);
@@ -105,9 +121,11 @@ export const Vocabulario = () => {
                 //console.log(response)
                 if (response) {
                     //TODO: redireccionar Aquí.
+                    setBotonState(false)
                     SendOkAlert();
                 } else {
                     SendBadAlert(undefined, "Uhm... parece que ya he anotado tus respuestas anteriormente.");
+                    setBotonState(false)
                 }
             } catch (e) {
                 SendBadAlert(undefined, "Parece que el servidor no pudo procesar la solcitud. por favor, intenta de nuevo.");
@@ -228,7 +246,7 @@ export const Vocabulario = () => {
                                                 <Button type="submit" className="btn btn-naranja" onClick={(event) => handleBtnClickSendOrUpdate(true, event)} >Actualizar <FaPaperPlane /></Button>
                                             </div></>) : (
                                             <div className='d-flex justify-content-center justify-content-md-end'>
-                                                <Button type="submit" className="btn btn-naranja" onClick={(event) => handleBtnClickSendOrUpdate(false, event)} >Enviar</Button>
+                                                <Button type="submit" className="btn btn-naranja" onClick={(event) => handleBtnClickSendOrUpdate(false, event)} >Validar</Button>
                                             </div>)}
                                     </div>
                                 </Form>

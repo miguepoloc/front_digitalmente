@@ -18,7 +18,7 @@ const ModuloAutoevaluativo = () => {
     // Se guardan en userInfo
     const { userInfo } = authState
     // Datos del usuario
-    const [datauser, setDatauser] = useState(false)
+    const [dataAvance, setdataAvance] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,7 +29,7 @@ const ModuloAutoevaluativo = () => {
             if (response) {
                 //console.log(response.data)
                 // Y lo coloca en el estado de datos del usuario
-                setDatauser(response.data)
+                setdataAvance(response.data)
             } else {
                 //console.log('No se pudieron traer los datos...')
             }
@@ -46,7 +46,7 @@ const ModuloAutoevaluativo = () => {
             >
 
                 <main className="main-content position-relative h-100 border-radius-lg ">
-                    <NavBarDashboard datauser={datauser} userInfo={userInfo} />
+                    <NavBarDashboard userInfo={userInfo} />
 
                     <div className="container-fluid py-4">
 

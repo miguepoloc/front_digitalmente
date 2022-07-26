@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 
-import Axios from 'axios'
 import '../assets/css/soft-ui-dashboard.scss'
 import '../components/Dashboard/assets/css/Dashboard.scss'
 import FooterDashboard from '../components/Dashboard/FooterDashboard'
@@ -14,67 +13,54 @@ import { BotonContext } from '../context/BotonContext'
 import { Correct_Alert } from '../helpers/helper_Swal_Alerts'
 import { Loading } from '../components/Loading'
 import { AiFillHome, AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
+import { AvanceContext } from '../context/AvanceContext'
 
 
 const ModuloRelax = () => {
-
     //TODO: La logica del boton de siguiente funciona, pero, se debe analizar cuando no se tenga tanto sueño.
+    // Variable del url
     let { slug } = useParams()
     // Trae los datos del usuario
     const { authState } = useContext(AuthContext)
     // Se guardan en userInfo
     const { userInfo, token } = authState
-    // Datos del usuario
-    const [datauser, setDatauser] = useState(false)
-
+    // Datos del avance que lleva el usuario
+    const { AvanceState, setControladora } = useContext(AvanceContext);
+    // Botón de atrás
     const [BotonAtrasState, setBotonAtrasState] = useState(false)
-
+    // Botón de control siguiente
     const { BotonState, setBotonState } = useContext(BotonContext)
-
     // Para el control de la ubicación
     const history = useHistory()
-
-    // Estado de control de ubicación, se utiliza para actualizar la barra lateral
-    const [control, setControl] = useState(1)
+    // Control de cargando en la página
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await Axios({
-                method: 'get',
-                url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`,
-                // headers: {
-                //     'authorization': 'Bearer YOUR_JWT_TOKEN_HERE'
-                // }
-
+        const controlData = async () => {
+            if (!AvanceState) {
+                setLoading(false)
             }
-            )
-            if (response) {
-                //console.log(response.data)
-                // Y lo coloca en el estado de datos del usuario
-                setDatauser(response.data)
-
-                if (response.data.estres < parseInt(slug) && parseInt(slug) !== 8) {
+            else {
+                // Si una persona intenta ingresar a una sección que no le corresponde desde el url colocando un slug superior al avance que tiene
+                if (parseInt(slug) > AvanceState.estres && parseInt(slug) !== linksRelax.length - 1) {
                     history.push(`/dashboard`)
                 } else {
-                    if (response.data.estres === 8 && parseInt(slug) === 8) {
+                    if (AvanceState.estres === linksRelax.length - 1 && parseInt(slug) === linksRelax.length - 1) {
                         const jsonx = {
                             estres: (parseInt(slug) + 1),
                             usuario: userInfo.id
                         }
                         await PUT_avance_modulos(userInfo.id, jsonx, token);
-                        setControl(control + 1);
+                        setControladora(slug)
                     }
-                    //cambioBotonAdelante()
                 }
-
-            } else {
-                //console.log('No se pudieron traer los datos...')
             }
         };
 
-        fetchData();
+        controlData();
+        setLoading(true)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [control]);
+    }, [AvanceState]);
 
     useEffect(() => {
         if (parseInt(slug) === 1) {
@@ -92,21 +78,18 @@ const ModuloRelax = () => {
 
     // Cuando se presione el botón de siguiente
     async function cambioBotonAdelante() {
-        //console.log(userInfo)
-
         const jsonx = {
             estres: (parseInt(slug) + 1),
             usuario: userInfo.id
         }
 
-        if (parseInt(slug) === linksRelax.length - 2 && datauser.estres === linksRelax.length - 2) {
+        if (parseInt(slug) === linksRelax.length - 2 && AvanceState.estres === linksRelax.length - 2) {
             Correct_Alert("Felicidades!", "Terminaste el módulo Relax")
         }
 
-        if (parseInt(slug) === datauser.estres) {
+        if (parseInt(slug) === AvanceState.estres) {
             await PUT_avance_modulos(userInfo.id, jsonx, token)
-            setControl(control + 1);
-
+            setControladora(slug)
         }
         if ((linksRelax.length - 1) === parseInt(slug)) {
             history.push(`/dashboard`)
@@ -130,60 +113,61 @@ const ModuloRelax = () => {
 
     return (
         <>
-            <div
-                className="g-sidenav-show bg-gray-100 "
-            >
+            {loading ?
+                <div
+                    className="g-sidenav-show bg-gray-100 "
+                >
 
-                <main className="main-content position-relative h-100 border-radius-lg ">
-                    <NavBarDashboard datauser={datauser} userInfo={userInfo} />
+                    <main className="main-content position-relative h-100 border-radius-lg ">
+                        <NavBarDashboard userInfo={userInfo} />
 
-                    <div className="container-fluid py-4">
+                        <div className="container-fluid py-4">
 
-                        <div>
+                            <div>
 
-                            {
-                                datauser ? linksRelax[slug - 1].actividad : <Loading />
-                            }
+                                {
+                                    AvanceState ? linksRelax[slug - 1].actividad : <Loading />
+                                }
 
-                        </div>
-                        <hr />
+                            </div>
+                            <hr />
 
-                        <div className='d-flex justify-content-center justify-content-sm-between  flex-wrap'>
+                            <div className='d-flex justify-content-center justify-content-sm-between  flex-wrap'>
 
-                            <button
-                                type="button"
-                                className='botoncentrado mx-2 btn-backNext-relax btn-radius btn-lg  d-flex justify-content-center align-items-center'
-                                onClick={cambioBotonAtras}
-                                disabled={datauser.estres < 8 && parseInt(slug) === 8 ? true : BotonAtrasState}
-                            >
-                                <AiOutlineArrowLeft color='white' size={18} className='me-2' /> Atrás
-                            </button>
-                            {parseInt(slug) === 8 ? (
                                 <button
                                     type="button"
-                                    className='botoncentrado mx-2 btn-naranja btn-radius btn-lg d-flex justify-content-center align-items-center'
-                                    onClick={() => { if (datauser.estres < 8 && parseInt(slug) === 8) { history.push(`/dashboard`) } else { ; history.push(`/dashboard`) } }}
-                                    disabled={false}
+                                    className='botoncentrado mx-2 btn-backNext-relax btn-radius btn-lg  d-flex justify-content-center align-items-center'
+                                    onClick={cambioBotonAtras}
+                                    disabled={AvanceState.estres < linksRelax.length - 1 && parseInt(slug) === linksRelax.length - 1 ? true : BotonAtrasState}
                                 >
-                                    Regresar  <AiFillHome
-                                        color='white' size={18} className='ms-2' />
+                                    <AiOutlineArrowLeft color='white' size={18} className='me-2' /> Atrás
                                 </button>
-                            ) : (
-                                <button
-                                    type="button"
-                                    className='botoncentrado btn-backNext-relax btn-radius btn-lg d-flex justify-content-center align-items-center'
-                                    onClick={cambioBotonAdelante}
-                                    disabled={BotonState}
-                                >
-                                    Siguiente <AiOutlineArrowRight color='white' size={18} className='ms-2' />
-                                </button>
+                                {parseInt(slug) === linksRelax.length - 1 ? (
+                                    <button
+                                        type="button"
+                                        className='botoncentrado mx-2 btn-naranja btn-radius btn-lg d-flex justify-content-center align-items-center'
+                                        onClick={() => { if (AvanceState.estres < linksRelax.length - 1 && parseInt(slug) === linksRelax.length - 1) { history.push(`/dashboard`) } else { ; history.push(`/dashboard`) } }}
+                                        disabled={false}
+                                    >
+                                        Regresar  <AiFillHome
+                                            color='white' size={18} className='ms-2' />
+                                    </button>
+                                ) : (
+                                    <button
+                                        type="button"
+                                        className='botoncentrado btn-backNext-relax btn-radius btn-lg d-flex justify-content-center align-items-center'
+                                        onClick={cambioBotonAdelante}
+                                        disabled={BotonState}
+                                    >
+                                        Siguiente <AiOutlineArrowRight color='white' size={18} className='ms-2' />
+                                    </button>
 
-                            )}
-                        </div>
+                                )}
+                            </div>
 
 
-                        <FooterDashboard />
-                        <ButtonLibro text={`
+                            <FooterDashboard />
+                            <ButtonLibro text={`
                         <ol>
                         <li>	Aguilar, G. y Musso, A. (2008). La meditación como proceso cognitivo-conductual. <i>Suma Psicológica, 15</i>(1), 241-258.	</li> 	<br/>
 <li>	Ávila, J. (2014). El estrés un problema de salud del mundo actual. <i>Revista Con-Ciencia, 2</i>(1), 117-125. <a target='_blank'class="text-naranja" href='http://farbio.edu.bo/csegc/conciencia/index.php/ojs/article/view/110'>Link URL</a> 	</li> 	<br/>
@@ -217,9 +201,10 @@ const ModuloRelax = () => {
                         </ol>
                         `} title={'Referencia'} />
 
-                    </div>
-                </main>
-            </div>
+                        </div>
+                    </main>
+                </div>
+                : <Loading />}
 
         </>
     )

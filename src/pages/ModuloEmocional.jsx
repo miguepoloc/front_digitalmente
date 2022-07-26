@@ -1,8 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useContext, useEffect, useState } from 'react'
 
-import Axios from 'axios'
-
 import '../assets/css/soft-ui-dashboard.scss'
 import '../components/Dashboard/assets/css/Dashboard.scss'
 import '../assets/css/nucleo-icons.scss'
@@ -20,68 +18,56 @@ import { AiFillHome, AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons
 import { BotonContext } from '../context/BotonContext'
 import { Correct_Alert } from '../helpers/helper_Swal_Alerts'
 import { Loading } from '../components/Loading'
+import { AvanceContext } from '../context/AvanceContext'
 
 const ModuloEmocional = () => {
+    // Variable del url
     const { slug } = useParams()
-
     // Trae los datos del usuario
     const { authState } = useContext(AuthContext)
     // Se guardan en userInfo
     const { userInfo, token } = authState
-    // Datos del usuario
-    const [datauser, setDatauser] = useState(false)
-
+    // Datos del avance que lleva el usuario
+    const { AvanceState, setControladora } = useContext(AvanceContext);
+    // Botón de atrás
     const [BotonAtrasState, setBotonAtrasState] = useState(false)
-
+    // Botón de control siguiente
     const { BotonState, setBotonState } = useContext(BotonContext)
-
-    // Obtiene los datos de avance que lleva el usuario
-
-
+    // Control de cargando en la página
+    const [loading, setLoading] = useState(true);
     // Para el control de la ubicación
     const history = useHistory()
 
-    // Estado de control de ubicación, se utiliza para actualizar la barra lateral
-    const [control, setControl] = useState(1)
-
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await Axios({
-                method: 'get',
-                url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`,
-                // headers: {
-                //     'authorization': 'Bearer YOUR_JWT_TOKEN_HERE'
-                // }
+        setLoading(false);
+        const controlData = async () => {
 
+            if (!AvanceState) {
+                setLoading(false)
             }
-            )
-            if (response) {
-                //console.log(response.data)
-                // Y lo coloca en el estado de datos del usuario
-                setDatauser(response.data)
-
-                if (response.data.emocional < parseInt(slug) && parseInt(slug) !== 15) {
+            else {
+                // Si una persona intenta ingresar a una sección que no le corresponde desde el url colocando un slug superior al avance que tiene
+                if (parseInt(slug) > AvanceState.emocional
+                    &&
+                    parseInt(slug) !== linksEmocional.length - 1
+                ) {
                     history.push(`/dashboard`)
                 } else {
-                    if (response.data.emocional === 15 && parseInt(slug) === 15) {
+                    if (AvanceState.emocional === linksEmocional.length - 1 && parseInt(slug) === linksEmocional.length - 1) {
                         const jsonx = {
                             emocional: (parseInt(slug) + 1),
                             usuario: userInfo.id
                         }
                         await PUT_avance_modulos(userInfo.id, jsonx, token);
-                        setControl(control + 1);
+                        setControladora(slug)
                     }
-                    //cambioBotonAdelante()
                 }
-
-            } else {
-                //console.log('No se pudieron traer los datos...')
             }
         };
-
-        fetchData();
+        controlData();
+        setLoading(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [control]);
+    }, [AvanceState]);
 
     useEffect(() => {
         if (parseInt(slug) === 1) {
@@ -99,27 +85,26 @@ const ModuloEmocional = () => {
 
     // Cuando se presione el botón de siguiente
     async function cambioBotonAdelante() {
-        //console.log(userInfo)
-
+        setLoading(false)
         const jsonx = {
             emocional: (parseInt(slug) + 1),
             usuario: userInfo.id
         }
 
-        if (parseInt(slug) === linksEmocional.length - 2 && datauser.emocional === linksEmocional.length - 2) {
-            Correct_Alert("Felicidades!", "Terminaste el módulo Relax")
+        if (parseInt(slug) === linksEmocional.length - 2 && AvanceState.emocional === linksEmocional.length - 2) {
+            Correct_Alert("Felicidades!", "Terminaste el módulo Emocional")
         }
 
-        if (parseInt(slug) === datauser.emocional) {
+        if (parseInt(slug) === AvanceState.emocional) {
             await PUT_avance_modulos(userInfo.id, jsonx, token)
-            setControl(control + 1);
-
+            setControladora(slug)
         }
         if ((linksEmocional.length - 1) === parseInt(slug)) {
             history.push(`/dashboard`)
         }
         else {
             history.push(`/emocional${parseInt(slug) + 1}`)
+            setLoading(true)
         }
 
     }
@@ -131,7 +116,10 @@ const ModuloEmocional = () => {
 
     // Cuando se presione el botón de Atrás
     async function cambioBotonAtras() {
+        setLoading(false)
         history.push(`/emocional${parseInt(slug) - 1}`)
+        setLoading(true)
+
     }
 
     return (
@@ -141,16 +129,16 @@ const ModuloEmocional = () => {
             >
 
                 <main className="main-content position-relative h-100 border-radius-lg ">
-                    <NavBarDashboard datauser={datauser} userInfo={userInfo} />
+                    <NavBarDashboard userInfo={userInfo} />
 
                     <div className="container-fluid py-4">
 
                         <div >
 
                             {
-                                datauser ?
+                                loading ?
                                     (linksEmocional[slug - 1].tipoCapsula
-                                        ? < img src={linksEmocional[slug - 1].imagen} alt="capsula" className='img-capsula' />
+                                        ? <img src={linksEmocional[slug - 1].imagen} alt="capsula" className='img-capsula' />
                                         : linksEmocional[slug - 1].actividad)
                                     :
                                     <Loading />
@@ -164,7 +152,7 @@ const ModuloEmocional = () => {
                                 type="button"
                                 className='botoncentrado mx-2 btn-backNext-relax btn-radius btn-lg  d-flex justify-content-center align-items-center'
                                 onClick={cambioBotonAtras}
-                                disabled={datauser.emocional < linksEmocional.length - 1 && parseInt(slug) === linksEmocional.length - 1 ? true : BotonAtrasState}
+                                disabled={AvanceState.emocional < linksEmocional.length - 1 && parseInt(slug) === linksEmocional.length - 1 ? true : BotonAtrasState}
                             >
                                 <AiOutlineArrowLeft color='white' size={18} className='me-2' /> Atrás
                             </button>
@@ -172,7 +160,7 @@ const ModuloEmocional = () => {
                                 <button
                                     type="button"
                                     className=' mx-2 btn-naranja btn-radius btn-lg d-flex justify-content-center align-items-center'
-                                    onClick={() => { if (datauser.emocional < linksEmocional.length - 1 && parseInt(slug) === linksEmocional.length - 1) { history.push(`/dashboard`) } else { ; history.push(`/dashboard`) } }}
+                                    onClick={() => { if (AvanceState.emocional < linksEmocional.length - 1 && parseInt(slug) === linksEmocional.length - 1) { history.push(`/dashboard`) } else { ; history.push(`/dashboard`) } }}
                                     disabled={false}
                                 >
                                     Regresar  <AiFillHome

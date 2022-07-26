@@ -22,7 +22,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.1.2",
     "react-chartjs-2": "^4.0.1",
-    "react-d3-speedometer": "^1.0.2",
+    "react-d3-speedometer": "^2.0.0-rc.3",
     "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-flatpickr": "^3.10.9",

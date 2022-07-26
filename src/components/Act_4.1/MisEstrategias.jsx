@@ -1,25 +1,37 @@
-/* eslint-disable camelcase */
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../../assets/css/Act4.scss'
-// eslint-disable-next-line camelcase
 import ganso_lupa_celular from '../../assets/img/ganso/ganso_lupa_celular.png'
 import { RetroalimentacionAlert } from '../../helpers/helper_Swal_Alerts'
 import { section4_1, setColorSelect } from '../../helpers/helper_Reg_Emoc_act_4'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
+import { useParams } from 'react-router-dom'
+import { BotonContext } from '../../context/BotonContext'
+import { AvanceContext } from '../../context/AvanceContext'
 
 const Schema = Yup.object().shape({
     Texto1: Yup.string()
         .min(2, 'Demasiado corto')
-        .max(50, 'Demasiado largo')
         .required('Es necesario llenar esta información'),
     Texto2: Yup.string()
         .min(2, 'Demasiado corto')
-        .max(50, 'Demasiado largo')
         .required('Es necesario llenar esta información')
 })
 
 const MisEstrategias = () => {
+    // Variable del url
+    const { slug } = useParams()
+    const { setBotonState } = useContext(BotonContext);
+    // Datos del avance que lleva el usuario
+    const { AvanceState } = useContext(AvanceContext);
+
+    useEffect(() => {
+        if (AvanceState.emocional <= parseInt(slug)) {
+            setBotonState(true)
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [AvanceState])
     const cantidad = section4_1.activities.length
     //console.log(cantidad)
     const color = '#4cbeff'
@@ -81,7 +93,8 @@ const MisEstrategias = () => {
                             if (activityIndex + 1 < cantidad) {
                                 setActivityIndex(activityIndex + 1)
                             } else {
-                                //console.log('Final')
+                                // TODO: REDIRECCIÓN FINAL
+                                setBotonState(false)
                             }
                         })
                         resetForm()
@@ -156,7 +169,7 @@ const MisEstrategias = () => {
                                         type="submit"
                                         className="text-white btn btn-info "
                                     >
-                                        Siguiente
+                                        Validar
                                     </button>
                                 </div>
                             }

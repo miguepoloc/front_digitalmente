@@ -4,16 +4,16 @@ import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { linksEmocional } from '../../helpers/helper_emocional'
 import { linksRelax } from '../../helpers/helperRelax'
 
-const CartaSeguimiento = ({ datauser }) => {
-    const pAutoevaluativo = datauser.autoevaluativo === 1
+const CartaSeguimiento = ({ dataAvance }) => {
+    const pAutoevaluativo = dataAvance.autoevaluativo === 1
         ? '0'
-        : parseInt(datauser.autoevaluativo / 2 * 100).toString()
-    const pEmocional = datauser.emocional === 1
+        : parseInt(dataAvance.autoevaluativo / 2 * 100).toString()
+    const pEmocional = dataAvance.emocional === 1
         ? '0'
-        : parseInt(datauser.emocional / linksEmocional.length * 100).toString()
-    const pRelax = datauser.estres === 1
+        : parseInt(dataAvance.emocional / linksEmocional.length * 100).toString()
+    const pRelax = dataAvance.estres === 1
         ? '0'
-        : parseInt(datauser.estres / linksRelax.length * 100).toString()
+        : parseInt(dataAvance.estres / linksRelax.length * 100).toString()
     const pPiensalo = '0'
     const pHabilidades = '0'
     return (

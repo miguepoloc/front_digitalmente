@@ -1,20 +1,21 @@
 /* eslint-disable camelcase */
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../../assets/css/Act4.scss'
 import ganso_lupa_celular from '../../assets/img/ganso/ganso_lupa_celular.png'
 import { ErrorAlert, Correct_Alert } from '../../helpers/helper_Swal_Alerts'
 import { section4_2, setColorSelect } from '../../helpers/helper_Reg_Emoc_act_4'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
+import { useParams } from 'react-router-dom'
+import { BotonContext } from '../../context/BotonContext'
+import { AvanceContext } from '../../context/AvanceContext'
 
 const Schema = Yup.object().shape({
     Texto1: Yup.string()
         .min(2, 'Demasiado corto')
-        .max(50, 'Demasiado largo')
         .required('Es necesario llenar esta información'),
     Texto2: Yup.string()
         .min(2, 'Demasiado corto')
-        .max(50, 'Demasiado largo')
         .required('Es necesario llenar esta información'),
     color1: Yup.string()
         .required('Es necesario seleccionar un color'),
@@ -29,6 +30,19 @@ const Schema = Yup.object().shape({
 })
 
 const ManejoSemaforo = () => {
+    // Variable del url
+    const { slug } = useParams()
+    const { setBotonState } = useContext(BotonContext);
+    // Datos del avance que lleva el usuario
+    const { AvanceState } = useContext(AvanceContext);
+
+    useEffect(() => {
+        if (AvanceState.emocional <= parseInt(slug)) {
+            setBotonState(true)
+        }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [AvanceState])
     const cantidad = section4_2.activities.length
     const color = '#4cbeff'
     const ObjetoColor = {
@@ -109,6 +123,7 @@ const ManejoSemaforo = () => {
                                     setActivityIndex(activityIndex + 1)
                                 } else {
                                     //   TODO REDIRECCIÓN
+                                    setBotonState(false)
                                     //console.log('Final')
                                 }
                             })
@@ -151,7 +166,7 @@ const ManejoSemaforo = () => {
                                     <Field name="color1" as="select" className="form-select" value={values.color1 || ''}
                                         onChange={handleChange}
                                     >
-                                        <option value="" disabled>Selecciona un color</option>
+                                        <option value="" disabled>Selecciona un color para 1</option>
                                         <option value="rojo">Rojo</option>
                                         <option value="amarillo">Amarillo</option>
                                         <option value="verde">Verde</option>
@@ -169,7 +184,7 @@ const ManejoSemaforo = () => {
                                 <div className="col-sm mb-4">
                                     <Field name="color2" as="select" className="form-select" value={values.color2 || ''}
                                         onChange={handleChange}>
-                                        <option value="" disabled>Selecciona un color</option>
+                                        <option value="" disabled>Selecciona un color para 2</option>
                                         <option value="rojo">Rojo</option>
                                         <option value="amarillo">Amarillo</option>
                                         <option value="verde">Verde</option>
@@ -191,7 +206,7 @@ const ManejoSemaforo = () => {
                                         className="form-select"
                                         onChange={handleChange}
                                     >
-                                        <option value="" disabled>Selecciona un color</option>
+                                        <option value="" disabled>Selecciona un color para 3</option>
                                         <option value="rojo">Rojo</option>
                                         <option value="amarillo">Amarillo</option>
                                         <option value="verde">Verde</option>
@@ -207,18 +222,17 @@ const ManejoSemaforo = () => {
                                         : null}
                                 </div>
                             </div>
-                            <div className="row  mb-4 mt-2">
+                            <div className="row mb-4 mt-2">
                                 <div className="col-sm">
                                     <div
                                         className="d-flex align-items-center m-auto"
-                                        style={{ backgroundColor: 'white' }}
                                     >
                                         <h5 className="my-0 font-weight-normal centrado">
                                             ¿Que situación crees que pudo causar lo anteriormente expuesto?
                                         </h5>
                                     </div>
                                 </div>
-                                <div className="col-sm m-auto ">
+                                <div className="col-sm m-auto mb-2 ">
                                     <Field
                                         name="situacion"
                                         as="select"
@@ -246,7 +260,6 @@ const ManejoSemaforo = () => {
                                 <div className="col-sm">
                                     <div
                                         className="d-flex align-items-center m-auto"
-                                        style={{ backgroundColor: 'white' }}
                                     >
                                         <h5 className="my-0 font-weight-normal centrado">
                                             ¿Que emoción crees que esta pasando la persona?
@@ -338,7 +351,7 @@ const ManejoSemaforo = () => {
                                         className="text-white btn btn-info "
                                     // disabled={!dirty || !isValid}
                                     >
-                                        Siguiente
+                                        Validar
                                     </button>
                                 </div>
                             }

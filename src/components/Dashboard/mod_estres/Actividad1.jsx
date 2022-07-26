@@ -12,7 +12,7 @@ import { BotonContext } from '../../../context/BotonContext'
 export const Actividad1 = () => {
     const { setBotonState } = useContext(BotonContext)
 
-    const [datauser, setDatauser] = useState(false)
+    const [dataAvance, setdataAvance] = useState(false)
     const [ActividadCompletada, setActividadCompletada] = useState(false)
 
     //TODO: se debe validar si esta actividad se hizo anteriormente
@@ -37,10 +37,10 @@ export const Actividad1 = () => {
         if (ActividadCompletada) {
             setBotonState(false)
         }
-        else if (datauser.estres <= 2)
+        else if (dataAvance.estres <= 2)
             setBotonState(true)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [datauser, ActividadCompletada])
+    }, [dataAvance, ActividadCompletada])
     useEffect(() => {
         const fetchData = async () => {
             const response = await Axios({
@@ -50,7 +50,7 @@ export const Actividad1 = () => {
             if (response) {
                 //console.log(response.data)
                 // Y lo coloca en el estado de datos del usuario
-                setDatauser(response.data)
+                setdataAvance(response.data)
             } else {
                 //console.log('No se pudieron traer los datos...')
             }
@@ -128,7 +128,7 @@ export const Actividad1 = () => {
                 <p className='mt-2 mb-4 text-center'><small><b>Fuente.</b> Elaboración propia basada en Pérez <i>et al.</i> (s.f.) </small></p>
             </div>
 
-            {ActividadCompletada || datauser.estres > 2 ? (<>
+            {ActividadCompletada || dataAvance.estres > 2 ? (<>
 
                 <Actividad src={imgGanso.lupa_celular} title="¡Un regalo para ti!"
                     text={`<br><p class="text-center">Te he traído un regalo. Aquí tienes unas versiones editables del ejercicio para que realices cuando quieras, de forma privada y a tu propio ritmo. Esto hace parte de una actividad de fomento, una actividad voluntaria de fortalecimiento que estará disponible al final de módulo y en tu Dashboard, cuando quieras acceder a él.
