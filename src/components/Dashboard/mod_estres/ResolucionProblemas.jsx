@@ -262,7 +262,7 @@ export const ResolucionProblemas = () => {
                                         </h5>
 
                                         <p>
-                                            Elige los aspectos que debería tomar en cuenta Cristopher para dar solución a su situación problema:
+                                            Elige los 4 aspectos que debería tomar en cuenta Cristopher para dar solución a su situación problema:
                                         </p>
                                     </div>
                                 </div>

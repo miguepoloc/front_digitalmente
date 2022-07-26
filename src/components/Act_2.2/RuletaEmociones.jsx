@@ -183,7 +183,7 @@ const RuletaEmociones = () => {
                                     <Form.Select defaultValue={'-1'} className="mb-4" name="definicion2Id" key={`definicion2_size_${definicionesUsuario.length}`} onChange={handleChange}>
                                         <option value="-1" disabled>Definicion 2</option>
                                         {definicionesUsuario?.map(({ definicion_usuario, definicion }, i) => {
-                                            return definicion != answer.definicion1Id ?
+                                            return definicion !== parseInt(answer.definicion1Id) ?
                                                 <option value={definicion} key={`definicion_usuario2-${i}`} > {definicion_usuario} </option> : <></>
                                         }
                                         )

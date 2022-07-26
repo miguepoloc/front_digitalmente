@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
-import { FaArrowRight, FaClipboardCheck, FaPaperPlane } from 'react-icons/fa'
+import { FaClipboardCheck, FaPaperPlane } from 'react-icons/fa'
 import { BsGearFill } from 'react-icons/bs'
 import { SendAlert, SendOkAlert, SendBadAlert } from "../../helpers/helper_Swal_Alerts"
 import {
