@@ -237,7 +237,7 @@ export const Vocabulario = () => {
                                         </div>
                                     )
                                     }
-                                    <div className="w-100 d-flex mx-md-4 my-4 px-md-3 ">
+                                    <div className="w-100 d-flex mx-md-4 my-4 px-md-3 justify-content-md-end ">
                                         {userClickModifyBtn ? (<>
                                             <div className="col-6 d-flex justify-content-start">
                                                 <Button className="btn btn-naranja" onClick={handleCancelModify} > <FaClipboardCheck /> Dejar como estaba</Button>
@@ -245,8 +245,8 @@ export const Vocabulario = () => {
                                             <div className="col-6 d-flex justify-content-end">
                                                 <Button type="submit" className="btn btn-naranja" onClick={(event) => handleBtnClickSendOrUpdate(true, event)} >Actualizar <FaPaperPlane /></Button>
                                             </div></>) : (
-                                            <div className='d-flex justify-content-center justify-content-md-end'>
-                                                <Button type="submit" className="btn btn-naranja" onClick={(event) => handleBtnClickSendOrUpdate(false, event)} >Validar</Button>
+                                            <div className='col-12 col-md-2 me-md-2 justify-content-end'>
+                                                <Button type="submit" className="w-100 btn-lg  btn-naranja  d-flex justify-content-center" onClick={(event) => handleBtnClickSendOrUpdate(false, event)} >Guardar</Button>
                                             </div>)}
                                     </div>
                                 </Form>
