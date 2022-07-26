@@ -12,6 +12,7 @@ import { seccion2, initialOptions, areValidValues, areCorrectAnswers } from '../
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { ActividadConTip } from '../Dashboard/ActividadConTip'
 import { Actividad } from '../Dashboard/Actividad'
+import { Tip } from '../Dashboard/Tip'
 
 const Part2 = () => {
     const color = '#4cbeff'
@@ -114,6 +115,17 @@ const Part2 = () => {
     return (
         <div className="container">
 
+            <Actividad
+                title={'Actividad 1.2'}
+                text={`¿Fue difícil adivinar a que emoción se refería cada imagen? Apuesto a que lo has hecho muy bien. Y lo mejor, ¡ahora conoces las funciones básicas de las emociones y un poco de lo que implican! Aunque seguramente dirás: “Pues eso podía adivinarlo fácil, ¿no?”. Bueno, ¿qué tal si lo ponemos a prueba?
+              <br/><br/>
+              Ahora que sabes un poco más de estas emociones y recordando lo que hablamos sobre como las emociones se relacionan a unas sensaciones, pensamientos y acciones. ¿Puedes identificar cuáles son los que identifican a cada emoción?               </p>
+              <hr />
+              A continuación, para cada emoción, selecciona las sensaciones, pensamientos y acciones que crees que pueden asociarse a cada una de estas. ¡Usa cada uno de los botones de la columna que corresponda y elige las opciones que creas correctas! Para algunos casos, no será necesario que indiques acciones.
+              `}
+                src={imgGanso.elegante}
+            />
+       
         <Actividad showIcon={false} src={imgGanso.explicando} title={"Glosario"} color={"#A1B7EF"} text={`  <ul class="mb-0">
             <li class="my-1"><i>Aumento de las inhalaciones:</i> aumento de las aspiraciones al respirar. </li>
             <li class="my-1"><i>Frecuencia cardiaca:</i> número de veces que se contrae el corazón en un minuto.</li>
@@ -123,27 +135,17 @@ const Part2 = () => {
             <li class="my-1"><i>Tensión muscular:</i> rigidez en algún o varios grupos de músculos.</li>
         </ul>`} />
 
+<Tip text={'En la columna de pensamientos puede que encuentres expresiones como “¡Ugh!”. Trata de identificar si estas pueden relacionarse a la emoción. También tienes un pequeño glosario arriba por si tienes alguna duda.'}/>
 
-            <ActividadConTip
-                actividadTitle={'Actividad 1.2'}
-                actividadSText={`¿Fue difícil adivinar a que emoción se refería cada imagen? Apuesto a que lo has hecho muy bien. Y lo mejor, ¡ahora conoces las funciones básicas de las emociones y un poco de lo que implican! Aunque seguramente dirás: “Pues eso podía adivinarlo fácil, ¿no?”. Bueno, ¿qué tal si lo ponemos a prueba?
-              <br/><br/>
-              Ahora que sabes un poco más de estas emociones y recordando lo que hablamos sobre como las emociones se relacionan a unas sensaciones, pensamientos y acciones. ¿Puedes identificar cuáles son los que identifican a cada emoción?               </p>
-              <hr />
-              A continuación, para cada emoción, selecciona las sensaciones, pensamientos y acciones que crees que pueden asociarse a cada una de estas. ¡Usa cada uno de los botones de la columna que corresponda y elige las opciones que creas correctas! Para algunos casos, no será necesario que indiques acciones.
-              `}
-                actividadSrc={imgGanso.elegante}
-                tipText={'En la columna de pensamientos puede que encuentres expresiones como “¡Ugh!”. Trata de identificar si estas pueden relacionarse a la emoción. También tienes un pequeño glosario arriba por si tienes alguna duda.'}
-            />
 
             <div className="row mb-4 text-center" id="ejercicio">
                 <p className="text-strong" style={{ color: color }}> <FaPencilAlt /> Ejercicio {activityIndex + 1} de {seccion2.ejercicios.length} </p>
                 <div className="text-center">
                     <img className=" justify-content-center align-self-center" src={seccion2.ejercicios[activityIndex].image} alt="" style={{ width: '50%' }} />
                 </div>
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center mb-3">
                     <div className="card px-4  py-1 mt-4 mb-2 text-center w-75">
-                        <div className="card-body">
+                        <div className="card-body p-1 d-flex justify-content-center align-items-center">
                             <p className="card-text">
                                 {seccion2.ejercicios[activityIndex].text}</p>
                         </div>
