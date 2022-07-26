@@ -122,7 +122,9 @@ export const Vocabulario = () => {
                 if (response) {
                     //TODO: redireccionar Aquí.
                     setBotonState(false)
-                    SendOkAlert();
+                    SendOkAlert().then(()=>{
+                        document.getElementById("btn-main-next").click()
+                    })
                 } else {
                     SendBadAlert(undefined, "Uhm... parece que ya he anotado tus respuestas anteriormente.");
                     setBotonState(false)
@@ -198,13 +200,11 @@ export const Vocabulario = () => {
                                             />
                                             <h5 className='my-4 text-center'>Uhm... Parece que ya he personalizado tu vocabulario anteriormente.</h5>
                                         </div>
-                                        <div className="w-100 d-flex mx-md-4 my-4 px-md-3 ">
-                                            <div className="col-6 d-flex justify-content-start">
-                                                <Button className="btn btn-naranja" onClick={handleModify} > <BsGearFill /> <b>Modificar</b> </Button>
+                                        <div className="w-100 d-flex mx-md-4 my-4 px-md-3 d-flex justify-content-center mb-3">
+                                            <div className="col-12 col-md-3 d-flex justify-content-center align-items-center">
+                                                <Button className="btn btn-naranja w-100 d-flex justify-content-center align-items-center" onClick={handleModify} > <BsGearFill className='me-2' /> <b>Modificar</b> </Button>
                                             </div>
-                                            <div className="col-6 d-flex justify-content-end">
-                                                <Button className="btn btn-naranja"><b>Siguiente Ejercicio</b> <FaArrowRight /></Button>
-                                            </div>
+
                                         </div>
 
 
