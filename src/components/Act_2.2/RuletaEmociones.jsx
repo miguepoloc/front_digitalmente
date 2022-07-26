@@ -17,6 +17,7 @@ import { AuthContext } from '../../context/AuthContext'
 import { useParams } from 'react-router-dom'
 import { BotonContext } from '../../context/BotonContext'
 import { AvanceContext } from '../../context/AvanceContext'
+
 const RuletaEmociones = () => {
     // Variable del url
     const { slug } = useParams()
@@ -48,8 +49,10 @@ const RuletaEmociones = () => {
 
 
     const isAnswerCorrect = () => {
+        console.log(answer.emocionId,answer.definicion1Id,answer.definicion2Id,emociones)
         if (answer.emocionId !== -1 && answer.definicion1Id !== -1 && answer.definicion2Id !== -1) {
             const emocion = searchEmocion(answer.emocionId);
+            console.log("🚀 ~ file: RuletaEmociones.jsx ~ line 54 ~ isAnswerCorrect ~ emocion", emocion)
             if (emocion) {
                 if (validateDefinicion(emocion, answer.definicion1Id) && validateDefinicion(emocion, answer.definicion2Id)) {
                     removeSelectedEmocion();
@@ -70,6 +73,7 @@ const RuletaEmociones = () => {
                     ErrorAlert("Lo siento. No parece ser correcto.", "Recuerda a que hacen referencia esas definiciones que colocaste y relaciónalo con la función de la emoción que te ha tocado. No olvides presionar el botón azul “Remove” para ir quitando cada emoción a medida que vayas resolviendo.");
                 }
             } else {
+                console.log(emocion)
                 ErrorAlert("Ups algo ha salido mal.", "Parece que has dejado una o varias opcion en blanco");
             }
         } else {
@@ -78,21 +82,21 @@ const RuletaEmociones = () => {
     }
 
     const searchEmocion = (id, returnIndex = false) => {
-        const emocion = emociones.find((emocion) => emocion.id === id);
+        const emocion = emociones.find((emocion) => emocion.id === parseInt(id));
         return returnIndex ? emociones.indexOf(emocion) : emocion;
     }
 
     const removeSelectedEmocion = () => {
-        setEmociones(emociones.filter(({ id }) => id !== answer.emocionId))
+        setEmociones(emociones.filter(({ id }) => id !== parseInt(answer.emocionId)))
     }
 
     const removeSelectedDefiniciones = () => {
-        setDefinicionesUsuario(definicionesUsuario.filter(({ definicion }) => definicion !== answer.definicion1Id && definicion !== answer.definicion2Id));
+        setDefinicionesUsuario(definicionesUsuario.filter(({ definicion }) => definicion !== parseInt(answer.definicion1Id) && definicion !== parseInt(answer.definicion2Id)));
     }
 
 
     const validateDefinicion = (emocion, definicionId) => {
-        return emocion.clasificacion.find((clasificacion) => clasificacion.id === definicionId)
+        return emocion.clasificacion.find((clasificacion) => clasificacion.id === parseInt(definicionId))
     }
 
     useEffect(() => {
@@ -134,8 +138,8 @@ const RuletaEmociones = () => {
                         <ActividadConTip
                             actividadTitle={"Actividad 2.2"}
                             actividadSText={`¡Le has dado nombre a las experiencias emocionales! Pero… ¿sabes en que familia emocional se ubican? Si recuerdas las funciones de las emociones, como te recomendó Cuack, no te será difícil la siguiente parte del ejercicio. En la ruleta que ves aquí están los nombres de las emociones básicas. Gírala y te aparecerá una emoción. Luego, selecciona la emoción que te salió en “Selecciona una emoción”. 
-                                <br />
-                                Ahora, aquí está la tare: debes ir a las dos barras de abajo y seleccionar en cada una tú definición, sabiendo a que se refieren, que consideres que pertenece o se relacionan con esa emoción. Cada emoción está relacionada con por lo menos dos de las definiciones que has nombrado. Una vez lo selecciones, darle al botón de “Validar” para comprobar tu respuesta.`}
+                                <br /><br />
+                                Ahora, aquí está la tarea: debes ir a las dos barras de abajo y seleccionar en cada una tú definición, sabiendo a que se refieren, que consideres que pertenece o se relacionan con esa emoción. Cada emoción está relacionada con por lo menos dos de las definiciones que has nombrado. Una vez lo selecciones, darle al botón de “Validar” para comprobar tu respuesta.`}
                             actividadSrc={imgGanso.lupa_celular}
                             tipText={"Cuando tengas la respuesta correcta de una emoción, vuelve a girar la rueda y repite el ejercicio hasta que no quede ya ninguna emoción en la ruleta. No te preocupes, despues de 5 segundos la opción seleccionada aleatoriamente se eliminará automaticamente."}
                         />
@@ -168,7 +172,7 @@ const RuletaEmociones = () => {
                                         <option value="-1" disabled>Definicion 1</option>
 
                                         {definicionesUsuario?.map(({ definicion_usuario, definicion }, i) => {
-                                            return definicion !== answer.definicion2Id ?
+                                        return definicion !== parseInt(answer.definicion2Id) ?
                                                 <option value={definicion} key={`definicion_usuario1-${i}`}> {definicion_usuario} </option> : <></>
                                         }
                                         )
@@ -179,7 +183,7 @@ const RuletaEmociones = () => {
                                     <Form.Select defaultValue={'-1'} className="mb-4" name="definicion2Id" key={`definicion2_size_${definicionesUsuario.length}`} onChange={handleChange}>
                                         <option value="-1" disabled>Definicion 2</option>
                                         {definicionesUsuario?.map(({ definicion_usuario, definicion }, i) => {
-                                            return definicion !== answer.definicion1Id ?
+                                            return definicion != answer.definicion1Id ?
                                                 <option value={definicion} key={`definicion_usuario2-${i}`} > {definicion_usuario} </option> : <></>
                                         }
                                         )
