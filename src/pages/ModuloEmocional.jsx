@@ -172,7 +172,6 @@ const ModuloEmocional = () => {
                                     className=' btn-backNext-relax btn-radius btn-lg d-flex justify-content-center align-items-center'
                                     onClick={cambioBotonAdelante}
                                     disabled={BotonState}
-                                    id="btn-main-next"
                                 >
                                     Siguiente <AiOutlineArrowRight color='white' size={18} className='ms-2' />
                                 </button>

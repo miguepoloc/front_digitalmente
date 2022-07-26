@@ -14,6 +14,8 @@ import { FetchContext } from '../../context/FetchContext'
 import { AuthContext } from '../../context/AuthContext'
 import { AvanceContext } from '../../context/AvanceContext'
 import { BotonContext } from '../../context/BotonContext'
+import { Actividad } from '../Dashboard/Actividad'
+import { imgGanso } from '../../helpers/helper_imagen_ganso'
 
 const Quimica = () => {
     const { setBotonState } = useContext(BotonContext);
@@ -385,7 +387,8 @@ const Quimica = () => {
                             </div>
                             <div>
                                 {retroPrimera && <div>
-                                    <p>{retroPrimera}</p>
+                                    <Actividad text={retroPrimera} title="" src={imgGanso.feliz_250x200} showIcon={false}/>
+                                    
                                 </div>
                                 }
                             </div>
@@ -480,7 +483,7 @@ const Quimica = () => {
                             </div>
                             <div>
                                 {retroSegunda && <div>
-                                    <p>{retroSegunda}</p>
+                                    <Actividad text={retroSegunda} title="" src={imgGanso.feliz_250x200} showIcon={false}/>
                                 </div>
                                 }
                             </div>
@@ -601,7 +604,7 @@ const Quimica = () => {
                             </div>
                             <div>
                                 {retroTercera && <div>
-                                    <p>{retroTercera}</p>
+                                    <Actividad text={retroTercera} title="" src={imgGanso.feliz_250x200} showIcon={false}/>
                                 </div>
                                 }
                             </div>
