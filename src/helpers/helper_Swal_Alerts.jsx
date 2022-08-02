@@ -93,8 +93,8 @@ export const ErrorAlertSiNo = (
         showCancelButton: true,
         showConfirmButton: true,
         confirmButtonColor: btnConfirmcolor,
-        confirmButtonText: 'Si!',
-        cancelButtonText: 'No!',
+        confirmButtonText: '¡Sí!',
+        cancelButtonText: '¡No!',
         focusConfirm: true
     })
 }

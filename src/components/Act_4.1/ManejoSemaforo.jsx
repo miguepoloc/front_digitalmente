@@ -9,6 +9,8 @@ import * as Yup from 'yup'
 import { useParams } from 'react-router-dom'
 import { BotonContext } from '../../context/BotonContext'
 import { AvanceContext } from '../../context/AvanceContext'
+import { Actividad } from '../Dashboard/Actividad'
+import { imgGanso } from '../../helpers/helper_imagen_ganso'
 
 const Schema = Yup.object().shape({
     Texto1: Yup.string()
@@ -55,6 +57,7 @@ const ManejoSemaforo = () => {
     useEffect(() => { setColorSelect(color) }, [])
 
     const [activityIndex, setActivityIndex] = useState(0)
+    const [Intentos, setIntentos] = useState(0)
 
     return (
 
@@ -118,6 +121,7 @@ const ManejoSemaforo = () => {
                         ) {
                             //console.log('Está correcto')
                             resetForm()
+                            setIntentos(0)
                             Correct_Alert(section4_2.titleSuccess, section4_2.successMsg).then(function () {
                                 if (activityIndex + 1 < cantidad) {
                                     setActivityIndex(activityIndex + 1)
@@ -129,6 +133,9 @@ const ManejoSemaforo = () => {
                             })
                         } else {
                             ErrorAlert(section4_2.titleError, section4_2.errorMsg)
+
+                            // TODO: Intentos
+                            setIntentos(Intentos + 1)
                             //console.log('Equivocado')
                         }
 
@@ -344,6 +351,13 @@ const ManejoSemaforo = () => {
                                         : null}
                                 </div>
                             </div>
+
+                            {Intentos > 1 && (
+                                <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
+                                    text={`La situación a la que hace referencia el ejercicio es <b>${section4_2.activities[activityIndex].situacion[activityIndex].option}</b> Dado eso el orden del semáforo como lo muestran los cuadros es <b>${section4_2.activities[activityIndex].color1}, ${section4_2.activities[activityIndex].color2} y ${section4_2.activities[activityIndex].color3}.</b> Y la emoción que está pasando la persona es <b>${section4_2.activities[activityIndex].emocionvalida}</b>. Revisa un momento los cuadros de situación antes de pasar a la siguiente para ver el sentido de los colores. También reflexiona sobre el tema e intenta responder a las preguntas de abajo si no lo has hecho.`}
+                                    showIcon={false} />)
+                            }
+
                             {
                                 <div className="mt-4 mb-4 text-center">
                                     <button

@@ -144,12 +144,12 @@ export const ResolucionProblemas = () => {
                             setBotonState(false)
                         } else {
                             let respuestasCorrectas = "";
-                            respuestasCorrectas += values.pregunta1? `<span style="color:#42ab49;">*Gestión de tiempo</span><br/>`:"";
-                            respuestasCorrectas += values.pregunta3? `<span style="color:#42ab49;">*Técnicas de estudio</span><br/>`:"";
-                            respuestasCorrectas += values.pregunta4? `<span style="color:#42ab49;">*Autoconfianza</span><br/>`:"";
-                            respuestasCorrectas += values.pregunta7? `<span style="color:#42ab49;">*Mejorar su alimentación</span><br/>`:"";
-                            
-                            respuestasCorrectas = respuestasCorrectas ===""?`<span style="color:#5086c1;">*No has seleccionado ninguna respuesta correcta</span><br/>` : `Estas son tus respuestas correctas
+                            respuestasCorrectas += values.pregunta1 ? `<span style="color:#42ab49;">*Gestión de tiempo</span><br/>` : "";
+                            respuestasCorrectas += values.pregunta3 ? `<span style="color:#42ab49;">*Técnicas de estudio</span><br/>` : "";
+                            respuestasCorrectas += values.pregunta4 ? `<span style="color:#42ab49;">*Autoconfianza</span><br/>` : "";
+                            respuestasCorrectas += values.pregunta7 ? `<span style="color:#42ab49;">*Mejorar su alimentación</span><br/>` : "";
+
+                            respuestasCorrectas = respuestasCorrectas === "" ? `<span style="color:#5086c1;">*No has seleccionado ninguna respuesta correcta</span><br/>` : `Estas son tus respuestas correctas
                             <br/>
                             <br/> ${respuestasCorrectas}`;
 
@@ -157,11 +157,11 @@ export const ResolucionProblemas = () => {
                             ${respuestasCorrectas}
                             </br>
                             ¿Quieres intentarlo nuevamente?
-                            `).then(({isDismissed})=>{
+                            `).then(({ isDismissed }) => {
 
-                                if(isDismissed){
+                                if (isDismissed) {
                                     SendOkAlert("Estas son las respuestas correctas",
-                                    `
+                                        `
                                     <span style="color:#42ab49;">*Gestión de tiempo</span><br/>
                                     <span style="color:#42ab49;">*Técnicas de estudio</span><br/>
                                     <span style="color:#42ab49;">*Autoconfianza</span><br/>
