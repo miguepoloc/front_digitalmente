@@ -76,6 +76,29 @@ export const ErrorAlert = (
     })
 }
 
+export const ErrorAlertSiNo = (
+    title = '<strong>Uhm.. algo ha salido mal</strong>',
+    htmlText = '¿Porque no intentas otra vez?',
+    alt = 'Algo ha salido mal',
+    btnConfirmcolor = colorTheme
+) => {
+    return Swal.fire({
+        title: title,
+        imageUrl: imgGanso.stop_250x200, // Corregir xd
+        imageWidth: 250,
+        imageHeight: 200,
+        imageAlt: alt,
+        html: htmlText,
+        showCloseButton: false,
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonColor: btnConfirmcolor,
+        confirmButtonText: 'Si!',
+        cancelButtonText: 'No!',
+        focusConfirm: true
+    })
+}
+
 export const SendAlert = (
     title = '<strong>Enviando...</strong>',
     htmlText = '',

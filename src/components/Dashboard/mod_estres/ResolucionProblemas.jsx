@@ -7,7 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Box, CardActionArea, Checkbox, FormControlLabel } from '@mui/material';
 import { Formik, Form } from 'formik'
-import { Correct_Alert, ErrorAlert } from '../../../helpers/helper_Swal_Alerts';
+import { Correct_Alert, ErrorAlert, ErrorAlertSiNo, SendOkAlert } from '../../../helpers/helper_Swal_Alerts';
 import { BotonContext } from '../../../context/BotonContext'
 import Axios from 'axios'
 
@@ -34,6 +34,7 @@ export const ResolucionProblemas = () => {
     const { authState } = useContext(AuthContext)
     const { userInfo } = authState
     const [dataAvance, setdataAvance] = useState(false);
+    //const [intentos, setIntentos] = useState(1);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -115,8 +116,6 @@ export const ResolucionProblemas = () => {
                 </div>
             </div>
 
-
-
             <Formik
                 initialValues={ValoresIniciales}
 
@@ -144,8 +143,36 @@ export const ResolucionProblemas = () => {
                             Correct_Alert("¡Excelente!", "Me agrada que estés conectado con Cristopher, ahora puedes continuar con las siguientes actividades.")
                             setBotonState(false)
                         } else {
-                            ErrorAlert("¡Estás cerca!", "Revisa algunas de las opciones seleccionadas e intenta de nuevo.")
-                            console.log('Equivocado')
+                            let respuestasCorrectas = "";
+                            respuestasCorrectas += values.pregunta1? `<span style="color:#42ab49;">*Gestión de tiempo</span><br/>`:"";
+                            respuestasCorrectas += values.pregunta3? `<span style="color:#42ab49;">*Técnicas de estudio</span><br/>`:"";
+                            respuestasCorrectas += values.pregunta4? `<span style="color:#42ab49;">*Autoconfianza</span><br/>`:"";
+                            respuestasCorrectas += values.pregunta7? `<span style="color:#42ab49;">*Mejorar su alimentación</span><br/>`:"";
+                            
+                            respuestasCorrectas = respuestasCorrectas ===""?`<span style="color:#5086c1;">*No has seleccionado ninguna respuesta correcta</span><br/>` : `Estas son tus respuestas correctas
+                            <br/>
+                            <br/> ${respuestasCorrectas}`;
+
+                            ErrorAlertSiNo("¡Estás cerca!", `
+                            ${respuestasCorrectas}
+                            </br>
+                            ¿Quieres intentarlo nuevamente?
+                            `).then(({isDismissed})=>{
+
+                                if(isDismissed){
+                                    SendOkAlert("Estas son las respuestas correctas",
+                                    `
+                                    <span style="color:#42ab49;">*Gestión de tiempo</span><br/>
+                                    <span style="color:#42ab49;">*Técnicas de estudio</span><br/>
+                                    <span style="color:#42ab49;">*Autoconfianza</span><br/>
+                                    <span style="color:#42ab49;">*Mejorar su alimentación</span><br/>
+                                    <br/>
+                                    Si no pudiste descifrarlas no te preocupes, la idea es que podamos aprender de este ejercicio!
+                                    `
+                                    )
+                                }
+                            })
+                            setBotonState(false)
                         }
 
                     }
@@ -361,7 +388,7 @@ export const ResolucionProblemas = () => {
                                                 checked={values.pregunta7}
                                                 onChange={handleChange}
                                                 control={<Checkbox />}
-                                                label="Pautas de autocuidado  "
+                                                label="Mejorar su alimentación"
                                                 id="pregunta7"
                                                 name="pregunta7"
                                                 labelPlacement="start"

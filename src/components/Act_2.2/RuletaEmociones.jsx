@@ -49,10 +49,8 @@ const RuletaEmociones = () => {
 
 
     const isAnswerCorrect = () => {
-        console.log(answer.emocionId,answer.definicion1Id,answer.definicion2Id,emociones)
         if (answer.emocionId !== -1 && answer.definicion1Id !== -1 && answer.definicion2Id !== -1) {
             const emocion = searchEmocion(answer.emocionId);
-            console.log("🚀 ~ file: RuletaEmociones.jsx ~ line 54 ~ isAnswerCorrect ~ emocion", emocion)
             if (emocion) {
                 if (validateDefinicion(emocion, answer.definicion1Id) && validateDefinicion(emocion, answer.definicion2Id)) {
                     removeSelectedEmocion();
@@ -73,7 +71,6 @@ const RuletaEmociones = () => {
                     ErrorAlert("Lo siento. No parece ser correcto.", "Recuerda a que hacen referencia esas definiciones que colocaste y relaciónalo con la función de la emoción que te ha tocado. No olvides presionar el botón azul “Remove” para ir quitando cada emoción a medida que vayas resolviendo.");
                 }
             } else {
-                console.log(emocion)
                 ErrorAlert("Ups algo ha salido mal.", "Parece que has dejado una o varias opcion en blanco");
             }
         } else {
