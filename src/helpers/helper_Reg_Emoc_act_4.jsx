@@ -70,8 +70,7 @@ export const section4_2 = {
                 { option: 'Sorpresa', isCorrect: false },
                 { option: 'Miedo', isCorrect: false },
                 { option: 'Asco', isCorrect: false }
-            ],
-            emocionvalida: 'Ira'
+            ]
         },
         {
             name: 'Ejercicio 2',
@@ -95,8 +94,7 @@ export const section4_2 = {
                 { option: 'Sorpresa', isCorrect: false },
                 { option: 'Miedo', isCorrect: true },
                 { option: 'Asco', isCorrect: false }
-            ],
-            emocionvalida: 'Miedo'
+            ]
         },
         {
             name: 'Ejercicio 3',
@@ -120,8 +118,7 @@ export const section4_2 = {
                 { option: 'Sorpresa', isCorrect: false },
                 { option: 'Miedo', isCorrect: false },
                 { option: 'Asco', isCorrect: false }
-            ],
-            emocionvalida: 'Alegría'
+            ]
         },
         {
             name: 'Ejercicio 4',
@@ -145,8 +142,7 @@ export const section4_2 = {
                 { option: 'Sorpresa', isCorrect: false },
                 { option: 'Miedo', isCorrect: false },
                 { option: 'Asco', isCorrect: false }
-            ],
-            emocionvalida: 'Tristeza'
+            ]
         }
     ]
 }

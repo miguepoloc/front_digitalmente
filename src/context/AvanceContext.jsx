@@ -11,7 +11,6 @@ const AvanceProvider = ({ children }) => {
     const { authState } = useContext(AuthContext)
     // Guarda los datos del usuarios en una variable
     const { userInfo } = authState
-    console.log(userInfo)
     // Crea un estado para guardar los datos del avance
     const [AvanceState, setAvanceState] = useState(false)
 

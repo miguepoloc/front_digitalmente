@@ -353,8 +353,9 @@ const ManejoSemaforo = () => {
                             </div>
 
                             {Intentos > 1 && (
+
                                 <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
-                                    text={`La situación a la que hace referencia el ejercicio es <b>${section4_2.activities[activityIndex].situacion[activityIndex].option}</b> Dado eso el orden del semáforo como lo muestran los cuadros es <b>${section4_2.activities[activityIndex].color1}, ${section4_2.activities[activityIndex].color2} y ${section4_2.activities[activityIndex].color3}.</b> Y la emoción que está pasando la persona es <b>${section4_2.activities[activityIndex].emocionvalida}</b>. Revisa un momento los cuadros de situación antes de pasar a la siguiente para ver el sentido de los colores. También reflexiona sobre el tema e intenta responder a las preguntas de abajo si no lo has hecho.`}
+                                    text={`La situación a la que hace referencia el ejercicio es <b>${section4_2.activities[activityIndex].situacion.filter((fl) => fl.isCorrect === true)[0].option}</b> Dado eso el orden del semáforo como lo muestran los cuadros es <b>${section4_2.activities[activityIndex].color1}, ${section4_2.activities[activityIndex].color2} y ${section4_2.activities[activityIndex].color3}.</b> Y la emoción que está pasando la persona es <b>${section4_2.activities[activityIndex].emocion.filter((fl) => fl.isCorrect === true)[0].option}</b>. Revisa un momento los cuadros de situación antes de pasar a la siguiente para ver el sentido de los colores. También reflexiona sobre el tema e intenta responder a las preguntas de abajo si no lo has hecho.`}
                                     showIcon={false} />)
                             }
 

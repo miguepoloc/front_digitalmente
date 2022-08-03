@@ -16,6 +16,7 @@ import { AvanceContext } from '../../context/AvanceContext'
 import { BotonContext } from '../../context/BotonContext'
 import { Actividad } from '../Dashboard/Actividad'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
+import { Loading } from '../Loading'
 
 const Quimica = () => {
     const { setBotonState } = useContext(BotonContext);
@@ -30,6 +31,8 @@ const Quimica = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [AvanceState])
     const { authAxios } = useContext(FetchContext)
+    const [Intentos, setIntentos] = useState(0)
+    const [loading, setLoading] = useState(true);
 
     const [retroPrimera, setRetroPrimera] = useState(null)
     const [retroSegunda, setRetroSegunda] = useState(null)
@@ -75,22 +78,26 @@ const Quimica = () => {
             "emocion2": '8',//miedo
             "nivel2": "bajo",
             "no_ambas": "¡Uf! Ya estas casi cerca. Revisa una de las definiciones que colocaste o en el nivel en que lo pusiste. Recuerda las manifestaciones asociadas a la emoción general a la que pertenece.",
-            "ok_ambas": "¡Excelente! Si eres demasiado optimista, puedes terminar pensando que puedes estudiar después o no lo necesitas y luego descubrir luego que no te queda tiempo, causándote estrés. Al mismo tiempo, demasiado miedo podría terminar inmovilizándote, percibiendo el peligro como inmanejable para intentar algo, pero un nivel bajo te permite tener presente lo que debes hacer y mantenerte al tanto."
+            "ok_ambas": "¡Excelente! Si eres demasiado optimista, puedes terminar pensando que puedes estudiar después o no lo necesitas y luego descubrir luego que no te queda tiempo, causándote estrés. Al mismo tiempo, demasiado miedo podría terminar inmovilizándote, percibiendo el peligro como inmanejable para intentar algo, pero un nivel bajo te permite tener presente lo que debes hacer y mantenerte al tanto.",
+            "mensaje": "si eres demasiado optimista, puedes terminar pensando que puedes estudiar después o no lo necesitas y luego descubrir luego que no te queda tiempo, causándote estrés. Al mismo tiempo, demasiado miedo podría terminar inmovilizándote, percibiendo el peligro como inmanejable para intentar algo, pero un nivel bajo te permite tener presente lo que debes hacer y mantenerte al tanto."
         },
         "situacion2": {
             "emocion2": '3',//Entusiasmo
             "nivel2": "medio",
             "nivel22": "alto",
             "no_ambas": "¡Uf! Ya estas casi cerca. Revisa la definición que colocaste o en el nivel en que lo pusiste. Recuerda las manifestaciones asociadas a la emoción general a la que pertenece. ",
-            "ok_ambas": "¡Excelente! Las expresiones emocionales asociadas a la alegría pueden potenciar la creatividad y una mayor disposición a resolver problemas. Un buen nivel de entusiasmo puede darte lo necesario para ideas para el regalo de tu amigo/a."
+            "ok_ambas": "¡Excelente! Las expresiones emocionales asociadas a la alegría pueden potenciar la creatividad y una mayor disposición a resolver problemas. Un buen nivel de entusiasmo puede darte lo necesario para ideas para el regalo de tu amigo/a.",
+            "mensaje": "las expresiones emocionales asociadas a la alegría pueden potenciar la creatividad y una mayor disposición a resolver problemas. Un buen nivel de entusiasmo puede darte lo necesario para ideas para el regalo de tu amigo/a.",
         },
         "situacion3": {
             "emocion3": '4', //frustracion
             "nivel3": "medio",
             "accion3": '2',
+            "accionValid": "Expresar tu opinión de manera firme y con respeto.",
             "no_nivel_emocion": "¡Uf! Ya estas casi cerca. Revisa la definición que colocaste o en el nivel en que lo pusiste. Recuerda las manifestaciones asociadas a la emoción general a la que pertenece. ",
             "no_accion": "¡Uf! Ya estas casi cerca. Revisa esa acción que decidiste. ¿No crees que te traería más impacto para ti o las consecuencias alrededor?",
-            "ok_ambas": "¡Muy bien! Si te frustras demasiado, la activación podría provocarte no solo malestar, sino que, dependiendo de tu carácter, situación y otros factores, puede que llegue la situación a un punto bastante negativo. Un nivel de activación medio, que te permite movilizarte y ser asertivo (expresarte de manera firme y con respeto) terminan siendo factores importantes para ayudarte a manejar esas situaciones sin que termine teniendo un impacto negativo para ti ni para otros."
+            "ok_ambas": "¡Muy bien! Si te frustras demasiado, la activación podría provocarte no solo malestar, sino que, dependiendo de tu carácter, situación y otros factores, puede que llegue la situación a un punto bastante negativo. Un nivel de activación medio, que te permite movilizarte y ser asertivo (expresarte de manera firme y con respeto) terminan siendo factores importantes para ayudarte a manejar esas situaciones sin que termine teniendo un impacto negativo para ti ni para otros.",
+            "mensaje": "si te frustras demasiado, la activación podría provocarte no solo malestar, sino que, dependiendo de tu carácter, situación y otros factores, puede que llegue la situación a un punto bastante negativo. Un nivel de activación medio, que te permite movilizarte y ser asertivo (expresarte de manera firme y con respeto) terminan siendo factores importantes para ayudarte a manejar esas situaciones sin que termine teniendo un impacto negativo para ti ni para otros.",
 
         }
     }
@@ -171,449 +178,468 @@ const Quimica = () => {
             if (response !== null) {
                 setEmociones(response)
             }
+            setLoading(false)
         }
         fetchData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
+    console.log(emociones)
+
+    useEffect(() => {
+        if (emociones) {
+            console.log(emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion1.emocion1))[0].definicion_usuario)
+        }
+    }, [emociones])
+
 
     const color = '#fc8890'
     return (
         <div className="container">
-            <div className="row">
-                <div className="col">
-                    <div className="card flex-md-row mb-2 box-shadow h-md-250 px-4  py-4 mt-3 ">
-                        <img
-                            style={{ width: '150px', height: '150px' }}
-                            className="card-img-left flex-auto d-block "
-                            src={ganso_celular}
-                            alt="ganso celular"
-                        />
-                        <div className="card-body d-flex flex-column align-items-start justify-content-center">
-                            <h5 className="card-title">Actividad 3.1</h5>
-                            <p className="card-text">
-                                ¡Ya tenemos las bases para la identificación de las emociones y su comprensión a partir de darles nombre de acuerdo a lo que vivimos! Ahora hay que analizar cómo nos impactan en nuestro día a día. ¿Las emociones en determinados niveles pueden influir en nuestras acciones? ¡Claro que sí! Y es justo lo que nos pondrá a pensar el siguiente ejercicio.
-                            </p>
-                            <p className="card-text">
-                                A continuación, veras un cuadro describiendo una situación. El objetivo del ejercicio es que selecciones de la lista de emociones, las mismas que ya nombraste, cual consideras que podrían ayudarte en esa situación. Puede ser una o dos emociones máximo que elijas, pero, aquí un punto importante: debajo de esto debes indicar en qué nivel consideras que podría ayudar. No es lo mismo a que tengas ira en un nivel bajo a un nivel alto. Luego, escribe brevemente porque crees que esa emoción o emociones podrían ayudar. ¡Adelante!
-                            </p>
+            {loading ? (<Loading />) : (
+                <>
+                    <div className="row">
+                        <div className="col">
+                            <div className="card flex-md-row mb-2 box-shadow h-md-250 px-4  py-4 mt-3 ">
+                                <img
+                                    style={{ width: '150px', height: '150px' }}
+                                    className="card-img-left flex-auto d-block "
+                                    src={ganso_celular}
+                                    alt="ganso celular"
+                                />
+                                <div className="card-body d-flex flex-column align-items-start justify-content-center">
+                                    <h5 className="card-title">Actividad 3.1</h5>
+                                    <p className="card-text">
+                                        ¡Ya tenemos las bases para la identificación de las emociones y su comprensión a partir de darles nombre de acuerdo a lo que vivimos! Ahora hay que analizar cómo nos impactan en nuestro día a día. ¿Las emociones en determinados niveles pueden influir en nuestras acciones? ¡Claro que sí! Y es justo lo que nos pondrá a pensar el siguiente ejercicio.
+                                    </p>
+                                    <p className="card-text">
+                                        A continuación, verás un cuadro describiendo una situación. El objetivo del ejercicio es que selecciones de la lista de emociones, las mismas que ya nombraste, cual consideras que podrían ayudarte en esa situación. Puede ser una o dos emociones máximo que elijas, pero, aquí un punto importante: debajo de esto debes indicar en qué nivel consideras que podría ayudar. No es lo mismo a que tengas ira en un nivel bajo a un nivel alto. Luego, escribe brevemente porque crees que esa emoción o emociones podrían ayudar. ¡Adelante!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="w-100"></div>
+                        <div className="col">
+                            <div
+                                className="callout mb-5  h-md-250 "
+                                style={{ borderLeftColor: color }}
+                            >
+                                <h5 style={{ color: color }}>
+                                    Tip importante:
+                                </h5>
+
+                                <p>
+                                    Cada ejercicio te indicara si es así si debes usar una o dos emociones.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="w-100"></div>
-                <div className="col">
-                    <div
-                        className="callout mb-5  h-md-250 "
-                        style={{ borderLeftColor: color }}
+
+                    <Formik
+                        initialValues={{
+                            Emocion1: '',
+                            Emocion12: '',
+                            Nivel1: '',
+                            Nivel12: '',
+                            Respuesta1: '',
+                            Emocion2: '',
+                            Nivel2: '',
+                            Respuesta2: '',
+                            Emocion3: '',
+                            Nivel3: '',
+                            Accion3: '',
+                            Respuesta3: '',
+                        }}
+                        validationSchema={Schema}
+                        onSubmit={(values) => {
+                            console.log(values)
+                        }}
                     >
-                        <h5 style={{ color: color }}>
-                            Tip importante:
-                        </h5>
-
-                        <p>
-                            Cada ejercicio te indicara si es así si debes usar una o dos emociones.
-                        </p>
-                    </div>
-                </div>
-            </div>
 
 
+                        {({ errors, values, touched, handleChange, setFieldValue }) => (
+                            <Form>
 
+                                <div className="row m-4">
 
-
-
-
-            <Formik
-                initialValues={{
-                    Emocion1: '',
-                    Emocion12: '',
-                    Nivel1: '',
-                    Nivel12: '',
-                    Respuesta1: '',
-                    Emocion2: '',
-                    Nivel2: '',
-                    Respuesta2: '',
-                    Emocion3: '',
-                    Nivel3: '',
-                    Accion3: '',
-                    Respuesta3: '',
-                }}
-                validationSchema={Schema}
-                onSubmit={(values) => {
-                    console.log(values)
-                }}
-            >
-
-
-                {({ errors, values, touched, handleChange, setFieldValue }) => (
-                    <Form>
-
-                        <div className="row m-4">
-
-                            <div className="col">
-                                <div className="row">
-                                    <div className="col-lg-7 col-md-12 col-12 my-auto my-auto">
-                                        <div className="d-flex align-middle">
-                                            <img
-                                                style={{ width: "100%" }}
-                                                className="card-img-left  justify-content-center align-self-center "
-                                                src={situacion1}
-                                                alt="situacion1"
-                                            />
-                                        </div>
-                                    </div>
                                     <div className="col">
-                                        <div className="row text-center my-3 align-items-center">
-                                            <b>Coloca las emociones</b>
-                                        </div>
+                                        <div className="row">
+                                            <div className="col-lg-7 col-md-12 col-12 my-auto my-auto">
+                                                <div className="d-flex align-middle">
+                                                    <img
+                                                        style={{ width: "100%" }}
+                                                        className="card-img-left  justify-content-center align-self-center "
+                                                        src={situacion1}
+                                                        alt="situacion1"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="col">
+                                                <div className="row text-center my-3 align-items-center">
+                                                    <b>Coloca las emociones</b>
+                                                </div>
 
-                                        <div className="row text-center align-items-center">
-                                            <div className='col-md-6 mb-1 mb-md-0' >
-                                                <div>
-                                                    <Field as='select' name="Emocion1" className="form-select" value={values.Emocion1 || ''}
-                                                        onChange={handleChange}
-                                                    >
-                                                        <option value="" disabled>Escoge una emocion</option>
-
-                                                        {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
-
-                                                            <option key={definicion} value={definicion}>{definicion_usuario}</option>
-
-                                                        )}
-                                                    </Field>
-                                                    {errors.Emocion1 && touched.Emocion1
-                                                        ? (
-                                                            <div
-                                                                style={{ color: 'red' }}
+                                                <div className="row text-center align-items-center">
+                                                    <div className='col-md-6 mb-1 mb-md-0' >
+                                                        <div>
+                                                            <Field as='select' name="Emocion1" className="form-select" value={values.Emocion1 || ''}
+                                                                onChange={handleChange}
                                                             >
-                                                                {errors.Emocion1}
-                                                            </div>
-                                                        )
-                                                        : null}
-                                                </div>
-                                            </div>
-                                            <div className='col-md-6 mb-1 mb-md-0' >
-                                                <div>
-                                                    <Field name="Emocion12" as="select" className="form-select" value={values.Emocion12 || ''}
-                                                        onChange={handleChange}
-                                                    >
-                                                        <option value="" disabled>Escoge una emocion</option>
+                                                                <option value="" disabled>Escoge una emocion</option>
 
-                                                        {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
+                                                                {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
 
-                                                            <option key={definicion} value={definicion}>{definicion_usuario}</option>
+                                                                    <option key={definicion} value={definicion}>{definicion_usuario}</option>
 
-                                                        )}
-                                                    </Field>
-                                                    {errors.Emocion12 && touched.Emocion12
-                                                        ? (
-                                                            <div
-                                                                style={{ color: 'red' }}
-                                                            >
-                                                                {errors.Emocion12}
-                                                            </div>
-                                                        )
-                                                        : null}
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div className="row text-center mt-3 align-items-center">
-                                            <b>*Se requieren dos Emociones</b>
-                                        </div>
-
-
-                                        <div className="row text-center align-items-center">
-                                            <div className='col-md-6 mb-md-0' >
-                                                <ReactSpeedometer
-                                                    width={200}
-                                                    height={160}
-                                                    needleHeightRatio={0.7}
-                                                    value={getNivel(values.Nivel1)}
-                                                    segments={3}
-                                                    segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
-                                                    currentValueText={"Selecciona un nivel"}
-                                                    maxSegmentLabels={0}
-                                                    ringWidth={47}
-                                                    needleTransitionDuration={1500}
-                                                    needleTransition="easeElastic"
-                                                    needleColor={'#333333'}
-                                                    textColor={'#000000'}
-                                                    style={{ marginBottom: '-50px' }}
-                                                />
-                                                <div style={{ marginTop: '-2em' }} className="mx-auto">
-                                                    <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel1", "alto")} >Alto </Button>
-                                                    <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel1", "medio")} >Medio </Button>
-                                                    <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel1", "bajo")} >Bajo </Button>
-                                                </div>
-                                            </div>
-                                            <div className='col-md-6 mb-md-0' >
-                                                <ReactSpeedometer
-                                                    width={200}
-                                                    height={160}
-                                                    needleHeightRatio={0.7}
-                                                    value={getNivel(values.Nivel12)}
-                                                    segments={3}
-                                                    segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
-                                                    currentValueText={"Selecciona un nivel"}
-                                                    maxSegmentLabels={0}
-                                                    ringWidth={47}
-                                                    needleTransitionDuration={1500}
-                                                    needleTransition="easeElastic"
-                                                    needleColor={'#333333'}
-                                                    textColor={'#000000'}
-
-
-                                                />
-
-                                                <div style={{ marginTop: '-2em' }} className="mx-auto">
-                                                    <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel12", "alto")} >Alto </Button>
-                                                    <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel12", "medio")} >Medio </Button>
-                                                    <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel12", "bajo")} >Bajo </Button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row text-center align-items-center">
-                                            <p>¿Porque considera que estas  emociones te serian de ayuda?</p>
-                                            <Field name="Respuesta1" as="textarea" rows="3" className="form-control" />
-                                        </div>
-                                        <div className="row mt-4">
-                                            <Button name="situacion1" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }} >Validar </Button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                {retroPrimera && <div>
-                                    <Actividad text={retroPrimera} title="" src={imgGanso.feliz_250x200} showIcon={false}/>
-                                    
-                                </div>
-                                }
-                            </div>
-
-                        </div>
-
-                        <div className="row m-4">
-                            <div className="col">
-                                <div className="row">
-                                    <div className="col-lg-7 col-md-12 col-12 my-auto">
-                                        <div className="d-flex align-middle">
-                                            <img
-                                                style={{ width: "100%" }}
-                                                className="card-img-left  justify-content-center align-self-center "
-                                                src={situacion2}
-                                                alt="situacion2"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="col">
-                                        <div className="row text-center my-3 align-items-center">
-                                            <b>Coloca la emocion</b>
-                                        </div>
-
-                                        <div className="row text-center align-items-center">
-                                            <div >
-                                                <Field as='select' name="Emocion2" className="form-select" value={values.Emocion2 || ''}
-                                                    onChange={handleChange}
-                                                >
-                                                    <option value="" disabled>Escoge una emocion</option>
-
-                                                    {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
-
-                                                        <option key={definicion} value={definicion}>{definicion_usuario}</option>
-
-                                                    )}
-                                                </Field>
-                                                {errors.Emocion2 && touched.Emocion2
-                                                    ? (
-                                                        <div
-                                                            style={{ color: 'red' }}
-                                                        >
-                                                            {errors.Emocion2}
+                                                                )}
+                                                            </Field>
+                                                            {errors.Emocion1 && touched.Emocion1
+                                                                ? (
+                                                                    <div
+                                                                        style={{ color: 'red' }}
+                                                                    >
+                                                                        {errors.Emocion1}
+                                                                    </div>
+                                                                )
+                                                                : null}
                                                         </div>
-                                                    )
-                                                    : null}
-                                            </div>
-
-
-                                        </div>
-
-                                        <div className="row text-center mt-3 align-items-center">
-                                            <b>*Se requiere una Emocion</b>
-                                        </div>
-
-
-                                        <div className="row text-center align-items-center">
-                                            <div className='col' >
-                                                <ReactSpeedometer
-                                                    width={200}
-                                                    height={160}
-                                                    needleHeightRatio={0.7}
-                                                    value={getNivel(values.Nivel2)}
-                                                    segments={3}
-                                                    segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
-                                                    currentValueText={"Selecciona un nivel"}
-                                                    maxSegmentLabels={0}
-                                                    ringWidth={47}
-                                                    needleTransitionDuration={1500}
-                                                    needleTransition="easeElastic"
-                                                    needleColor={'#333333'}
-                                                    textColor={'#000000'}
-                                                />
-                                                <div style={{ marginTop: '-2em' }} className="mx-auto">
-                                                    <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel2", "alto")} >Alto </Button>
-                                                    <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel2", "medio")} >Medio </Button>
-                                                    <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel2", "bajo")} >Bajo </Button>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                        <div className="row text-center mt-4 align-items-center">
-                                            <p>¿Porque considera que estas emocion te seria de ayuda?</p>
-                                            <Field name="Respuesta2" as="textarea" rows="3" className="form-control" />
-                                        </div>
-                                        <div className="row mt-4">
-                                            <Button name="situacion2" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }}>Validar </Button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                {retroSegunda && <div>
-                                    <Actividad text={retroSegunda} title="" src={imgGanso.feliz_250x200} showIcon={false}/>
-                                </div>
-                                }
-                            </div>
-
-                        </div>
-
-                        <div className='row my-5 text-center'>
-                            <b>Una pequeña adición: para esta situación es importante que analices que acción complementa la influencia de esa emoción que elijas. ¡Piénsalo bien!</b>
-                        </div>
-
-                        <div className="row m-4">
-                            <div className="col">
-                                <div className="row">
-                                    <div className="col-lg-7 col-md-12 col-12 my-auto">
-                                        <div className="d-flex align-middle">
-                                            <img
-                                                style={{ width: "100%" }}
-                                                className="card-img-left  justify-content-center align-self-center "
-                                                src={situacion3}
-                                                alt="situacion3"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="col">
-                                        <div className="row text-center my-3 align-items-center">
-                                            <b>Coloca la emocion</b>
-                                        </div>
-
-                                        <div className="row text-center align-items-center">
-                                            <div >
-                                                <Field as='select' name="Emocion3" className="form-select" value={values.Emocion3 || ''}
-                                                    onChange={handleChange}
-                                                >
-                                                    <option value="" disabled>Escoge una emocion</option>
-
-                                                    {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
-
-                                                        <option key={definicion} value={definicion}>{definicion_usuario}</option>
-
-                                                    )}
-                                                </Field>
-                                                {errors.Emocion3 && touched.Emocion3
-                                                    ? (
-                                                        <div
-                                                            style={{ color: 'red' }}
-                                                        >
-                                                            {errors.Emocion3}
-                                                        </div>
-                                                    )
-                                                    : null}
-                                            </div>
-
-                                        </div>
-
-                                        <div className="row text-center mt-3 align-items-center">
-                                            <b>*Se requiere una Emocion</b>
-                                        </div>
-
-
-                                        <div className="row text-center align-items-center">
-                                            <div className='col-md-6 mb-md-0' >
-                                                <ReactSpeedometer
-                                                    width={200}
-                                                    height={160}
-                                                    needleHeightRatio={0.7}
-                                                    value={getNivel(values.Nivel3)}
-                                                    segments={3}
-                                                    segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
-                                                    currentValueText={"Selecciona un nivel"}
-                                                    maxSegmentLabels={0}
-                                                    ringWidth={47}
-                                                    needleTransitionDuration={1500}
-                                                    needleTransition="easeElastic"
-                                                    needleColor={'#333333'}
-                                                    textColor={'#000000'}
-                                                />
-                                                <div style={{ marginTop: '-2em' }} className="mx-auto">
-                                                    <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel3", "alto")} >Alto </Button>
-                                                    <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel3", "medio")} >Medio </Button>
-                                                    <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel3", "bajo")} >Bajo </Button>
-                                                </div>
-
-                                            </div>
-                                            <div className='col-md-6 mb-md-0' >
-                                                <div>
-                                                    <b>¿Qué acción crees que
-                                                        deba acompañar esta emoción?</b>
-                                                    <Field as='select' name="Accion3" className="form-select" value={values.Accion3 || ''}
-                                                        onChange={handleChange}
-                                                    >
-                                                        <option value="" disabled>Escoge una accion</option>
-                                                        <option value="1" > Tumbar a la persona y sacarla de la fila.</option>
-                                                        <option value="2" > Expresar tu opinión de manera firme y con respeto.</option>
-                                                        <option value="3" > No decir nada y esperar que salga de la fila.</option>
-                                                    </Field>
-                                                    {errors.Accion3 && touched.Accion3
-                                                        ? (
-                                                            <div
-                                                                style={{ color: 'red' }}
+                                                    </div>
+                                                    <div className='col-md-6 mb-1 mb-md-0' >
+                                                        <div>
+                                                            <Field name="Emocion12" as="select" className="form-select" value={values.Emocion12 || ''}
+                                                                onChange={handleChange}
                                                             >
-                                                                {errors.Accion3}
-                                                            </div>
-                                                        )
-                                                        : null}
+                                                                <option value="" disabled>Escoge una emocion</option>
+
+                                                                {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
+
+                                                                    <option key={definicion} value={definicion}>{definicion_usuario}</option>
+
+                                                                )}
+                                                            </Field>
+                                                            {errors.Emocion12 && touched.Emocion12
+                                                                ? (
+                                                                    <div
+                                                                        style={{ color: 'red' }}
+                                                                    >
+                                                                        {errors.Emocion12}
+                                                                    </div>
+                                                                )
+                                                                : null}
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div className="row text-center mt-3 align-items-center">
+                                                    <b>*Se requieren dos Emociones</b>
+                                                </div>
+
+
+                                                <div className="row text-center align-items-center">
+                                                    <div className='col-md-6 mb-md-0' >
+                                                        <ReactSpeedometer
+                                                            width={200}
+                                                            height={160}
+                                                            needleHeightRatio={0.7}
+                                                            value={getNivel(values.Nivel1)}
+                                                            segments={3}
+                                                            segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
+                                                            currentValueText={"Selecciona un nivel"}
+                                                            maxSegmentLabels={0}
+                                                            ringWidth={47}
+                                                            needleTransitionDuration={1500}
+                                                            needleTransition="easeElastic"
+                                                            needleColor={'#333333'}
+                                                            textColor={'#000000'}
+                                                            style={{ marginBottom: '-50px' }}
+                                                        />
+                                                        <div style={{ marginTop: '-2em' }} className="mx-auto">
+                                                            <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel1", "alto")} >Alto </Button>
+                                                            <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel1", "medio")} >Medio </Button>
+                                                            <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel1", "bajo")} >Bajo </Button>
+                                                        </div>
+                                                    </div>
+                                                    <div className='col-md-6 mb-md-0' >
+                                                        <ReactSpeedometer
+                                                            width={200}
+                                                            height={160}
+                                                            needleHeightRatio={0.7}
+                                                            value={getNivel(values.Nivel12)}
+                                                            segments={3}
+                                                            segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
+                                                            currentValueText={"Selecciona un nivel"}
+                                                            maxSegmentLabels={0}
+                                                            ringWidth={47}
+                                                            needleTransitionDuration={1500}
+                                                            needleTransition="easeElastic"
+                                                            needleColor={'#333333'}
+                                                            textColor={'#000000'}
+
+
+                                                        />
+
+                                                        <div style={{ marginTop: '-2em' }} className="mx-auto">
+                                                            <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel12", "alto")} >Alto </Button>
+                                                            <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel12", "medio")} >Medio </Button>
+                                                            <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel12", "bajo")} >Bajo </Button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="row text-center align-items-center">
+                                                    <p>¿Porque considera que estas  emociones te serian de ayuda?</p>
+                                                    <Field name="Respuesta1" as="textarea" rows="3" className="form-control" />
+                                                </div>
+
+                                                <div className="row mt-4">
+                                                    <Button name="situacion1" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }} >Validar </Button>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div>
+                                        {/* {Intentos > 1 && ( */}
 
-                                        <div className="row text-center mt-4 align-items-center">
-                                            <p>¿Porque considera que estas  emociones te serian de ayuda?</p>
-                                            <Field name="Respuesta3" as="textarea" rows="3" className="form-control" />
+                                        <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
+                                            text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion1.emocion1))[0].definicion_usuario} - Nivel ${respuestas.situacion1.nivel1}</b> y un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion1.emocion2))[0].definicion_usuario} - Nivel ${respuestas.situacion1.nivel2}.</b> ¿Por qué? Verás, ${respuestas.situacion1.mensaje}`}
+                                            showIcon={false} />
+                                        {/* )} */}
+                                        {retroPrimera && <div>
+                                            <Actividad text={retroPrimera} title="" src={imgGanso.feliz_250x200} showIcon={false} />
+
                                         </div>
-                                        <div className="row mt-4">
-                                            <Button name="situacion3" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }} >Validar </Button>
+                                        }
+                                    </div>
+
+                                </div>
+
+                                <div className="row m-4">
+                                    <div className="col">
+                                        <div className="row">
+                                            <div className="col-lg-7 col-md-12 col-12 my-auto">
+                                                <div className="d-flex align-middle">
+                                                    <img
+                                                        style={{ width: "100%" }}
+                                                        className="card-img-left  justify-content-center align-self-center "
+                                                        src={situacion2}
+                                                        alt="situacion2"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="col">
+                                                <div className="row text-center my-3 align-items-center">
+                                                    <b>Coloca la emocion</b>
+                                                </div>
+
+                                                <div className="row text-center align-items-center">
+                                                    <div >
+                                                        <Field as='select' name="Emocion2" className="form-select" value={values.Emocion2 || ''}
+                                                            onChange={handleChange}
+                                                        >
+                                                            <option value="" disabled>Escoge una emocion</option>
+
+                                                            {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
+
+                                                                <option key={definicion} value={definicion}>{definicion_usuario}</option>
+
+                                                            )}
+                                                        </Field>
+                                                        {errors.Emocion2 && touched.Emocion2
+                                                            ? (
+                                                                <div
+                                                                    style={{ color: 'red' }}
+                                                                >
+                                                                    {errors.Emocion2}
+                                                                </div>
+                                                            )
+                                                            : null}
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div className="row text-center mt-3 align-items-center">
+                                                    <b>*Se requiere una Emocion</b>
+                                                </div>
+
+
+                                                <div className="row text-center align-items-center">
+                                                    <div className='col' >
+                                                        <ReactSpeedometer
+                                                            width={200}
+                                                            height={160}
+                                                            needleHeightRatio={0.7}
+                                                            value={getNivel(values.Nivel2)}
+                                                            segments={3}
+                                                            segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
+                                                            currentValueText={"Selecciona un nivel"}
+                                                            maxSegmentLabels={0}
+                                                            ringWidth={47}
+                                                            needleTransitionDuration={1500}
+                                                            needleTransition="easeElastic"
+                                                            needleColor={'#333333'}
+                                                            textColor={'#000000'}
+                                                        />
+                                                        <div style={{ marginTop: '-2em' }} className="mx-auto">
+                                                            <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel2", "alto")} >Alto </Button>
+                                                            <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel2", "medio")} >Medio </Button>
+                                                            <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel2", "bajo")} >Bajo </Button>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div className="row text-center mt-4 align-items-center">
+                                                    <p>¿Porque considera que estas emocion te seria de ayuda?</p>
+                                                    <Field name="Respuesta2" as="textarea" rows="3" className="form-control" />
+                                                </div>
+                                                <div className="row mt-4">
+                                                    <Button name="situacion2" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }}>Validar </Button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div>
-                                {retroTercera && <div>
-                                    <Actividad text={retroTercera} title="" src={imgGanso.feliz_250x200} showIcon={false}/>
-                                </div>
-                                }
-                            </div>
+                                    <div>
+                                        <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
+                                            text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion2.emocion2))[0].definicion_usuario} - Nivel ${respuestas.situacion2.nivel2}.</b> ¿Por qué? Verás, ${respuestas.situacion2.mensaje}`}
+                                            showIcon={false} />
+                                        {retroSegunda && <div>
+                                            <Actividad text={retroSegunda} title="" src={imgGanso.feliz_250x200} showIcon={false} />
+                                        </div>
+                                        }
+                                    </div>
 
-                        </div>
+                                </div>
 
-                    </Form>
-                )}
-            </Formik>
+                                <div className='row my-5 text-center'>
+                                    <b>Una pequeña adición: para esta situación es importante que analices que acción complementa la influencia de esa emoción que elijas. ¡Piénsalo bien!</b>
+                                </div>
+
+                                <div className="row m-4">
+                                    <div className="col">
+                                        <div className="row">
+                                            <div className="col-lg-7 col-md-12 col-12 my-auto">
+                                                <div className="d-flex align-middle">
+                                                    <img
+                                                        style={{ width: "100%" }}
+                                                        className="card-img-left  justify-content-center align-self-center "
+                                                        src={situacion3}
+                                                        alt="situacion3"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="col">
+                                                <div className="row text-center my-3 align-items-center">
+                                                    <b>Coloca la emocion</b>
+                                                </div>
+
+                                                <div className="row text-center align-items-center">
+                                                    <div >
+                                                        <Field as='select' name="Emocion3" className="form-select" value={values.Emocion3 || ''}
+                                                            onChange={handleChange}
+                                                        >
+                                                            <option value="" disabled>Escoge una emocion</option>
+
+                                                            {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
+
+                                                                <option key={definicion} value={definicion}>{definicion_usuario}</option>
+
+                                                            )}
+                                                        </Field>
+                                                        {errors.Emocion3 && touched.Emocion3
+                                                            ? (
+                                                                <div
+                                                                    style={{ color: 'red' }}
+                                                                >
+                                                                    {errors.Emocion3}
+                                                                </div>
+                                                            )
+                                                            : null}
+                                                    </div>
+
+                                                </div>
+
+                                                <div className="row text-center mt-3 align-items-center">
+                                                    <b>*Se requiere una Emocion</b>
+                                                </div>
+
+
+                                                <div className="row text-center align-items-center">
+                                                    <div className='col-md-6 mb-md-0' >
+                                                        <ReactSpeedometer
+                                                            width={200}
+                                                            height={160}
+                                                            needleHeightRatio={0.7}
+                                                            value={getNivel(values.Nivel3)}
+                                                            segments={3}
+                                                            segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
+                                                            currentValueText={"Selecciona un nivel"}
+                                                            maxSegmentLabels={0}
+                                                            ringWidth={47}
+                                                            needleTransitionDuration={1500}
+                                                            needleTransition="easeElastic"
+                                                            needleColor={'#333333'}
+                                                            textColor={'#000000'}
+                                                        />
+                                                        <div style={{ marginTop: '-2em' }} className="mx-auto">
+                                                            <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel3", "alto")} >Alto </Button>
+                                                            <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel3", "medio")} >Medio </Button>
+                                                            <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel3", "bajo")} >Bajo </Button>
+                                                        </div>
+
+                                                    </div>
+                                                    <div className='col-md-6 mb-md-0' >
+                                                        <div>
+                                                            <b>¿Qué acción crees que
+                                                                deba acompañar esta emoción?</b>
+                                                            <Field as='select' name="Accion3" className="form-select" value={values.Accion3 || ''}
+                                                                onChange={handleChange}
+                                                            >
+                                                                <option value="" disabled>Escoge una accion</option>
+                                                                <option value="1" > Tumbar a la persona y sacarla de la fila.</option>
+                                                                <option value="2" > Expresar tu opinión de manera firme y con respeto.</option>
+                                                                <option value="3" > No decir nada y esperar que salga de la fila.</option>
+                                                            </Field>
+                                                            {errors.Accion3 && touched.Accion3
+                                                                ? (
+                                                                    <div
+                                                                        style={{ color: 'red' }}
+                                                                    >
+                                                                        {errors.Accion3}
+                                                                    </div>
+                                                                )
+                                                                : null}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="row text-center mt-4 align-items-center">
+                                                    <p>¿Porque considera que estas  emociones te serian de ayuda?</p>
+                                                    <Field name="Respuesta3" as="textarea" rows="3" className="form-control" />
+                                                </div>
+                                                <div className="row mt-4">
+                                                    <Button name="situacion3" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }} >Validar </Button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
+                                            text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion3.emocion3))[0].definicion_usuario} - Nivel ${respuestas.situacion3.nivel3},</b> acompañado de la acción <b>${respuestas.situacion3.accionValid}</b> ¿Por qué? Verás, ${respuestas.situacion2.mensaje}`}
+                                            showIcon={false} />
+                                        {retroTercera && <div>
+                                            <Actividad text={retroTercera} title="" src={imgGanso.feliz_250x200} showIcon={false} />
+                                        </div>
+                                        }
+                                    </div>
+
+                                </div>
+
+                            </Form>
+                        )}
+                    </Formik>
+                </>)}
         </div>
     )
 }
