@@ -17,21 +17,27 @@ import { BotonContext } from '../../context/BotonContext'
 import { Actividad } from '../Dashboard/Actividad'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { Loading } from '../Loading'
+import { useParams } from 'react-router-dom'
+import { ErrorAlert } from '../../helpers/helper_Swal_Alerts'
 
 const Quimica = () => {
+    // Variable del url
+    const { slug } = useParams()
     const { setBotonState } = useContext(BotonContext);
     // Datos del avance que lleva el usuario
     const { AvanceState } = useContext(AvanceContext);
 
     useEffect(() => {
-        if (AvanceState.emocional <= 3) {
+        if (AvanceState.emocional <= parseInt(slug)) {
             setBotonState(true)
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [AvanceState])
     const { authAxios } = useContext(FetchContext)
-    const [Intentos, setIntentos] = useState(0)
+    const [Intentos1, setIntentos1] = useState(0)
+    const [Intentos2, setIntentos2] = useState(0)
+    const [Intentos3, setIntentos3] = useState(0)
     const [loading, setLoading] = useState(true);
 
     const [retroPrimera, setRetroPrimera] = useState(null)
@@ -51,7 +57,6 @@ const Quimica = () => {
         Nivel12: Yup.string()
             .required('Es necesario escoger dos niveles'),
         Respuesta1: Yup.string().min(2, 'Demasiado corto')
-            .max(50, 'Demasiado largo')
             .required('Es necesario llenar esta información'),
         Emocion2: Yup.string()
             .required('Es necesario llenar esta información'),
@@ -60,14 +65,12 @@ const Quimica = () => {
         Accion2: Yup.string()
             .required('Es necesario llenar esta información'),
         Respuesta2: Yup.string().min(2, 'Demasiado corto')
-            .max(50, 'Demasiado largo')
             .required('Es necesario llenar esta información'),
         Emocion3: Yup.string()
             .required('Es necesario llenar esta información'),
         Nivel3: Yup.string()
             .required('Es necesario llenar esta información'),
         Respuesta3: Yup.string().min(2, 'Demasiado corto')
-            .max(50, 'Demasiado largo')
             .required('Es necesario llenar esta información'),
     })
 
@@ -111,33 +114,45 @@ const Quimica = () => {
             if (values.Emocion1 === respuestas[name].emocion1 && values.Nivel1 === respuestas[name].nivel1 && values.Emocion12 === respuestas[name].emocion2 && values.Nivel12 === respuestas[name].nivel2) {
                 //console.log(respuestas[name].ok_ambas)
                 setRetroPrimera(respuestas[name].ok_ambas)
+                setIntentos1(0)
             }
             else if (values.Emocion12 === respuestas[name].emocion1 && values.Nivel12 === respuestas[name].nivel1 && values.Emocion1 === respuestas[name].emocion2 && values.Nivel1 === respuestas[name].nivel2) {
                 setRetroPrimera(respuestas[name].ok_ambas)
+                setIntentos1(0)
             }
             else {
                 setRetroPrimera(respuestas[name].no_ambas)
+                ErrorAlert("Error", retroPrimera)
+                setIntentos1(Intentos1 + 1)
             }
         }
         else if (name === "situacion2") {
             if (values.Emocion2 === respuestas[name].emocion2 && (values.Nivel2 === respuestas[name].nivel2 || values.Nivel2 === respuestas[name].nivel22)) {
                 setRetroSegunda(respuestas[name].ok_ambas)
+                setIntentos2(0)
             }
             else {
                 setRetroSegunda(respuestas[name].no_ambas)
+                ErrorAlert("Error", retroSegunda)
+                setIntentos2(Intentos2 + 1)
             }
         }
         else if (name === "situacion3") {
             if (values.Emocion3 === respuestas[name].emocion3 && values.Nivel3 === respuestas[name].nivel3) {
                 if (values.Accion3 === respuestas[name].accion3) {
                     setRetroTercera(respuestas[name].ok_ambas)
+                    setIntentos3(0)
                 }
                 else {
                     setRetroTercera(respuestas[name].no_accion)
+                    ErrorAlert("Error", retroTercera)
+                    setIntentos3(Intentos3 + 1)
                 }
             }
             else {
                 setRetroTercera(respuestas[name].no_nivel_emocion)
+                ErrorAlert("Error", retroTercera)
+                setIntentos3(Intentos3 + 1)
             }
         }
     }
@@ -188,10 +203,17 @@ const Quimica = () => {
     console.log(emociones)
 
     useEffect(() => {
-        if (emociones) {
-            console.log(emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion1.emocion1))[0].definicion_usuario)
+        if (
+            retroPrimera === respuestas.situacion1.ok_ambas
+            && retroSegunda === respuestas.situacion2.ok_ambas
+            && retroTercera === respuestas.situacion3.ok_ambas
+        ) {
+
+            setBotonState(false)
         }
-    }, [emociones])
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [retroPrimera, retroSegunda, retroTercera])
 
 
     const color = '#fc8890'
@@ -390,6 +412,15 @@ const Quimica = () => {
                                                 <div className="row text-center align-items-center">
                                                     <p>¿Porque considera que estas  emociones te serian de ayuda?</p>
                                                     <Field name="Respuesta1" as="textarea" rows="3" className="form-control" />
+                                                    {errors.Respuesta1 && touched.Respuesta1
+                                                        ? (
+                                                            <div
+                                                                style={{ color: 'red' }}
+                                                            >
+                                                                {errors.Respuesta1}
+                                                            </div>
+                                                        )
+                                                        : null}
                                                 </div>
 
                                                 <div className="row mt-4">
@@ -399,17 +430,16 @@ const Quimica = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        {/* {Intentos > 1 && ( */}
-
-                                        <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
-                                            text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion1.emocion1))[0].definicion_usuario} - Nivel ${respuestas.situacion1.nivel1}</b> y un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion1.emocion2))[0].definicion_usuario} - Nivel ${respuestas.situacion1.nivel2}.</b> ¿Por qué? Verás, ${respuestas.situacion1.mensaje}`}
-                                            showIcon={false} />
-                                        {/* )} */}
-                                        {retroPrimera && <div>
+                                        {Intentos1 > 1 && (
+                                            <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
+                                                text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion1.emocion1))[0].definicion_usuario} - Nivel ${respuestas.situacion1.nivel1}</b> y un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion1.emocion2))[0].definicion_usuario} - Nivel ${respuestas.situacion1.nivel2}.</b> ¿Por qué? Verás, ${respuestas.situacion1.mensaje}`}
+                                                showIcon={false} />
+                                        )}
+                                        {retroPrimera === respuestas.situacion1.ok_ambas && <div>
                                             <Actividad text={retroPrimera} title="" src={imgGanso.feliz_250x200} showIcon={false} />
-
                                         </div>
                                         }
+
                                     </div>
 
                                 </div>
@@ -493,6 +523,15 @@ const Quimica = () => {
                                                 <div className="row text-center mt-4 align-items-center">
                                                     <p>¿Porque considera que estas emocion te seria de ayuda?</p>
                                                     <Field name="Respuesta2" as="textarea" rows="3" className="form-control" />
+                                                    {errors.Respuesta2 && touched.Respuesta2
+                                                        ? (
+                                                            <div
+                                                                style={{ color: 'red' }}
+                                                            >
+                                                                {errors.Respuesta2}
+                                                            </div>
+                                                        )
+                                                        : null}
                                                 </div>
                                                 <div className="row mt-4">
                                                     <Button name="situacion2" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }}>Validar </Button>
@@ -501,10 +540,13 @@ const Quimica = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
-                                            text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion2.emocion2))[0].definicion_usuario} - Nivel ${respuestas.situacion2.nivel2}.</b> ¿Por qué? Verás, ${respuestas.situacion2.mensaje}`}
-                                            showIcon={false} />
-                                        {retroSegunda && <div>
+                                        {Intentos2 > 1 && (
+                                            <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
+                                                text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion2.emocion2))[0].definicion_usuario} - Nivel ${respuestas.situacion2.nivel2}.</b> ¿Por qué? Verás, ${respuestas.situacion2.mensaje}`}
+                                                showIcon={false} />
+                                        )}
+
+                                        {retroSegunda === respuestas.situacion2.ok_ambas && <div>
                                             <Actividad text={retroSegunda} title="" src={imgGanso.feliz_250x200} showIcon={false} />
                                         </div>
                                         }
@@ -617,6 +659,15 @@ const Quimica = () => {
                                                 <div className="row text-center mt-4 align-items-center">
                                                     <p>¿Porque considera que estas  emociones te serian de ayuda?</p>
                                                     <Field name="Respuesta3" as="textarea" rows="3" className="form-control" />
+                                                    {errors.Respuesta3 && touched.Respuesta3
+                                                        ? (
+                                                            <div
+                                                                style={{ color: 'red' }}
+                                                            >
+                                                                {errors.Respuesta3}
+                                                            </div>
+                                                        )
+                                                        : null}
                                                 </div>
                                                 <div className="row mt-4">
                                                     <Button name="situacion3" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }} >Validar </Button>
@@ -625,13 +676,17 @@ const Quimica = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
-                                            text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion3.emocion3))[0].definicion_usuario} - Nivel ${respuestas.situacion3.nivel3},</b> acompañado de la acción <b>${respuestas.situacion3.accionValid}</b> ¿Por qué? Verás, ${respuestas.situacion2.mensaje}`}
-                                            showIcon={false} />
-                                        {retroTercera && <div>
+                                        {Intentos3 > 1 && (
+                                            <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
+                                                text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion3.emocion3))[0].definicion_usuario} - Nivel ${respuestas.situacion3.nivel3},</b> acompañado de la acción <b>${respuestas.situacion3.accionValid}</b> ¿Por qué? Verás, ${respuestas.situacion2.mensaje}`}
+                                                showIcon={false} />
+                                        )}
+
+                                        {retroTercera === respuestas.situacion3.ok_ambas && <div>
                                             <Actividad text={retroTercera} title="" src={imgGanso.feliz_250x200} showIcon={false} />
                                         </div>
                                         }
+
                                     </div>
 
                                 </div>
