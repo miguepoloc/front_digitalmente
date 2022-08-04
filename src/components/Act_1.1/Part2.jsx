@@ -8,7 +8,7 @@ import { BiCurrentLocation } from 'react-icons/bi'
 import '../../assets/css/Surveys.scss'
 import Scroll from '../../helpers/helperScroll'
 import { Warning_Alert, Correct_Alert } from '../../helpers/helper_Swal_Alerts'
-import { seccion2, initialOptions, areValidValues, areCorrectAnswers } from '../../helpers/helper_Reg_Emoc_act_1'
+import { seccion2, initialOptions, areValidValues, areCorrectAnswers, respuestasCorrectasPorCategoria } from '../../helpers/helper_Reg_Emoc_act_1'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { Actividad } from '../Dashboard/Actividad'
 import { Tip } from '../Dashboard/Tip'
@@ -22,16 +22,42 @@ const Part2 = () => {
     const { setBotonState } = useContext(BotonContext);
     // Datos del avance que lleva el usuario
     const { AvanceState } = useContext(AvanceContext);
+
+    const color = '#4cbeff'
+    const [selectOption, setSelectOption] = useState(initialOptions)
+    const [activityIndex, setActivityIndex] = useState(0)
+    const [error, setError] = useState(null)
+    
     useEffect(() => {
         if (AvanceState.emocional <= parseInt(slug)) {
             setBotonState(true)
         }
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [AvanceState])
-    const color = '#4cbeff'
-    const [selectOption, setSelectOption] = useState(initialOptions)
-    const [activityIndex, setActivityIndex] = useState(0)
+
+
+    useEffect(() => {
+        if(error){
+            var cuackAyuda = document.getElementById("cuackAyuda");
+            cuackAyuda?.scrollIntoView({behavior: 'smooth'}, true);
+        }
+        if (error === false) {
+            correctAnswer(seccion2.ejercicios[activityIndex].successMsg).then(() => {
+                if (activityIndex + 1 < seccion2.ejercicios.length) {
+                    setActivityIndex(activityIndex + 1)
+                    moveToEjercicio()
+                    restartValuesOption()   
+                    setError(null);
+                    // sube el scroll. muy util en dispositivos moviles.
+                } else {
+                    setBotonState(false)
+                }
+            }
+
+            )
+        }
+        
+    }, [error])
 
     const handleChange = (event) => {
         setSelectOption(() => { return { ...selectOption, [event.target.name]: event.target.value } })
@@ -53,7 +79,6 @@ const Part2 = () => {
         const valuePensamientos = [selectOption.select_pensamientos_0, selectOption.select_pensamientos_1, selectOption.select_pensamientos_2]
         const valueAcciones = [selectOption.select_acciones_0, selectOption.select_acciones_1, selectOption.select_acciones_2]
         const SinAcciones = seccion2.ejercicios[activityIndex].SinAcciones
-
         /*
           Valido que el usuario haya seleccionado una respuesta por select.
         */
@@ -75,32 +100,26 @@ const Part2 = () => {
         /*
           Valido que el usuario haya seleccionado las respuestas correctas.
         */
+
         if (!areCorrectAnswers(valueSensaciones, 'sensaciones', activityIndex)) {
-            errorAnswer('sensaciones')
-            return null
+            //errorAnswer('sensaciones')
+            setError(true);
+            return
         }
         if (!areCorrectAnswers(valuePensamientos, 'pensamientos', activityIndex)) {
-            errorAnswer('pensamientos')
-            return null
+            //errorAnswer('pensamientos')
+            //Hago el if para que el estado no se actualice más de una vez si no es necesario
+            !error && setError(true);
+            return
         }
         if (!SinAcciones && !areCorrectAnswers(valueAcciones, 'acciones', activityIndex)) {
-            errorAnswer('acciones')
-            return null
+            // errorAnswer('acciones')
+            !error && setError(true);
+            return
         }
-
-        correctAnswer(seccion2.ejercicios[activityIndex].successMsg).then(() => {
-            if (activityIndex + 1 < seccion2.ejercicios.length) {
-                restartValuesOption()
-                setActivityIndex(activityIndex + 1)
-                moveToEjercicio() // sube el scroll. muy util en dispositivos moviles.
-            } else {
-                setBotonState(false)
-                // TODO: Se debe redireccionar.
-            }
-        }
-
-        )
+        setError(false);
     }
+
 
     const moveToEjercicio = () => {
         Scroll.scroll('ejercicio', true)
@@ -139,8 +158,8 @@ const Part2 = () => {
               `}
                 src={imgGanso.elegante}
             />
-       
-        <Actividad showIcon={false} src={imgGanso.explicando} title={"Glosario"} color={"#A1B7EF"} text={`  <ul class="mb-0">
+
+            <Actividad showIcon={false} src={imgGanso.explicando} title={"Glosario"} color={"#A1B7EF"} text={`  <ul class="mb-0">
             <li class="my-1"><i>Aumento de las inhalaciones:</i> aumento de las aspiraciones al respirar. </li>
             <li class="my-1"><i>Frecuencia cardiaca:</i> número de veces que se contrae el corazón en un minuto.</li>
             <li class="my-1"><i>Frecuencia respiratoria:</i> número de veces en respiraciones.</li>
@@ -149,7 +168,7 @@ const Part2 = () => {
             <li class="my-1"><i>Tensión muscular:</i> rigidez en algún o varios grupos de músculos.</li>
         </ul>`} />
 
-<Tip text={'En la columna de pensamientos puede que encuentres expresiones como “¡Ugh!”. Trata de identificar si estas pueden relacionarse a la emoción. También tienes un pequeño glosario arriba por si tienes alguna duda.'}/>
+            <Tip text={'En la columna de pensamientos puede que encuentres expresiones como “¡Ugh!”. Trata de identificar si estas pueden relacionarse a la emoción. También tienes un pequeño glosario arriba por si tienes alguna duda.'} />
 
 
             <div className="row mb-4 text-center" id="ejercicio">
@@ -253,6 +272,19 @@ const Part2 = () => {
                     Validar
                 </Button>
             </div>
+
+            {error && <div className="my-2">
+                <Actividad  id="cuackAyuda" src={imgGanso.explicando} title="¡Cuack te ayuda!"
+                    text={`
+                ¡Ups! No es la correcta. Pero te puedo guiar. En la <b>${seccion2.ejercicios[activityIndex].emocion}</b> las sensaciones que se pueden experimentar son: 
+                ${respuestasCorrectasPorCategoria(activityIndex, "sensaciones")}, los pensamientos pueden ser: ${respuestasCorrectasPorCategoria(activityIndex, "pensamientos")}
+                ${!seccion2.ejercicios[activityIndex].SinAcciones ? ("y las acciones podrían orientarse a:" + respuestasCorrectasPorCategoria(activityIndex, "acciones")) : ""}.
+                <br/><br/> <div class="text-center">Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Ejercita la identificación de tus emociones como paso fundamental para tu gestión emocional!</div>
+                `}
+                    showIcon={false} />
+            </div>
+
+            }
 
         </div>
     )

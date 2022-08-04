@@ -6,10 +6,10 @@ import { AiFillStar } from "react-icons/ai";
 /**
  * @param {{src: imgGanso, title: string, text: string , showIcon: boolean}} src
  */
-export const Actividad = ({ src, title, text, showIcon = true, video, siImange = true, style = { width: "150px", height: "150px" } }) => {
+export const Actividad = ({ src, title, text, showIcon = true, video, siImange = true, style = { width: "150px", height: "150px" }, id ="" }) => {
     const icon = showIcon ? <AiFillStar style={{ color: "#ffd000", height: "1.5em", width: "1.5em" }} /> : ""
     return (
-        <div className="card flex-md-row mb-2 box-shadow h-md-250 px-4  py-4 mt-3  ">
+        <div className="card flex-md-row mb-2 box-shadow h-md-250 px-4  py-4 mt-3  " id={id}>
             {siImange ?
                 <img
                     style={style}

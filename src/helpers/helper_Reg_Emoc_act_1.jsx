@@ -17,6 +17,20 @@ export const initialOptions = {
     select_acciones_2: -1
 };
 
+
+export const respuestasCorrectasPorCategoria = (activityIndex, categoria, negrita = true) => {
+    let filtrados = seccion2.ejercicios[activityIndex][categoria].filter((opciones) => opciones.isCorrect)
+        .map(obj => obj.option.slice(-1) === "." ? obj.option.slice(0, -1) : obj.option) //Quitando el punto final si tiene
+
+    let formateados = filtrados.map((option, index) => `${negrita ? "<b>" + option + "</b>" : option}${index !== filtrados.length - 2 ? (index !== filtrados.length - 1 ? ", " : "") : " y "}`) //formateando el texto a negrita si a sí se necesita.
+        .join("")//concatenando los elementos de la lista para hacer un string.
+
+    console.log(formateados)
+    return formateados
+}
+
+
+
 export const section1 = {
     name: "Seccion1",
     options: ["Sorpresa", "Asco", "Miedo", "Alegría", "Tristeza", "Ira"],
@@ -66,176 +80,185 @@ export const section1 = {
     ],
 };
 export const seccion2 = {
-    ejercicios: [{
-        name: "Ejercicio 1",
-        image: asco,
-        text: "¿Cuáles características consideras que podrían relacionarse al asco?",
-        //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
-        successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. Identificar, por ejemplo, como experimentamos en nuestro cuerpo las emociones es un paso esencial para la gestión emocional. ",
-        sensaciones: [
-            { option: "Erizamiento de la piel.", isCorrect: false },
-            { option: "Aumento de la frecuencia cardiaca.", isCorrect: true },
-            { option: "Prolongación de la pausa entre inspiraciones.", isCorrect: true },
-            { option: "Bajo tono muscular.", isCorrect: false },
-            { option: "Nauseas.", isCorrect: true },
-            { option: "Interrupción puntual de la respiración.", isCorrect: false }
-        ],
-        pensamientos: [
-            { option: "Pensamientos de rechazo.", isCorrect: true },
-            { option: "Pensamientos optimistas.", isCorrect: false },
-            { option: "Percepción de que algo no es como debería ser.", isCorrect: true },
-            { option: "¡Importante!", isCorrect: false },
-            { option: "¡Ugh!", isCorrect: true }
-        ],
-        acciones: [
-            { option: "Correr.", isCorrect: false },
-            { option: "Salta.", isCorrect: false },
-            { option: "Distanciarse.", isCorrect: true },
-            { option: "Cantar.", isCorrect: false },
-            { option: "Inmovilización.", isCorrect: false },
-            { option: "Evitación.", isCorrect: true },
-            { option: "Retirar la atención.", isCorrect: true },
-        ]
-    },
-    {
-        name: "Ejercicio 2",
-        image: miedo,
-        text: "¿Cuáles características consideras que podrían relacionarse al miedo?",
-        //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
-        successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. Recuerda que, por ejemplo, las acciones tienden a ser respuestas impulsivas que debemos saber identificar para gestionar.",
-        sensaciones: [
-            { option: "Aumento de la tensión muscular.", isCorrect: true },
-            { option: "Aumento de la frecuencia respiratoria.", isCorrect: true },
-            { option: "Prolongación de la pausa entre inspiraciones.", isCorrect: false },
-            { option: "Aumento de la frecuencia cardiaca.", isCorrect: true },
-            { option: "Erizamiento de la piel.", isCorrect: false },
-        ],
-        pensamientos: [
-            { option: "Pensamientos de preocupación.", isCorrect: true },
-            { option: "Percepción de daño.", isCorrect: true },
-            { option: "Pensamientos optimistas.", isCorrect: false },
-            { option: "Percepción de peligro.", isCorrect: true },
-            { option: "Reflexión sobre la vida.", isCorrect: false },
+    ejercicios: [
+        {
+            name: "Ejercicio 6",
+            image: sorpresa,
+            emocion: "sorpresa",
+            text: "¿Cuáles características consideras que podrían relacionarse a la sorpresa?",
+            //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
+            successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Ejercita la identificación de tus emociones como paso fundamental para tu gestión emocional!",
+            sensaciones: [
+                { option: "Temblor en los brazos.", isCorrect: false },
+                { option: "Disminución de la frecuencia cardiaca.", isCorrect: true },
+                { option: "Aumento de la frecuencia cardiaca.", isCorrect: false },
+                { option: "Interrupción puntual de la respiración.", isCorrect: true },
+                { option: "Erizamiento de la piel.", isCorrect: true },
+                { option: "Respiración normal.", isCorrect: false },
+            ],
+            pensamientos: [
+                { option: "“¿¡Qué!? ¿Qué pasó?”", isCorrect: true },
+                { option: "Pensamientos de incertidumbre.", isCorrect: true },
+                { option: "Pensamientos positivos.", isCorrect: false },
+                { option: "Pensamientos negativos.", isCorrect: false },
+                { option: "“¿Qué hora es?”", isCorrect: false },
+                { option: "Mente en blanco.", isCorrect: true },
+            ],
+            SinAcciones: "La sorpresa facilita que aparezcan acciones relacionadas a explorar, investigar. Es decir, en torno al interés o curiosidad por la situación. Siempre dependerá del tipo de factor al que te enfrentas, lo que hará que después determine uno u otro tipo de acción (Fernández-Abascal <i>et al.</i>, 2010)"
+        },
+        {
+            name: "Ejercicio 1",
+            image: asco,
+            emocion: "asco",
+            text: "¿Cuáles características consideras que podrían relacionarse al asco?",
+            //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
+            successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. Identificar, por ejemplo, como experimentamos en nuestro cuerpo las emociones es un paso esencial para la gestión emocional. ",
+            sensaciones: [
+                { option: "Erizamiento de la piel.", isCorrect: false },
+                { option: "Aumento de la frecuencia cardiaca.", isCorrect: true },
+                { option: "Prolongación de la pausa entre inspiraciones.", isCorrect: true },
+                { option: "Bajo tono muscular.", isCorrect: false },
+                { option: "Nauseas.", isCorrect: true },
+                { option: "Interrupción puntual de la respiración.", isCorrect: false }
+            ],
+            pensamientos: [
+                { option: "Pensamientos de rechazo.", isCorrect: true },
+                { option: "Pensamientos optimistas.", isCorrect: false },
+                { option: "Percepción de que algo no es como debería ser.", isCorrect: true },
+                { option: "¡Importante!", isCorrect: false },
+                { option: "¡Ugh!", isCorrect: true }
+            ],
+            acciones: [
+                { option: "Correr.", isCorrect: false },
+                { option: "Salta.", isCorrect: false },
+                { option: "Distanciarse.", isCorrect: true },
+                { option: "Cantar.", isCorrect: false },
+                { option: "Inmovilización.", isCorrect: false },
+                { option: "Evitación.", isCorrect: true },
+                { option: "Retirar la atención.", isCorrect: true },
+            ]
+        },
+        {
 
-        ],
-        acciones: [
-            { option: "Retirarse.", isCorrect: true },
-            { option: "Acercarse.", isCorrect: false },
-            { option: "Atacar.", isCorrect: true },
-            { option: "Inmovilizarse.", isCorrect: true },
-            { option: "Correr.", isCorrect: false },
-            { option: "Buscar en los bolsillos.", isCorrect: false },
-        ]
-    },
-    {
-        name: "Ejercicio 3",
-        image: tristeza,
-        text: "¿Cuáles características consideras que podrían relacionarse a la tristeza?",
-        //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
-        successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. Los pensamientos que tienden a surgir cuando se experimenta una emoción pueden ser distorsionados o exagerados con respecto a la situación. ¡Por eso es importante reconocerlos!",
-        sensaciones: [
-            { option: "Aumento de la presión sanguínea.", isCorrect: true },
-            { option: "Aumento de la frecuencia respiratoria.", isCorrect: false },
-            { option: "Aumento de la frecuencia cardiaca.", isCorrect: false },
-            { option: "Prolongación de la pausa entre inspiraciones.", isCorrect: false },
-            { option: "Aumento de las inhalaciones (respiración).", isCorrect: true },
-            { option: "Aumento del tono muscular.", isCorrect: true },
-        ],
-        pensamientos: [
-            { option: "Pensamientos de aflicción.", isCorrect: true },
-            { option: "Percepción de daño.", isCorrect: false },
-            { option: "Percepción de peligro.", isCorrect: false },
-            { option: "“¡Esto es lo peor!”", isCorrect: true },
-            { option: "Pensamientos de preocupación.", isCorrect: false },
-            { option: "Pensamiento enfocado en lo negativo.", isCorrect: true }
-        ],
-        acciones: [
-            { option: "Ritmo acelerado.", isCorrect: false },
-            { option: "Ritmo pausado en acciones.", isCorrect: true },
-            { option: "Retraimiento.", isCorrect: true },
-            { option: "Cocinar.", isCorrect: false },
-            { option: "Leer.", isCorrect: false },
-            { option: "Evitar interacción con otros.", isCorrect: true },
-        ]
-    },
-    {
-        name: "Ejercicio 4",
-        image: ira,
-        text: "¿Cuáles características consideras que podrían relacionarse a la ira?",
-        //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
-        successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¿Te han dicho cuando estás muy molesto y has tomado una decisión que mejor lo pienses “con cabeza fría”? Precisamente, de aquí parte el saber identificar y aceptar nuestras emociones. Esto no significa que todos se lanzan a la acción de agredir o se irritan internamente, dado que depende de muchos factores tanto de la persona como de la situación y el ambiente para una reacción u otra.",
-        sensaciones: [
-            { option: "Aumento de la presión sanguínea.", isCorrect: false },
-            { option: "Aumento del ritmo respiratorio", isCorrect: true },
-            { option: "Prolongación de la pausa entre inspiraciones.", isCorrect: false },
-            { option: "Aumento del tono muscular.", isCorrect: true },
-            { option: "Aumento de la frecuencia cardiaca.", isCorrect: true },
-        ],
-        pensamientos: [
-            { option: "Percepción en torno a la aflicción.", isCorrect: false },
-            { option: "Pensamientos impulsivos.", isCorrect: true },
-            { option: "Acción antes que consideración de la situación.", isCorrect: true },
-            { option: "Poca reflexión sobre situaciones.", isCorrect: true },
-            { option: "“¡Esto es lo peor!”", isCorrect: false },
+            name: "Ejercicio 2",
+            image: miedo,
+            emocion: "miedo",
+            text: "¿Cuáles características consideras que podrían relacionarse al miedo?",
+            //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
+            successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. Recuerda que, por ejemplo, las acciones tienden a ser respuestas impulsivas que debemos saber identificar para gestionar.",
+            sensaciones: [
+                { option: "Aumento de la tensión muscular.", isCorrect: true },
+                { option: "Aumento de la frecuencia respiratoria.", isCorrect: true },
+                { option: "Prolongación de la pausa entre inspiraciones.", isCorrect: false },
+                { option: "Aumento de la frecuencia cardiaca.", isCorrect: true },
+                { option: "Erizamiento de la piel.", isCorrect: false },
+            ],
+            pensamientos: [
+                { option: "Pensamientos de preocupación.", isCorrect: true },
+                { option: "Percepción de daño.", isCorrect: true },
+                { option: "Pensamientos optimistas.", isCorrect: false },
+                { option: "Percepción de peligro.", isCorrect: true },
+                { option: "Reflexión sobre la vida.", isCorrect: false },
 
-        ],
-        acciones: [
-            { option: "Agredir verbalmente.", isCorrect: true },
-            { option: "Inmovilizarse.", isCorrect: false },
-            { option: "Acción violenta.", isCorrect: false },
-            { option: "Pegar a algo o alguien.", isCorrect: true },
-            { option: "Desgana.", isCorrect: false },
-            { option: "Irritarse internamente.", isCorrect: true },
-        ]
-    },
-    {
-        name: "Ejercicio 5",
-        image: alegria,
-        text: "¿Cuáles características consideras que podrían relacionarse a la alegría?",
-        //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
-        successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Recuerda valorar todas las emociones y aceptarlas, son parte de tu vida y te permiten adaptarte a tu entorno!",
-        sensaciones: [
-            { option: "Aumento de la frecuencia cardiaca.", isCorrect: true },
-            { option: "Alto tono muscular.", isCorrect: false },
-            { option: "Interrupción puntual de la respiración.", isCorrect: false },
-            { option: "Erizamiento de la piel.", isCorrect: false },
-            { option: "Bajo tono muscular.", isCorrect: true },
-            { option: "Aumento de las inhalaciones (respiración).", isCorrect: true },
-        ],
-        pensamientos: [
-            { option: "“¿Qué pasó?”", isCorrect: false },
-            { option: "“¡Esto es genial!”", isCorrect: true },
-            { option: "Pensamientos positivos.", isCorrect: true },
-            { option: "Fijación en una idea.", isCorrect: false },
-            { option: "Pensamientos optimistas.", isCorrect: true },
+            ],
+            acciones: [
+                { option: "Retirarse.", isCorrect: true },
+                { option: "Acercarse.", isCorrect: false },
+                { option: "Atacar.", isCorrect: true },
+                { option: "Inmovilizarse.", isCorrect: true },
+                { option: "Correr.", isCorrect: false },
+                { option: "Buscar en los bolsillos.", isCorrect: false },
+            ]
+        },
+        {
+            name: "Ejercicio 3",
+            image: tristeza,
+            emocion: "tristeza",
+            text: "¿Cuáles características consideras que podrían relacionarse a la tristeza?",
+            //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
+            successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. Los pensamientos que tienden a surgir cuando se experimenta una emoción pueden ser distorsionados o exagerados con respecto a la situación. ¡Por eso es importante reconocerlos!",
+            sensaciones: [
+                { option: "Aumento de la presión sanguínea.", isCorrect: true },
+                { option: "Aumento de la frecuencia respiratoria.", isCorrect: false },
+                { option: "Aumento de la frecuencia cardiaca.", isCorrect: false },
+                { option: "Prolongación de la pausa entre inspiraciones.", isCorrect: false },
+                { option: "Aumento de las inhalaciones (respiración).", isCorrect: true },
+                { option: "Aumento del tono muscular.", isCorrect: true },
+            ],
+            pensamientos: [
+                { option: "Pensamientos de aflicción.", isCorrect: true },
+                { option: "Percepción de daño.", isCorrect: false },
+                { option: "Percepción de peligro.", isCorrect: false },
+                { option: "“¡Esto es lo peor!”", isCorrect: true },
+                { option: "Pensamientos de preocupación.", isCorrect: false },
+                { option: "Pensamiento enfocado en lo negativo.", isCorrect: true }
+            ],
+            acciones: [
+                { option: "Ritmo acelerado.", isCorrect: false },
+                { option: "Ritmo pausado en acciones.", isCorrect: true },
+                { option: "Retraimiento.", isCorrect: true },
+                { option: "Cocinar.", isCorrect: false },
+                { option: "Leer.", isCorrect: false },
+                { option: "Evitar interacción con otros.", isCorrect: true },
+            ]
+        },
+        {
+            name: "Ejercicio 4",
+            image: ira,
+            emocion: "ira",
+            text: "¿Cuáles características consideras que podrían relacionarse a la ira?",
+            //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
+            successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¿Te han dicho cuando estás muy molesto y has tomado una decisión que mejor lo pienses “con cabeza fría”? Precisamente, de aquí parte el saber identificar y aceptar nuestras emociones. Esto no significa que todos se lanzan a la acción de agredir o se irritan internamente, dado que depende de muchos factores tanto de la persona como de la situación y el ambiente para una reacción u otra.",
+            sensaciones: [
+                { option: "Aumento de la presión sanguínea.", isCorrect: false },
+                { option: "Aumento del ritmo respiratorio", isCorrect: true },
+                { option: "Prolongación de la pausa entre inspiraciones.", isCorrect: false },
+                { option: "Aumento del tono muscular.", isCorrect: true },
+                { option: "Aumento de la frecuencia cardiaca.", isCorrect: true },
+            ],
+            pensamientos: [
+                { option: "Percepción en torno a la aflicción.", isCorrect: false },
+                { option: "Pensamientos impulsivos.", isCorrect: true },
+                { option: "Acción antes que consideración de la situación.", isCorrect: true },
+                { option: "Poca reflexión sobre situaciones.", isCorrect: true },
+                { option: "“¡Esto es lo peor!”", isCorrect: false },
 
-        ],
-        SinAcciones: "La alegría facilita la interacción social, mejora el rendimiento cognitivo y la actitud frente a las situaciones, entre otros puntos. De aquí se pueden derivar muchas acciones dependiendo de tu personalidad, puede que estés más propenso a hablar con otras personas, o a prestar atención a lo que te comentan o a compartir algo determinado. La importancia de identificar las emociones nos permite observar su impacto (Fernández-Abascal <i>et al.</i>, 2010)"
-    },
-    {
-        name: "Ejercicio 6",
-        image: sorpresa,
-        text: "¿Cuáles características consideras que podrían relacionarse a la sorpresa?",
-        //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
-        successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Ejercita la identificación de tus emociones como paso fundamental para tu gestión emocional!",
-        sensaciones: [
-            { option: "Temblor en los brazos.", isCorrect: false },
-            { option: "Disminución de la frecuencia cardiaca.", isCorrect: true },
-            { option: "Aumento de la frecuencia cardiaca.", isCorrect: false },
-            { option: "Interrupción puntual de la respiración.", isCorrect: true },
-            { option: "Erizamiento de la piel.", isCorrect: true },
-            { option: "Respiración normal.", isCorrect: false },
-        ],
-        pensamientos: [
-            { option: "“¿¡Qué!? ¿Qué pasó?”", isCorrect: true },
-            { option: "Pensamientos de incertidumbre.", isCorrect: true },
-            { option: "Pensamientos positivos.", isCorrect: false },
-            { option: "Pensamientos negativos.", isCorrect: false },
-            { option: "“¿Qué hora es?”", isCorrect: false },
-            { option: "Mente en blanco.", isCorrect: true },
-        ],
-        SinAcciones: "La sorpresa facilita que aparezcan acciones relacionadas a explorar, investigar. Es decir, en torno al interés o curiosidad por la situación. Siempre dependerá del tipo de factor al que te enfrentas, lo que hará que después determine uno u otro tipo de acción (Fernández-Abascal <i>et al.</i>, 2010)"
-    },
+            ],
+            acciones: [
+                { option: "Agredir verbalmente.", isCorrect: true },
+                { option: "Inmovilizarse.", isCorrect: false },
+                { option: "Acción violenta.", isCorrect: false },
+                { option: "Pegar a algo o alguien.", isCorrect: true },
+                { option: "Desgana.", isCorrect: false },
+                { option: "Irritarse internamente.", isCorrect: true },
+            ]
+        },
+        {
+            name: "Ejercicio 5",
+            image: alegria,
+            emocion: "alegría",
+            text: "¿Cuáles características consideras que podrían relacionarse a la alegría?",
+            //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
+            successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Recuerda valorar todas las emociones y aceptarlas, son parte de tu vida y te permiten adaptarte a tu entorno!",
+            sensaciones: [
+                { option: "Aumento de la frecuencia cardiaca.", isCorrect: true },
+                { option: "Alto tono muscular.", isCorrect: false },
+                { option: "Interrupción puntual de la respiración.", isCorrect: false },
+                { option: "Erizamiento de la piel.", isCorrect: false },
+                { option: "Bajo tono muscular.", isCorrect: true },
+                { option: "Aumento de las inhalaciones (respiración).", isCorrect: true },
+            ],
+            pensamientos: [
+                { option: "“¿Qué pasó?”", isCorrect: false },
+                { option: "“¡Esto es genial!”", isCorrect: true },
+                { option: "Pensamientos positivos.", isCorrect: true },
+                { option: "Fijación en una idea.", isCorrect: false },
+                { option: "Pensamientos optimistas.", isCorrect: true },
+
+            ],
+            SinAcciones: "La alegría facilita la interacción social, mejora el rendimiento cognitivo y la actitud frente a las situaciones, entre otros puntos. De aquí se pueden derivar muchas acciones dependiendo de tu personalidad, puede que estés más propenso a hablar con otras personas, o a prestar atención a lo que te comentan o a compartir algo determinado. La importancia de identificar las emociones nos permite observar su impacto (Fernández-Abascal <i>et al.</i>, 2010)"
+        },
+
     ]
 }
 
@@ -249,7 +272,7 @@ export const setColorSelect = (color) => {
 
 export const countElementInArray = (array, value) => {
     var count = 0;
-    array.forEach((v) => (v === value && count++));
+    array.forEach((v) => v === value && count++);
     return count;
 }
 
@@ -272,10 +295,14 @@ export const areValidValues = (arr) => {
 }
 
 export const areCorrectAnswers = (arr, column, activityIndex) => {
-    for (const value of arr) {
-        if (!seccion2.ejercicios[activityIndex][column][value].isCorrect) {
-            return false;
+    if (areUniqueValue(arr)){
+        for (const value of arr) {
+            if (!seccion2.ejercicios[activityIndex][column][value].isCorrect) {
+                return false;
+            }
         }
+        return true;
     }
-    return true;
+    return false;
+
 }
