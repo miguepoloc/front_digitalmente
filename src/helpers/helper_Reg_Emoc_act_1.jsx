@@ -82,31 +82,6 @@ export const section1 = {
 export const seccion2 = {
     ejercicios: [
         {
-            name: "Ejercicio 6",
-            image: sorpresa,
-            emocion: "sorpresa",
-            text: "¿Cuáles características consideras que podrían relacionarse a la sorpresa?",
-            //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
-            successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Ejercita la identificación de tus emociones como paso fundamental para tu gestión emocional!",
-            sensaciones: [
-                { option: "Temblor en los brazos.", isCorrect: false },
-                { option: "Disminución de la frecuencia cardiaca.", isCorrect: true },
-                { option: "Aumento de la frecuencia cardiaca.", isCorrect: false },
-                { option: "Interrupción puntual de la respiración.", isCorrect: true },
-                { option: "Erizamiento de la piel.", isCorrect: true },
-                { option: "Respiración normal.", isCorrect: false },
-            ],
-            pensamientos: [
-                { option: "“¿¡Qué!? ¿Qué pasó?”", isCorrect: true },
-                { option: "Pensamientos de incertidumbre.", isCorrect: true },
-                { option: "Pensamientos positivos.", isCorrect: false },
-                { option: "Pensamientos negativos.", isCorrect: false },
-                { option: "“¿Qué hora es?”", isCorrect: false },
-                { option: "Mente en blanco.", isCorrect: true },
-            ],
-            SinAcciones: "La sorpresa facilita que aparezcan acciones relacionadas a explorar, investigar. Es decir, en torno al interés o curiosidad por la situación. Siempre dependerá del tipo de factor al que te enfrentas, lo que hará que después determine uno u otro tipo de acción (Fernández-Abascal <i>et al.</i>, 2010)"
-        },
-        {
             name: "Ejercicio 1",
             image: asco,
             emocion: "asco",
@@ -257,6 +232,31 @@ export const seccion2 = {
 
             ],
             SinAcciones: "La alegría facilita la interacción social, mejora el rendimiento cognitivo y la actitud frente a las situaciones, entre otros puntos. De aquí se pueden derivar muchas acciones dependiendo de tu personalidad, puede que estés más propenso a hablar con otras personas, o a prestar atención a lo que te comentan o a compartir algo determinado. La importancia de identificar las emociones nos permite observar su impacto (Fernández-Abascal <i>et al.</i>, 2010)"
+        },
+        {
+            name: "Ejercicio 6",
+            image: sorpresa,
+            emocion: "sorpresa",
+            text: "¿Cuáles características consideras que podrían relacionarse a la sorpresa?",
+            //errorMsg:"¡Sigue intentando! Una o más de las opciones de la columna sensaciones no corresponde tan precisamente a la emoción",
+            successMsg: "¡Correcto! Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Ejercita la identificación de tus emociones como paso fundamental para tu gestión emocional!",
+            sensaciones: [
+                { option: "Temblor en los brazos.", isCorrect: false },
+                { option: "Disminución de la frecuencia cardiaca.", isCorrect: true },
+                { option: "Aumento de la frecuencia cardiaca.", isCorrect: false },
+                { option: "Interrupción puntual de la respiración.", isCorrect: true },
+                { option: "Erizamiento de la piel.", isCorrect: true },
+                { option: "Respiración normal.", isCorrect: false },
+            ],
+            pensamientos: [
+                { option: "“¿¡Qué!? ¿Qué pasó?”", isCorrect: true },
+                { option: "Pensamientos de incertidumbre.", isCorrect: true },
+                { option: "Pensamientos positivos.", isCorrect: false },
+                { option: "Pensamientos negativos.", isCorrect: false },
+                { option: "“¿Qué hora es?”", isCorrect: false },
+                { option: "Mente en blanco.", isCorrect: true },
+            ],
+            SinAcciones: "La sorpresa facilita que aparezcan acciones relacionadas a explorar, investigar. Es decir, en torno al interés o curiosidad por la situación. Siempre dependerá del tipo de factor al que te enfrentas, lo que hará que después determine uno u otro tipo de acción (Fernández-Abascal <i>et al.</i>, 2010)"
         },
 
     ]
