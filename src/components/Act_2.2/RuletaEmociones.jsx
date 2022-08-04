@@ -17,6 +17,7 @@ import { AuthContext } from '../../context/AuthContext'
 import { useParams } from 'react-router-dom'
 import { BotonContext } from '../../context/BotonContext'
 import { AvanceContext } from '../../context/AvanceContext'
+import { Actividad } from '../Dashboard/Actividad'
 
 const RuletaEmociones = () => {
     // Variable del url
@@ -38,6 +39,7 @@ const RuletaEmociones = () => {
 
     const [definicionesUsuario, setDefinicionesUsuario] = useState(null);
     const [emociones, setEmociones] = useState(null)
+    const [intentos, setIntentos] = useState(0);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
     const answerDefault = {
@@ -47,8 +49,8 @@ const RuletaEmociones = () => {
     }
     const [answer, setAnswer] = useState(answerDefault)
 
-
     const isAnswerCorrect = () => {
+        console.log(emociones)
         if (answer.emocionId !== -1 && answer.definicion1Id !== -1 && answer.definicion2Id !== -1) {
             const emocion = searchEmocion(answer.emocionId);
             if (emocion) {
@@ -65,9 +67,11 @@ const RuletaEmociones = () => {
                     } else {
                         Correct_Alert("¡Excelente!", "Estas experiencias emocionales se relacionan o hacen parte de esta emoción. Si hay más emociones en la rueda, ¡continua! Si no, es hora de pasar a la siguiente fase. ");
                     }
-                } else if (validateDefinicion(emocion, answer.definicion1Id) || validateDefinicion(emocion, answer.definicion2Id)) {
+                }/* else if (validateDefinicion(emocion, answer.definicion1Id) || validateDefinicion(emocion, answer.definicion2Id)) {
                     ErrorAlert("¡Uf! Ya estas casi cerca", "Revisa una de las definiciones que colocaste. Recuerda a que hacen referencia y conéctalas con la función de las emociones. No olvides presionar el botón azul “Remove” para ir quitando cada emoción a medida que vayas resolviendo.");
-                } else {
+                } */
+                else {
+                    setIntentos(intentos + 1);
                     ErrorAlert("Lo siento. No parece ser correcto.", "Recuerda a que hacen referencia esas definiciones que colocaste y relaciónalo con la función de la emoción que te ha tocado. No olvides presionar el botón azul “Remove” para ir quitando cada emoción a medida que vayas resolviendo.");
                 }
             } else {
@@ -91,10 +95,29 @@ const RuletaEmociones = () => {
         setDefinicionesUsuario(definicionesUsuario.filter(({ definicion }) => definicion !== parseInt(answer.definicion1Id) && definicion !== parseInt(answer.definicion2Id)));
     }
 
-
     const validateDefinicion = (emocion, definicionId) => {
         return emocion.clasificacion.find((clasificacion) => clasificacion.id === parseInt(definicionId))
     }
+
+    const obtenerRespuestasCorrectas = (opcion) => {
+        const emocion = searchEmocion(answer.emocionId);
+        let arrOpcionesCorrectas = []
+        console.log(definicionesUsuario)
+        for( let clasificacionEmocionSeleccionada of emocion.clasificacion){
+            for( let difinicionUsuario of definicionesUsuario){
+                if(clasificacionEmocionSeleccionada.id === difinicionUsuario.definicion){
+                    arrOpcionesCorrectas.push(difinicionUsuario.definicion_usuario)
+                }
+            }
+        }
+        return arrOpcionesCorrectas[opcion-1];
+    }
+
+    const obtenerNombreEmocionSeleccionada = () => {
+        const emocion = searchEmocion(answer.emocionId);
+        return emocion.emocion
+    }
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -115,8 +138,14 @@ const RuletaEmociones = () => {
     }, [])
 
     const handleChange = (e) => {
+        if(e.target.name ==="emocionId"){
+            setIntentos(0);
+        }
         setAnswer({ ...answer, [e.target.name]: e.target.value });
     }
+
+
+
     /*
      
       document.querySelector('#iframe_ruleta').addEventListener("load",function() {
@@ -169,7 +198,7 @@ const RuletaEmociones = () => {
                                         <option value="-1" disabled>Definicion 1</option>
 
                                         {definicionesUsuario?.map(({ definicion_usuario, definicion }, i) => {
-                                        return definicion !== parseInt(answer.definicion2Id) ?
+                                            return definicion !== parseInt(answer.definicion2Id) ?
                                                 <option value={definicion} key={`definicion_usuario1-${i}`}> {definicion_usuario} </option> : <></>
                                         }
                                         )
@@ -192,7 +221,17 @@ const RuletaEmociones = () => {
                                 <Button onClick={isAnswerCorrect} className="mt-4 d-flex align-items-center justify-content-center">Validar <IoMdCheckboxOutline className='ms-1' style={{ height: "1.2em", width: "1.2em" }} /></Button>
 
                             </div>
-                        </div></>)}</>)}
+                        </div>
+
+                        {intentos >=2  && answer.emocionId !== -1 && <div className="my-2">
+                            <Actividad id="cuackAyuda" src={imgGanso.explicando} title="¡Cuack te ayuda!" showIcon={false}
+                                text={`
+                                ¡Aquí Cuack! Para esta emoción, las definiciones que corresponden a los conceptos <b>${obtenerRespuestasCorrectas(1)}</b> y <b>${obtenerRespuestasCorrectas(2)}</b> que diste, 
+                                son las correctas. Si vuelves a esas definiciones, veras como su descripción hace parte de la familia emocional de la ${obtenerNombreEmocionSeleccionada()} ¡Continua con otra emoción de la ruleta!
+                                `}
+                            />
+                        </div>}
+                        </>)}</>)}
         </div>
 
     );
