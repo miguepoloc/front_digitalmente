@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
-import situacion1 from '../components/Act_4.1/img/Situacion1.png'
-import situacion2 from '../components/Act_4.1/img/Situacion2.png'
-import situacion3 from '../components/Act_4.1/img/Situacion3.png'
-import situacion4 from '../components/Act_4.1/img/Situacion4.png'
+import situacion1 from '../components/Dashboard/mod_emocional/Act_4.1/img/Situacion1.png'
+import situacion2 from '../components/Dashboard/mod_emocional/Act_4.1/img/Situacion2.png'
+import situacion3 from '../components/Dashboard/mod_emocional/Act_4.1/img/Situacion3.png'
+import situacion4 from '../components/Dashboard/mod_emocional/Act_4.1/img/Situacion4.png'
 export const initialOptions = {
     select_sensaciones_0: -1,
     select_sensaciones_1: -1,

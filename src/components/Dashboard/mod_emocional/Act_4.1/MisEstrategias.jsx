@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
-import '../../assets/css/Act4.scss'
-import ganso_lupa_celular from '../../assets/img/ganso/ganso_lupa_celular.png'
-import { RetroalimentacionAlert } from '../../helpers/helper_Swal_Alerts'
-import { section4_1, setColorSelect } from '../../helpers/helper_Reg_Emoc_act_4'
+import '../../../../assets/css/Act4.scss'
+import ganso_lupa_celular from '../../../../assets/img/ganso/ganso_lupa_celular.png'
+import { RetroalimentacionAlert } from '../../../../helpers/helper_Swal_Alerts'
+import { section4_1, setColorSelect } from '../../../../helpers/helper_Reg_Emoc_act_4'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import { useParams } from 'react-router-dom'
-import { BotonContext } from '../../context/BotonContext'
-import { AvanceContext } from '../../context/AvanceContext'
+import { BotonContext } from '../../../../context/BotonContext'
+import { AvanceContext } from '../../../../context/AvanceContext'
 
 const Schema = Yup.object().shape({
     Texto1: Yup.string()

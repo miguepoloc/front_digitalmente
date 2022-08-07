@@ -3,21 +3,21 @@ import { Button } from 'react-bootstrap'
 import Form from 'react-bootstrap/Form'
 import { FaClipboardCheck, FaPaperPlane } from 'react-icons/fa'
 import { BsGearFill } from 'react-icons/bs'
-import { SendAlert, SendOkAlert, SendBadAlert } from "../../helpers/helper_Swal_Alerts"
+import { SendAlert, SendOkAlert, SendBadAlert } from "../../../../helpers/helper_Swal_Alerts"
 import {
     GET_definiciones_usuario as getDefinicionesUsuario,
     GET_definiciones as getDefiniciones,
     POST_definiciones_usuario as postDefinicionesUsuario,
     POST_definiciones_usuario_bulk_update as postDefinicionesUsuario_bulk_update
-} from '../../helpers/helperApi'
-import { Loading } from '../Loading'
-import { Actividad } from '../Dashboard/Actividad'
-import { imgGanso } from '../../helpers/helper_imagen_ganso'
-import { ErrorGanso } from '../ErrorGanso'
-import { AuthContext } from '../../context/AuthContext'
+} from '../../../../helpers/helperApi'
+import { Loading } from '../../../Loading'
+import { Actividad } from '../../../Dashboard/Actividad'
+import { imgGanso } from '../../../../helpers/helper_imagen_ganso'
+import { ErrorGanso } from '../../../ErrorGanso'
+import { AuthContext } from '../../../../context/AuthContext'
 import { useParams } from 'react-router-dom'
-import { BotonContext } from '../../context/BotonContext'
-import { AvanceContext } from '../../context/AvanceContext'
+import { BotonContext } from '../../../../context/BotonContext'
+import { AvanceContext } from '../../../../context/AvanceContext'
 
 export const Vocabulario = () => {
     // Variable del url
@@ -122,7 +122,7 @@ export const Vocabulario = () => {
                 if (response) {
                     //TODO: redireccionar Aquí.
                     setBotonState(false)
-                    SendOkAlert().then(()=>{
+                    SendOkAlert().then(() => {
                         document.getElementById("btn-main-next").click()
                     })
                 } else {

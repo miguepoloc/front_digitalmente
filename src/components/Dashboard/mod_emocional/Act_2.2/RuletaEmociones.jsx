@@ -1,23 +1,23 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import '../../assets/css/Surveys.scss'
+import '../../../../assets/css/Surveys.scss'
 
-import { imgGanso } from '../../helpers/helper_imagen_ganso'
+import { imgGanso } from '../../../../helpers/helper_imagen_ganso'
 
-import { GET_emocion as getEmociones, GET_definiciones_usuario as getDefinicionesUsuario } from '../../helpers/helperApi'
-import { ErrorAlert, Correct_Alert } from "../../helpers/helper_Swal_Alerts"
+import { GET_emocion as getEmociones, GET_definiciones_usuario as getDefinicionesUsuario } from '../../../../helpers/helperApi'
+import { ErrorAlert, Correct_Alert } from "../../../../helpers/helper_Swal_Alerts"
 
-import { ErrorGanso } from '../ErrorGanso'
-import { Loading } from '../Loading'
-import { ActividadConTip } from '../Dashboard/ActividadConTip'
+import { ErrorGanso } from '../../../ErrorGanso'
+import { Loading } from '../../../Loading'
+import { ActividadConTip } from '../../../Dashboard/ActividadConTip'
 
 import { IoMdCheckboxOutline } from "react-icons/io";
-import { AuthContext } from '../../context/AuthContext'
+import { AuthContext } from '../../../../context/AuthContext'
 import { useParams } from 'react-router-dom'
-import { BotonContext } from '../../context/BotonContext'
-import { AvanceContext } from '../../context/AvanceContext'
-import { Actividad } from '../Dashboard/Actividad'
+import { BotonContext } from '../../../../context/BotonContext'
+import { AvanceContext } from '../../../../context/AvanceContext'
+import { Actividad } from '../../../Dashboard/Actividad'
 
 const RuletaEmociones = () => {
     // Variable del url
@@ -104,21 +104,21 @@ const RuletaEmociones = () => {
         const emocion = searchEmocion(answer.emocionId);
         let arrOpcionesCorrectas = []
         console.log(definicionesUsuario)
-        for( let clasificacionEmocionSeleccionada of emocion.clasificacion){
-            for( let difinicionUsuario of definicionesUsuario){
-                if(clasificacionEmocionSeleccionada.id === difinicionUsuario.definicion){
+        for (let clasificacionEmocionSeleccionada of emocion.clasificacion) {
+            for (let difinicionUsuario of definicionesUsuario) {
+                if (clasificacionEmocionSeleccionada.id === difinicionUsuario.definicion) {
                     arrOpcionesCorrectas.push(difinicionUsuario.definicion_usuario)
                 }
             }
         }
-        return arrOpcionesCorrectas[opcion-1];
+        return arrOpcionesCorrectas[opcion - 1];
     }
 
     const obtenerNombreEmocionSeleccionada = () => {
         const emocion = searchEmocion(answer.emocionId);
         return emocion.emocion
     }
-    
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -147,7 +147,7 @@ const RuletaEmociones = () => {
     },[intentos])
 
     const handleChange = (e) => {
-        if(e.target.name ==="emocionId"){
+        if (e.target.name === "emocionId") {
             setIntentos(0);
         }
         setAnswer({ ...answer, [e.target.name]: e.target.value });
@@ -230,7 +230,7 @@ const RuletaEmociones = () => {
                             </div>
                         </div>
 
-                        {intentos >=2  && answer.emocionId !== -1 && <div className="my-2">
+                        {intentos >= 2 && answer.emocionId !== -1 && <div className="my-2">
                             <Actividad id="cuackAyuda" src={imgGanso.explicando} title="¡Cuack te ayuda!" showIcon={false}
                                 text={`
                                 ¡Aquí Cuack! Para esta emoción, las definiciones que corresponden a los conceptos <b>${obtenerRespuestasCorrectas(1)}</b> y <b>${obtenerRespuestasCorrectas(2)}</b> que diste, 
@@ -238,7 +238,7 @@ const RuletaEmociones = () => {
                                 `}
                             />
                         </div>}
-                        </>)}</>)}
+                    </>)}</>)}
         </div>
 
     );

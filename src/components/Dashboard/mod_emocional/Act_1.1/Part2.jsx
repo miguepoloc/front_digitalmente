@@ -5,15 +5,15 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { FaHandSparkles, FaBrain, FaPencilAlt } from 'react-icons/fa'
 import { BiCurrentLocation } from 'react-icons/bi'
-import '../../assets/css/Surveys.scss'
-import Scroll from '../../helpers/helperScroll'
-import { Warning_Alert, Correct_Alert } from '../../helpers/helper_Swal_Alerts'
-import { seccion2, initialOptions, areValidValues, areCorrectAnswers, respuestasCorrectasPorCategoria } from '../../helpers/helper_Reg_Emoc_act_1'
-import { imgGanso } from '../../helpers/helper_imagen_ganso'
-import { Actividad } from '../Dashboard/Actividad'
-import { Tip } from '../Dashboard/Tip'
-import { BotonContext } from '../../context/BotonContext'
-import { AvanceContext } from '../../context/AvanceContext'
+import '../../../../assets/css/Surveys.scss'
+import Scroll from '../../../../helpers/helperScroll'
+import { Warning_Alert, Correct_Alert } from '../../../../helpers/helper_Swal_Alerts'
+import { seccion2, initialOptions, areValidValues, areCorrectAnswers, respuestasCorrectasPorCategoria } from '../../../../helpers/helper_Reg_Emoc_act_1'
+import { imgGanso } from '../../../../helpers/helper_imagen_ganso'
+import { Actividad } from '../../../Dashboard/Actividad'
+import { Tip } from '../../../Dashboard/Tip'
+import { BotonContext } from '../../../../context/BotonContext'
+import { AvanceContext } from '../../../../context/AvanceContext'
 import { useParams } from 'react-router-dom'
 
 const Part2 = () => {
@@ -27,7 +27,7 @@ const Part2 = () => {
     const [selectOption, setSelectOption] = useState(initialOptions)
     const [activityIndex, setActivityIndex] = useState(0)
     const [error, setError] = useState(null)
-    
+
     useEffect(() => {
         if (AvanceState.emocional <= parseInt(slug)) {
             setBotonState(true)
@@ -37,16 +37,16 @@ const Part2 = () => {
 
 
     useEffect(() => {
-        if(error){
+        if (error) {
             var cuackAyuda = document.getElementById("cuackAyuda");
-            cuackAyuda?.scrollIntoView({behavior: 'smooth'}, true);
+            cuackAyuda?.scrollIntoView({ behavior: 'smooth' }, true);
         }
         if (error === false) {
             correctAnswer(seccion2.ejercicios[activityIndex].successMsg).then(() => {
                 if (activityIndex + 1 < seccion2.ejercicios.length) {
                     setActivityIndex(activityIndex + 1)
                     moveToEjercicio()
-                    restartValuesOption()   
+                    restartValuesOption()
                     setError(null);
                     // sube el scroll. muy util en dispositivos moviles.
                 } else {
@@ -56,7 +56,8 @@ const Part2 = () => {
 
             )
         }
-        
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [error])
 
     const handleChange = (event) => {
@@ -130,10 +131,10 @@ const Part2 = () => {
             `<p>Parece que en la columna <i><b>${seccion}</b></i> no diste respuesta a alguna(s) opcion(es)</p>`)
     }
 
-    const errorAnswer = (seccion) => {
-        return Warning_Alert('<h5><b>¡Sigue intentando!</b></h5>',
-            `<p> Una o más de las opciones de la columna  <i><b>${seccion}</b></i> no corresponde tan precisamente a la emoción</p>`)
-    }
+    // const errorAnswer = (seccion) => {
+    //     return Warning_Alert('<h5><b>¡Sigue intentando!</b></h5>',
+    //         `<p> Una o más de las opciones de la columna  <i><b>${seccion}</b></i> no corresponde tan precisamente a la emoción</p>`)
+    // }
 
     const correctAnswer = (msg) => {
         return Correct_Alert(undefined, msg)
@@ -274,7 +275,7 @@ const Part2 = () => {
             </div>
 
             {error && <div className="my-2">
-                <Actividad  id="cuackAyuda" src={imgGanso.explicando} title="¡Cuack te ayuda!" showIcon={false} 
+                <Actividad id="cuackAyuda" src={imgGanso.explicando} title="¡Cuack te ayuda!" showIcon={false}
                     text={`
                 ¡Ups! No es la correcta. Pero te puedo guiar. En la <b>${seccion2.ejercicios[activityIndex].emocion}</b> las sensaciones que se pueden experimentar son: 
                 ${respuestasCorrectasPorCategoria(activityIndex, "sensaciones")}, los pensamientos pueden ser: ${respuestasCorrectasPorCategoria(activityIndex, "pensamientos")}${!seccion2.ejercicios[activityIndex].SinAcciones ? ("y las acciones podrían orientarse a:" + respuestasCorrectasPorCategoria(activityIndex, "acciones")) : "."}
