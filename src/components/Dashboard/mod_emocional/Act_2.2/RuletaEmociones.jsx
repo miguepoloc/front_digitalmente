@@ -58,21 +58,22 @@ const RuletaEmociones = () => {
                     removeSelectedEmocion();
                     removeSelectedDefiniciones();
                     setAnswer(answerDefault);
-                    //console.log(emociones.length)
                     if (emociones.length - 1 === 0) {
                         Correct_Alert("¡En horabuena!", "Completaste satisfactoriamente la actividad.");
                         setBotonState(false)
-
-                        //TODO: mandar o redireccionar.
                     } else {
                         Correct_Alert("¡Excelente!", "Estas experiencias emocionales se relacionan o hacen parte de esta emoción. Si hay más emociones en la rueda, ¡continua! Si no, es hora de pasar a la siguiente fase. ");
                     }
-                }/* else if (validateDefinicion(emocion, answer.definicion1Id) || validateDefinicion(emocion, answer.definicion2Id)) {
-                    ErrorAlert("¡Uf! Ya estas casi cerca", "Revisa una de las definiciones que colocaste. Recuerda a que hacen referencia y conéctalas con la función de las emociones. No olvides presionar el botón azul “Remove” para ir quitando cada emoción a medida que vayas resolviendo.");
-                } */
+                }
                 else {
-                    setIntentos(intentos + 1);
-                    ErrorAlert("Lo siento. No parece ser correcto.", "Recuerda a que hacen referencia esas definiciones que colocaste y relaciónalo con la función de la emoción que te ha tocado. No olvides presionar el botón azul “Remove” para ir quitando cada emoción a medida que vayas resolviendo.");
+                    if(validateDefinicion(emocion, answer.definicion1Id) || validateDefinicion(emocion, answer.definicion2Id)){
+                        ErrorAlert("¡Uf! Ya estas casi cerca", "Revisa una de las definiciones que colocaste. Recuerda a que hacen referencia y conéctalas con la función de las emociones. No olvides presionar el botón azul “Remove” para ir quitando cada emoción a medida que vayas resolviendo.")
+                        .then(()=>setIntentos(intentos + 1))
+                    }
+                    else{
+                        ErrorAlert("Lo siento. No parece ser correcto.", "Recuerda a que hacen referencia esas definiciones que colocaste y relaciónalo con la función de la emoción que te ha tocado. No olvides presionar el botón azul “Remove” para ir quitando cada emoción a medida que vayas resolviendo.")
+                        .then(()=>setIntentos(intentos + 1))
+                    }
                 }
             } else {
                 ErrorAlert("Ups algo ha salido mal.", "Parece que has dejado una o varias opcion en blanco");
@@ -137,14 +138,20 @@ const RuletaEmociones = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    useEffect(()=>{
+        if(intentos >= 2){
+            var cuackAyuda = document.getElementById("cuackAyuda");
+            cuackAyuda?.scrollIntoView({behavior: 'smooth'}, true);
+        }
+        
+    },[intentos])
+
     const handleChange = (e) => {
         if (e.target.name === "emocionId") {
             setIntentos(0);
         }
         setAnswer({ ...answer, [e.target.name]: e.target.value });
     }
-
-
 
     /*
      
