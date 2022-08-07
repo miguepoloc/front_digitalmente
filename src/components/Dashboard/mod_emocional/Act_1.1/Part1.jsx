@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react'
 
-import '../../assets/css/Surveys.scss'
-import Answer from '../Surveys/Answer'
-import { imgGanso } from '../../helpers/helper_imagen_ganso'
-import { Warning_Alert, Correct_Alert } from '../../helpers/helper_Swal_Alerts'
-import { section1, setColorSelect } from '../../helpers/helper_Reg_Emoc_act_1'
-import { ActividadConDesc } from '../Dashboard/ActividadConDesc'
-import { BotonContext } from '../../context/BotonContext'
-import { AvanceContext } from '../../context/AvanceContext'
+import '../../../../assets/css/Surveys.scss'
+import Answer from '../../../Surveys/Answer'
+import { imgGanso } from '../../../../helpers/helper_imagen_ganso'
+import { Warning_Alert, Correct_Alert } from '../../../../helpers/helper_Swal_Alerts'
+import { section1, setColorSelect } from '../../../../helpers/helper_Reg_Emoc_act_1'
+import { ActividadConDesc } from '../../../Dashboard/ActividadConDesc'
+import { BotonContext } from '../../../../context/BotonContext'
+import { AvanceContext } from '../../../../context/AvanceContext'
 import { useParams } from 'react-router-dom'
 
 const Part1 = () => {

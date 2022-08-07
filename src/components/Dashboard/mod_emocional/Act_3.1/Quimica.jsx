@@ -1,24 +1,24 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Button } from 'react-bootstrap'
 import { Formik, Form, Field } from 'formik'
-import ganso_celular from "../../assets/img/ganso/ganso_celular.png"
+import ganso_celular from "../../../../assets/img/ganso/ganso_celular.png"
 
-import situacion1 from "../../assets/img/situaciones/situacion_1.png"
-import situacion2 from "../../assets/img/situaciones/situacion_2.png"
+import situacion1 from "../../../../assets/img/situaciones/situacion_1.png"
+import situacion2 from "../../../../assets/img/situaciones/situacion_2.png"
 
-import situacion3 from "../../assets/img/situaciones/situacion_3.png"
+import situacion3 from "../../../../assets/img/situaciones/situacion_3.png"
 
 import ReactSpeedometer from "react-d3-speedometer"
 import * as Yup from 'yup'
-import { FetchContext } from '../../context/FetchContext'
-import { AuthContext } from '../../context/AuthContext'
-import { AvanceContext } from '../../context/AvanceContext'
-import { BotonContext } from '../../context/BotonContext'
-import { Actividad } from '../Dashboard/Actividad'
-import { imgGanso } from '../../helpers/helper_imagen_ganso'
-import { Loading } from '../Loading'
+import { FetchContext } from '../../../../context/FetchContext'
+import { AuthContext } from '../../../../context/AuthContext'
+import { AvanceContext } from '../../../../context/AvanceContext'
+import { BotonContext } from '../../../../context/BotonContext'
+import { Actividad } from '../../../Dashboard/Actividad'
+import { imgGanso } from '../../../../helpers/helper_imagen_ganso'
+import { Loading } from '../../../Loading'
 import { useParams } from 'react-router-dom'
-import { ErrorAlert } from '../../helpers/helper_Swal_Alerts'
+import { ErrorAlert } from '../../../../helpers/helper_Swal_Alerts'
 
 const Quimica = () => {
     // Variable del url
@@ -200,7 +200,7 @@ const Quimica = () => {
     }, [])
 
 
-    console.log(emociones)
+    // console.log(emociones)
 
     useEffect(() => {
         if (
@@ -275,7 +275,7 @@ const Quimica = () => {
                         }}
                         validationSchema={Schema}
                         onSubmit={(values) => {
-                            console.log(values)
+                            // console.log(values)
                         }}
                     >
 
