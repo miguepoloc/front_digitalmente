@@ -12,8 +12,8 @@ import Part2 from '../components/Dashboard/mod_emocional/Act_1.1/Part2'
 import RuletaEmociones from '../components/Dashboard/mod_emocional/Act_2.2/RuletaEmociones'
 import { Vocabulario } from '../components/Dashboard/mod_emocional/Act_2.2/Vocabulario'
 import { Quimica } from '../components/Dashboard/mod_emocional/Act_3.1/Quimica'
-import ManejoSemaforo from '../components/Act_4.1/ManejoSemaforo'
-import MisEstrategias from '../components/Act_4.1/MisEstrategias'
+import ManejoSemaforo from '../components/Dashboard/mod_emocional/Act_4.1/ManejoSemaforo'
+import MisEstrategias from '../components/Dashboard/mod_emocional/Act_4.1/MisEstrategias'
 
 export const linksEmocional = [
     {

@@ -3,6 +3,7 @@ import { FaBolt } from 'react-icons/fa'
 
 export const Tip = ({ title, text, color, icon = <FaBolt />, _class = "mb-5" }) => {
     const colorDefault = "#4cbeff";
+    // eslint-disable-next-line no-useless-concat
     const _className = _class + " " + "callout h-md-250"
     return (
         <div

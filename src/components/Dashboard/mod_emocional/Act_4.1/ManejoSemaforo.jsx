@@ -1,16 +1,16 @@
 /* eslint-disable camelcase */
 import React, { useContext, useEffect, useState } from 'react'
-import '../../assets/css/Act4.scss'
-import ganso_lupa_celular from '../../assets/img/ganso/ganso_lupa_celular.png'
-import { ErrorAlert, Correct_Alert } from '../../helpers/helper_Swal_Alerts'
-import { section4_2, setColorSelect } from '../../helpers/helper_Reg_Emoc_act_4'
+import '../../../../assets/css/Act4.scss'
+import ganso_lupa_celular from '../../../../assets/img/ganso/ganso_lupa_celular.png'
+import { ErrorAlert, Correct_Alert } from '../../../../helpers/helper_Swal_Alerts'
+import { section4_2, setColorSelect } from '../../../../helpers/helper_Reg_Emoc_act_4'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
 import { useParams } from 'react-router-dom'
-import { BotonContext } from '../../context/BotonContext'
-import { AvanceContext } from '../../context/AvanceContext'
-import { Actividad } from '../Dashboard/Actividad'
-import { imgGanso } from '../../helpers/helper_imagen_ganso'
+import { BotonContext } from '../../../../context/BotonContext'
+import { AvanceContext } from '../../../../context/AvanceContext'
+import { Actividad } from '../../../Dashboard/Actividad'
+import { imgGanso } from '../../../../helpers/helper_imagen_ganso'
 
 const Schema = Yup.object().shape({
     Texto1: Yup.string()
