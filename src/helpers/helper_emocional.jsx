@@ -7,6 +7,7 @@ import Capsula5 from '../assets/img/modulo_emocional/Capsula_5.png'
 import Capsula6 from '../assets/img/modulo_emocional/Capsula_6.png'
 import Capsula7 from '../assets/img/modulo_emocional/Capsula_7.png'
 import Capsula8 from '../assets/img/modulo_emocional/Capsula_8.png'
+import { ActividadDeFomentoEmocional } from '../components/Dashboard/mod_emocional/actividadDeFomento/ActividadDeFomentoEmocional'
 import Part1 from '../components/Dashboard/mod_emocional/Act_1.1/Part1'
 import Part2 from '../components/Dashboard/mod_emocional/Act_1.1/Part2'
 import RuletaEmociones from '../components/Dashboard/mod_emocional/Act_2.2/RuletaEmociones'
@@ -123,6 +124,12 @@ export const linksEmocional = [
     },
     {
         id: 16,
+        nombre: 'Actividad de fomento',
+        link: 'emocional16',
+        actividad: <ActividadDeFomentoEmocional />,
+    },
+    {
+        id: 17,
         nombre: 'FIN no se muestra',
     }
 ]

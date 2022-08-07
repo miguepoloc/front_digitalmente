@@ -1,48 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react'
-// import { InputGroup } from 'react-bootstrap'
+import React, { useContext } from 'react'
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
-// import { gansoPensandoAlert } from '../../../helpers/helper_Swal_Alerts'
 import './assets/css/Modulos_inicio.scss'
 import CartaImagen from '../CartaImagen'
-import Axios from 'axios'
 import { linksRelax } from '../../../helpers/helperRelax'
+import { linksEmocional } from '../../../helpers/helper_emocional'
 import { Modulos } from './Modulos'
 import { AuthContext } from '../../../context/AuthContext'
+import { AvanceContext } from '../../../context/AvanceContext'
 // import { Modulo_IconoBloqueo } from './Modulo_IconoBloqueo'
 export const ModulosInicio = () => {
-
     const { authState } = useContext(AuthContext)
-
     const { userInfo } = authState
-    // Obtención de datos
-    const [dataAvance, setdataAvance] = useState(false)
+    // Datos del avance que lleva el usuario
+    const { AvanceState } = useContext(AvanceContext);
 
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await Axios({
-                method: 'get',
-                url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
-            })
-            if (response) {
-                //console.log(response.data)
-                // Y lo coloca en el estado de datos del usuario
-                setdataAvance(response.data)
-            } else {
-                //console.log('No se pudieron traer los datos...')
-            }
-        };
-
-        fetchData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-
-    }, [dataAvance])
-
-    const bloqueo_ae = (dataAvance.autoevaluativo === 2 && !userInfo.is_staff ? true : false)
-    //console.log("🚀 ~ file: ModulosInicio.jsx ~ line 13 ~ ModulosInicio ~ dataAvance.autoevaluativo", dataAvance.autoevaluativo)
+    const bloqueo_ae = (AvanceState.autoevaluativo === 2 && !userInfo.is_staff ? true : false)
 
     let modulos = {
         modulo_alternativo: {
@@ -62,8 +34,8 @@ export const ModulosInicio = () => {
                 text: 'Relax',
                 classImg: 'imgGanso-modulos',
                 moduloClass: 'card_relax',
-                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && dataAvance.autoevaluativo === 2)), //TODO: habilitar luego para grupo intervencion
-                href: `/relax${dataAvance.estres === linksRelax.length ? (linksRelax.length - 1) : dataAvance.estres}`
+                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)), //TODO: habilitar luego para grupo intervencion
+                href: `/relax${AvanceState.estres === linksRelax.length ? (linksRelax.length - 1) : AvanceState.estres}`
             },
             {
                 col: 'col-3',
@@ -72,7 +44,7 @@ export const ModulosInicio = () => {
                 moduloClass: 'card_misEmociones',
                 classImg: 'imgGanso-modulos',
                 bloqueado: !userInfo.is_staff,
-                href: '/emocional1'
+                href: `/emocional${AvanceState.emocional === linksEmocional.length ? (linksEmocional.length - 1) : AvanceState.emocional}`
             },
             {
                 col: 'col-3',

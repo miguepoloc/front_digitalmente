@@ -1,19 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { linksEmocional } from '../../helpers/helper_emocional'
 import { linksRelax } from '../../helpers/helperRelax'
+import { AvanceContext } from '../../context/AvanceContext'
 
-const CartaSeguimiento = ({ dataAvance }) => {
-    const pAutoevaluativo = dataAvance.autoevaluativo === 1
+const CartaSeguimiento = () => {
+    // Datos del avance que lleva el usuario
+    const { AvanceState } = useContext(AvanceContext);
+    const pAutoevaluativo = AvanceState.autoevaluativo === 1
         ? '0'
-        : parseInt(dataAvance.autoevaluativo / 2 * 100).toString()
-    const pEmocional = dataAvance.emocional === 1
+        : parseInt(AvanceState.autoevaluativo / 2 * 100).toString()
+    const pEmocional = AvanceState.emocional === 1
         ? '0'
-        : parseInt(dataAvance.emocional / linksEmocional.length * 100).toString()
-    const pRelax = dataAvance.estres === 1
+        : parseInt(AvanceState.emocional / linksEmocional.length * 100).toString()
+    const pRelax = AvanceState.estres === 1
         ? '0'
-        : parseInt(dataAvance.estres / linksRelax.length * 100).toString()
+        : parseInt(AvanceState.estres / linksRelax.length * 100).toString()
     const pPiensalo = '0'
     const pHabilidades = '0'
     return (

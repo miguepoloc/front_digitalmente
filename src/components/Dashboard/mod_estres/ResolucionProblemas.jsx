@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Actividad } from "../Actividad"
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
-
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -9,11 +8,8 @@ import { Box, CardActionArea, Checkbox, FormControlLabel } from '@mui/material';
 import { Formik, Form } from 'formik'
 import { Correct_Alert, ErrorAlert, ErrorAlertSiNo, SendOkAlert } from '../../../helpers/helper_Swal_Alerts';
 import { BotonContext } from '../../../context/BotonContext'
-import Axios from 'axios'
-
-import { AuthContext } from '../../../context/AuthContext'
 import { useParams } from 'react-router-dom';
-
+import { AvanceContext } from '../../../context/AvanceContext';
 
 const ValoresIniciales = {
     pregunta1: false,
@@ -26,43 +22,18 @@ const ValoresIniciales = {
     pregunta8: false,
 }
 
-
 export const ResolucionProblemas = () => {
     // Variable del url
     const { slug } = useParams()
     const { setBotonState } = useContext(BotonContext);
-    const { authState } = useContext(AuthContext)
-    const { userInfo } = authState
-    const [dataAvance, setdataAvance] = useState(false);
-    //const [intentos, setIntentos] = useState(1);
+    // Datos del avance que lleva el usuario
+    const { AvanceState } = useContext(AvanceContext);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await Axios({
-                method: 'get',
-                url: `${process.env.REACT_APP_API_URL}/api/avance_modulos/${userInfo.id}`
-            })
-            console.log(response)
-            if (response) {
-                //console.log(response.data)
-                // Y lo coloca en el estado de datos del usuario
-                setdataAvance(response.data)
-            } else {
-                //console.log('No se pudieron traer los datos...')
-            }
-        };
-
-        fetchData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-        if (dataAvance.estres <= parseInt(slug))
+        if (AvanceState.estres <= parseInt(slug))
             setBotonState(true)
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dataAvance])
-
+    }, [AvanceState])
 
     const [CartaColor, setCartaColor] = useState(0)
     const [Siguiente, setSiguiente] = useState(0)
@@ -85,11 +56,11 @@ export const ResolucionProblemas = () => {
                         src={imgGanso.explicando}
                         title="Para la solución de problemas es necesario tener en cuenta aspectos como: "
                         text={`<ul class="ms-4">
-                                <li>	La orientación hacia el problema, tomándola como la habilidad con que una persona afronta una situación problemática o estresante. 	</li>
-                                <li>	La definición y formulación del problema, que consiste en el grado de destreza con que una persona define un problema y plantea metas realistas. </li>
-                                <li>	El planteamiento de soluciones alternativas a un problema	</li>
-                                <li>	La toma de decisiones, enfocada en elegir aquella alternativa que resuelve en mejor manera el problema. 	</li>
-                                <li>	Poner en práctica la solución y evaluar la eficacia de la misma.	</li>
+                                <li>La orientación hacia el problema, tomándola como la habilidad con que una persona afronta una situación problemática o estresante. </li>
+                                <li>La definición y formulación del problema, que consiste en el grado de destreza con que una persona define un problema y plantea metas realistas. </li>
+                                <li>El planteamiento de soluciones alternativas a un problema</li>
+                                <li>La toma de decisiones, enfocada en elegir aquella alternativa que resuelve en mejor manera el problema. </li>
+                                <li>Poner en práctica la solución y evaluar la eficacia de la misma.</li>
                             </ul>`}
                         showIcon={false} />
                 </div>
@@ -118,9 +89,7 @@ export const ResolucionProblemas = () => {
 
             <Formik
                 initialValues={ValoresIniciales}
-
                 // validationSchema={Schema}
-
                 onSubmit={async (values) => {
 
                     if (Siguiente === 0) {
@@ -412,9 +381,6 @@ export const ResolucionProblemas = () => {
                                 </div>
                             </>
                         }
-
-
-
                         <div className="mt-4 mb-4 text-center">
                             <button
                                 type="submit"
@@ -425,7 +391,6 @@ export const ResolucionProblemas = () => {
                         </div>
                     </Form>
                 )}
-
             </Formik>
         </>
     )

@@ -10,7 +10,9 @@ import { FcApproval, FcCancel, FcBiomass, FcHome, FcScatterPlot, FcUnlock, FcImp
 import { GiReturnArrow } from 'react-icons/gi'
 import { AvanceContext } from '../../context/AvanceContext'
 
-const NavBarDashboard = ({ userInfo }) => {
+const NavBarDashboard = () => {
+    const { authState } = useContext(AuthContext)
+    const { userInfo } = authState
     const history = useHistory()
     const auth = useContext(AuthContext)
 
