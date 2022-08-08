@@ -9,6 +9,7 @@ import { linksRelax } from '../../helpers/helperRelax'
 import { FcApproval, FcCancel, FcBiomass, FcHome, FcScatterPlot, FcUnlock, FcImport } from 'react-icons/fc'
 import { GiReturnArrow } from 'react-icons/gi'
 import { AvanceContext } from '../../context/AvanceContext'
+import { linksPiensalo } from '../../helpers/helperPiensalo'
 
 const NavBarDashboard = () => {
     const { authState } = useContext(AuthContext)
@@ -28,11 +29,10 @@ const NavBarDashboard = () => {
     // Datos del avance que lleva el usuario
     const { AvanceState } = useContext(AvanceContext);
 
-    const grupoControl = false
-
     // Para borrar el último elemento de los módulos y poder llegar al 100%
     delete linksRelax[linksRelax.length - 1]
     delete linksEmocional[linksEmocional.length - 1]
+    delete linksPiensalo[linksPiensalo.length - 1]
     return (
         <>
             <Navbar
@@ -108,31 +108,6 @@ const NavBarDashboard = () => {
                                 </NavDropdown.Item>
                             </NavDropdown>
 
-                            {grupoControl || userInfo.is_staff
-                                ?
-                                <NavDropdown title="Emocional " id="basic-nav-dropdown" className='d-flex flex-column align-items-center justify-content-center'>
-
-                                    {linksEmocional.map((capsula, capsulaIndex) => (
-
-                                        <NavDropdown.Item
-                                            href={`/${capsula.link}`}
-                                            eventKey={capsulaIndex}
-                                            key={`key-${capsulaIndex}`}
-                                            disabled={!(AvanceState.emocional >= capsula.id)}
-                                            className="  d-flex align-items-center"
-                                        ><span className='pe-2 d-flex align-items-center'>
-                                                {!(AvanceState.emocional >= capsula.id)
-                                                    ? <FcCancel size={22} />
-                                                    : (AvanceState.emocional === capsula.id) ? <FcBiomass size={22} /> : <FcApproval size={22} color={splitLocation[1] === capsula.link ? 'black' : ''} />}
-                                            </span>
-                                            {capsula.nombre}
-                                        </NavDropdown.Item>
-
-                                    ))}
-                                </NavDropdown>
-                                : <></>
-                            }
-
                             {userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)
                                 ?
                                 <NavDropdown
@@ -163,9 +138,84 @@ const NavBarDashboard = () => {
                                 : <></>
                             }
 
+                            {userInfo.is_staff
+                                ?
+                                <NavDropdown title="Emocional " id="basic-nav-dropdown" className='d-flex flex-column align-items-center justify-content-center'>
+
+                                    {linksEmocional.map((capsula, capsulaIndex) => (
+
+                                        <NavDropdown.Item
+                                            href={`/${capsula.link}`}
+                                            eventKey={capsulaIndex}
+                                            key={`key-${capsulaIndex}`}
+                                            disabled={!(AvanceState.emocional >= capsula.id)}
+                                            className="  d-flex align-items-center"
+                                        ><span className='pe-2 d-flex align-items-center'>
+                                                {!(AvanceState.emocional >= capsula.id)
+                                                    ? <FcCancel size={22} />
+                                                    : (AvanceState.emocional === capsula.id) ? <FcBiomass size={22} /> : <FcApproval size={22} color={splitLocation[1] === capsula.link ? 'black' : ''} />}
+                                            </span>
+                                            {capsula.nombre}
+                                        </NavDropdown.Item>
+
+                                    ))}
+                                </NavDropdown>
+                                : <></>
+                            }
+
+                            {userInfo.is_staff
+                                ?
+                                <NavDropdown title="Piensalo" id="basic-nav-dropdown" className='d-flex flex-column align-items-center justify-content-center'>
+
+                                    {linksPiensalo.map((capsula, capsulaIndex) => (
+
+                                        <NavDropdown.Item
+                                            href={`/${capsula.link}`}
+                                            eventKey={capsulaIndex}
+                                            key={`key-${capsulaIndex}`}
+                                            disabled={!(AvanceState.piensalo >= capsula.id)}
+                                            className="  d-flex align-items-center"
+                                        ><span className='pe-2 d-flex align-items-center'>
+                                                {!(AvanceState.piensalo >= capsula.id)
+                                                    ? <FcCancel size={22} />
+                                                    : (AvanceState.piensalo === capsula.id) ? <FcBiomass size={22} /> : <FcApproval size={22} color={splitLocation[1] === capsula.link ? 'black' : ''} />}
+                                            </span>
+                                            {capsula.nombre}
+                                        </NavDropdown.Item>
+
+                                    ))}
+                                </NavDropdown>
+                                : <></>
+                            }
+
+                            {userInfo.is_staff
+                                ?
+                                <NavDropdown title="Habilidades " id="basic-nav-dropdown" className='d-flex flex-column align-items-center justify-content-center'>
+
+                                    {/* {linkspiensalo.map((capsula, capsulaIndex) => (
+
+                                        <NavDropdown.Item
+                                            href={`/${capsula.link}`}
+                                            eventKey={capsulaIndex}
+                                            key={`key-${capsulaIndex}`}
+                                            disabled={!(AvanceState.piensalo >= capsula.id)}
+                                            className="  d-flex align-items-center"
+                                        ><span className='pe-2 d-flex align-items-center'>
+                                                {!(AvanceState.piensalo >= capsula.id)
+                                                    ? <FcCancel size={22} />
+                                                    : (AvanceState.piensalo === capsula.id) ? <FcBiomass size={22} /> : <FcApproval size={22} color={splitLocation[1] === capsula.link ? 'black' : ''} />}
+                                            </span>
+                                            {capsula.nombre}
+                                        </NavDropdown.Item>
+
+                                    ))} */}
+                                </NavDropdown>
+                                : <></>
+                            }
+
 
                             <NavDropdown
-                                title={auth && <b>{auth?.authState?.userInfo?.nombre.split(" ")[0]}</b>}
+                                title={<b>{userInfo?.nombre.split(" ")[0]}</b>}
                                 id="basic-nav-dropdown"
                                 className='d-flex flex-column align-items-center justify-content-center'
                                 align="end"

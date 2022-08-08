@@ -4,6 +4,7 @@ import './assets/css/Modulos_inicio.scss'
 import CartaImagen from '../CartaImagen'
 import { linksRelax } from '../../../helpers/helperRelax'
 import { linksEmocional } from '../../../helpers/helper_emocional'
+import { linksPiensalo } from '../../../helpers/helperPiensalo'
 import { Modulos } from './Modulos'
 import { AuthContext } from '../../../context/AuthContext'
 import { AvanceContext } from '../../../context/AvanceContext'
@@ -52,8 +53,8 @@ export const ModulosInicio = () => {
                 text: 'Piénsalo',
                 moduloClass: 'card_piensalo',
                 classImg: 'imgGanso-modulos',
-                bloqueado: true,
-                href: ''
+                bloqueado: !userInfo.is_staff,
+                href: `/piensalo${AvanceState.piensalo === linksPiensalo.length ? (linksPiensalo.length - 1) : AvanceState.piensalo}`
             },
             {
                 col: 'col-3',

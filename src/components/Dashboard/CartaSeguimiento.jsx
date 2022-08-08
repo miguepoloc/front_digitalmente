@@ -4,6 +4,7 @@ import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { linksEmocional } from '../../helpers/helper_emocional'
 import { linksRelax } from '../../helpers/helperRelax'
 import { AvanceContext } from '../../context/AvanceContext'
+import { linksPiensalo } from '../../helpers/helperPiensalo'
 
 const CartaSeguimiento = () => {
     // Datos del avance que lleva el usuario
@@ -17,7 +18,9 @@ const CartaSeguimiento = () => {
     const pRelax = AvanceState.estres === 1
         ? '0'
         : parseInt(AvanceState.estres / linksRelax.length * 100).toString()
-    const pPiensalo = '0'
+    const pPiensalo = AvanceState.piensalo === 1
+        ? '0'
+        : parseInt(AvanceState.piensalo / linksPiensalo.length * 100).toString()
     const pHabilidades = '0'
     return (
         <>

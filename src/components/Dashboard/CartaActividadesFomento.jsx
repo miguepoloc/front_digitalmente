@@ -22,10 +22,10 @@ export const CartaActividadesFomento = () => {
                             <button type="submit" className="btn btn-morado w-75  mx-4 " onClick={() => AvanceState.emocional > 15 ? history.push('/emocional16') : ""} disabled={AvanceState.emocional > 15 ? false : true}><span className='textCard'>Módlulo Emocional</span></button>
                         </div>
                         <div className="">
-                            <button type="submit" className="btn btn-azul w-75  mx-4 " disabled><span className='textCard'>- - - - - - - - - - - - - - - - - - - - - -</span></button>
+                            <button type="submit" className="btn btn-azul w-75  mx-4 " onClick={() => AvanceState.piensalo > 5 ? history.push('/piensalo6') : ""} disabled={AvanceState.piensalo > 5 ? false : true}><span className='textCard'>Módlulo Piensalo</span></button>
                         </div>
                         <div className="">
-                            <button type="submit" className="btn btn-amarillo w-75  mx-4 " disabled><span className='textCard'>- - - - - - - - - - - - - - - - - - - - - -</span></button>
+                            <button type="submit" className="btn btn-amarillo w-75  mx-4 " onClick={() => AvanceState.habilidades > 5 ? history.push('/habilidades6') : ""} disabled={AvanceState.habilidades > 5 ? false : true}><span className='textCard'>Módlulo Mis Habilidades</span></button>
                         </div>
                     </div>
                 </div>
