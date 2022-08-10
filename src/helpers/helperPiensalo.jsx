@@ -1,9 +1,9 @@
 import Capsula1 from '../assets/img/modulo_piensalo/piensalo1.jpeg'
 import Capsula2 from '../assets/img/modulo_piensalo/piensalo2.jpeg'
 import Capsula3 from '../assets/img/modulo_piensalo/piensalo3.jpeg'
-
-import Part2 from '../components/Dashboard/mod_emocional/Act_1.1/Part2'
 import { ActividadDeFomentoPiensalo } from '../components/Dashboard/mod_piensalo/actividadDeFomento/ActividadDeFomentoPiensalo'
+import { UneLasCorrespondencias } from '../components/Dashboard/mod_piensalo/UneLasCorrespondencias'
+import { YaLosIdentifico } from '../components/Dashboard/mod_piensalo/YaLosIdentifico'
 
 export const linksPiensalo = [
     {
@@ -31,14 +31,14 @@ export const linksPiensalo = [
         id: 4,
         nombre: 'Actividad 1',
         link: 'piensalo4',
-        actividad: <Part2 />,
+        actividad: <UneLasCorrespondencias />,
         tipoCapsula: false
     },
     {
         id: 5,
         nombre: 'Actividad 2',
         link: 'piensalo5',
-        actividad: <Part2 />,
+        actividad: <YaLosIdentifico />,
         tipoCapsula: false
     },
     {
