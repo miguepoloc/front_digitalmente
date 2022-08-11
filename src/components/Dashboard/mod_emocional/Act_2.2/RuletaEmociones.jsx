@@ -66,12 +66,16 @@ const RuletaEmociones = () => {
                     }
                 }
                 else {
-                    if(validateDefinicion(emocion, answer.definicion1Id) || validateDefinicion(emocion, answer.definicion2Id)){
-                        ErrorAlert("¡Uf! Ya estas casi cerca", "Revisa una de las definiciones que colocaste. Recuerda a que hacen referencia y conéctalas con la función de las emociones. No olvides presionar el botón azul “Remove” para ir quitando cada emoción a medida que vayas resolviendo.")
+                    if(intentos >= 2){
+                        ErrorAlert("Cuack te ayuda.", ". Revisa el mensaje de ayuda debajo.")
+                        .then(()=>setIntentos(intentos + 1))
+                    }
+                    else if(validateDefinicion(emocion, answer.definicion1Id) || validateDefinicion(emocion, answer.definicion2Id)){
+                        ErrorAlert("¡Uf! Ya estas casi cerca.", "Revisa una de las definiciones que colocaste. Recuerda a que hacen referencia y conéctalas con la función de las emociones.")
                         .then(()=>setIntentos(intentos + 1))
                     }
                     else{
-                        ErrorAlert("Lo siento. No parece ser correcto.", "Recuerda a que hacen referencia esas definiciones que colocaste y relaciónalo con la función de la emoción que te ha tocado. No olvides presionar el botón azul “Remove” para ir quitando cada emoción a medida que vayas resolviendo.")
+                        ErrorAlert("Lo siento. No parece ser correcto.", "Recuerda a que hacen referencia esas definiciones que colocaste y relaciónalo con la función de la emoción que te ha tocado.")
                         .then(()=>setIntentos(intentos + 1))
                     }
                 }
