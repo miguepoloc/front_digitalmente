@@ -18,7 +18,7 @@ import { Actividad } from '../../../Dashboard/Actividad'
 import { imgGanso } from '../../../../helpers/helper_imagen_ganso'
 import { Loading } from '../../../Loading'
 import { useParams } from 'react-router-dom'
-import { ErrorAlert } from '../../../../helpers/helper_Swal_Alerts'
+import { ErrorAlert, RetroalimentacionAlert } from '../../../../helpers/helper_Swal_Alerts'
 
 const Quimica = () => {
     // Variable del url
@@ -27,11 +27,11 @@ const Quimica = () => {
     // Datos del avance que lleva el usuario
     const { AvanceState } = useContext(AvanceContext);
 
+
     useEffect(() => {
         if (AvanceState.emocional <= parseInt(slug)) {
             setBotonState(true)
         }
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [AvanceState])
     const { authAxios } = useContext(FetchContext)
@@ -39,11 +39,9 @@ const Quimica = () => {
     const [Intentos2, setIntentos2] = useState(0)
     const [Intentos3, setIntentos3] = useState(0)
     const [loading, setLoading] = useState(true);
-
-    const [retroPrimera, setRetroPrimera] = useState(null)
-    const [retroSegunda, setRetroSegunda] = useState(null)
-    const [retroTercera, setRetroTercera] = useState(null)
-    // const [validate, setValidate] = useState(false);
+    const [retroPrimera, setRetroPrimera] = useState("Revisa una de las definiciones que colocaste o en el nivel en que lo pusiste. Recuerda las manifestaciones asociadas a la emoción general a la que pertenece.")
+    const [retroSegunda, setRetroSegunda] = useState("Revisa la definición que colocaste o en el nivel en que lo pusiste. Recuerda las manifestaciones asociadas a la emoción general a la que pertenece. ")
+    const [retroTercera, setRetroTercera] = useState("Revisa la definición que colocaste o en el nivel en que lo pusiste. Recuerda las manifestaciones asociadas a la emoción general a la que pertenece. ")
     const [emociones, setEmociones] = useState(null);
 
     const Schema = Yup.object().shape({
@@ -80,7 +78,7 @@ const Quimica = () => {
             "nivel1": "medio",
             "emocion2": '8',//miedo
             "nivel2": "bajo",
-            "no_ambas": "¡Uf! Ya estas casi cerca. Revisa una de las definiciones que colocaste o en el nivel en que lo pusiste. Recuerda las manifestaciones asociadas a la emoción general a la que pertenece.",
+            "no_ambas": "Revisa una de las definiciones que colocaste o en el nivel en que lo pusiste. Recuerda las manifestaciones asociadas a la emoción general a la que pertenece.",
             "ok_ambas": "¡Excelente! Si eres demasiado optimista, puedes terminar pensando que puedes estudiar después o no lo necesitas y luego descubrir luego que no te queda tiempo, causándote estrés. Al mismo tiempo, demasiado miedo podría terminar inmovilizándote, percibiendo el peligro como inmanejable para intentar algo, pero un nivel bajo te permite tener presente lo que debes hacer y mantenerte al tanto.",
             "mensaje": "si eres demasiado optimista, puedes terminar pensando que puedes estudiar después o no lo necesitas y luego descubrir luego que no te queda tiempo, causándote estrés. Al mismo tiempo, demasiado miedo podría terminar inmovilizándote, percibiendo el peligro como inmanejable para intentar algo, pero un nivel bajo te permite tener presente lo que debes hacer y mantenerte al tanto."
         },
@@ -88,7 +86,7 @@ const Quimica = () => {
             "emocion2": '3',//Entusiasmo
             "nivel2": "medio",
             "nivel22": "alto",
-            "no_ambas": "¡Uf! Ya estas casi cerca. Revisa la definición que colocaste o en el nivel en que lo pusiste. Recuerda las manifestaciones asociadas a la emoción general a la que pertenece. ",
+            "no_ambas": "Revisa la definición que colocaste o en el nivel en que lo pusiste. Recuerda las manifestaciones asociadas a la emoción general a la que pertenece. ",
             "ok_ambas": "¡Excelente! Las expresiones emocionales asociadas a la alegría pueden potenciar la creatividad y una mayor disposición a resolver problemas. Un buen nivel de entusiasmo puede darte lo necesario para ideas para el regalo de tu amigo/a.",
             "mensaje": "las expresiones emocionales asociadas a la alegría pueden potenciar la creatividad y una mayor disposición a resolver problemas. Un buen nivel de entusiasmo puede darte lo necesario para ideas para el regalo de tu amigo/a.",
         },
@@ -97,8 +95,8 @@ const Quimica = () => {
             "nivel3": "medio",
             "accion3": '2',
             "accionValid": "Expresar tu opinión de manera firme y con respeto.",
-            "no_nivel_emocion": "¡Uf! Ya estas casi cerca. Revisa la definición que colocaste o en el nivel en que lo pusiste. Recuerda las manifestaciones asociadas a la emoción general a la que pertenece. ",
-            "no_accion": "¡Uf! Ya estas casi cerca. Revisa esa acción que decidiste. ¿No crees que te traería más impacto para ti o las consecuencias alrededor?",
+            "no_nivel_emocion": "Revisa la definición que colocaste o en el nivel en que lo pusiste. Recuerda las manifestaciones asociadas a la emoción general a la que pertenece. ",
+            "no_accion": "Revisa esa acción que decidiste. ¿No crees que te traería más impacto para ti o las consecuencias alrededor?",
             "ok_ambas": "¡Muy bien! Si te frustras demasiado, la activación podría provocarte no solo malestar, sino que, dependiendo de tu carácter, situación y otros factores, puede que llegue la situación a un punto bastante negativo. Un nivel de activación medio, que te permite movilizarte y ser asertivo (expresarte de manera firme y con respeto) terminan siendo factores importantes para ayudarte a manejar esas situaciones sin que termine teniendo un impacto negativo para ti ni para otros.",
             "mensaje": "si te frustras demasiado, la activación podría provocarte no solo malestar, sino que, dependiendo de tu carácter, situación y otros factores, puede que llegue la situación a un punto bastante negativo. Un nivel de activación medio, que te permite movilizarte y ser asertivo (expresarte de manera firme y con respeto) terminan siendo factores importantes para ayudarte a manejar esas situaciones sin que termine teniendo un impacto negativo para ti ni para otros.",
 
@@ -106,8 +104,6 @@ const Quimica = () => {
     }
 
     const handleBtnClickSend = (name, values) => {
-        //console.log(respuestas[name])
-        //console.log(values)
 
         if (name === "situacion1") {
 
@@ -121,9 +117,16 @@ const Quimica = () => {
                 setIntentos1(0)
             }
             else {
-                setRetroPrimera(respuestas[name].no_ambas)
-                ErrorAlert("Error", retroPrimera)
-                setIntentos1(Intentos1 + 1)
+                if (Intentos1 < 1) {
+                    setRetroPrimera(respuestas[name].no_ambas)
+                    ErrorAlert("¡Uf! Ya estas casi cerca", retroPrimera)
+                    setIntentos1(Intentos1 + 1)
+                }
+                else {
+                    setIntentos1(Intentos1 + 1)
+                    RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
+                }
+
             }
         }
         else if (name === "situacion2") {
@@ -133,7 +136,7 @@ const Quimica = () => {
             }
             else {
                 setRetroSegunda(respuestas[name].no_ambas)
-                ErrorAlert("Error", retroSegunda)
+                ErrorAlert("¡Uf! Ya estas casi cerca", retroSegunda)
                 setIntentos2(Intentos2 + 1)
             }
         }
@@ -145,23 +148,17 @@ const Quimica = () => {
                 }
                 else {
                     setRetroTercera(respuestas[name].no_accion)
-                    ErrorAlert("Error", retroTercera)
+                    ErrorAlert("¡Uf! Ya estas casi cerca", retroTercera)
                     setIntentos3(Intentos3 + 1)
                 }
             }
             else {
                 setRetroTercera(respuestas[name].no_nivel_emocion)
-                ErrorAlert("Error", retroTercera)
+                ErrorAlert("¡Uf! Ya estas casi cerca", retroTercera)
                 setIntentos3(Intentos3 + 1)
             }
         }
     }
-
-    // const handleOnChange = () => {
-    //     if (validate)
-    //         setValidate(false);
-    // }
-
 
     const { authState } = useContext(AuthContext)
 
@@ -182,9 +179,7 @@ const Quimica = () => {
         if (nivel === "medio") return 500
         if (nivel === "bajo") return 832
         return 0
-
     }
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -274,9 +269,6 @@ const Quimica = () => {
                             Respuesta3: '',
                         }}
                         validationSchema={Schema}
-                        onSubmit={(values) => {
-                            // console.log(values)
-                        }}
                     >
 
 

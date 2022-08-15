@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import '../../../../assets/css/Act4.scss'
 import ganso_lupa_celular from '../../../../assets/img/ganso/ganso_lupa_celular.png'
-import { ErrorAlert, Correct_Alert } from '../../../../helpers/helper_Swal_Alerts'
+import { ErrorAlert, Correct_Alert, RetroalimentacionAlert } from '../../../../helpers/helper_Swal_Alerts'
 import { section4_2, setColorSelect } from '../../../../helpers/helper_Reg_Emoc_act_4'
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
@@ -13,12 +13,12 @@ import { Actividad } from '../../../Dashboard/Actividad'
 import { imgGanso } from '../../../../helpers/helper_imagen_ganso'
 
 const Schema = Yup.object().shape({
-    Texto1: Yup.string()
-        .min(2, 'Demasiado corto')
-        .required('Es necesario llenar esta información'),
-    Texto2: Yup.string()
-        .min(2, 'Demasiado corto')
-        .required('Es necesario llenar esta información'),
+    // Texto1: Yup.string()
+    //     .min(2, 'Demasiado corto')
+    //     .required('Es necesario llenar esta información'),
+    // Texto2: Yup.string()
+    //     .min(2, 'Demasiado corto')
+    //     .required('Es necesario llenar esta información'),
     color1: Yup.string()
         .required('Es necesario seleccionar un color'),
     color2: Yup.string()
@@ -102,8 +102,8 @@ const ManejoSemaforo = () => {
             <div className="container">
                 <Formik
                     initialValues={{
-                        Texto1: '',
-                        Texto2: '',
+                        // Texto1: '',
+                        // Texto2: '',
                         color1: '',
                         color2: '',
                         color3: '',
@@ -116,8 +116,8 @@ const ManejoSemaforo = () => {
                             values.color1 === section4_2.activities[activityIndex].color1 &&
                             values.color2 === section4_2.activities[activityIndex].color2 &&
                             values.color3 === section4_2.activities[activityIndex].color3 &&
-                            section4_2.activities[activityIndex].situacion[values.situacion].isCorrect &&
-                            section4_2.activities[activityIndex].emocion[values.emocion].isCorrect
+                            section4_2.activities[activityIndex].situacion[values.situacion - 1].isCorrect &&
+                            section4_2.activities[activityIndex].emocion[values.emocion - 1].isCorrect
                         ) {
                             //console.log('Está correcto')
                             resetForm()
@@ -132,14 +132,20 @@ const ManejoSemaforo = () => {
                                 }
                             })
                         } else {
-                            ErrorAlert(section4_2.titleError, section4_2.errorMsg)
-
                             // TODO: Intentos
                             setIntentos(Intentos + 1)
-                            //console.log('Equivocado')
+                            if (Intentos > 0) {
+                                RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
+                                values.color1 = section4_2.activities[activityIndex].color1
+                                values.color2 = section4_2.activities[activityIndex].color2
+                                values.color3 = section4_2.activities[activityIndex].color3
+                                values.situacion = section4_2.activities[activityIndex].situacionok
+                                values.emocion = section4_2.activities[activityIndex].emocionok
+                            }
+                            else {
+                                ErrorAlert(section4_2.titleError, section4_2.errorMsg)
+                            }
                         }
-
-                        //console.log(values)
                     }}
                 >
                     {({ errors, values, touched, handleChange }) => (
@@ -249,7 +255,7 @@ const ManejoSemaforo = () => {
                                         <option value="" key="Prueba" disabled>Selecciona una situacion</option>
 
                                         {section4_2.activities[activityIndex].situacion.map((situacion, situacionindex) => (
-                                            <option value={situacionindex} key={`Situacion_${situacionindex}`}>{situacion.option}</option>
+                                            <option value={situacionindex + 1} key={`Situacion_${situacionindex}`}>{situacion.option}</option>
                                         ))}
 
                                     </Field>
@@ -283,7 +289,7 @@ const ManejoSemaforo = () => {
                                         <option value="" key="Prueba" disabled>Selecciona una emocion</option>
 
                                         {section4_2.activities[activityIndex].emocion.map((emocion, emocionindex) => (
-                                            <option value={emocionindex} key={`Emocion_${emocionindex}`}>{emocion.option}</option>
+                                            <option value={emocionindex + 1} key={`Emocion_${emocionindex}`}>{emocion.option}</option>
                                         ))}
 
                                     </Field>
@@ -299,7 +305,7 @@ const ManejoSemaforo = () => {
                                 </div>
 
                             </div>
-                            <div className="row">
+                            {/* <div className="row">
                                 <div className="col-sm mb-4"
                                     style={{ display: 'flex', alignItems: 'center' }}
 
@@ -350,7 +356,7 @@ const ManejoSemaforo = () => {
                                         )
                                         : null}
                                 </div>
-                            </div>
+                            </div> */}
 
                             {Intentos > 1 && (
 

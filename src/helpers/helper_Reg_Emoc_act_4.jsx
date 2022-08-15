@@ -63,6 +63,8 @@ export const section4_2 = {
                 { option: 'Mientras sales, te llaman para decirte que acabas de ganarte algo por lo que concursaste.', isCorrect: false },
                 { option: 'Tienes un amigo(a) que en general es una persona muy alegre. Hoy lo has visto bastante bajo de ánimo.', isCorrect: false }
             ],
+            situacionok: 1,
+            emocionok: 3,
             emocion: [
                 { option: 'Alegría', isCorrect: false },
                 { option: 'Tristeza', isCorrect: false },
@@ -87,6 +89,8 @@ export const section4_2 = {
                 { option: 'Mientras sales, te llaman para decirte que acabas de ganarte algo por lo que concursaste.', isCorrect: false },
                 { option: 'Tienes un amigo(a) que en general es una persona muy alegre. Hoy lo has visto bastante bajo de ánimo.', isCorrect: false }
             ],
+            situacionok: 2,
+            emocionok: 5,
             emocion: [
                 { option: 'Alegría', isCorrect: false },
                 { option: 'Tristeza', isCorrect: false },
@@ -111,6 +115,8 @@ export const section4_2 = {
                 { option: 'Mientras sales, te llaman para decirte que acabas de ganarte algo por lo que concursaste.', isCorrect: true },
                 { option: 'Tienes un amigo(a) que en general es una persona muy alegre. Hoy lo has visto bastante bajo de ánimo.', isCorrect: false }
             ],
+            situacionok: 3,
+            emocionok: 1,
             emocion: [
                 { option: 'Alegría', isCorrect: true },
                 { option: 'Tristeza', isCorrect: false },
@@ -135,6 +141,8 @@ export const section4_2 = {
                 { option: 'Mientras sales, te llaman para decirte que acabas de ganarte algo por lo que concursaste.', isCorrect: false },
                 { option: 'Tienes un amigo(a) que en general es una persona muy alegre. Hoy lo has visto bastante bajo de ánimo.', isCorrect: true }
             ],
+            situacionok: 4,
+            emocionok: 2,
             emocion: [
                 { option: 'Alegría', isCorrect: false },
                 { option: 'Tristeza', isCorrect: true },
