@@ -131,7 +131,7 @@ const ModuloEmocional = () => {
                 <main className="main-content position-relative h-100 border-radius-lg ">
                     <NavBarDashboard userInfo={userInfo} />
 
-                    <div className="container-fluid py-4">
+                    <div className="py-4">
 
                         <div >
 

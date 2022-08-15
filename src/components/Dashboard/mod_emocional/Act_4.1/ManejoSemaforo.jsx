@@ -61,7 +61,7 @@ const ManejoSemaforo = () => {
 
     return (
 
-        <div className="container">
+        <div className="mx-3 mx-md-4">
             <div className="row">
                 <div className="col">
                     <div className="card flex-md-row mb-2 box-shadow h-md-250 px-4  py-4 mt-3 ">
@@ -99,7 +99,7 @@ const ManejoSemaforo = () => {
                 </div>
             </div>
 
-            <div className="container">
+            <div className="mx-3">
                 <Formik
                     initialValues={{
                         // Texto1: '',

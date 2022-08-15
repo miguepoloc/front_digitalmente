@@ -8,13 +8,14 @@ import { BiCurrentLocation } from 'react-icons/bi'
 import '../../../../assets/css/Surveys.scss'
 import Scroll from '../../../../helpers/helperScroll'
 import { Warning_Alert, Correct_Alert } from '../../../../helpers/helper_Swal_Alerts'
-import { seccion2, initialOptions, areValidValues, areCorrectAnswers, respuestasCorrectasPorCategoria } from '../../../../helpers/helper_Reg_Emoc_act_1'
+import { seccion2, correctAnswers, initialOptions, areValidValues, areCorrectAnswers, respuestasCorrectasPorCategoria } from '../../../../helpers/helper_Reg_Emoc_act_1'
 import { imgGanso } from '../../../../helpers/helper_imagen_ganso'
 import { Actividad } from '../../../Dashboard/Actividad'
 import { Tip } from '../../../Dashboard/Tip'
 import { BotonContext } from '../../../../context/BotonContext'
 import { AvanceContext } from '../../../../context/AvanceContext'
 import { useParams } from 'react-router-dom'
+import { object } from 'prop-types'
 
 const Part2 = () => {
     // Variable del url
@@ -26,7 +27,7 @@ const Part2 = () => {
     const color = '#4cbeff'
     const [selectOption, setSelectOption] = useState(initialOptions)
     const [activityIndex, setActivityIndex] = useState(0)
-    const [error, setError] = useState(null)
+    const [intentos, setintentos] = useState(-1)
 
     useEffect(() => {
         if (AvanceState.emocional <= parseInt(slug)) {
@@ -35,19 +36,18 @@ const Part2 = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [AvanceState])
 
-
     useEffect(() => {
-        if (error) {
+        if (intentos > 0) {
             var cuackAyuda = document.getElementById("cuackAyuda");
             cuackAyuda?.scrollIntoView({ behavior: 'smooth' }, true);
         }
-        if (error === false) {
+        if (intentos === 0) {
             correctAnswer(seccion2.ejercicios[activityIndex].successMsg).then(() => {
                 if (activityIndex + 1 < seccion2.ejercicios.length) {
                     setActivityIndex(activityIndex + 1)
                     moveToEjercicio()
                     restartValuesOption()
-                    setError(null);
+                    setintentos(-1);
                     // sube el scroll. muy util en dispositivos moviles.
                 } else {
                     setBotonState(false)
@@ -58,7 +58,7 @@ const Part2 = () => {
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [error])
+    }, [intentos])
 
     const handleChange = (event) => {
         setSelectOption(() => { return { ...selectOption, [event.target.name]: event.target.value } })
@@ -66,8 +66,8 @@ const Part2 = () => {
 
     const isValidOption = (excluirIndexSelect, groupSelect, value) => {
         for (let index = 0; index < 3; index++) {
-            if (index !== excluirIndexSelect) {
-                if (selectOption[`select_${groupSelect}_${index}`] === value) {
+            if (index != excluirIndexSelect) {
+                if (selectOption[`select_${groupSelect}_${index}`] == value) {
                     return false
                 }
             }
@@ -84,17 +84,17 @@ const Part2 = () => {
           Valido que el usuario haya seleccionado una respuesta por select.
         */
         if (!areValidValues(valueSensaciones)) {
-            errorAlert('sensaciones')
+            intentosAlert('sensaciones')
             return null
         }
 
         if (!areValidValues(valuePensamientos)) {
-            errorAlert('pensamientos')
+            intentosAlert('pensamientos')
             return null
         }
         // Si sinacciones es null, entonces valida el lado derecho.
         if (!SinAcciones && !areValidValues(valueAcciones)) {
-            errorAlert('acciones')
+            intentosAlert('acciones')
             return null
         }
 
@@ -102,23 +102,26 @@ const Part2 = () => {
           Valido que el usuario haya seleccionado las respuestas correctas.
         */
 
-        if (!areCorrectAnswers(valueSensaciones, 'sensaciones', activityIndex)) {
-            //errorAnswer('sensaciones')
-            setError(true);
+        if (!areCorrectAnswers(valueSensaciones, 'sensaciones', activityIndex) || !areCorrectAnswers(valuePensamientos, 'pensamientos', activityIndex) || (!SinAcciones && !areCorrectAnswers(valueAcciones, 'acciones', activityIndex))) {
+
+            let json = {}
+            for (let index = 0; index < 3; index++) {
+                //TODO: revisar esto
+                json["select_sensaciones_" + index] = correctAnswers('sensaciones', activityIndex)[index].toString()
+                json["select_pensamientos_" + index] = correctAnswers('pensamientos', activityIndex)[index].toString()
+                if (!SinAcciones) {
+                    json["select_acciones_" + index] = correctAnswers('acciones', activityIndex)[index].toString()
+                }
+                //setSelectOption(() => { return { ...selectOption, ["select_pensamientos_" + index]: correctAnswers('pensamientos', activityIndex)[index] } })
+                //!SinAcciones &&  setSelectOption(() => { return { ...selectOption, ["select_acciones_" + index]: correctAnswers('acciones', activityIndex)[index] } })
+            }
+
+            setSelectOption(() => { return { ...selectOption, ...json } })
+            setintentos(intentos == -1? 1: intentos+1);
             return
         }
-        if (!areCorrectAnswers(valuePensamientos, 'pensamientos', activityIndex)) {
-            //errorAnswer('pensamientos')
-            //Hago el if para que el estado no se actualice más de una vez si no es necesario
-            !error && setError(true);
-            return
-        }
-        if (!SinAcciones && !areCorrectAnswers(valueAcciones, 'acciones', activityIndex)) {
-            // errorAnswer('acciones')
-            !error && setError(true);
-            return
-        }
-        setError(false);
+
+        setintentos(0);
     }
 
 
@@ -126,12 +129,12 @@ const Part2 = () => {
         Scroll.scroll('ejercicio', true)
     }
 
-    const errorAlert = (seccion) => {
+    const intentosAlert = (seccion) => {
         return Warning_Alert('<h5><b>¿Seguro que no olvidaste hacer algo?</b></h5>',
             `<p>Parece que en la columna <i><b>${seccion}</b></i> no diste respuesta a alguna(s) opcion(es)</p>`)
     }
 
-    // const errorAnswer = (seccion) => {
+    // const intentosAnswer = (seccion) => {
     //     return Warning_Alert('<h5><b>¡Sigue intentando!</b></h5>',
     //         `<p> Una o más de las opciones de la columna  <i><b>${seccion}</b></i> no corresponde tan precisamente a la emoción</p>`)
     // }
@@ -147,7 +150,7 @@ const Part2 = () => {
     const SinAcciones = seccion2.ejercicios[activityIndex].SinAcciones
 
     return (
-        <div className="container">
+        <div className="mx-3 mx-md-4">
 
             <Actividad
                 title={'Actividad 1.2'}
@@ -195,11 +198,11 @@ const Part2 = () => {
 
                     {[...Array(3)].map((element, indexSelect) => (
                         <Form.Select
-                            defaultValue={'-1'}
+                            defaultValue={selectOption["select_sensaciones_" + indexSelect] != -1 ? selectOption["select_sensaciones_" + indexSelect] : '-1'}
                             className="mb-4 mt-3"
                             name={`select_sensaciones_${indexSelect}`}
                             onChange={handleChange}
-                            key={`sensaciones_${activityIndex}_${indexSelect}`}
+                            key={`sensaciones_${activityIndex}_${indexSelect}_${selectOption["select_sensaciones_" + indexSelect]}`}
                         >
                             <option
                                 value="-1"
@@ -215,7 +218,7 @@ const Part2 = () => {
                                         <option
                                             value={index}
                                             key={`${seccion2.ejercicios[activityIndex].name}
-                                            _select_sensaciones_${indexSelect}-${index}`}
+                                            _select_sensaciones_${indexSelect}_${index}`}
                                         >
                                             {sensacion.option}
                                         </option>
@@ -235,7 +238,9 @@ const Part2 = () => {
                     </h5>
 
                     {[...Array(3)].map((element, indexSelect) => (
-                        <Form.Select defaultValue={'-1'} className="mb-4 mt-3" name={`select_pensamientos_${indexSelect}`} onChange={handleChange} key={`pensamientos_${activityIndex}_${indexSelect}`}>
+                        <Form.Select
+                            defaultValue={selectOption["select_pensamientos_" + indexSelect] != -1 ? selectOption["select_pensamientos_" + indexSelect] : '-1'}
+                            className="mb-4 mt-3" name={`select_pensamientos_${indexSelect}`} onChange={handleChange} key={`pensamientos_${activityIndex}_${indexSelect}_${selectOption["select_pensamientos_" + indexSelect]}`}   >
                             <option value="-1" disabled key={indexSelect}>Seleccciona una opcion</option>
                             {seccion2.ejercicios[activityIndex].pensamientos.map((sensacion, index) => (
                                 <>
@@ -257,7 +262,9 @@ const Part2 = () => {
                             </h5>
 
                             {[...Array(3)].map((element, indexSelect) => (
-                                <Form.Select defaultValue={'-1'} className="mb-4 mt-3" name={`select_acciones_${indexSelect}`} onChange={handleChange} key={`acciones_${activityIndex}_${indexSelect}`}>
+                                <Form.Select
+                                    defaultValue={selectOption["select_acciones_" + indexSelect] != -1 ? selectOption["select_acciones_" + indexSelect] : '-1'}
+                                    className="mb-4 mt-3" name={`select_acciones_${indexSelect}`} onChange={handleChange} key={`acciones_${activityIndex}_${indexSelect}_${selectOption["select_acciones_" + indexSelect]}`}   >
                                     <option value="-1" disabled key={indexSelect}>Seleccciona una opcion</option>
                                     {seccion2.ejercicios[activityIndex].acciones.map((sensacion, index) => (
                                         <>
@@ -274,12 +281,14 @@ const Part2 = () => {
                 </Button>
             </div>
 
-            {error && <div className="my-2">
+            {intentos > 0 && <div className="my-2">
                 <Actividad id="cuackAyuda" src={imgGanso.explicando} title="¡Cuack te ayuda!" showIcon={false}
                     text={`
                 ¡Ups! No es la correcta. Pero te puedo guiar. En la <b>${seccion2.ejercicios[activityIndex].emocion}</b> las sensaciones que se pueden experimentar son: 
-                ${respuestasCorrectasPorCategoria(activityIndex, "sensaciones")}, los pensamientos pueden ser: ${respuestasCorrectasPorCategoria(activityIndex, "pensamientos")}${!seccion2.ejercicios[activityIndex].SinAcciones ? ("y las acciones podrían orientarse a:" + respuestasCorrectasPorCategoria(activityIndex, "acciones")) : "."}
-                <br/><br/> <div class="text-center">Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Ejercita la identificación de tus emociones como paso fundamental para tu gestión emocional!</div>
+                ${respuestasCorrectasPorCategoria(activityIndex, "sensaciones")}, los pensamientos pueden ser: ${respuestasCorrectasPorCategoria(activityIndex, "pensamientos")}${!seccion2.ejercicios[activityIndex].SinAcciones ? ("y las acciones podrían orientarse a: " + respuestasCorrectasPorCategoria(activityIndex, "acciones")) : "."}
+                <br/><br/> <div >Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Ejercita la identificación de tus emociones como paso fundamental para tu gestión emocional!</div>
+                <br>
+                <b>Nota importante: </b> vuelve a darle “validar” para continuar.
                 `}
                 />
             </div>
