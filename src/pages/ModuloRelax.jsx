@@ -121,7 +121,7 @@ const ModuloRelax = () => {
                     <main className="main-content position-relative h-100 border-radius-lg ">
                         <NavBarDashboard userInfo={userInfo} />
 
-                        <div className="container-fluid py-4">
+                        <div className="container-fluid">
 
                             <div>
 
@@ -155,7 +155,7 @@ const ModuloRelax = () => {
                                 ) : (
                                     <button
                                         type="button"
-                                        className='botoncentrado btn-backNext-relax btn-radius btn-lg d-flex justify-content-center align-items-center'
+                                        className='btn-backNext-relax btn-radius btn-lg d-flex justify-content-center align-items-center'
                                         onClick={cambioBotonAdelante}
                                         disabled={BotonState}
                                     >

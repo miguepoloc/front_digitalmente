@@ -180,7 +180,7 @@ export const Vocabulario = () => {
 
 
     return (
-        <div className="container">
+        <div className="mx-3 mx-md-4">
             {
                 loading ? (<Loading />) : (
                     <>

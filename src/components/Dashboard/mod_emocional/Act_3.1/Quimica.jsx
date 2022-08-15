@@ -218,10 +218,10 @@ const Quimica = () => {
 
     const color = '#fc8890'
     return (
-        <div className="container">
+        <div className="mx-md-4">
             {loading ? (<Loading />) : (
                 <>
-                    <div className="row">
+                    <div className="mx-2 row">
                         <div className="col">
                             <div className="card flex-md-row mb-2 box-shadow h-md-250 px-4  py-4 mt-3 ">
                                 <img
@@ -242,7 +242,7 @@ const Quimica = () => {
                             </div>
                         </div>
                         <div className="w-100"></div>
-                        <div className="col">
+                        <div className="col my-2">
                             <div
                                 className="callout mb-5  h-md-250 "
                                 style={{ borderLeftColor: color }}
@@ -543,7 +543,8 @@ const Quimica = () => {
                                         {Intentos2 > 1 && (
                                             <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
                                                 text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion2.emocion2))[0].definicion_usuario} - Nivel ${respuestas.situacion2.nivel2}.</b> ¿Por qué? Verás, ${respuestas.situacion2.mensaje}`}
-                                                showIcon={false} />
+                                                showIcon={false}  />
+                                                
                                         )}
 
                                         {retroSegunda === respuestas.situacion2.ok_ambas && <div>

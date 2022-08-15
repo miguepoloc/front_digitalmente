@@ -165,7 +165,7 @@ const RuletaEmociones = () => {
       });*/
 
     return (
-        <div className="container">
+        <div className="mx-3 mx-md-4">
             {loading ? (<Loading />) : (
                 <>
                     {error ? (

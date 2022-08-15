@@ -150,7 +150,7 @@ const Part2 = () => {
     const SinAcciones = seccion2.ejercicios[activityIndex].SinAcciones
 
     return (
-        <div className="container">
+        <div className="mx-3 mx-md-4">
 
             <Actividad
                 title={'Actividad 1.2'}

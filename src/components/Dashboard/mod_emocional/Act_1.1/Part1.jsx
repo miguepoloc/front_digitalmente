@@ -54,7 +54,7 @@ const Part1 = () => {
 
 
     return (
-        <div className="container">
+        <div className="mx-3 mx-md-4">
             <ActividadConDesc
                 actividadTitle={"Actividad 1.1"}
                 actividadSText={`Para empezar a entrenar nuestra gestión emocional, es importante
