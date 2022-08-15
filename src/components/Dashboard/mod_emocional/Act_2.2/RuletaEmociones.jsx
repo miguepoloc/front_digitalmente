@@ -66,8 +66,8 @@ const RuletaEmociones = () => {
                     }
                 }
                 else {
-                    if(intentos >= 2){
-                        ErrorAlert("Cuack te ayuda.", ". Revisa el mensaje de ayuda debajo.")
+                    if(intentos >= 1){
+                        ErrorAlert("Cuack te ayuda.", "Revisa el mensaje de ayuda debajo.")
                         .then(()=>setIntentos(intentos + 1))
                     }
                     else if(validateDefinicion(emocion, answer.definicion1Id) || validateDefinicion(emocion, answer.definicion2Id)){

@@ -285,8 +285,10 @@ const Part2 = () => {
                 <Actividad id="cuackAyuda" src={imgGanso.explicando} title="¡Cuack te ayuda!" showIcon={false}
                     text={`
                 ¡Ups! No es la correcta. Pero te puedo guiar. En la <b>${seccion2.ejercicios[activityIndex].emocion}</b> las sensaciones que se pueden experimentar son: 
-                ${respuestasCorrectasPorCategoria(activityIndex, "sensaciones")}, los pensamientos pueden ser: ${respuestasCorrectasPorCategoria(activityIndex, "pensamientos")}${!seccion2.ejercicios[activityIndex].SinAcciones ? ("y las acciones podrían orientarse a:" + respuestasCorrectasPorCategoria(activityIndex, "acciones")) : "."}
-                <br/><br/> <div class="text-center">Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Ejercita la identificación de tus emociones como paso fundamental para tu gestión emocional!</div>
+                ${respuestasCorrectasPorCategoria(activityIndex, "sensaciones")}, los pensamientos pueden ser: ${respuestasCorrectasPorCategoria(activityIndex, "pensamientos")}${!seccion2.ejercicios[activityIndex].SinAcciones ? ("y las acciones podrían orientarse a: " + respuestasCorrectasPorCategoria(activityIndex, "acciones")) : "."}
+                <br/><br/> <div >Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Ejercita la identificación de tus emociones como paso fundamental para tu gestión emocional!</div>
+                <br>
+                <b>Nota importante: </b> vuelve a darle “validar” para continuar.
                 `}
                 />
             </div>
