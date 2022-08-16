@@ -117,14 +117,17 @@ const Quimica = () => {
                 setIntentos1(0)
             }
             else {
+                setIntentos1(Intentos1 + 1)
                 if (Intentos1 < 1) {
                     setRetroPrimera(respuestas[name].no_ambas)
                     ErrorAlert("¡Uf! Ya estas casi cerca", retroPrimera)
-                    setIntentos1(Intentos1 + 1)
                 }
                 else {
-                    setIntentos1(Intentos1 + 1)
                     RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
+                    values.Emocion1 = respuestas[name].emocion1
+                    values.Emocion12 = respuestas[name].emocion2
+                    values.Nivel1 = respuestas[name].nivel1
+                    values.Nivel12 = respuestas[name].nivel2
                 }
 
             }
@@ -135,9 +138,16 @@ const Quimica = () => {
                 setIntentos2(0)
             }
             else {
-                setRetroSegunda(respuestas[name].no_ambas)
-                ErrorAlert("¡Uf! Ya estas casi cerca", retroSegunda)
                 setIntentos2(Intentos2 + 1)
+                if (Intentos2 < 1) {
+                    setRetroSegunda(respuestas[name].no_ambas)
+                    ErrorAlert("¡Uf! Ya estas casi cerca", retroSegunda)
+                }
+                else {
+                    RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
+                    values.Emocion2 = respuestas[name].emocion2
+                    values.Nivel2 = respuestas[name].nivel2
+                }
             }
         }
         else if (name === "situacion3") {
@@ -147,15 +157,33 @@ const Quimica = () => {
                     setIntentos3(0)
                 }
                 else {
-                    setRetroTercera(respuestas[name].no_accion)
-                    ErrorAlert("¡Uf! Ya estas casi cerca", retroTercera)
                     setIntentos3(Intentos3 + 1)
+                    if (Intentos3 < 1) {
+                        setRetroTercera(respuestas[name].no_accion)
+                        ErrorAlert("¡Uf! Ya estas casi cerca", retroTercera)
+                    }
+                    else {
+                        RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
+                        values.Emocion3 = respuestas[name].emocion3
+                        values.Nivel3 = respuestas[name].nivel3
+                        values.Accion3 = respuestas[name].accion3
+                    }
                 }
             }
             else {
                 setRetroTercera(respuestas[name].no_nivel_emocion)
                 ErrorAlert("¡Uf! Ya estas casi cerca", retroTercera)
                 setIntentos3(Intentos3 + 1)
+                if (Intentos3 < 1) {
+                    setRetroTercera(respuestas[name].no_nivel_emocion)
+                    ErrorAlert("¡Uf! Ya estas casi cerca", retroTercera)
+                }
+                else {
+                    RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
+                    values.Emocion3 = respuestas[name].emocion3
+                    values.Nivel3 = respuestas[name].nivel3
+                    values.Accion3 = respuestas[name].accion3
+                }
             }
         }
     }
@@ -270,8 +298,6 @@ const Quimica = () => {
                         }}
                         validationSchema={Schema}
                     >
-
-
                         {({ errors, values, touched, handleChange, setFieldValue }) => (
                             <Form>
 
@@ -300,7 +326,7 @@ const Quimica = () => {
                                                             <Field as='select' name="Emocion1" className="form-select" value={values.Emocion1 || ''}
                                                                 onChange={handleChange}
                                                             >
-                                                                <option value="" disabled>Escoge una emocion</option>
+                                                                <option value="" disabled>Escoge una emoción para A</option>
 
                                                                 {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
 
@@ -324,7 +350,7 @@ const Quimica = () => {
                                                             <Field name="Emocion12" as="select" className="form-select" value={values.Emocion12 || ''}
                                                                 onChange={handleChange}
                                                             >
-                                                                <option value="" disabled>Escoge una emocion</option>
+                                                                <option value="" disabled>Escoge una emoción para B</option>
 
                                                                 {emociones && emociones.map(({ definicion, definicion_usuario }, i) =>
 
@@ -360,7 +386,7 @@ const Quimica = () => {
                                                             value={getNivel(values.Nivel1)}
                                                             segments={3}
                                                             segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
-                                                            currentValueText={"Selecciona un nivel"}
+                                                            currentValueText={"Selecciona un nivel para A"}
                                                             maxSegmentLabels={0}
                                                             ringWidth={47}
                                                             needleTransitionDuration={1500}
@@ -368,6 +394,7 @@ const Quimica = () => {
                                                             needleColor={'#333333'}
                                                             textColor={'#000000'}
                                                             style={{ marginBottom: '-50px' }}
+                                                            valueTextFontSize={15}
                                                         />
                                                         <div style={{ marginTop: '-2em' }} className="mx-auto">
                                                             <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel1", "alto")} >Alto </Button>
@@ -383,14 +410,14 @@ const Quimica = () => {
                                                             value={getNivel(values.Nivel12)}
                                                             segments={3}
                                                             segmentColors={['#77dd77', '#fdfd96', '#ff6961']}
-                                                            currentValueText={"Selecciona un nivel"}
+                                                            currentValueText={"Selecciona un nivel para B"}
                                                             maxSegmentLabels={0}
                                                             ringWidth={47}
                                                             needleTransitionDuration={1500}
                                                             needleTransition="easeElastic"
                                                             needleColor={'#333333'}
                                                             textColor={'#000000'}
-
+                                                            valueTextFontSize={15}
 
                                                         />
 
@@ -502,6 +529,7 @@ const Quimica = () => {
                                                             needleTransition="easeElastic"
                                                             needleColor={'#333333'}
                                                             textColor={'#000000'}
+                                                            valueTextFontSize={15}
                                                         />
                                                         <div style={{ marginTop: '-2em' }} className="mx-auto">
                                                             <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel2", "alto")} >Alto </Button>
@@ -535,8 +563,8 @@ const Quimica = () => {
                                         {Intentos2 > 1 && (
                                             <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
                                                 text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion2.emocion2))[0].definicion_usuario} - Nivel ${respuestas.situacion2.nivel2}.</b> ¿Por qué? Verás, ${respuestas.situacion2.mensaje}`}
-                                                showIcon={false}  />
-                                                
+                                                showIcon={false} />
+
                                         )}
 
                                         {retroSegunda === respuestas.situacion2.ok_ambas && <div>
@@ -616,6 +644,7 @@ const Quimica = () => {
                                                             needleTransition="easeElastic"
                                                             needleColor={'#333333'}
                                                             textColor={'#000000'}
+                                                            valueTextFontSize={15}
                                                         />
                                                         <div style={{ marginTop: '-2em' }} className="mx-auto">
                                                             <Button variant="outline-primary" bsPrefix='btn btn-outline-naranja mx-1' style={{ padding: "5px" }} onClick={() => setFieldValue("Nivel3", "alto")} >Alto </Button>

@@ -1,8 +1,6 @@
 import React from 'react'
 import { imgGanso } from '../../../../helpers/helper_imagen_ganso'
 import { Actividad } from '../../Actividad'
-// import { BiGift } from "react-icons/bi"
-
 import imgCuadroEjemplo from "../assets/img/relaxActividadUnoEjemploCuadro.png"
 import { DescargablesActFomento } from './DescargablesActFomento'
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import { imgGanso } from '../../../../helpers/helper_imagen_ganso'
 import { Actividad } from '../../Actividad'
-
 import imgCuadroEjemplo from "../assets/img/EmocionalActividadEjemplo.png"
 import { DescargablesActFomento } from './DescargablesActFomento'
 
@@ -34,7 +33,7 @@ export const ActividadDeFomentoEmocional = () => {
 
             <div className='d-flex flex-column justify-content-center align-items-center'>
                 <h4 className='my-4'>Ejemplo</h4>
-                <img src={imgCuadroEjemplo} alt="" />
+                <img src={imgCuadroEjemplo} alt="" style={{ width: "800px" }} />
                 <p className='mt-2 mb-4 text-center'><small><b>Fuente:</b> Elaboración propia inspirado en Hervas y Moral (2017)</small></p>
             </div>
 
