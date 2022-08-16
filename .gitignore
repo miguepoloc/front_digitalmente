@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+# /build
 /.vscode
 
 # misc
@@ -30,5 +30,3 @@ node_modules/
 ./package-lock.json
 .firebase
 .DS_Store
-
-/build

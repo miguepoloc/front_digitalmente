@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfront_digitalmente=self.webpackChunkfront_digitalmente||[]).push([[527],{2797:function(n,e,t){t.r(e);t(2791);var i=t(184);e.default=function(){return(0,i.jsx)("div",{children:(0,i.jsx)("h1",{children:"P\xe1gina Auth"})})}}}]);
+//# sourceMappingURL=527.e840748d.chunk.js.map
