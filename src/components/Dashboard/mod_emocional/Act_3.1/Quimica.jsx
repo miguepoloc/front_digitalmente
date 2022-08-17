@@ -27,13 +27,13 @@ const Quimica = () => {
     // Datos del avance que lleva el usuario
     const { AvanceState } = useContext(AvanceContext);
 
-
     useEffect(() => {
         if (AvanceState.emocional <= parseInt(slug)) {
             setBotonState(true)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [AvanceState])
+
     const { authAxios } = useContext(FetchContext)
     const [Intentos1, setIntentos1] = useState(0)
     const [Intentos2, setIntentos2] = useState(0)
@@ -44,8 +44,7 @@ const Quimica = () => {
     const [retroTercera, setRetroTercera] = useState("Revisa la definición que colocaste o en el nivel en que lo pusiste. Recuerda las manifestaciones asociadas a la emoción general a la que pertenece. ")
     const [emociones, setEmociones] = useState(null);
 
-    const Schema = Yup.object().shape({
-
+    const Schema1 = Yup.object().shape({
         Emocion1: Yup.string()
             .required('Es necesario escoger dos emociones'),
         Emocion12: Yup.string()
@@ -56,19 +55,26 @@ const Quimica = () => {
             .required('Es necesario escoger dos niveles'),
         Respuesta1: Yup.string().min(2, 'Demasiado corto')
             .required('Es necesario llenar esta información'),
+    })
+
+    const Schema2 = Yup.object().shape({
         Emocion2: Yup.string()
             .required('Es necesario llenar esta información'),
         Nivel2: Yup.string()
             .required('Es necesario llenar esta información'),
-        Accion2: Yup.string()
-            .required('Es necesario llenar esta información'),
+
         Respuesta2: Yup.string().min(2, 'Demasiado corto')
             .required('Es necesario llenar esta información'),
+    })
+
+    const Schema3 = Yup.object().shape({
         Emocion3: Yup.string()
             .required('Es necesario llenar esta información'),
         Nivel3: Yup.string()
             .required('Es necesario llenar esta información'),
         Respuesta3: Yup.string().min(2, 'Demasiado corto')
+            .required('Es necesario llenar esta información'),
+        Accion3: Yup.string()
             .required('Es necesario llenar esta información'),
     })
 
@@ -100,91 +106,6 @@ const Quimica = () => {
             "ok_ambas": "¡Muy bien! Si te frustras demasiado, la activación podría provocarte no solo malestar, sino que, dependiendo de tu carácter, situación y otros factores, puede que llegue la situación a un punto bastante negativo. Un nivel de activación medio, que te permite movilizarte y ser asertivo (expresarte de manera firme y con respeto) terminan siendo factores importantes para ayudarte a manejar esas situaciones sin que termine teniendo un impacto negativo para ti ni para otros.",
             "mensaje": "si te frustras demasiado, la activación podría provocarte no solo malestar, sino que, dependiendo de tu carácter, situación y otros factores, puede que llegue la situación a un punto bastante negativo. Un nivel de activación medio, que te permite movilizarte y ser asertivo (expresarte de manera firme y con respeto) terminan siendo factores importantes para ayudarte a manejar esas situaciones sin que termine teniendo un impacto negativo para ti ni para otros.",
 
-        }
-    }
-
-    const handleBtnClickSend = (name, values) => {
-
-        if (name === "situacion1") {
-
-            if (values.Emocion1 === respuestas[name].emocion1 && values.Nivel1 === respuestas[name].nivel1 && values.Emocion12 === respuestas[name].emocion2 && values.Nivel12 === respuestas[name].nivel2) {
-                //console.log(respuestas[name].ok_ambas)
-                setRetroPrimera(respuestas[name].ok_ambas)
-                setIntentos1(0)
-            }
-            else if (values.Emocion12 === respuestas[name].emocion1 && values.Nivel12 === respuestas[name].nivel1 && values.Emocion1 === respuestas[name].emocion2 && values.Nivel1 === respuestas[name].nivel2) {
-                setRetroPrimera(respuestas[name].ok_ambas)
-                setIntentos1(0)
-            }
-            else {
-                setIntentos1(Intentos1 + 1)
-                if (Intentos1 < 1) {
-                    setRetroPrimera(respuestas[name].no_ambas)
-                    ErrorAlert("¡Uf! Ya estas casi cerca", retroPrimera)
-                }
-                else {
-                    RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
-                    values.Emocion1 = respuestas[name].emocion1
-                    values.Emocion12 = respuestas[name].emocion2
-                    values.Nivel1 = respuestas[name].nivel1
-                    values.Nivel12 = respuestas[name].nivel2
-                }
-
-            }
-        }
-        else if (name === "situacion2") {
-            if (values.Emocion2 === respuestas[name].emocion2 && (values.Nivel2 === respuestas[name].nivel2 || values.Nivel2 === respuestas[name].nivel22)) {
-                setRetroSegunda(respuestas[name].ok_ambas)
-                setIntentos2(0)
-            }
-            else {
-                setIntentos2(Intentos2 + 1)
-                if (Intentos2 < 1) {
-                    setRetroSegunda(respuestas[name].no_ambas)
-                    ErrorAlert("¡Uf! Ya estas casi cerca", retroSegunda)
-                }
-                else {
-                    RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
-                    values.Emocion2 = respuestas[name].emocion2
-                    values.Nivel2 = respuestas[name].nivel2
-                }
-            }
-        }
-        else if (name === "situacion3") {
-            if (values.Emocion3 === respuestas[name].emocion3 && values.Nivel3 === respuestas[name].nivel3) {
-                if (values.Accion3 === respuestas[name].accion3) {
-                    setRetroTercera(respuestas[name].ok_ambas)
-                    setIntentos3(0)
-                }
-                else {
-                    setIntentos3(Intentos3 + 1)
-                    if (Intentos3 < 1) {
-                        setRetroTercera(respuestas[name].no_accion)
-                        ErrorAlert("¡Uf! Ya estas casi cerca", retroTercera)
-                    }
-                    else {
-                        RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
-                        values.Emocion3 = respuestas[name].emocion3
-                        values.Nivel3 = respuestas[name].nivel3
-                        values.Accion3 = respuestas[name].accion3
-                    }
-                }
-            }
-            else {
-                setRetroTercera(respuestas[name].no_nivel_emocion)
-                ErrorAlert("¡Uf! Ya estas casi cerca", retroTercera)
-                setIntentos3(Intentos3 + 1)
-                if (Intentos3 < 1) {
-                    setRetroTercera(respuestas[name].no_nivel_emocion)
-                    ErrorAlert("¡Uf! Ya estas casi cerca", retroTercera)
-                }
-                else {
-                    RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
-                    values.Emocion3 = respuestas[name].emocion3
-                    values.Nivel3 = respuestas[name].nivel3
-                    values.Accion3 = respuestas[name].accion3
-                }
-            }
         }
     }
 
@@ -238,6 +159,9 @@ const Quimica = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [retroPrimera, retroSegunda, retroTercera])
 
+    useEffect(() => {
+        console.log(Intentos2)
+    }, [Intentos2])
 
     const color = '#fc8890'
     return (
@@ -288,21 +212,38 @@ const Quimica = () => {
                             Nivel1: '',
                             Nivel12: '',
                             Respuesta1: '',
-                            Emocion2: '',
-                            Nivel2: '',
-                            Respuesta2: '',
-                            Emocion3: '',
-                            Nivel3: '',
-                            Accion3: '',
-                            Respuesta3: '',
                         }}
-                        validationSchema={Schema}
+                        validationSchema={Schema1}
+                        onSubmit={(values) => {
+                            let name = "situacion1"
+                            if (values.Emocion1 === respuestas[name].emocion1 && values.Nivel1 === respuestas[name].nivel1 && values.Emocion12 === respuestas[name].emocion2 && values.Nivel12 === respuestas[name].nivel2) {
+                                setRetroPrimera(respuestas[name].ok_ambas)
+                                setIntentos1(0)
+                            }
+                            else if (values.Emocion12 === respuestas[name].emocion1 && values.Nivel12 === respuestas[name].nivel1 && values.Emocion1 === respuestas[name].emocion2 && values.Nivel1 === respuestas[name].nivel2) {
+                                setRetroPrimera(respuestas[name].ok_ambas)
+                                setIntentos1(0)
+                            }
+                            else {
+                                setIntentos1(Intentos1 + 1)
+                                if (Intentos1 < 1) {
+                                    setRetroPrimera(respuestas[name].no_ambas)
+                                    ErrorAlert("¡Uf! Ya estas casi cerca", respuestas[name].no_ambas)
+                                }
+                                else {
+                                    RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
+                                    values.Emocion1 = respuestas[name].emocion1
+                                    values.Emocion12 = respuestas[name].emocion2
+                                    values.Nivel1 = respuestas[name].nivel1
+                                    values.Nivel12 = respuestas[name].nivel2
+                                }
+
+                            }
+                        }}
                     >
                         {({ errors, values, touched, handleChange, setFieldValue }) => (
                             <Form>
-
                                 <div className="row m-4">
-
                                     <div className="col">
                                         <div className="row">
                                             <div className="col-lg-7 col-md-12 col-12 my-auto my-auto">
@@ -442,8 +383,13 @@ const Quimica = () => {
                                                         : null}
                                                 </div>
 
-                                                <div className="row mt-4">
-                                                    <Button name="situacion1" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }} >Validar </Button>
+                                                <div className="mt-4 mb-4 text-center">
+                                                    <button
+                                                        type="submit"
+                                                        className="text-white btn btn-info "
+                                                    >
+                                                        Validar
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -451,7 +397,10 @@ const Quimica = () => {
                                     <div>
                                         {Intentos1 > 1 && (
                                             <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
-                                                text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion1.emocion1))[0].definicion_usuario} - Nivel ${respuestas.situacion1.nivel1}</b> y un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion1.emocion2))[0].definicion_usuario} - Nivel ${respuestas.situacion1.nivel2}.</b> ¿Por qué? Verás, ${respuestas.situacion1.mensaje}`}
+                                                text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion1.emocion1))[0].definicion_usuario} - Nivel ${respuestas.situacion1.nivel1}</b> y un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion1.emocion2))[0].definicion_usuario} - Nivel ${respuestas.situacion1.nivel2}.</b> ¿Por qué? Verás, ${respuestas.situacion1.mensaje}
+                                                <br>
+                                                <b>Nota importante: </b> Vuelve a darle “validar” para continuar.
+                                                `}
                                                 showIcon={false} />
                                         )}
                                         {retroPrimera === respuestas.situacion1.ok_ambas && <div>
@@ -462,7 +411,40 @@ const Quimica = () => {
                                     </div>
 
                                 </div>
+                            </Form>
+                        )}
+                    </Formik>
 
+                    {/* Segundo Formik */}
+                    <Formik
+                        initialValues={{
+                            Emocion2: '',
+                            Nivel2: '',
+                            Respuesta2: '',
+                        }}
+                        validationSchema={Schema2}
+                        onSubmit={(values) => {
+                            let name = "situacion2"
+                            if (values.Emocion2 === respuestas[name].emocion2 && (values.Nivel2 === respuestas[name].nivel2 || values.Nivel2 === respuestas[name].nivel22)) {
+                                setRetroSegunda(respuestas[name].ok_ambas)
+                                setIntentos2(0)
+                            }
+                            else {
+                                setIntentos2(Intentos2 + 1)
+                                if (Intentos2 < 1) {
+                                    setRetroSegunda(respuestas[name].no_ambas)
+                                    ErrorAlert("¡Uf! Ya estas casi cerca", respuestas[name].no_ambas)
+                                }
+                                else {
+                                    RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
+                                    values.Emocion2 = respuestas[name].emocion2
+                                    values.Nivel2 = respuestas[name].nivel2
+                                }
+                            }
+                        }}
+                    >
+                        {({ errors, values, touched, handleChange, setFieldValue }) => (
+                            <Form>
                                 <div className="row m-4">
                                     <div className="col">
                                         <div className="row">
@@ -553,8 +535,13 @@ const Quimica = () => {
                                                         )
                                                         : null}
                                                 </div>
-                                                <div className="row mt-4">
-                                                    <Button name="situacion2" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }}>Validar </Button>
+                                                <div className="mt-4 mb-4 text-center">
+                                                    <button
+                                                        type="submit"
+                                                        className="text-white btn btn-info "
+                                                    >
+                                                        Validar
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -562,7 +549,10 @@ const Quimica = () => {
                                     <div>
                                         {Intentos2 > 1 && (
                                             <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
-                                                text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion2.emocion2))[0].definicion_usuario} - Nivel ${respuestas.situacion2.nivel2}.</b> ¿Por qué? Verás, ${respuestas.situacion2.mensaje}`}
+                                                text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion2.emocion2))[0].definicion_usuario} - Nivel ${respuestas.situacion2.nivel2}.</b> ¿Por qué? Verás, ${respuestas.situacion2.mensaje}
+                                                <br>
+                                                <b>Nota importante: </b> Vuelve a darle “validar” para continuar.
+                                                `}
                                                 showIcon={false} />
 
                                         )}
@@ -574,7 +564,60 @@ const Quimica = () => {
                                     </div>
 
                                 </div>
+                            </Form>
+                        )}
+                    </Formik>
 
+                    {/* Tercer Formik */}
+                    <Formik
+                        initialValues={{
+                            Emocion3: '',
+                            Nivel3: '',
+                            Accion3: '',
+                            Respuesta3: '',
+                        }}
+                        validationSchema={Schema3}
+                        onSubmit={(values) => {
+                            console.log(values)
+                            let name = "situacion3"
+                            if (values.Emocion3 === respuestas[name].emocion3 && values.Nivel3 === respuestas[name].nivel3) {
+                                if (values.Accion3 === respuestas[name].accion3) {
+                                    setRetroTercera(respuestas[name].ok_ambas)
+                                    setIntentos3(0)
+                                }
+                                else {
+                                    setIntentos3(Intentos3 + 1)
+                                    if (Intentos3 < 1) {
+                                        setRetroTercera(respuestas[name].no_accion)
+                                        ErrorAlert("¡Uf! Ya estas casi cerca", respuestas[name].no_accion)
+                                    }
+                                    else {
+                                        RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
+                                        values.Emocion3 = respuestas[name].emocion3
+                                        values.Nivel3 = respuestas[name].nivel3
+                                        values.Accion3 = respuestas[name].accion3
+                                    }
+                                }
+                            }
+                            else {
+                                setRetroTercera(respuestas[name].no_nivel_emocion)
+                                ErrorAlert("¡Uf! Ya estas casi cerca", respuestas[name].no_nivel_emocion)
+                                setIntentos3(Intentos3 + 1)
+                                if (Intentos3 < 1) {
+                                    setRetroTercera(respuestas[name].no_nivel_emocion)
+                                    ErrorAlert("¡Uf! Ya estas casi cerca", respuestas[name].no_nivel_emocion)
+                                }
+                                else {
+                                    RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
+                                    values.Emocion3 = respuestas[name].emocion3
+                                    values.Nivel3 = respuestas[name].nivel3
+                                    values.Accion3 = respuestas[name].accion3
+                                }
+                            }
+                        }}
+                    >
+                        {({ errors, values, touched, handleChange, setFieldValue }) => (
+                            <Form>
                                 <div className='row my-5 text-center'>
                                     <b>Una pequeña adición: para esta situación es importante que analices que acción complementa la influencia de esa emoción que elijas. ¡Piénsalo bien!</b>
                                 </div>
@@ -691,8 +734,13 @@ const Quimica = () => {
                                                         )
                                                         : null}
                                                 </div>
-                                                <div className="row mt-4">
-                                                    <Button name="situacion3" className="mx-auto btn btn-naranja" onClick={(e) => { handleBtnClickSend(e.target.name, values) }} >Validar </Button>
+                                                <div className="mt-4 mb-4 text-center">
+                                                    <button
+                                                        type="submit"
+                                                        className="text-white btn btn-info "
+                                                    >
+                                                        Validar
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -700,7 +748,10 @@ const Quimica = () => {
                                     <div>
                                         {Intentos3 > 1 && (
                                             <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
-                                                text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion3.emocion3))[0].definicion_usuario} - Nivel ${respuestas.situacion3.nivel3},</b> acompañado de la acción <b>${respuestas.situacion3.accionValid}</b> ¿Por qué? Verás, ${respuestas.situacion2.mensaje}`}
+                                                text={`La respuesta es tener un <b>${emociones.filter((fl) => fl.definicion === parseInt(respuestas.situacion3.emocion3))[0].definicion_usuario} - Nivel ${respuestas.situacion3.nivel3},</b> acompañado de la acción <b>${respuestas.situacion3.accionValid}</b> ¿Por qué? Verás, ${respuestas.situacion2.mensaje}
+                                                <br>
+                                                <b>Nota importante: </b> Vuelve a darle “validar” para continuar.
+                                                `}
                                                 showIcon={false} />
                                         )}
 

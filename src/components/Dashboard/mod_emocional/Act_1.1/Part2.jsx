@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable react/jsx-key */
 import React, { useContext, useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -15,7 +13,6 @@ import { Tip } from '../../../Dashboard/Tip'
 import { BotonContext } from '../../../../context/BotonContext'
 import { AvanceContext } from '../../../../context/AvanceContext'
 import { useParams } from 'react-router-dom'
-import { object } from 'prop-types'
 
 const Part2 = () => {
     // Variable del url
@@ -117,7 +114,7 @@ const Part2 = () => {
             }
 
             setSelectOption(() => { return { ...selectOption, ...json } })
-            setintentos(intentos == -1? 1: intentos+1);
+            setintentos(intentos == -1 ? 1 : intentos + 1);
             return
         }
 
@@ -288,7 +285,7 @@ const Part2 = () => {
                 ${respuestasCorrectasPorCategoria(activityIndex, "sensaciones")}, los pensamientos pueden ser: ${respuestasCorrectasPorCategoria(activityIndex, "pensamientos")}${!seccion2.ejercicios[activityIndex].SinAcciones ? ("y las acciones podrían orientarse a: " + respuestasCorrectasPorCategoria(activityIndex, "acciones")) : "."}
                 <br/><br/> <div >Si bien estas no son todas ni las únicas manifestaciones de esta emoción, son algunas de las que podrías identificar cuando se activa. ¡Ejercita la identificación de tus emociones como paso fundamental para tu gestión emocional!</div>
                 <br>
-                <b>Nota importante: </b> vuelve a darle “validar” para continuar.
+                <b>Nota importante: </b> Vuelve a darle “validar” para continuar.
                 `}
                 />
             </div>
