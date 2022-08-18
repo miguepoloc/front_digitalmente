@@ -6,7 +6,11 @@ import { ErrorAlert, Correct_Alert } from '../../../helpers/helper_Swal_Alerts'
 import { BotonContext } from '../../../context/BotonContext'
 import { AvanceContext } from '../../../context/AvanceContext'
 import { AuthContext } from '../../../context/AuthContext'
+import imgTip from './assets/img/1Capsutips.png'
+import { Tip } from '../Tip'
 export const AutoRegistro = () => {
+
+    //TODO: faltan los archivos para descargar.
 
     const { setBotonState } = useContext(BotonContext)
     // Datos del avance que lleva el usuario
@@ -42,7 +46,7 @@ export const AutoRegistro = () => {
         }
 
         setActividadCompletada(true)
-        Correct_Alert("¡Felicidades has realizado tu autorregistro antiestrés!", `Reconocer de forma objetiva las situaciones estresantes que se nos presentan en la vida permite que podamos formular mejores estrategias de solución frente a las mismas y tener una conducta adaptativa que favorecerá nuestro bienestar y salud mental.
+        Correct_Alert("¡Felicidades has realizado tu autorregistro!", `¡Cuack está orgulloso de tí has completado tu registro! Identificar aquellos patrones en las emociones y pensamientos en torno a la procrastinación de actividades nos permite hacer frente a los mismos y encontrar estrategias para afrontar estos de una mejor manera.
             <br/>
             `)
     }
@@ -186,6 +190,15 @@ export const AutoRegistro = () => {
 
                 </>
             )}
+            <Tip src={imgGanso.celular} title=" "
+                        text={`<h4 class="text-center">A continuación, también te regalamos los siguientes tips que te ayudarán a luchar contra la procrastinación</h4>
+                        <div class="text-center mt-4">
+                        <img src="${imgTip}" class="text-center rounded-3" style="max-width: 535px;width:100%; "/>
+                        </div>
+                        `
+                        }
+                        icon="" />
+            
         </>
     )
 }
