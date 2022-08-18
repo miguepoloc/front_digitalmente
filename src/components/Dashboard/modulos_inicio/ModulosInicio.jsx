@@ -44,7 +44,7 @@ export const ModulosInicio = () => {
                 text: 'Mis emociones',
                 moduloClass: 'card_misEmociones',
                 classImg: 'imgGanso-modulos',
-                bloqueado: !userInfo.is_staff,
+                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)),
                 href: `/emocional${AvanceState.emocional === linksEmocional.length ? (linksEmocional.length - 1) : AvanceState.emocional}`
             },
             {
