@@ -84,7 +84,7 @@ export const YaLosIdentifico = () => {
                                         <Card.Title>
                                             ¿De qué modo es el supuesto o creencia no razonable?
                                         </Card.Title>
-                                        <Field name="Texto1" as="textarea" rows="3" />
+                                        <Field name="Texto1" rows="3" style={{ weight: '1000px' }} />
                                         {errors.Texto1 && touched.Texto1
                                             ? (
                                                 <div
@@ -110,6 +110,16 @@ export const YaLosIdentifico = () => {
                                 </div>
                                 <div className="border shadow w-100 card-body float-left pt-0">
                                     <div className="float-left d-flex flex-column">
+                                        <Field name="Texto1" rows="3" />
+                                        {errors.Texto1 && touched.Texto1
+                                            ? (
+                                                <div
+                                                    style={{ color: 'red' }}
+                                                >
+                                                    {errors.Texto1}
+                                                </div>
+                                            )
+                                            : null}
                                         <Field name="Texto1" as="textarea" rows="3" />
                                         {errors.Texto1 && touched.Texto1
                                             ? (
