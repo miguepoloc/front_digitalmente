@@ -9,6 +9,7 @@ import ganso_celular from '../assets/img/ganso/ganso_celular.png'
 import ganso_sorprendido from '../assets/img/ganso/ganso_sorprendido.png'
 import ganso_meditando from '../assets/img/ganso/ganso_meditando.png'
 import ganso_presentacion_personaje from '../assets/img/ganso/presentacion_personaje.png'
+import ganso_durmiendo from '../assets/img/ganso/ganso_durmiendo.png'
 import ganso_stop_250x200 from '../assets/img/ganso/250x200/ganso_stop.png'
 import ganso_escribiendo_250x200 from '../assets/img/ganso/250x200/ganso_escribiendo.png'
 import ganso_feliz_250x200 from '../assets/img/ganso/250x200/ganso_alegria.png'
@@ -25,6 +26,7 @@ export const imgGanso = {
     celular: ganso_celular,
     meditando: ganso_meditando,
     sorprendido: ganso_sorprendido,
+    durmiendo: ganso_durmiendo,
     presentacion_personaje: ganso_presentacion_personaje,
     elegante_250x200: ganso_elegante_250x200,
     stop_250x200: ganso_stop_250x200,

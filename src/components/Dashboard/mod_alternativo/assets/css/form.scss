@@ -1,0 +1,103 @@
+/* Background Elements */
+
+.baseintro{
+  background: #fff !important;
+  max-width: 1000px;
+  flex: 0 1 auto;
+  box-shadow: 0px 10px 40px 0px rgba(144, 134, 134, 0.6);
+}
+.baseintro__header{
+  background: #1F3864;
+  padding: 2% 5%;
+  color: #fff !important;
+}
+.baseintro__title{
+  font-family: 'Hind', sans-serif;
+  color: #fff !important;
+}
+
+.baseform__title{
+  font-family: 'Hind', sans-serif;
+}
+.baseform__para{
+  color: #fff;
+
+}
+.baseform__set{
+  padding: 2% 5%;
+}
+
+/* Reusable Components */
+
+/* 01. Shrinking Labels */
+.baseform__set--shrinkinglabels{
+  
+  .baseform__label{
+    display: block;
+    padding-top: 30px;
+    text-align: left;
+
+    .baseform__txtlabel{
+      cursor: text;
+      font-size: 15px;
+      transform: translateY(-34px);
+      transition: all 0.3s;
+    }
+    
+    .baseform__txtinput{
+      width: 60%;
+      font-size: 15px;
+      background: transparent;
+      padding: 5px 15px 5px 50px;
+      outline: 0;
+      border: 0;
+      border-bottom: 2px solid #0b863c;
+      transition: all 0.3s;
+      
+      &:focus + .baseform__txtlabel{
+        transform: translateY(-60px);
+        font-size: 15px;
+      }
+      &:valid + .baseform__txtlabel {
+        transform: translateY(-60px);
+        font-size: 15px;
+      }
+      &:out-of-range + .baseform__txtlabel{
+        transform: translateY(-60px);
+        font-size: 15px;
+      }
+      &:empty{
+        border-bottom: 2px solid #F09368;
+      }
+      &:out-of-range{
+        border-bottom: 2px solid #e00000;
+      }
+      
+      &:valid{
+        border-bottom: 2px solid #0b863c;
+      }
+      
+
+    }
+
+
+  }
+}
+
+/* 02. Positive Feedback */
+.baseform__set--validpositive{
+  
+  .baseform__txtinput{
+      
+    &:valid {
+      background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/check.svg);
+      background-size: 20px;
+      background-repeat: no-repeat;
+      background-position: 10px 10px;
+
+      & + label {
+      opacity: 0;
+      }
+    }
+  }
+}

@@ -9,8 +9,8 @@ import mapa from '../components/Dashboard/mod_alternativo/assets/img/1Mapa.jpeg'
 
 export const paradas = {
     activities: [
-
         {
+            isActivity:true,
             name: "Parada 1: Ciudad de las buenas intenciones",
             img: buenasIntenciones,
             correctAnswerIndex: 1, //Hace referencia al indice del vector opcions.
@@ -21,6 +21,7 @@ export const paradas = {
             messagePill: "Una de las formas de vencer la procrastinación es encontrando una motivación o recompensa para nuestro esfuerzo. En el caso de Max es llegar a la Ciudad del Éxito ¿Cuál es el tuyo para realizar determinadas actividades?"
         },
         {
+            isActivity:true,
             name: "Parada 2: Árbol de las inseguridades ",
             img: arbol,
             correctAnswerIndex: 1,
@@ -32,6 +33,7 @@ export const paradas = {
 
         },
         {
+            isActivity:true,
             name: "Parada 3: La montaña de la distracción.",
             img: montana,
             correctAnswerIndex: 0,
@@ -42,6 +44,7 @@ export const paradas = {
             messagePill: "Cuando hay una falta de organización y objetivos claros es más fácil inclinarse a la procrastinación. En ocasiones es preferible huir de las distracciones, y saber equilibrar los momentos de descanso y actividad."
         },
         {
+            isActivity:true,
             name: "Parada 4: Lago de la flojera",
             img: lago,
             correctAnswerIndex: 0,
@@ -57,6 +60,7 @@ export const paradas = {
 
         },
         {
+            isActivity:true,
             name: "Parada 5: Zona de Confort",
             img: zona,
             correctAnswerIndex: 1,
@@ -64,10 +68,7 @@ export const paradas = {
             text: `Max ha avanzado un largo trayecto y parece haber aprendido bastante en el camino, pero al llegar a la zona de confort siente que fue suficiente, la comodidad que le brinda la misma le hace sentir satisfecho y cree que no es necesario llegar a la Ciudad del Éxito, sin embargo, está a solo unos pasos de lograr su meta.`,
             question: '¿Qué le recomendarías?',
             options: ["A- Quedarse con el sentimiento del momento y abandonar la meta", "B- Indagar las razones, ventajas y desventajas que le traería la decisión"],
-            messagePill: `muchas veces las personas que son muy indecisas al no saber qué decisión tomar la postergan, ya que piensan que ninguna opción les dejará satisfecho. ¡Recuerda nuevamente tus objetivos y fortalezas!
-            
-            `
+            messagePill: `Muchas veces las personas que son muy indecisas al no saber qué decisión tomar la postergan, ya que piensan que ninguna opción les dejará satisfecho. ¡Recuerda nuevamente tus objetivos y fortalezas!   `
         },
-       
     ],
 };
