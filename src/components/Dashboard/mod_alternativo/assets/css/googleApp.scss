@@ -1,0 +1,128 @@
+$d-apps-header: 48px;
+$d-sidebar-width: 200px;
+$d-play-header: 60px;
+$d-sidebar-spacing: 50px;
+$d-search-bar-height: 30px;
+$d-icon: 32px;
+$d-sidebar-top-half: 288px;
+$d-star-size: 14px;
+$d-app-card-width: 160px;
+$d-app-card-height: 245px;
+
+$d-medium-dp: 770px;
+$d-small-dp: 620px;
+$d-xlarge-dp: 1100px;
+$d-large-dp: 930px;
+
+$c-background: #EEE;
+$c-sidebar-bg: rgba(245, 245, 245, 0.95);
+$c-android: #689F38;
+$c-text: rgb(115, 115, 115);
+$c-ui-search: #4486F8;
+
+.app {
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border-radius: 2px;
+    overflow: hidden;
+    font-size: 13px;
+    position: relative;
+    width: $d-app-card-width;
+    height: $d-app-card-height;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+
+    // Need to do this separately for image hover overlay.
+    .app-image,
+    .app-content {
+        max-width: calc(100% - 20px);
+        padding: 10px;
+    }
+
+    &:hover {
+        .app-image:after {
+            transition: opacity 0.3s;
+            opacity: 1;
+        }
+    }
+}
+
+.app-image {
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+
+    &:after {
+        transition: opacity 0.3s;
+        content: '';
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.4);
+        opacity: 0;
+    }
+
+    img {
+        max-width: 128px;
+    }
+}
+
+.app-title {
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    font-size: 16px;
+
+    &:before {
+        counter-increment: numapps;
+        content: counter(numapps) '. ';
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        width: 20%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 81%);
+        display: block;
+    }
+}
+
+.app-price {
+    color: $c-android;
+    text-transform: uppercase;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.app-rating {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    height: 16px;
+    width: 5 * $d-star-size;
+    // Light background stars.
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAAYElEQVR4AY3QQQeEIRCA4T13iqFDp04dYoh+2vv/7Y7YL4b66j1MPCn6fA+9438hiI0NKrpBhGGJQxKZSp/YbZdJCwvDVda1not7k/ZQm3SPw6qWTYcElDgPRZRw9X2HfsTTkjWVYOnFAAAAAElFTkSuQmCC);
+
+    &:before {
+        content: '';
+        display: block;
+        height: 16px;
+        // Dark stars.
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAAY0lEQVR4AWP4jwcSloSB4oTiBCCFQ/JB8QN0SYS+/0CYgCZZXFDcUHyg+ANIEkgeAPIKEJILgIKocAHCWHTpBWh2Fl+AS10AipEgCRY+AIRAGk2y2ADoxwCwogAgy4Co4MMDAQ52uOmaLCe/AAAAAElFTkSuQmCC);
+    }
+}
+
+// Change the width of the dark stars to get a rating.
+@for $i from 1 through 5 {
+    .app-rating--#{$i}::before {
+        width: $i * $d-star-size;
+    }
+}
