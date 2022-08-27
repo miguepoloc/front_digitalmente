@@ -1,27 +1,11 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { imgGanso } from '../../../helpers/helper_imagen_ganso';
 import { Actividad } from '../Actividad';
-import * as Yup from 'yup'
 import { useParams } from 'react-router-dom';
 import { BotonContext } from '../../../context/BotonContext';
 import { AvanceContext } from '../../../context/AvanceContext';
 import { Field, Form, Formik } from 'formik';
-import { Correct_Alert, Warning_Alert } from '../../../helpers/helper_Swal_Alerts';
-
-const Schema = Yup.object().shape({
-    select1: Yup.string()
-        .required('Es necesario seleccionar un valor'),
-    select2: Yup.string()
-        .required('Es necesario seleccionar un valor'),
-    select3: Yup.string()
-        .required('Es necesario seleccionar un valor'),
-    select4: Yup.string()
-        .required('Es necesario seleccionar un valor'),
-    select5: Yup.string()
-        .required('Es necesario seleccionar un valor'),
-    select6: Yup.string()
-        .required('Es necesario seleccionar un valor'),
-})
+import { Correct_Alert, RetroalimentacionAlert, Warning_Alert } from '../../../helpers/helper_Swal_Alerts';
 
 const material = [
     {
@@ -75,12 +59,13 @@ export const UneLasCorrespondencias = () => {
     const { setBotonState } = useContext(BotonContext);
     // Datos del avance que lleva el usuario
     const { AvanceState } = useContext(AvanceContext);
+    const [Continuacion, setContinuacion] = useState(1);
+    const [Intentos, setIntentos] = useState(0);
 
     useEffect(() => {
         if (AvanceState.piensalo <= parseInt(slug)) {
             setBotonState(true)
         }
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [AvanceState])
 
@@ -103,22 +88,35 @@ export const UneLasCorrespondencias = () => {
                     select5: '',
                     select6: '',
                 }}
-                validationSchema={Schema}
-                onSubmit={(values) => {
+                onSubmit={(values, { resetForm }) => {
                     console.log(values)
-                    if (
-                        parseInt(values.select1) === material[0].id
-                        && parseInt(values.select2) === material[1].id
-                        && parseInt(values.select3) === material[2].id
-                        && parseInt(values.select4) === material[3].id
-                        && parseInt(values.select5) === material[4].id
-                        && parseInt(values.select6) === material[5].id
-                    ) {
-                        Correct_Alert('¡Bien hecho!')
-                        setBotonState(false)
+                    console.log(Continuacion)
+
+                    if (values[`select${Continuacion}`] === "") {
+                        Warning_Alert('Debes seeccionar una distorsión cognitiva')
                     }
                     else {
-                        Warning_Alert('Debes descubrir cómo aplicar todos los supuestos o creencias')
+                        if (Continuacion === parseInt(values[`select${Continuacion}`])) {
+                            Correct_Alert('¡Bien hecho!')
+                            if (Continuacion === material.length) {
+                                setBotonState(false)
+                            }
+                            else {
+                                setContinuacion(Continuacion + 1)
+                                setIntentos(0)
+                                resetForm()
+                            }
+                        }
+                        else {
+                            setIntentos(Intentos + 1)
+                            if (Intentos > 0) {
+                                RetroalimentacionAlert("Cuack te ayuda", "Revisa el mensaje de ayuda debajo")
+                                values[`select${Continuacion}`] = Continuacion
+                            }
+                            else {
+                                Warning_Alert('Debes descubrir cómo identificar todos los supuestos o creencias')
+                            }
+                        }
                     }
                 }}
             >
@@ -127,34 +125,20 @@ export const UneLasCorrespondencias = () => {
 
                         <div className="row mt-3 text-center justify-content-center align-items-center" >
 
-                            <div className='col-sm-3 mb-4 '>
-                                <h4>Distorción cognitiva</h4>
-                            </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <h4>Pensamientos automáticos</h4>
-                            </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <h4>Puntos básicos</h4>
-                            </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <h4>Retroalimentación- ¿Cómo intervengo en la distorsión?</h4>
-                            </div>
-                        </div>
-
-                        <div className="row mt-3 text-center justify-content-center align-items-center" >
                             <div className="col-sm-3 mb-4">
-                                <Field name="select1" as="select" className="form-select" onChange={handleChange}>
-                                    <option value="" disabled>Selecciona una distorción cognitiva</option>
+                                <h4>Distorsión cognitiva</h4>
+                                <Field name={`select${Continuacion}`} as="select" className="form-select" onChange={handleChange}>
+                                    <option value="" disabled>Selecciona una distorsión cognitiva</option>
                                     {material.map((material, index) => (
                                         <option value={material.id} key={`Material${index}`}>{material.distorsion}</option>
                                     ))}
                                 </Field>
-                                {errors.select1 && touched.select1
+                                {errors[`select${Continuacion}`] && touched[`select${Continuacion}`]
                                     ? (
                                         <div
                                             style={{ color: 'red' }}
                                         >
-                                            {errors.select1}
+                                            {errors[`select${Continuacion}`]}
                                         </div>
                                     )
                                     : null}
@@ -162,255 +146,50 @@ export const UneLasCorrespondencias = () => {
                             <div className='col-sm-3 mb-4 '>
                                 <div className="card">
                                     <div className="card-body">
-                                        <p>{material[0].pensamientos}</p>
+                                        <h5 className="card-title"> Pensamientos automáticos</h5>
+                                        <p className="card-text text-justify">{material[Continuacion - 1].pensamientos}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <p>{material[0].puntos_basicos}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            {parseInt(values.select1) === material[0].id ?
-                                <div className='col-sm-3 mb-4 '>
-                                    <div className="card">
-                                        <div className="card-body">
-                                            <p>{material[0].retroaimentacion}</p>
+
+                            {parseInt(values[`select${Continuacion}`]) === material[Continuacion - 1].id ?
+                                <>
+                                    <div className='col-sm-3 mb-4 '>
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <h5 className="card-title">Puntos básicos</h5>
+                                                <p className="card-text text-justify">{material[Continuacion - 1].puntos_basicos}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div className='col-sm-3 mb-4 '>
+                                        <div className="card">
+                                            <div className="card-body">
+                                                <h5 className="card-title">Retroalimentación- ¿Cómo intervengo en la distorsión?</h5>
+                                                <p className="card-text text-justify">{material[Continuacion - 1].retroaimentacion}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </>
                                 : null}
                         </div>
+                        {Intentos > 1 && (
 
-                        <div className="row mt-3 text-center justify-content-center align-items-center" >
-                            <div className="col-sm-3 mb-4">
-                                <Field name="select2" as="select" className="form-select" onChange={handleChange}>
-                                    <option value="" disabled>Selecciona una distorción cognitiva</option>
-                                    {material.map((material, index) => (
-                                        <option value={material.id} key={`Material${index}`}>{material.distorsion}</option>
-                                    ))}
-                                </Field>
-                                {errors.select2 && touched.select2
-                                    ? (
-                                        <div
-                                            style={{ color: 'red' }}
-                                        >
-                                            {errors.select2}
-                                        </div>
-                                    )
-                                    : null}
-                            </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <p>{material[1].pensamientos}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <p>{material[1].puntos_basicos}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            {parseInt(values.select2) === material[1].id ?
-                                <div className='col-sm-3 mb-4 '>
-                                    <div className="card">
-                                        <div className="card-body">
-                                            <p>{material[1].retroaimentacion}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                : null}
-                        </div>
-
-                        <div className="row mt-3 text-center justify-content-center align-items-center" >
-                            <div className="col-sm-3 mb-4">
-                                <Field name="select3" as="select" className="form-select" onChange={handleChange}>
-                                    <option value="" disabled>Selecciona una distorción cognitiva</option>
-                                    {material.map((material, index) => (
-                                        <option value={material.id} key={`Material${index}`}>{material.distorsion}</option>
-                                    ))}
-                                </Field>
-                                {errors.select3 && touched.select3
-                                    ? (
-                                        <div
-                                            style={{ color: 'red' }}
-                                        >
-                                            {errors.select3}
-                                        </div>
-                                    )
-                                    : null}
-                            </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <p>{material[2].pensamientos}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <p>{material[2].puntos_basicos}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            {parseInt(values.select3) === material[2].id ?
-                                <div className='col-sm-3 mb-4 '>
-                                    <div className="card">
-                                        <div className="card-body">
-                                            <p>{material[2].retroaimentacion}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                : null}
-                        </div>
-
-                        <div className="row mt-3 text-center justify-content-center align-items-center" >
-                            <div className="col-sm-3 mb-4">
-                                <Field name="select4" as="select" className="form-select" onChange={handleChange}>
-                                    <option value="" disabled>Selecciona una distorción cognitiva</option>
-                                    {material.map((material, index) => (
-                                        <option value={material.id} key={`Material${index}`}>{material.distorsion}</option>
-                                    ))}
-                                </Field>
-                                {errors.select4 && touched.select4
-                                    ? (
-                                        <div
-                                            style={{ color: 'red' }}
-                                        >
-                                            {errors.select4}
-                                        </div>
-                                    )
-                                    : null}
-                            </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <p>{material[3].pensamientos}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <p>{material[3].puntos_basicos}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            {parseInt(values.select4) === material[3].id ?
-                                <div className='col-sm-3 mb-4 '>
-                                    <div className="card">
-                                        <div className="card-body">
-                                            <p>{material[3].retroaimentacion}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                : null}
-                        </div>
-
-                        <div className="row mt-3 text-center justify-content-center align-items-center" >
-                            <div className="col-sm-3 mb-4">
-                                <Field name="select5" as="select" className="form-select" onChange={handleChange}>
-                                    <option value="" disabled>Selecciona una distorción cognitiva</option>
-                                    {material.map((material, index) => (
-                                        <option value={material.id} key={`Material${index}`}>{material.distorsion}</option>
-                                    ))}
-                                </Field>
-                                {errors.select5 && touched.select5
-                                    ? (
-                                        <div
-                                            style={{ color: 'red' }}
-                                        >
-                                            {errors.select5}
-                                        </div>
-                                    )
-                                    : null}
-                            </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <p>{material[4].pensamientos}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <p>{material[4].puntos_basicos}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            {parseInt(values.select5) === material[4].id ?
-                                <div className='col-sm-3 mb-4 '>
-                                    <div className="card">
-                                        <div className="card-body">
-                                            <p>{material[4].retroaimentacion}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                : null}
-                        </div>
-
-                        <div className="row mt-3 text-center justify-content-center align-items-center" >
-                            <div className="col-sm-3 mb-4">
-                                <Field name="select6" as="select" className="form-select" onChange={handleChange}>
-                                    <option value="" disabled>Selecciona una distorción cognitiva</option>
-                                    {material.map((material, index) => (
-                                        <option value={material.id} key={`Material${index}`}>{material.distorsion}</option>
-                                    ))}
-                                </Field>
-                                {errors.select6 && touched.select6
-                                    ? (
-                                        <div
-                                            style={{ color: 'red' }}
-                                        >
-                                            {errors.select6}
-                                        </div>
-                                    )
-                                    : null}
-                            </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <p>{material[5].pensamientos}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='col-sm-3 mb-4 '>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <p>{material[5].puntos_basicos}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            {parseInt(values.select6) === material[5].id ?
-                                <div className='col-sm-3 mb-4 '>
-                                    <div className="card">
-                                        <div className="card-body">
-                                            <p>{material[5].retroaimentacion}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                : null}
-                        </div>
-
-
-
-                        {
-                            <div className="mt-4 mb-4 text-center">
-                                <button
-                                    type="submit"
-                                    className="text-white btn btn-info "
-                                >
-                                    Validar
-                                </button>
-                            </div>
+                            <Actividad src={imgGanso.explicando} title="¡Cuack te ayuda!"
+                                text={`En el pensamiento automático "<b>${material[Continuacion - 1].pensamientos}</b>", hace referencia a la distorsión cognitiva de <b>${material[Continuacion - 1].distorsion}</b>.
+                            <br>
+                            <b>Nota importante: </b> Vuelve a darle “validar” para continuar.
+                            `}
+                                showIcon={false} />)
                         }
+                        <div className="mt-4 mb-4 text-center">
+                            <button
+                                type="submit"
+                                className="text-white btn btn-info "
+                            >
+                                Validar
+                            </button>
+                        </div>
                     </Form>
                 )}
 

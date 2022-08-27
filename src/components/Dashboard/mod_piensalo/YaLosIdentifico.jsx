@@ -25,16 +25,17 @@ const informacion = [
         Una vez realizado el listado, debemos cuestionar las ventajas, <i>¿Es esta la única forma de entregar un buen trabajo?</i>`
     },
     {
-        tipo: '¿Cuál sería una alternativa más moderada que proporcionaría las ventajas del supuesto o creencia disfuncional sin sus desventajas?',
-        ejercicio: `Estos supuestos o creencias disfuncionales muchas veces se encuentran en extremos, es importante encontrar puntos medios. Por ejemplo, en este caso se podría reformular de la siguiente manera: <i>“Es bueno buscar realizar una actividad de manera correcta, pero no tiene que ser perfecta, soy humano y lo importante es ir aprendiendo”</i>`
-    },
-    {
         tipo: '¿De dónde proviene la creencia?',
         ejercicio: `Estas creencias se han ido formando en diferentes etapas de nuestra vida, encontrándose la mayoría de estas en la niñez. Lograr identificar como se creó permite generar distancia. <i>Por ejemplo: Cuando era niño debía hacer todo perfecto porque si no mis padres me castigaban.</i>`
     },
     {
         tipo: 'Emplear continuos',
         ejercicio: `Otra forma de encontrar los puntos medios es generar continuos, podemos definir puntos intermedios como 2,4,6,8 en un continuo del 0 al 10 para analizar un supuesto o creencia.`
+    },
+    {
+        tipo: '¿Cuál sería una alternativa más moderada que proporcionaría las ventajas del supuesto o creencia disfuncional sin sus desventajas?',
+        ejercicio: `Estos supuestos o creencias disfuncionales muchas veces se encuentran en extremos, es importante encontrar puntos medios. Por ejemplo, en este caso se podría reformular de la siguiente manera: <i>“Es bueno buscar realizar una actividad de manera correcta, pero no tiene que ser perfecta, soy humano y lo importante es ir aprendiendo”</i>`,
+        largo: "largo"
     },
 ]
 
@@ -72,27 +73,33 @@ export const YaLosIdentifico = () => {
     }, [AvanceState])
 
     var contador = 0;
-    const CartaTexto = ({ title, text }) => {
+    const CartaTexto = ({ title, text, largo }) => {
         const [Show, setShow] = useState(false);
         const handleValidar = () => {
             setShow(true);
             contador = contador + 1;
         }
         return (
-            <div className='col-lg-4 mb-3'>
+            <div className={`mb-3
+            ${largo === 'largo' ? 'col-md-12' : 'col-md-6'}`
+            }>
                 <Card>
                     <Card.Body>
-                        <Card.Title>{title}</Card.Title>
+                        <Card.Title className='text-center'>{title}</Card.Title>
 
                         {Show &&
-                            <Card.Text dangerouslySetInnerHTML={{ __html: text }} >
+                            <Card.Text className='text-justify' dangerouslySetInnerHTML={{ __html: text }} >
                             </Card.Text>
                         }
                         {!Show &&
-                            <button className='w-50 search-buttons card-buttons text-center'
-                                onClick={handleValidar}>
-                                Cómo aplicarlo
-                            </button>
+                            <>
+                                <div className='d-flex justify-content-center'>
+                                    <button className='w-50 search-buttons card-buttons'
+                                        onClick={handleValidar}>
+                                        Cómo aplicó Cuack esta técnica
+                                    </button>
+                                </div>
+                            </>
                         }
                     </Card.Body>
                 </Card>
@@ -111,7 +118,7 @@ export const YaLosIdentifico = () => {
             setSiguiente(true)
         }
         else {
-            Warning_Alert('Debes descubrir cómo aplicar todos los supuestos o creencias')
+            Warning_Alert('Sería genial que conozcas todas las técnicas que empleó Cuack')
         }
     }
     return (
@@ -121,9 +128,9 @@ export const YaLosIdentifico = () => {
             <div className='row justify-content-center align-items-center'>
                 <div className='col-lg-6'>
                     <Actividad src={imgGanso.meditando} title="Supuesto o creencia"
-                        text={`Si voy a realizar esta actividad debe quedar perfecta, sino es así no vale para nada la pena.
-                        </br></br>
-                        ¿Podemos cuestionar este tipo de supuesto o creencia?
+                        titular={`<b>Si voy a realizar esta actividad debe quedar perfecta, sino es así no vale para nada la pena.</b>`}
+                        text={`
+                        <i>Cuack logró identificar una creencia relacionada a una distorsión cognitiva y ha encontrado algunas formas de poder cuestionarla que le han servido y que desea compartir contigo. Puedes dar click en cada enunciado para conocer como Cuack logró abordar su supuesto/creencia</i>
                         `} showIcon={false} />
                 </div>
 
@@ -303,7 +310,7 @@ export const YaLosIdentifico = () => {
 
                         <div className='row justify-content-center align-items-center'>
                             {informacion.map((info, index) => (
-                                <CartaTexto key={index} title={info.tipo} text={info.ejercicio} />
+                                <CartaTexto key={index} title={info.tipo} text={info.ejercicio} largo={info.largo} />
                             ))}
                         </div>
                         <div className="mt-4 mb-4 text-center">

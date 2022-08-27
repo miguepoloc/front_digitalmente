@@ -17,7 +17,7 @@ export const CartaTexto = ({ title, text }) => {
                     {!Show &&
                         <button className='w-50 search-buttons card-buttons text-center'
                             onClick={() => setShow(true)}>
-                            Cómo aplicarlo
+                            Cómo aplicó Cuack esta técnica
                         </button>
                     }
                 </Card.Body>
