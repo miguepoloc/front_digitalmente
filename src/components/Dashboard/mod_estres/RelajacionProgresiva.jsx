@@ -4,7 +4,7 @@ import { Descripcion } from '../Descripcion'
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import { FcSurvey } from 'react-icons/fc'
 import Carrusel from '../Carrusel'
-import { TecnicaEmocional } from '../../../helpers/helperTecnicaEocional';
+import { TecnicaEmocional } from '../../../helpers/helperTecnicaEmocional';
 
 
 export const RelajacionProgresiva = () => {

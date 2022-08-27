@@ -10,6 +10,7 @@ import { FcApproval, FcCancel, FcBiomass, FcHome, FcScatterPlot, FcUnlock, FcImp
 import { GiReturnArrow } from 'react-icons/gi'
 import { AvanceContext } from '../../context/AvanceContext'
 import { linksPiensalo } from '../../helpers/helperPiensalo'
+import { linksAlternativo } from '../../helpers/helperAlternativo'
 
 const NavBarDashboard = () => {
     const { authState } = useContext(AuthContext)
@@ -33,6 +34,7 @@ const NavBarDashboard = () => {
     delete linksRelax[linksRelax.length - 1]
     delete linksEmocional[linksEmocional.length - 1]
     delete linksPiensalo[linksPiensalo.length - 1]
+    delete linksAlternativo[linksAlternativo.length - 1]
     return (
         <>
             <Navbar
@@ -192,23 +194,23 @@ const NavBarDashboard = () => {
                                 ?
                                 <NavDropdown title="Habilidades " id="basic-nav-dropdown" className='d-flex flex-column align-items-center justify-content-center'>
 
-                                    {/* {linkspiensalo.map((capsula, capsulaIndex) => (
+                                    {linksAlternativo.map((capsula, capsulaIndex) => (
 
                                         <NavDropdown.Item
                                             href={`/${capsula.link}`}
                                             eventKey={capsulaIndex}
                                             key={`key-${capsulaIndex}`}
-                                            disabled={!(AvanceState.piensalo >= capsula.id)}
+                                            disabled={!(AvanceState.habilidades >= capsula.id)}
                                             className="  d-flex align-items-center"
                                         ><span className='pe-2 d-flex align-items-center'>
-                                                {!(AvanceState.piensalo >= capsula.id)
+                                                {!(AvanceState.habilidades >= capsula.id)
                                                     ? <FcCancel size={22} />
-                                                    : (AvanceState.piensalo === capsula.id) ? <FcBiomass size={22} /> : <FcApproval size={22} color={splitLocation[1] === capsula.link ? 'black' : ''} />}
+                                                    : (AvanceState.habilidades === capsula.id) ? <FcBiomass size={22} /> : <FcApproval size={22} color={splitLocation[1] === capsula.link ? 'black' : ''} />}
                                             </span>
                                             {capsula.nombre}
                                         </NavDropdown.Item>
 
-                                    ))} */}
+                                    ))}
                                 </NavDropdown>
                                 : <></>
                             }

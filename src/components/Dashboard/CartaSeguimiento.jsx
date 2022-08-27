@@ -5,6 +5,7 @@ import { linksEmocional } from '../../helpers/helper_emocional'
 import { linksRelax } from '../../helpers/helperRelax'
 import { AvanceContext } from '../../context/AvanceContext'
 import { linksPiensalo } from '../../helpers/helperPiensalo'
+import { linksAlternativo } from '../../helpers/helperAlternativo'
 
 const CartaSeguimiento = () => {
     // Datos del avance que lleva el usuario
@@ -21,7 +22,9 @@ const CartaSeguimiento = () => {
     const pPiensalo = AvanceState.piensalo === 1
         ? '0'
         : parseInt(AvanceState.piensalo / linksPiensalo.length * 100).toString()
-    const pHabilidades = '0'
+    const pHabilidades = AvanceState.habilidades === 1
+        ? '0'
+        : parseInt(AvanceState.habilidades / linksAlternativo.length * 100).toString()
     return (
         <>
             <div className="col-12 col-lg-5 mb-md-0 mb-2 order-lg-1 order-3 ">

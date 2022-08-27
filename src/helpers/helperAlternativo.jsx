@@ -1,4 +1,3 @@
-import Capsula1 from '../assets/img/modulo_piensalo/piensalo1.jpeg'
 import {Actividad1Part1}  from '../components/Dashboard/mod_alternativo/Actividad1Part1'
 import { Actividad1Part2 } from '../components/Dashboard/mod_alternativo/Actividad1Part2'
 import { Actividad1Part3 } from '../components/Dashboard/mod_alternativo/Actividad1Part3'

@@ -8,6 +8,8 @@ import { linksPiensalo } from '../../../helpers/helperPiensalo'
 import { Modulos } from './Modulos'
 import { AuthContext } from '../../../context/AuthContext'
 import { AvanceContext } from '../../../context/AvanceContext'
+import { linksAlternativo } from '../../../helpers/helperAlternativo'
+
 // import { Modulo_IconoBloqueo } from './Modulo_IconoBloqueo'
 export const ModulosInicio = () => {
     const { authState } = useContext(AuthContext)
@@ -62,8 +64,8 @@ export const ModulosInicio = () => {
                 text: 'Mis habilidades',
                 moduloClass: 'card_misHabilidades',
                 classImg: 'imgGanso-modulos',
-                bloqueado: true,
-                href: ''
+                bloqueado: !userInfo.is_staff,
+                href: `/alternativo${AvanceState.habilidades === linksAlternativo.length ? (linksAlternativo.length - 1) : AvanceState.habilidades}`
             }
         ]
     }
