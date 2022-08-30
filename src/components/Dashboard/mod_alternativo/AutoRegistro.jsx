@@ -1,4 +1,4 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,useEffect} from 'react'
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import { Actividad } from '../Actividad'
 import imgAutoRegistro from "./assets/img/cuadroAutorregistro.png"
@@ -9,8 +9,10 @@ import { AuthContext } from '../../../context/AuthContext'
 import imgTip from './assets/img/1Capsutips.png'
 import { Tip } from '../Tip'
 import { DescargablesActFomento } from './actividadDeFomento/DescargablesActFomento'
-export const AutoRegistro = () => {
+import { useParams } from 'react-router-dom'
 
+export const AutoRegistro = () => {
+    const { slug } = useParams()
     const { setBotonState } = useContext(BotonContext)
     // Datos del avance que lleva el usuario
     const { AvanceState } = useContext(AvanceContext);
@@ -21,6 +23,21 @@ export const AutoRegistro = () => {
     const { userInfo } = authState
 
     const [ActividadCompletada, setActividadCompletada] = useState(false)
+
+
+
+
+    useEffect(() => {
+        console.log(AvanceState.habilidades,AvanceState.habilidades == 1 && !ActividadCompletada)
+        if (AvanceState.habilidades <= parseInt(slug) && !ActividadCompletada ){
+            setBotonState(true)
+        }
+        else{
+            setBotonState(false)
+        }
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [AvanceState,ActividadCompletada])
 
     const [Datos, setDatos] = useState({
         Texto1: "",
@@ -87,11 +104,11 @@ export const AutoRegistro = () => {
                 <div className='d-flex flex-column justify-content-center align-items-center'>
                     <h4 className='my-4'>Ejemplo</h4>
                     <img src={imgAutoRegistro} alt="" />
-                    <p className='mt-2 mb-4 text-center'><small><b>Fuente.</b> Elaboración propia basada en Pérez <i>et al.</i> (s.f.) </small></p>
+                    <p className='mt-2 mb-4 text-center'><small><b>Fuente.</b> Elaboración propia basada en Beck (1995, 2000) </small></p>
                 </div>
             </div>
 
-            {ActividadCompletada || AvanceState.alternativo > 2 ? (<>
+            {ActividadCompletada || AvanceState.habilidades > 4 ? (<>
             <div className='d-flex justify-content-center align-items-center'>
                 <div className="col-10">
                     <Actividad  src={imgGanso.lupa_celular} title="¡Un regalo para ti!"

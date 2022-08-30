@@ -2,14 +2,12 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { AvanceContext } from '../../../context/AvanceContext';
 import { BotonContext } from '../../../context/BotonContext';
-import Scroll from '../../../helpers/helperScroll';
 import { paradas } from '../../../helpers/helper_alternativo_act_max';
 import { imgGanso } from '../../../helpers/helper_imagen_ganso';
 import { setColorSelect } from '../../../helpers/helper_Reg_Emoc_act_1';
-import { Correct_Alert, RetroalimentacionAlert, SendOkAlert, Warning_Alert } from '../../../helpers/helper_Swal_Alerts';
+import { RetroalimentacionAlert, SendOkAlert, Warning_Alert } from '../../../helpers/helper_Swal_Alerts';
 import Answer from '../../Surveys/Answer';
 import { Actividad } from '../Actividad';
-import { ActividadConDesc } from '../ActividadConDesc';
 import { Descripcion } from '../Descripcion';
 import mapa from './assets/img/1Mapa.jpeg'
 import Imgfinal from './assets/img/7C.del_exito.png'
@@ -20,14 +18,17 @@ export const CaminoAlExito = () => {
         const { setBotonState } = useContext(BotonContext);
         // Datos del avance que lleva el usuario
         const { AvanceState } = useContext(AvanceContext);
-    
+        const [optionIndex, setOptionIndex] = useState(-1)
+        const [activityIndex, setActivityIndex] = useState(0)
         useEffect(() => {
-            if (AvanceState.emocional <= parseInt(slug)) {
+            if (AvanceState.emocional <= parseInt(slug) && paradas.activities.length >= activityIndex) {
+                setBotonState(true)
+            }else{
                 setBotonState(true)
             }
     
             // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [AvanceState])
+        }, [AvanceState,optionIndex])
 
         const moveToAgradecimientos = () => {
             setTimeout(()=>{
@@ -46,8 +47,7 @@ export const CaminoAlExito = () => {
         const color = '#4cbeff'
     
         useEffect(() => { setColorSelect(color) }, [])
-        const [optionIndex, setOptionIndex] = useState(-1)
-        const [activityIndex, setActivityIndex] = useState(0)
+        
         
         const handleButtonOption = () => {
             if (optionIndex >= 0) {
@@ -57,7 +57,6 @@ export const CaminoAlExito = () => {
 
                     let afterThenFunction =  () => {
                         //setOptionIndex(-1)
-                        console.log("hola")
                         setActivityIndex(activityIndex + 1)
                     }
 

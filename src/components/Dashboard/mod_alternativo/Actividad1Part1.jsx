@@ -1,10 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 import { Actividad } from "../Actividad"
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import Chart from "react-apexcharts";
 import './assets/css/form.scss'
+import { BotonContext } from '../../../context/BotonContext';
+import { AvanceContext } from '../../../context/AvanceContext';
+import { AuthContext } from '../../../context/AuthContext';
+import { useParams } from 'react-router-dom'
 
 export const Actividad1Part1 = () => {
+    const { slug } = useParams()
+    const { setBotonState } = useContext(BotonContext)
 
     const [respuesta, setRespuesta] = useState({
         familia: 0,
@@ -16,8 +22,23 @@ export const Actividad1Part1 = () => {
         salud: 0
     })
 
-    
+    const { AvanceState } = useContext(AvanceContext);
     const [mostrarGrafico, setMostrarGrafico] = useState(false)
+    const { authState } = useContext(AuthContext)
+
+
+    useEffect(() => {
+        console.log(AvanceState.habilidades,AvanceState.habilidades == 1 && !mostrarGrafico)
+        if (AvanceState.habilidades <= parseInt(slug) && !mostrarGrafico ){
+            setBotonState(true)
+        }
+        else{
+            setBotonState(false)
+        }
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [AvanceState,mostrarGrafico])
+    
 
     const capitalice = (array) => {
         return array.map(function (str) {
@@ -132,7 +153,7 @@ export const Actividad1Part1 = () => {
                             <div className="baseform__set baseform__set--shrinkinglabels">
                                 <h2 className="baseform__title--subset">01. Familia</h2>
                                 <label className="baseform__label">
-                                    <input onWheel={handleChange} onChange={handleChange} className="baseform__txtinput" name="familia" type="number" max={24} min={0} required="required" />
+                                    <input step={1} onWheel={handleChange} onChange={handleChange} className="baseform__txtinput" name="familia" type="number" max={24} min={0} required="required" />
                                     <div className="baseform__txtlabel">¿Cuántas horas pasas con tu familia?</div>
                                 </label>
                             </div>
