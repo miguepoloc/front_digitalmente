@@ -55,7 +55,7 @@ export const ModulosInicio = () => {
                 text: 'Piénsalo',
                 moduloClass: 'card_piensalo',
                 classImg: 'imgGanso-modulos',
-                bloqueado: !userInfo.is_staff,
+                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)),
                 href: `/piensalo${AvanceState.piensalo === linksPiensalo.length ? (linksPiensalo.length - 1) : AvanceState.piensalo}`
             },
             {
