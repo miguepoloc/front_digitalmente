@@ -87,7 +87,7 @@ export const ActividadDeFomentoEmocional = () => {
                 <div className='d-flex flex-column justify-content-center align-items-center'>
                     <h4 className='my-4'>Ejemplo</h4>
                     <img src={imgAutoRegistro} alt="" />
-                    <p className='mt-2 mb-4 text-center'><small><b>Fuente.</b> Elaboración propia basada en Pérez <i>et al.</i> (s.f.) </small></p>
+                    <p className='mt-2 mb-4 text-center'><small><b>Fuente.</b> Elaboración propia basada en Beck (1995, 2000) </small></p>
                 </div>
             </div>
 
