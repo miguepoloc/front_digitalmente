@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkfront_digitalmente=self.webpackChunkfront_digitalmente||[]).push([[270],{3270:function(n,e,i){i.r(e);i(2791);var t=i(184);e.default=function(){return(0,t.jsx)("div",{children:(0,t.jsx)("h1",{children:"P\xe1gina Admin"})})}}}]);
-//# sourceMappingURL=270.074b13d2.chunk.js.map
