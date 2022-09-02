@@ -106,7 +106,8 @@ export const CaminoAlExito = () => {
 
         <Descripcion title={paradas.activities[activityIndex].name}
     text={paradas.activities[activityIndex].text}
-    
+    centerTitle={true}
+    centerText={true}
      id={"descripcion"}
     />
     

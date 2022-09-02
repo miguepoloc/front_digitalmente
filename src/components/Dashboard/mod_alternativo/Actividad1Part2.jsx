@@ -11,7 +11,7 @@ export const Actividad1Part2 = () => {
         <>
             <h2 className='text-center'></h2>
 
-            <div className='row justify-content-center align-items-center mx-3'>
+            <div className='row justify-content-center align-items-center mx-1 mx-md-4'>
 
                 <Actividad src={imgGanso.elegante} title="¿Ya tienes tu agenda y te cuesta seguirla?"
                     text={`<br>A continuación, te brindamos unos pequeños tips.

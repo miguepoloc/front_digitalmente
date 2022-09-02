@@ -3,7 +3,7 @@ import React from 'react'
 import { FcBiomass } from "react-icons/fc";
 import { IconContext } from 'react-icons/lib';
 
-export const Descripcion = ({ title, text, color, icon = <FcBiomass />, id, centerTitle = false }) => {
+export const Descripcion = ({ title, text, color, icon = <FcBiomass />, id, centerTitle = false , centerText = false }) => {
     const colorDefault = "#9CCC65";
 
     return (
@@ -19,7 +19,7 @@ export const Descripcion = ({ title, text, color, icon = <FcBiomass />, id, cent
                 <span dangerouslySetInnerHTML={{ __html: title ? title : "Actividad" }}></span>
             </h5>
 
-            <p dangerouslySetInnerHTML={{ __html: text }}></p>
+            <p className={`${centerText? "text-center":""} `} dangerouslySetInnerHTML={{ __html: text }}></p>
         </div>
     )
 }

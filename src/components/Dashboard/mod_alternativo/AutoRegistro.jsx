@@ -75,7 +75,7 @@ export const AutoRegistro = () => {
     }
 
     return (
-        <div className="mx-4">
+        <div className="mx-md-2 mx-md-4">
 
             <h2 className='text-center'>Autorregistro</h2>
 

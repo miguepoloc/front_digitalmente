@@ -10,7 +10,7 @@ export const Actividad1Part3 = () => {
         <>
             <h2 className='text-center'></h2>
 
-            <div className='row justify-content-center align-items-center mx-3'>
+            <div className='row justify-content-center align-items-center mx-1 mx-md-4'>
 
                 <Actividad src={imgGanso.pensando} title="¿Tu problema es sobre organización de prioridades?"
                     text={`<br>Entendemos que en ocasiones sucede que tienes un montón de actividades por realizar y no sabes por donde comenzar o en qué momento realizarlas, ¡A nosotros también nos ha pasado! Por eso te presentamos la matriz de Eisenhower (denominada así por el nombre de su autor), la cual podrás descargar para facilitar la priorización y organización de actividades, esperemos pueda funcionarte
