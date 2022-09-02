@@ -66,7 +66,7 @@ export const CaminoAlExito = () => {
                         .then(moveToDescripcion)
                     }else{
                         RetroalimentacionAlert("Capsula Psicoeducativa", paradas.activities[activityIndex ].messagePill)
-                        .then(()=>SendOkAlert("¡Enhorabuena", paradas.activities[activityIndex ].messagePill))
+                        .then(()=>SendOkAlert("¡Enhorabuena!", paradas.activities[activityIndex ].messagePill))
                         .then(()=>setActivityIndex(activityIndex + 1))
                         .then(moveToAgradecimientos)
 
@@ -81,12 +81,19 @@ export const CaminoAlExito = () => {
         }
   return (
     <div className="mx-3 mx-md-4">
-    <Actividad
+    {/* <Actividad
         title={"Actividad 3. Camino al exito"}
         text={`La presente actividad es de carácter psicoeducativo, contextualizada en nuestra vida cotidiana ya que presenta de forma creativa nuestras vivencias sobre la procrastinación de una forma inusual a través de un personaje llamado Max.`}
         src={imgGanso.lupa_celular}
-        
+    /> */}
 
+    <Actividad
+        title={"Actividad 3. Toma de decisiones"}
+        text={`Max se encuentra en la <b>Ciudad de las Buenas Intenciones</b> y está rodeado por el Mar de la Procrastinación, para llegar a la <b>Ciudad del Éxito</b>, él debe pasar por varios obstáculos por lo que requiere de tu ayuda para lograrlo. A continuación, te mostraremos un mapa del recorrido, tu misión es ayudarle a tomar las decisiones para que pueda llegar hasta su META. ¡Ten cuidado!, a Max le gusta dejar para después sus tareas y en el Mar de la Procrastinación pueden encontrarse muchos peligros como: <b>El árbol de las inseguridades</b>, el cual conoce tus mayores secretos y hará todo lo posible por hacerte sentir inferior; <b>la montaña de la distracción</b>, cuenta la leyenda que se albergan criaturas hipnotizantes que no puedes dejar de apreciar; <b>la zona de confort</b>, la cual posee la mayor comodidad existente del MUNDO, es tan agradable que no te querrás ir; tampoco podemos olvidar la <b>cueva del rey teléfono</b>, el cual es todo un parlanchín, un experto en conversar; mucho menos de los tenebrosos animales que se han infectado de la enfermedad de “la flojera”, los ladrones de tiempo, y las hadas del sueño que en cualquier momento te lanzan un hechizo de sueño profundo. <br> 
+        <br/>
+        <div class="text-center"><b>¡COMENCEMOS!</b></div>`}
+        src={imgGanso.elegante}
+        showIcon={true}
     />
 
     {/* Si la persona aun no ha terminado las actividades */}
@@ -99,6 +106,7 @@ export const CaminoAlExito = () => {
 
         <Descripcion title={paradas.activities[activityIndex].name}
     text={paradas.activities[activityIndex].text}
+    
      id={"descripcion"}
     />
     

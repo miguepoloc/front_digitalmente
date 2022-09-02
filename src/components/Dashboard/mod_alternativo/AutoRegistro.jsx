@@ -93,11 +93,18 @@ export const AutoRegistro = () => {
                         siImange={true}
                         src={imgGanso.explicando}
                         style={{ width: "110px", height: "110px" }}
-                        title="Descripcion de la actividad."
-                        text={`La procrastinación sucede cuando el individuo se enfrenta a tareas o situaciones que son interpretadas por este como aversivas (difíciles, aburridas, etc.) es por eso que esta conducta se relaciona con la “reparación de daño” en el estado de ánimo a corto plazo y la regulación de las emociones, en otras palabras, la persona que procrastina una actividad se centra en cambiar el estado de ánimo negativo y no en el desarrollo de la tarea, por lo tanto, se suele desplazar la tarea inicial por otras que generen una satisfacción a corto plazo y restablezcan el estado de ánimo positivo, a pesar de esto no se puede dejar de lado el malestar que genera dicho aplazamiento a futuro, convirtiéndose en un ciclo: aplazas para no sentirte mal y luego te sientes mal por aplazar <i>(Sirois y Pychyl, 2013)</i>
-                <br>
-                Teniendo en cuenta lo anterior es importante que identifiquemos cuales son las actividades que más tendemos a aplazar y los sentimientos asociados a las mismas para así lograr afrontarlas de una mejor manera. Para esto te ayudarás con el siguiente cuadro de autorregistro, el cual también te orientará con un ejemplo (basado en hechos reales)
-                `}
+                        title="Descripcion de la actividad"
+                        text={`La procrastinación sucede cuando el individuo se enfrenta a tareas o situaciones que son interpretadas por este como aversivas (difíciles, aburridas, etc.) es por eso que esta conducta se relaciona con la “reparación de daño” en el estado de ánimo a corto plazo y la regulación de las emociones, en otras palabras, la persona que procrastina una actividad se centra en cambiar el estado de ánimo negativo y no en el desarrollo de la tarea, por lo tanto, se suele desplazar la tarea inicial por otras que generen una satisfacción a corto plazo y restablezcan el estado de ánimo positivo, a pesar de esto no se puede dejar de lado el malestar que genera dicho aplazamiento a futuro, convirtiéndose en un ciclo: aplazas para no sentirte mal y luego te sientes mal por aplazar (Sirois y Pychyl, 2013)
+                        `}
+                        showIcon={false} />
+
+                    <Actividad
+                        siImange={true}
+                        src={imgGanso.pensando}
+                        style={{ width: "110px", height: "110px" }}
+                        title="¿Cómo utilizamos este autorregistro?"
+                        text={`¡No te preocupes, es pan comido! En cada casilla está indicado lo que debes colocar y un ejemplo para que te guíes. Te recomendamos hacer seguimiento de este por lo menos durante una semana o también anotar aquellas situaciones anteriores (pasadas) en cada una de las casillas, para esto puedes agregar la fecha para mayor precisión. Al completar el autorregistro notarás como algunos sentimientos, pensamientos y comportamientos (Conductas de distracción) son repetitivos, del mismo modo, con la practica (y experimentación de alternativas) vamos siendo más asertivos en la forma de afrontarlos los mismos.
+                        `}
                         showIcon={false} />
                 </div>
 

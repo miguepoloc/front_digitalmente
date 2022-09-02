@@ -15,8 +15,9 @@ export const Actividad1Part3 = () => {
                 <Actividad src={imgGanso.pensando} title="¿Tu problema es sobre organización de prioridades?"
                     text={`<br>Entendemos que en ocasiones sucede que tienes un montón de actividades por realizar y no sabes por donde comenzar o en qué momento realizarlas, ¡A nosotros también nos ha pasado! Por eso te presentamos la matriz de Eisenhower (denominada así por el nombre de su autor), la cual podrás descargar para facilitar la priorización y organización de actividades, esperemos pueda funcionarte
                     <br>
-                    <br>
-                    ¿Qué es la matriz de Eisenhower? es una herramienta que nos permite identificar cuáles son las actividades que deben realizarse de manera urgente, las que pueden aplazarse e incluso eliminarse
+                        `} showIcon={false} />
+                <Actividad src={imgGanso.leyendo} title="¿Qué es la matriz de Eisenhower?"
+                    text={`Es una herramienta que nos permite identificar cuáles son las actividades que deben realizarse de manera urgente, las que pueden aplazarse e incluso eliminarse
                     
                         `} showIcon={false} />
                 <Actividad src={imgGanso.explicando} title="¿Cómo se usa?"
@@ -42,7 +43,7 @@ export const Actividad1Part3 = () => {
             </div>
 
             <Actividad src={imgGanso.feliz_250x200} title="Tips extra"
-                    text={`<br>Organizar tu tiempo y hacer seguimiento te permite:
+                text={`<br>Organizar tu tiempo y hacer seguimiento te permite:
                    <ul>
                    <li>Reconocer que es lo que has alcanzado</li>
                    <li>Ahorrar tiempo y energía </li>
@@ -55,7 +56,7 @@ export const Actividad1Part3 = () => {
                     Marchena, E.; Hervías, F.; Galo, C. y Rapp, C. (2017)
                     
                         `} showIcon={false} />
-            
+
         </>
     )
 }
