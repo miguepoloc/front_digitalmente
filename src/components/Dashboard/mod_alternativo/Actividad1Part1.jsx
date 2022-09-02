@@ -136,7 +136,6 @@ export const Actividad1Part1 = () => {
                         } showIcon={false} />
                 </div>
             </div>
-            <p className="baseintro__para">Es por eso que en esta actividad abordaremos la planeación y organización del tiempo. Para este punto es necesario que identifiques la forma en que distribuyes tu tiempo de forma cotidiana para saber, así como trabajar.</p>
 
             <Actividad imageRight={true} src={imgGanso.lupa_celular} title="¿Sabias qué?"
                 text={`Mientras avanzamos me gustaría preguntarte si ¿Sabías que el día tiene 1440 minutos aproximadamente, ¿En que los estas distribuyendo?`
