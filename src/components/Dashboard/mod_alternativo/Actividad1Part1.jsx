@@ -138,7 +138,7 @@ export const Actividad1Part1 = () => {
             </div>
 
             <Actividad imageRight={true} src={imgGanso.lupa_celular} title="¿Sabias qué?"
-                text={`Mientras avanzamos me gustaría preguntarte si ¿Sabías que el día tiene 1440 minutos aproximadamente, ¿En que los estas distribuyendo?`
+                text={`Mientras avanzamos me gustaría preguntarte si ¿Sabías que el día tiene 1440 minutos aproximadamente?, ¿En que los estas distribuyendo?`
                 } showIcon={false} />
 
             {!mostrarGrafico ? (<>
