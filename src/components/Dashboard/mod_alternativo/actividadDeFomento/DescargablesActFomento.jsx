@@ -16,7 +16,7 @@ export const DescargablesActFomento = () => {
 
             <a href={documentoExcel} download="Autorregistro_misHabilidades.xlsx" className='w-50 btn-radius btn-excel align-self-center d-flex justify-content-center align-items-center '>  Descargar documento editable XLSX <FaRegFileExcel size={23} color="white" className='mx-1' /></a>
 
-            <a rel="noreferrer" href="https://docs.google.com/spreadsheets/d/1RLItYnvBoNCSAADfmsdHHkmuY6HCtEcXIB7PAitiNco/copy?usp=sharing" target={"_blank"} className='w-50 btn-radius btn-googleDocs align-self-center d-flex justify-content-center align-items-center '>  Crear una copia en la nube <TbBrandGoogleDrive size={25} color="white" className='mx-1' /></a>
+            <a rel="noreferrer" href="https://docs.google.com/spreadsheets/d/1AG1dCSn2RAUat_TEsDe9STBDTNMPw7iWWxa5GIE5j0c/copy?usp=sharing" target={"_blank"} className='w-50 btn-radius btn-googleDocs align-self-center d-flex justify-content-center align-items-center '>  Crear una copia en la nube <TbBrandGoogleDrive size={25} color="white" className='mx-1' /></a>
         </div>
     )
 }

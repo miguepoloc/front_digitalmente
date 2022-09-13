@@ -199,7 +199,7 @@ export const Actividad1Part1 = () => {
                             </div>
 
                             <div className="baseform__set baseform__set--shrinkinglabels baseform__set--validpositive">
-                                <h2 className="baseform__title--subset">06. Salud</h2>
+                                <h2 className="baseform__title--subset">06. Salud <small style={{fontSize:"0.6em"}}>(física, psicológica, emocional)</small></h2>
                                 <label className="baseform__label">
                                     <input onChange={handleChange} className="baseform__txtinput" name="salud" type="number" max={24} min={0} required="required" />
                                     <div className="baseform__txtlabel">¿Cuánto horas le dedicas a tu salud?</div>
