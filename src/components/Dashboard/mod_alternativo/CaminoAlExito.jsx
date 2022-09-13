@@ -11,6 +11,7 @@ import { Actividad } from '../Actividad';
 import { Descripcion } from '../Descripcion';
 import mapa from './assets/img/1Mapa.jpeg'
 import Imgfinal from './assets/img/7C.del_exito.png'
+import './assets/css/loadingImg.scss'
 
 export const CaminoAlExito = () => {
         // Variable del url

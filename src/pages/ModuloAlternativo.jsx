@@ -92,7 +92,7 @@ const ModuloAlternativo = () => {
         }
 
         if (parseInt(slug) === linksAlternativo.length - 2 && AvanceState.habilidades === linksAlternativo.length - 2) {
-            Correct_Alert("Felicidades!", "Terminaste el módulo Piensalo")
+            Correct_Alert("Felicidades!", "Terminaste el módulo Alternativo")
         }
 
         if (parseInt(slug) === AvanceState.habilidades) {
@@ -182,12 +182,13 @@ const ModuloAlternativo = () => {
                         <FooterDashboard />
                         <ButtonLibro text={`
                         <ol>
-                        <li>	Arredondo, N., Álvarez, C., López, P., & Posada, S. (2005). Distorsiones cognitivas asociadas al trastorno de ansiedad generalizada. Informes Psicológicos, 7, 123.  <a target='_blank'class="text-naranja" href='https://revistas.upb.edu.co/index.php/informespsicologicos/article/view/694'>Link URL</a>	</li>	<br/>
-<li>	Beck, A., Rush, J., Shaw, B. & Emery, G. (1983). Terapia cognitiva de la depresión (19ª edición). Biblioteca De Psicología Descleé De Brouwer	</li>	<br/>
-<li>	Beck, J. (2015). Terapia cognitiva: Conceptos básicos y profundización (Vol. 141626). Editorial Gedisa.	</li>	<br/>
-<li>	Diaz, Y., y Vallejo, P. (2017). Distorsiones cognitivas y estrés en estudiantes universitarios [Tesis de posgrado, Universidad Técnica De Ambato]. Repositorio digital Universidad Técnica De Ambato. <a target='_blank'class="text-naranja" href='https://repositorio.uta.edu.ec/jspui/handle/123456789/26721'>Link URL</a> 	</li>	<br/>
-<li>	Riofrio, J., y Villegas, M. (2016). Distorsiones cognitivas según niveles de dependencia emocional en universitarios–PIMENTEL. Paian, 7(1). <a target='_blank'class="text-naranja" href='http://revistas.uss.edu.pe/index.php/PAIAN/article/view/311/310'>Link URL</a>  	</li>	<br/>
-<li>	Pilatti, A., Michelini, Y., & Pautassi, R. M. (2020). Juegos de apuestas en estudiantes universitarios: diferencias en impulsividad rasgo, distorsiones cognitivas y severidad en función del tipo de apuestas. CES Psicología, 13(2), 46–60. <a target='_blank'class="text-naranja" href='https://doi.org/10.21615/cesp.13.2.4'>DOI</a> 	</li>
+                        <li>	Beck, J. (2000). <i>Terapia Cognitiva: Conceptos Básicos y Profundización </i>(Trad. A. Ruiz).  Editorial Gedisa. (Libro original publicado en 1995).	</li>
+<li>	Demeter, D. y Davis, S. (2013). Procrastination as a Tool: Exploring Unconventional Components of Academic Success [La procrastinación como herramienta: Explorando los componentes no convencionales del éxito académico].<i> Revista: Scientific Research,4</i>(7A2), 144-149. <a target="_blank" class="text-naranja"  href='http://dx.doi.org/10.4236/ce.2013.47A2018'>DOI</a> 	</li>
+<li>	Marchena, E., Hervías, F., Galo, C. y Rapp, C.  (2017). <i>Organiza tu tiempo de forma eficaz</i>. Servicio de Atención Psicológica y Pedagógica, Departamento de Psicología de la Universidad de Cádiz. <a target="_blank" class="text-naranja"  href='https://sap.uca.es/wp-content/uploads/2017/03/Gu%C3%ADa-de-organizaci%C3%B3n-del-tiempo.pdf?u'>Link URL</a>	</li>
+<li>	Sirois, F. y Pychyl, T. (2013). Procrastination and the Priority of Short-Term Mood Regulation: Consequences for Future Self [La procrastinación y la prioridad de la regulación del estado de ánimo a corto plazo: Consecuencias para el futuro de uno mismo]. <i>Social and Personality Psychology Compass</i>,7(2), 115 – 127. <a target="_blank" class="text-naranja"  href='https://doi.org/10.1111/spc3.12011'>DOI</a>	</li>
+<li>	Universidad del País Vasco. (s.f). <i>Yo procrastino, tú procrastinas</i> [Diapositivas de Power Point]. UPV/EHU Documents. <a target="_blank" class="text-naranja"  href='https://www.ehu.eus/documents/2632144/2634184/Yo+procrastino.pdf'>Link URL</a>  	</li>
+<li>	Zarate, D. (2022, 30 de junio). Matriz de Eisenhower: que es, cómo usarla y ejemplos. <i>Hubspot</i>. <a target="_blank" class="text-naranja"  href='https://blog.hubspot.es/sales/matriz-eisenhower'>Link URL</a> 	</li>
+
 
                         </ol>
                         `} title={'Referencia'} />

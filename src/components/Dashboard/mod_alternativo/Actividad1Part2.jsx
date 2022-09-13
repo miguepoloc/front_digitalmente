@@ -18,11 +18,11 @@ export const Actividad1Part2 = () => {
                         <ol>
                         <li><b>Comprométete</b> a cumplir los plazos importantes, ya que luego te acostumbrarás a aplazar y también tendrás muchas cosas acumuladas. “No dejes para mañana lo que puedes hacer hoy”</li>
                         <li><b>Realiza Pasos Progresivos</b> : Puedes iniciar con las tareas que tengan una dificultad baja, luego media y posteriormente las actividades que más te cuestan. “Divide y reinarás”</li>
-                        <li>Ten tiempos de <b>Descanso</b>. “Recarga tus baterías”</li>
-                        <li>Date <b>Recompensas</b> a ti mismo luego de realizar un trabajo o meta. ¿Un dulce? ¿un descanso? ¿una canción? ¡se creativo!</li>
-                        <li>Desarrolla momentos de <b>Retroalimentación</b> sobre tu proceso: ¿Está siendo efectiva la forma en que distribuyes el tiempo?</li>
+                        <li>Ten tiempos de <b>descanso</b>. “Recarga tus baterías”</li>
+                        <li>Date <b>recompensas</b> a ti mismo luego de realizar un trabajo o meta. ¿Un dulce? ¿un descanso? ¿una canción? ¡se creativo!</li>
+                        <li>Desarrolla momentos de <b>retroalimentación</b> sobre tu proceso: ¿Está siendo efectiva la forma en que distribuyes el tiempo?</li>
                         </ol>
-                        <span class="">Marchena, E.; Hervías, F.; Galo, C. y Rapp, C. (2017)</span>
+                        <span class="">Marchena et al. (2017)</span>
                         `} showIcon={false} />
                 <Actividad src={imgGanso.celular} title=""
                     text={`Si no tienes agenda y te gustaría iniciar una, puedes personalizar una libreta o también usar aplicaciones para organizarla (en digital). Nuestras recomendadas:`} showIcon={false} />

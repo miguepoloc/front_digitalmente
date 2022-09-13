@@ -53,8 +53,7 @@ export const Actividad1Part3 = () => {
 
                    </ul>
                     <br/>
-                    Marchena, E.; Hervías, F.; Galo, C. y Rapp, C. (2017)
-                    
+                    Marchena et al. (2017).
                         `} showIcon={false} />
 
         </>

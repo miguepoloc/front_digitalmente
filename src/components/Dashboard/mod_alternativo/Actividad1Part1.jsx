@@ -138,7 +138,7 @@ export const Actividad1Part1 = () => {
             </div>
 
             <Actividad imageRight={true} src={imgGanso.lupa_celular} title="¿Sabias qué?"
-                text={`Mientras avanzamos me gustaría preguntarte si ¿Sabías que el día tiene 1440 minutos aproximadamente?, ¿En que los estas distribuyendo?`
+                text={`Mientras avanzamos me gustaría preguntarte ¿Sabías que el día tiene 1440 minutos aproximadamente? ¿En que los estas distribuyendo?”`
                 } showIcon={false} />
 
             {!mostrarGrafico ? (<>
@@ -228,7 +228,7 @@ export const Actividad1Part1 = () => {
                         } showIcon={false} />
                     
                     <Actividad src={imgGanso.explicando} title="Tip"
-                        text={`Independientemente del resultado anterior, te recomendamos que para una mejor organización del tiempo hagas una agenda o una lista de cosas por hacer, esto te ayudará a tener los compromisos en orden, ahorrar tiempo, cumplir fechas y establecer prioridades
+                        text={`Independientemente del resultado anterior, te recomendamos que para una mejor organización del tiempo hagas una agenda o una lista de cosas por hacer. Esto te ayudará a tener los compromisos en orden, ahorrar tiempo, cumplir fechas y establecer prioridades
                         `
                         } showIcon={false}  imageRight={true}/>
 
