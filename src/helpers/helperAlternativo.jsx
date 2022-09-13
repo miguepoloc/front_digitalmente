@@ -1,7 +1,7 @@
 import {Actividad1Part1}  from '../components/Dashboard/mod_alternativo/Actividad1Part1'
 import { Actividad1Part2 } from '../components/Dashboard/mod_alternativo/Actividad1Part2'
 import { Actividad1Part3 } from '../components/Dashboard/mod_alternativo/Actividad1Part3'
-import { ActividadDeFomentoEmocional } from '../components/Dashboard/mod_alternativo/actividadDeFomento/ActividadDeFomentoEmocional'
+import { ActividadDeFomentoAlternativo } from '../components/Dashboard/mod_alternativo/actividadDeFomento/ActividadDeFomentoAlternativo'
 import { AutoRegistro } from '../components/Dashboard/mod_alternativo/AutoRegistro'
 import { CaminoAlExito } from '../components/Dashboard/mod_alternativo/CaminoAlExito'
 
@@ -43,9 +43,9 @@ export const linksAlternativo = [
     },
     {
         id: 6,
-        nombre: 'Actividad 7',
+        nombre: 'Actividad de fomento',
         link: 'alternativo5',
-        actividad: <ActividadDeFomentoEmocional/>,
+        actividad: <ActividadDeFomentoAlternativo/>,
         tipoCapsula: false
     },
 

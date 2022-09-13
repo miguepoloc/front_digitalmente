@@ -6,9 +6,9 @@ import { ErrorAlert, Correct_Alert } from '../../../../helpers/helper_Swal_Alert
 import { BotonContext } from '../../../../context/BotonContext'
 import { AvanceContext } from '../../../../context/AvanceContext'
 import { AuthContext } from '../../../../context/AuthContext'
-import { DescargablesActFomento } from '../actividadDeFomento/DescargablesActFomento'
+import { DescargablesActFomento } from './DescargablesActFomento'
 
-export const ActividadDeFomentoEmocional = () => {
+export const ActividadDeFomentoAlternativo = () => {
 
     const { setBotonState } = useContext(BotonContext)
     // Datos del avance que lleva el usuario

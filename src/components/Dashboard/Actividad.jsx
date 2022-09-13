@@ -6,11 +6,12 @@ import { AiFillStar } from "react-icons/ai";
 /**
  * @param {{src: imgGanso, title: string, text: string , showIcon: boolean}} src
  */
-export const Actividad = ({ src, title, text, showIcon = true, video, siImange = true, style = { width: "150px", height: "150px" }, id = "", imageRight = false, titular }) => {
+export const Actividad = ({ src, title, text,underText, showIcon = true, video, siImange = true, style = { width: "150px", height: "150px" }, id = "", imageRight = false, titular }) => {
     const icon = showIcon ? <AiFillStar style={{ color: "#ffd000", height: "1.5em", width: "1.5em" }} /> : ""
     return (
         <>
-            <div className="card flex-md-row mb-2 box-shadow h-md-250 px-md-4  py-4 mt-3  " id={id}>
+            <div className="card  mb-2 box-shadow h-md-250 px-md-4  py-4 mt-3  " id={id}>
+                <div className='d-flex'>
                 {!imageRight && <>
                     {siImange ?
                         <img
@@ -29,9 +30,14 @@ export const Actividad = ({ src, title, text, showIcon = true, video, siImange =
                         <p className="card-text w-100" dangerouslySetInnerHTML={{ __html: text }}></p>
 
                         {video}
-                    </div>
+                    </div>   
                 </>}
-
+                
+                </div>
+                <div className="text-center mx-4 my-2 ">
+                    <p className='align-self-end' style={{fontSize:"0.85em"}} dangerouslySetInnerHTML={{ __html: underText }}></p>
+                </div>
+                <div className='d-flex'>
                 {imageRight && <>
 
                     <div className="card-body d-flex flex-column align-items-start justify-content-center w-100">
@@ -49,9 +55,13 @@ export const Actividad = ({ src, title, text, showIcon = true, video, siImange =
                         :
                         <></>
                     }
+                                        <p dangerouslySetInnerHTML={{ __html: underText }}></p>
+
                 </>}
+                </div>
 
             </div>
+            
         </>
     )
 }

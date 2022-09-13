@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Actividad } from "../Actividad"
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import Chart from "react-apexcharts";
@@ -7,6 +7,9 @@ import { BotonContext } from '../../../context/BotonContext';
 import { AvanceContext } from '../../../context/AvanceContext';
 import { AuthContext } from '../../../context/AuthContext';
 import { useParams } from 'react-router-dom'
+import { renderToString } from 'react-dom/server';
+import { FaBookOpen } from 'react-icons/fa';
+import ButtonLibro from '../ButtonLibro';
 
 export const Actividad1Part1 = () => {
     const { slug } = useParams()
@@ -28,17 +31,17 @@ export const Actividad1Part1 = () => {
 
 
     useEffect(() => {
-        console.log(AvanceState.habilidades,AvanceState.habilidades == 1 && !mostrarGrafico)
-        if (AvanceState.habilidades <= parseInt(slug) && !mostrarGrafico ){
+        console.log(AvanceState.habilidades, AvanceState.habilidades == 1 && !mostrarGrafico)
+        if (AvanceState.habilidades <= parseInt(slug) && !mostrarGrafico) {
             setBotonState(true)
         }
-        else{
+        else {
             setBotonState(false)
         }
-        
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [AvanceState,mostrarGrafico])
-    
+    }, [AvanceState, mostrarGrafico])
+
 
     const capitalice = (array) => {
         return array.map(function (str) {
@@ -62,10 +65,10 @@ export const Actividad1Part1 = () => {
     }
 
     const moveToGrafico = () => {
-        setTimeout(()=>{
-        var cuackAyuda = document.getElementById("chart");
-        cuackAyuda?.scrollIntoView({behavior: 'smooth'}, true);
-        },300)
+        setTimeout(() => {
+            var cuackAyuda = document.getElementById("chart");
+            cuackAyuda?.scrollIntoView({ behavior: 'smooth' }, true);
+        }, 300)
     }
 
 
@@ -78,11 +81,11 @@ export const Actividad1Part1 = () => {
         setMostrarGrafico(true)
         moveToGrafico()
         //TODO: activar boton
-        if (verificarValores() >= 0) {
+        /*if (verificarValores() >= 0) {
             //setMostrarGrafico(!mostrarGrafico)
         } else {
             console.log("Las horas agregadas superan las horas del día (24h)")
-        }
+        }*/
     }
 
     /*const options = {
@@ -110,7 +113,7 @@ export const Actividad1Part1 = () => {
                 }
             }
         },
-        colors:['#E5BEDD', '#FFA8B8', '#DCD9F7','#F8D9C3','#FFC8C4','#A9E5E3','#BBCEF3']
+        colors: ['#E5BEDD', '#FFA8B8', '#DCD9F7', '#F8D9C3', '#FFC8C4', '#A9E5E3', '#BBCEF3']
 
     }
 
@@ -121,24 +124,37 @@ export const Actividad1Part1 = () => {
             <div className='row justify-content-center align-items-center'>
                 <div className='col-lg-5'>
                     <Actividad src={imgGanso.elegante} title=""
-                        text={`Hola, Soy Cuack y quiero hablarte un poco sobre la procrastinación `} showIcon={false} />
+                        text={`Hola, Soy Cuack y quiero hablarte un poco sobre la procrastinación 
+                       `} showIcon={false} 
+                       underText={` <small class="d-flex justify-content-center"><span style="color:red">*</span>${renderToString(<div className='mx-1' >
+
+                       <div
+                           className={" buttonReferenciaNoFixed text-white"} style={{ cursor: "auto" }}
+                       >
+                           <FaBookOpen size={14} />
+                       </div>
+                       <ButtonLibro asImg={true} size={14} />
+   
+                   </div>)} Aquí podrás encontrar referencias bibliográficas del contenido de este módulo  e información adicional sobre el tema de estrés.</small>`}
+                       />
                 </div>
                 <div className='col-lg-7'>
                     <Actividad src={imgGanso.leyendo} title="Procrastinación"
-                        text={`La “procrastinación” deriva del latín procrastinare, cuyo significado es “dejar las cosas o posponerlas para otro día” 
+                        text={`<div class="text-justify">La “procrastinación” deriva del latín procrastinare, cuyo significado es “dejar las cosas o posponerlas para otro día” </div>
                         `
                         } showIcon={false} />
                     <Actividad src={imgGanso.durmiendo} title="Seguramente te suena, ¿cierto?"
-                        text={`Esta procrastinación es la tendencia a posponer o retrasar la finalización de una labor o tarea evitando la responsabilidad, decisiones y tarea que requieren ser desarrolladas (Ruiz y Cuzcano, 2017)
+                        text={`<div class="text-justify">Esta procrastinación es la tendencia a posponer o retrasar la finalización de una labor o tarea evitando la responsabilidad, decisiones y tarea que requieren ser desarrolladas (Ruiz y Cuzcano, 2017)
                         <br/>
-                        Algunos consideran que la procrastinación es en gran medida un tema de poca organización del tiempo y autorregulación, pero más adelante profundizaremos sobre el origen de esta
+                        <br/>
+                        Algunos consideran que la procrastinación es en gran medida un tema de poca organización del tiempo y autorregulación, pero más adelante profundizaremos sobre el origen de esta</div>
                         `
                         } showIcon={false} />
                 </div>
             </div>
 
             <Actividad imageRight={true} src={imgGanso.lupa_celular} title="¿Sabias qué?"
-                text={`Mientras avanzamos me gustaría preguntarte ¿Sabías que el día tiene 1440 minutos aproximadamente? ¿En que los estas distribuyendo?”`
+                text={`<div class="text-justify">Mientras avanzamos me gustaría preguntarte ¿Sabías que el día tiene 1440 minutos aproximadamente? ¿En que los estas distribuyendo?”</div>`
                 } showIcon={false} />
 
             {!mostrarGrafico ? (<>
@@ -153,7 +169,7 @@ export const Actividad1Part1 = () => {
                             <div className="baseform__set baseform__set--shrinkinglabels">
                                 <h2 className="baseform__title--subset">01. Familia</h2>
                                 <label className="baseform__label">
-                                    <input step={1} onWheel={handleChange} onChange={handleChange} className="baseform__txtinput" name="familia" type="number" max={24} min={0} required="required" />
+                                    <input onChange={handleChange} className="baseform__txtinput" name="familia" type="number" max={24} min={0} required="required" />
                                     <div className="baseform__txtlabel">¿Cuántas horas pasas con tu familia?</div>
                                 </label>
                             </div>
@@ -199,7 +215,7 @@ export const Actividad1Part1 = () => {
                             </div>
 
                             <div className="baseform__set baseform__set--shrinkinglabels baseform__set--validpositive">
-                                <h2 className="baseform__title--subset">06. Salud <small style={{fontSize:"0.6em"}}>(física, psicológica, emocional)</small></h2>
+                                <h2 className="baseform__title--subset">06. Salud <small style={{ fontSize: "0.6em" }}>(física, psicológica, emocional)</small></h2>
                                 <label className="baseform__label">
                                     <input onChange={handleChange} className="baseform__txtinput" name="salud" type="number" max={24} min={0} required="required" />
                                     <div className="baseform__txtlabel">¿Cuánto horas le dedicas a tu salud?</div>
@@ -221,16 +237,15 @@ export const Actividad1Part1 = () => {
                         style={{ maxWidth: "500px", margin: "0 auto" }}
                     />
                     <Actividad src={imgGanso.pensando} title="Piensa en el resultado anterior y responde las siguientes preguntas"
-                        text={`¿Qué es lo que más te sorprende de lo que has escrito?<br/>
-                        ¿Hay algo para lo que aún no encuentras tiempo?
-                        
+                        text={`<div class="text-md-center">¿Qué es lo que más te sorprende de lo que has escrito?, ¿Hay algo para lo que aún no encuentras tiempo?
+                        </div>
                         `
                         } showIcon={false} />
-                    
+
                     <Actividad src={imgGanso.explicando} title="Tip"
                         text={`Independientemente del resultado anterior, te recomendamos que para una mejor organización del tiempo hagas una agenda o una lista de cosas por hacer. Esto te ayudará a tener los compromisos en orden, ahorrar tiempo, cumplir fechas y establecer prioridades
                         `
-                        } showIcon={false}  imageRight={true}/>
+                        } showIcon={false} imageRight={true} />
 
                 </div></>}
 
