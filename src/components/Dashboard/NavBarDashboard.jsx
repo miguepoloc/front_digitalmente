@@ -190,7 +190,7 @@ const NavBarDashboard = () => {
                                 : <></>
                             }
 
-                            {userInfo.is_staff
+                            {userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)
                                 ?
                                 <NavDropdown title="Habilidades " id="basic-nav-dropdown" className='d-flex flex-column align-items-center justify-content-center'>
 

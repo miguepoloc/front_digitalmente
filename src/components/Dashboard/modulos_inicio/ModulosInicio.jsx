@@ -64,7 +64,7 @@ export const ModulosInicio = () => {
                 text: 'Mis habilidades',
                 moduloClass: 'card_misHabilidades',
                 classImg: 'imgGanso-modulos',
-                bloqueado: !userInfo.is_staff,
+                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)),
                 href: `/alternativo${AvanceState.habilidades === linksAlternativo.length ? (linksAlternativo.length - 1) : AvanceState.habilidades}`
             }
         ]
