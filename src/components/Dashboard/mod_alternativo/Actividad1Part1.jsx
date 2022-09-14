@@ -140,7 +140,7 @@ export const Actividad1Part1 = () => {
                 </div>
                 <div className='col-lg-7'>
                     <Actividad src={imgGanso.leyendo} title="Procrastinación"
-                        text={`<div class="text-justify">La “procrastinación” deriva del latín procrastinare, cuyo significado es “dejar las cosas o posponerlas para otro día” </div>
+                        text={`<div class="text-md-center ">La “procrastinación” deriva del latín procrastinare, cuyo significado es “dejar las cosas o posponerlas para otro día” </div>
                         `
                         } showIcon={false} />
                     <Actividad src={imgGanso.durmiendo} title="Seguramente te suena, ¿cierto?"

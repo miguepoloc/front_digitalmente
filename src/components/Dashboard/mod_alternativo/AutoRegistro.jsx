@@ -94,7 +94,7 @@ export const AutoRegistro = () => {
                         src={imgGanso.explicando}
                         style={{ width: "110px", height: "110px" }}
                         title="Descripcion de la actividad"
-                        text={`La procrastinación sucede cuando el individuo se enfrenta a tareas o situaciones que son interpretadas por este como aversivas (difíciles, aburridas, etc.) es por eso que esta conducta se relaciona con la “reparación de daño” en el estado de ánimo a corto plazo y la regulación de las emociones, en otras palabras, la persona que procrastina una actividad se centra en cambiar el estado de ánimo negativo y no en el desarrollo de la tarea, por lo tanto, se suele desplazar la tarea inicial por otras que generen una satisfacción a corto plazo y restablezcan el estado de ánimo positivo, a pesar de esto no se puede dejar de lado el malestar que genera dicho aplazamiento a futuro, convirtiéndose en un ciclo: aplazas para no sentirte mal y luego te sientes mal por aplazar (Sirois y Pychyl, 2013)
+                        text={`La procrastinación sucede cuando el individuo se enfrenta a tareas o situaciones que son interpretadas por este como aversivas (difíciles, aburridas, etc). La persona que procrastina una actividad, se centra en cambiar el estado de ánimo negativo y no en el desarrollo de la tarea, por lo tanto, se suele desplazar la tarea inicial por otras que generen una satisfacción a corto plazo y restablezcan el estado de ánimo positivo. A pesar de esto no se puede dejar de lado el malestar que genera dicho aplazamiento a futuro, convirtiéndose en un ciclo: aplazas para no sentirte mal y luego te sientes mal por aplazar (Sirois y Pychyl, 2013)
                         `}
                         showIcon={false} />
 
@@ -113,7 +113,7 @@ export const AutoRegistro = () => {
                 <div className="col-lg-10">
                     <Actividad
                         siImange={true}
-                        src={imgGanso.explicando}
+                        src={imgGanso.leyendo}
                         style={{ width: "110px", height: "110px" }}
                         title=""
                         text={`Teniendo en cuenta lo anterior es importante que identifiquemos cuales son las actividades que más tendemos a aplazar y los sentimientos asociados a las mismas para así lograr afrontarlas de una mejor manera. Para esto te ayudarás con el siguiente cuadro de autorregistro, el cual también te orientará con un ejemplo (basado en hechos reales)

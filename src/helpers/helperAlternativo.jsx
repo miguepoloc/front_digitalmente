@@ -15,28 +15,28 @@ export const linksAlternativo = [
     },
     {
         id: 2,
-        nombre: 'Actividad 1',
+        nombre: 'Actividad 2',
         link: 'alternativo2',
         actividad: <Actividad1Part2/>,
         tipoCapsula: false
     },
     {
         id: 3,
-        nombre: 'Actividad 1',
+        nombre: 'Actividad 3',
         link: 'alternativo3',
         actividad: <Actividad1Part3/>,
         tipoCapsula: false
     },
     {
         id: 4,
-        nombre: 'Actividad 2',
+        nombre: 'Actividad 4',
         link: 'alternativo4',
         actividad: <AutoRegistro/>,
         tipoCapsula: false
     },
     {
         id: 5,
-        nombre: 'Actividad 3',
+        nombre: 'Actividad 5',
         link: 'alternativo5',
         actividad: <CaminoAlExito/>,
         tipoCapsula: false
@@ -44,7 +44,7 @@ export const linksAlternativo = [
     {
         id: 6,
         nombre: 'Actividad de fomento',
-        link: 'alternativo5',
+        link: 'alternativo6',
         actividad: <ActividadDeFomentoAlternativo/>,
         tipoCapsula: false
     },
