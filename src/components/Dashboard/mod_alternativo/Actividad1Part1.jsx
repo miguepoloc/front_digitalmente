@@ -135,7 +135,7 @@ export const Actividad1Part1 = () => {
                        </div>
                        <ButtonLibro asImg={true} size={14} />
    
-                   </div>)} Aquí podrás encontrar referencias bibliográficas del contenido de este módulo  e información adicional sobre el tema de estrés.</small>`}
+                   </div>)} Aquí podrás encontrar referencias bibliográficas del contenido de este módulo e información adicional sobre el tema.</small>`}
                        />
                 </div>
                 <div className='col-lg-7'>

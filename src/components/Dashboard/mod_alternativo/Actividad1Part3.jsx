@@ -17,8 +17,7 @@ export const Actividad1Part3 = () => {
                     <br>
                         `} showIcon={false} />
                 <Actividad src={imgGanso.leyendo} title="¿Qué es la matriz de Eisenhower?"
-                    text={`Es una herramienta que nos permite identificar cuáles son las actividades que deben realizarse de manera urgente, las que pueden aplazarse e incluso eliminarse
-                    
+                    text={`Es una herramienta que nos permite identificar cuáles son las actividades que deben realizarse de manera urgente, las que pueden aplazarse e incluso eliminarse (Zarate, 2022)
                         `} showIcon={false} />
                 <Actividad src={imgGanso.explicando} title="¿Cómo se usa?"
                     text={`Es muy fácil, a continuación, te explicamos que se coloca en cada casilla. Eso sí, es muy importante que examines bien tus actividades antes de ubicarlas en cada una.
@@ -34,7 +33,8 @@ export const Actividad1Part3 = () => {
                     <br/>
                     <br/>
                     Cuadro #4 <b>No importante-No urgente</b> (Rojo): Aquellas cosas que nos distraen demasiado o hace que pospongamos demasiado actividades más relevantes, las que se coloquen en esta casilla podrían eliminarse
-
+                    <br/>
+                    <div class="justify-content-end">Zarate (2022)</div>
                     `} showIcon={false} />
 
             </div>
