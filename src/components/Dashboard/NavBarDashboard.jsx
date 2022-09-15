@@ -86,9 +86,9 @@ const NavBarDashboard = () => {
                                 Principal
                             </Nav.Link>
                             {userInfo.is_staff
-                                ? <Nav.Link href="#link" className='d-flex align-items-center  justify-content-center'>
+                                ? <Nav.Link href="/analisis" className='d-flex align-items-center  justify-content-center'>
                                     <span className='pe-1 d-flex align-items-center'><FcScatterPlot size={22} /></span>
-                                    Gráficas
+                                    Análisis
                                 </Nav.Link>
                                 : null
                             }

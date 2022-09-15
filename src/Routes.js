@@ -11,6 +11,7 @@ const SignUp = lazy(() => import("./pages/SignUp"));
 const Login = lazy(() => import("./pages/Login"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const ModuloEmocional = lazy(() => import("./pages/ModuloEmocional"));
+const Analisis = lazy(() => import("./pages/Analisis"));
 const ModuloPiensalo = lazy(() => import("./pages/ModuloPiensalo"));
 const ModuloRelax = lazy(() => import("./pages/ModuloRelax"));
 const ModuloAutoevaluativo = lazy(() => import("./pages/ModuloAutoevaluativo"));
@@ -123,6 +124,10 @@ const AppRoutes = () => (
         <AdminRoute path="/admin">
           <PageAdmin />
         </AdminRoute>
+
+        <AuthenticatedRoute path="/analisis">
+          <Analisis />
+        </AuthenticatedRoute>
 
         <Route path="*">
           <PageNotFound />
