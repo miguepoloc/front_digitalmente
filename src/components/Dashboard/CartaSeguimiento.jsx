@@ -6,13 +6,25 @@ import { linksRelax } from '../../helpers/helperRelax'
 import { AvanceContext } from '../../context/AvanceContext'
 import { linksPiensalo } from '../../helpers/helperPiensalo'
 import { linksAlternativo } from '../../helpers/helperAlternativo'
+import { AuthContext } from '../../context/AuthContext'
 
 const CartaSeguimiento = () => {
+    const { authState } = useContext(AuthContext)
+    const { userInfo } = authState
     // Datos del avance que lleva el usuario
     const { AvanceState } = useContext(AvanceContext);
-    const pAutoevaluativo = AvanceState.autoevaluativo === 1
-        ? '0'
-        : parseInt(AvanceState.autoevaluativo / 2 * 100).toString()
+    var pAutoevaluativo = "";
+    if (userInfo.is_controlgroup) {
+        pAutoevaluativo = AvanceState.autoevaluativo === 1
+            ? '0'
+            : parseInt(AvanceState.autoevaluativo / 3 * 100).toString()
+    }
+    else {
+        pAutoevaluativo = AvanceState.autoevaluativo === 1
+            ? '0'
+            : parseInt(AvanceState.autoevaluativo / 2 * 100).toString()
+    }
+
     const pEmocional = AvanceState.emocional === 1
         ? '0'
         : parseInt(AvanceState.emocional / linksEmocional.length * 100).toString()

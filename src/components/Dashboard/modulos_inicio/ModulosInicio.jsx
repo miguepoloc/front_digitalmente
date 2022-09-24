@@ -18,6 +18,7 @@ export const ModulosInicio = () => {
     const { AvanceState } = useContext(AvanceContext);
 
     const bloqueo_ae = (AvanceState.autoevaluativo === 2 && !userInfo.is_staff ? true : false)
+    const bloqueo_control = (AvanceState.autoevaluativo === 3 && !userInfo.is_staff ? true : false)
 
     let modulos = {
         modulo_alternativo: {
@@ -26,7 +27,7 @@ export const ModulosInicio = () => {
             classImg: 'imgGanso-modulos',
             moduloClass: 'card_moduloAutoevaluativo',
             text: 'Módulo autoevaluativo',
-            bloqueado: bloqueo_ae,
+            bloqueado: (userInfo.is_controlgroup ? bloqueo_control : bloqueo_ae),
             href: '/autoevaluativo'
         },
         // TODO: data user
@@ -37,7 +38,7 @@ export const ModulosInicio = () => {
                 text: 'Relax',
                 classImg: 'imgGanso-modulos',
                 moduloClass: 'card_relax',
-                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)), //TODO: habilitar luego para grupo intervencion
+                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo > 1)), //TODO: habilitar luego para grupo intervencion
                 href: `/relax${AvanceState.estres === linksRelax.length ? (linksRelax.length - 1) : AvanceState.estres}`
             },
             {
@@ -46,7 +47,7 @@ export const ModulosInicio = () => {
                 text: 'Mis emociones',
                 moduloClass: 'card_misEmociones',
                 classImg: 'imgGanso-modulos',
-                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)),
+                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo > 1)),
                 href: `/emocional${AvanceState.emocional === linksEmocional.length ? (linksEmocional.length - 1) : AvanceState.emocional}`
             },
             {
@@ -55,7 +56,7 @@ export const ModulosInicio = () => {
                 text: 'Piénsalo',
                 moduloClass: 'card_piensalo',
                 classImg: 'imgGanso-modulos',
-                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)),
+                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo > 1)),
                 href: `/piensalo${AvanceState.piensalo === linksPiensalo.length ? (linksPiensalo.length - 1) : AvanceState.piensalo}`
             },
             {
@@ -64,7 +65,7 @@ export const ModulosInicio = () => {
                 text: 'Mis habilidades',
                 moduloClass: 'card_misHabilidades',
                 classImg: 'imgGanso-modulos',
-                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)),
+                bloqueado: !(userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo > 1)),
                 href: `/alternativo${AvanceState.habilidades === linksAlternativo.length ? (linksAlternativo.length - 1) : AvanceState.habilidades}`
             }
         ]

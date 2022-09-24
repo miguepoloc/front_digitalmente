@@ -98,19 +98,35 @@ const NavBarDashboard = () => {
                                 className='d-flex flex-column align-items-center justify-content-center'
                                 autoClose="outside"
                             >
-                                <NavDropdown.Item href="/autoevaluativo" className='d-flex' disabled={(AvanceState.autoevaluativo === 2) && !userInfo.is_staff}>
-                                    <span className='pe-2 d-flex align-items-center'>
-                                        {((AvanceState.autoevaluativo === 2) && !userInfo.is_staff) ? <FcCancel size={22} /> : <FcApproval size={22} />}
-                                    </span>
-                                    Prueba
-                                </NavDropdown.Item>
+                                {
+                                    userInfo.is_controlgroup
+                                        ?
+                                        <NavDropdown.Item href="/autoevaluativo" className='d-flex' disabled={(AvanceState.autoevaluativo === 3) && !userInfo.is_staff}>
+                                            <span className='pe-2 d-flex align-items-center'>
+                                                {((AvanceState.autoevaluativo === 3) && !userInfo.is_staff) ? <FcCancel size={22} /> : <FcApproval size={22} />}
+                                            </span>
+                                            Prueba
+                                        </NavDropdown.Item>
+                                        :
+                                        <NavDropdown.Item href="/autoevaluativo" className='d-flex' disabled={(AvanceState.autoevaluativo === 2) && !userInfo.is_staff}>
+                                            <span className='pe-2 d-flex align-items-center'>
+                                                {((AvanceState.autoevaluativo === 2) && !userInfo.is_staff)
+                                                    ?
+                                                    <FcCancel size={22} />
+                                                    :
+                                                    <FcApproval size={22} />}
+                                            </span>
+                                            Prueba
+                                        </NavDropdown.Item>
+                                }
+
                                 <NavDropdown.Item href="/autoevaluativo_resultados" className='d-flex align-items-center' >
                                     <span className='pe-1 d-flex align-items-center'><FcBiomass size={22} /></span>
                                     Resultados
                                 </NavDropdown.Item>
                             </NavDropdown>
 
-                            {userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)
+                            {userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo > 1)
                                 ?
                                 <NavDropdown
                                     title="Relax "
@@ -140,7 +156,7 @@ const NavBarDashboard = () => {
                                 : <></>
                             }
 
-                            {userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)
+                            {userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo > 1)
                                 ?
                                 <NavDropdown title="Emocional " id="basic-nav-dropdown" className='d-flex flex-column align-items-center justify-content-center'>
 
@@ -165,7 +181,7 @@ const NavBarDashboard = () => {
                                 : <></>
                             }
 
-                            {userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)
+                            {userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo > 1)
                                 ?
                                 <NavDropdown title="Piensalo" id="basic-nav-dropdown" className='d-flex flex-column align-items-center justify-content-center'>
 
@@ -190,7 +206,7 @@ const NavBarDashboard = () => {
                                 : <></>
                             }
 
-                            {userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo === 2)
+                            {userInfo.is_staff || (!userInfo.is_controlgroup && AvanceState.autoevaluativo > 1)
                                 ?
                                 <NavDropdown title="Habilidades " id="basic-nav-dropdown" className='d-flex flex-column align-items-center justify-content-center'>
 

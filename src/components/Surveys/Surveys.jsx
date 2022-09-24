@@ -14,6 +14,7 @@ import { AuthContext } from '../../context/AuthContext'
 import { SurveysLocalStorage } from './assets/js/Surveys_localStorage'
 import Scroll from '../../helpers/helperScroll'
 import { PUT_avance_modulos } from '../../helpers/helperApi'
+import { AvanceContext } from '../../context/AvanceContext'
 
 
 const errorFaltaPorResponder = () => {
@@ -27,6 +28,8 @@ const Surveys = () => {
 
     const id_user = userInfo.id
     const id_sexo_user = userInfo.sexo.id
+    // Datos del avance que lleva el usuario
+    const { AvanceState } = useContext(AvanceContext);
 
     const [surveys, setSurveys] = useState(new model_surveys(null, id_user, id_sexo_user, false))
     const [loading, setLoading] = useState(true)
@@ -176,7 +179,7 @@ const Surveys = () => {
 
                 SendOkAlert(undefined, '¡Enhorabuena! ¡Tus respuestas han sido procesadas y <b>he traído los resultados</b>!').then(() => { setShowResults(surveys.results()) })
                 const jsonx = {
-                    autoevaluativo: 2,
+                    autoevaluativo: AvanceState.autoevaluativo + 1,
                     usuario: userInfo.id
                 }
                 PUT_avance_modulos(userInfo.id, jsonx, token)
