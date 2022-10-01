@@ -16,6 +16,20 @@ export const ModulosInicio = () => {
     const { userInfo } = authState
     // Datos del avance que lleva el usuario
     const { AvanceState } = useContext(AvanceContext);
+    const pEmocional = AvanceState.emocional === 1
+        ? '0'
+        : parseInt(AvanceState.emocional / linksEmocional.length)
+    const pRelax = AvanceState.estres === 1
+        ? '0'
+        : parseInt(AvanceState.estres / linksRelax.length)
+    const pPiensalo = AvanceState.piensalo === 1
+        ? '0'
+        : parseInt(AvanceState.piensalo / linksPiensalo.length)
+    const pHabilidades = AvanceState.habilidades === 1
+        ? '0'
+        : parseInt(AvanceState.habilidades / linksAlternativo.length)
+
+    const completado = pEmocional * pRelax * pPiensalo * pHabilidades
 
     const bloqueo_ae = (AvanceState.autoevaluativo === 2 && !userInfo.is_staff ? true : false)
     const bloqueo_control = (AvanceState.autoevaluativo === 3 && !userInfo.is_staff ? true : false)
@@ -27,7 +41,7 @@ export const ModulosInicio = () => {
             classImg: 'imgGanso-modulos',
             moduloClass: 'card_moduloAutoevaluativo',
             text: 'Módulo autoevaluativo',
-            bloqueado: (userInfo.is_controlgroup ? bloqueo_control : bloqueo_ae),
+            bloqueado: (userInfo.is_controlgroup || completado === 1 ? bloqueo_control : bloqueo_ae),
             href: '/autoevaluativo'
         },
         // TODO: data user

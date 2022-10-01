@@ -35,6 +35,21 @@ const NavBarDashboard = () => {
     delete linksEmocional[linksEmocional.length - 1]
     delete linksPiensalo[linksPiensalo.length - 1]
     delete linksAlternativo[linksAlternativo.length - 1]
+
+    const pEmocional = AvanceState.emocional === 1
+        ? '0'
+        : parseInt(AvanceState.emocional / linksEmocional.length)
+    const pRelax = AvanceState.estres === 1
+        ? '0'
+        : parseInt(AvanceState.estres / linksRelax.length)
+    const pPiensalo = AvanceState.piensalo === 1
+        ? '0'
+        : parseInt(AvanceState.piensalo / linksPiensalo.length)
+    const pHabilidades = AvanceState.habilidades === 1
+        ? '0'
+        : parseInt(AvanceState.habilidades / linksAlternativo.length)
+
+    const completado = pEmocional * pRelax * pPiensalo * pHabilidades
     return (
         <>
             <Navbar
@@ -99,7 +114,7 @@ const NavBarDashboard = () => {
                                 autoClose="outside"
                             >
                                 {
-                                    userInfo.is_controlgroup
+                                    userInfo.is_controlgroup || completado === 1
                                         ?
                                         <NavDropdown.Item href="/autoevaluativo" className='d-flex' disabled={(AvanceState.autoevaluativo === 3) && !userInfo.is_staff}>
                                             <span className='pe-2 d-flex align-items-center'>
