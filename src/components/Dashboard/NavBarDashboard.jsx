@@ -6,7 +6,7 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import LogoAlargado from '../../assets/img/LogoAlargado.svg'
 import { linksEmocional } from '../../helpers/helper_emocional'
 import { linksRelax } from '../../helpers/helperRelax'
-import { FcApproval, FcCancel, FcBiomass, FcHome, FcScatterPlot, FcUnlock, FcImport } from 'react-icons/fc'
+import { FcApproval, FcCancel, FcBiomass, FcHome, FcScatterPlot, FcUnlock, FcImport, FcDataSheet, FcPortraitMode } from 'react-icons/fc'
 import { GiReturnArrow } from 'react-icons/gi'
 import { AvanceContext } from '../../context/AvanceContext'
 import { linksPiensalo } from '../../helpers/helperPiensalo'
@@ -101,9 +101,23 @@ const NavBarDashboard = () => {
                                 Principal
                             </Nav.Link>
                             {userInfo.is_staff
+                                ? <Nav.Link href="/resultados" className='d-flex align-items-center  justify-content-center'>
+                                    <span className='pe-1 d-flex align-items-center'><FcDataSheet size={22} /></span>
+                                    Resultados
+                                </Nav.Link>
+                                : null
+                            }
+                            {userInfo.is_staff
                                 ? <Nav.Link href="/analisis" className='d-flex align-items-center  justify-content-center'>
                                     <span className='pe-1 d-flex align-items-center'><FcScatterPlot size={22} /></span>
-                                    Análisis
+                                    Avance
+                                </Nav.Link>
+                                : null
+                            }
+                            {userInfo.is_staff
+                                ? <Nav.Link href="/usuarios" className='d-flex align-items-center  justify-content-center'>
+                                    <span className='pe-1 d-flex align-items-center'><FcPortraitMode size={22} /></span>
+                                    Usuarios
                                 </Nav.Link>
                                 : null
                             }

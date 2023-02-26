@@ -2,6 +2,8 @@ import React, { lazy, Suspense, useContext } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Loading } from "./components/Loading";
 import { AuthContext } from "./context/AuthContext";
+import Resultados from "./pages/Resultados";
+import Usuarios from "./pages/Usuarios";
 
 const LandingPage = lazy(() => import("./pages/LandingPage"));
 const PageAuth = lazy(() => import("./pages/pageAuth"));
@@ -127,6 +129,14 @@ const AppRoutes = () => (
 
         <AuthenticatedRoute path="/analisis">
           <Analisis />
+        </AuthenticatedRoute>
+
+        <AuthenticatedRoute path="/resultados">
+          <Resultados />
+        </AuthenticatedRoute>
+
+        <AuthenticatedRoute path="/usuarios">
+          <Usuarios />
         </AuthenticatedRoute>
 
         <Route path="*">
