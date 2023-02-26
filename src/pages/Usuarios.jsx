@@ -1,46 +1,13 @@
 /* eslint-disable no-loop-func */
 import Axios from 'axios'
 import React, { useEffect, useState, useMemo } from 'react';
-import DataTable from 'react-data-table-component';
 import NavBarDashboard from '../components/Dashboard/NavBarDashboard';
 import { Loading } from '../components/Loading';
 import FooterDashboard from '../components/Dashboard/FooterDashboard'
-import { linksEmocional } from '../helpers/helper_emocional';
-import { linksRelax } from '../helpers/helperRelax';
-import { linksPiensalo } from '../helpers/helperPiensalo';
-import { linksAlternativo } from '../helpers/helperAlternativo';
-import { CartaGrafica } from '../components/Dashboard/CartaGrafica';
 import MaterialReactTable from 'material-react-table';
-import { Box, Stack } from '@mui/material';
-
-
-const paginationComponentOptions = {
-    rowsPerPageText: 'Filas por página',
-    rangeSeparatorText: 'de',
-    selectAllRowsItem: true,
-    selectAllRowsItemText: 'Todos',
-};
-
-const customStyles = {
-    rows: {
-        style: {
-            minWidth: '72px', // override the row height
-        },
-    },
-    headCells: {
-        style: {
-            paddingLeft: '8px', // override the cell padding for head cells
-            paddingRight: '8px',
-        },
-    },
-    cells: {
-        style: {
-            paddingLeft: '8px', // override the cell padding for data cells
-            paddingRight: '8px',
-        },
-    },
-};
-
+import { Box, Button } from '@mui/material';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { ExportToCsv } from 'export-to-csv';
 
 const Usuarios = () => {
     const [loading, setLoading] = useState(true);
@@ -53,12 +20,9 @@ const Usuarios = () => {
             const response = await Axios({
                 method: 'get',
                 url: url
-                // headers: {
-                //     'authorization': 'Bearer YOUR_JWT_TOKEN_HERE'
-                // }
             })
             if (response) {
-                // Coloca el avance en la variable de estado
+                // Coloca la data en la variable de estado
                 setUsuarios(response.data)
             } else {
                 console.log('No se pudieron traer los datos...')
@@ -76,7 +40,7 @@ const Usuarios = () => {
     const columns = useMemo(
         () => [
             {
-                accessorKey: 'id', //access nested data with dot notation
+                accessorKey: 'id',
                 header: 'ID',
             },
             {
@@ -118,7 +82,6 @@ const Usuarios = () => {
             {
                 accessorKey: 'edad',
                 header: 'Edad',
-
             },
             {
                 accessorKey: 'estado_civil__estado_civil',
@@ -199,229 +162,27 @@ const Usuarios = () => {
         ],
         [],
     );
-    // for (let index = 0; index < Usuarios.data2.length; index++) {
-    //     console.log(Usuarios.data2[index])
 
-    // }
+    const csvOptions = {
+        fieldSeparator: ',',
+        quoteStrings: '"',
+        decimalSeparator: '.',
+        showLabels: true,
+        useBom: true,
+        useKeysAsHeaders: false,
+        headers: columns.map((c) => c.header),
+    };
 
-    // const columnas = [
-    //     {
-    //         name: 'id',
-    //         selector: row => row.id,
-    //         sortable: true,
-    //     },
-    //     {
-    //         name: 'Usuario',
-    //         selector: row => row.usuario,
-    //         sortable: true,
-    //     },
-    //     {
-    //         name: 'Autoevaluativo',
-    //         selector: row =>
-    //             row.autoevaluativo === 1
-    //                 ? '0'
-    //                 : parseInt(row.autoevaluativo / 3 * 100),
-    //         sortable: true,
-    //         conditionalCellStyles: [
-    //             {
-    //                 when: row => row.autoevaluativo > 2,
-    //                 style: {
-    //                     backgroundColor: 'rgba(63, 195, 128, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'pointer',
-    //                     },
-    //                 },
-    //             },
-    //             {
-    //                 when: row => row.autoevaluativo > 1 && row.autoevaluativo < 3,
-    //                 style: {
-    //                     backgroundColor: 'rgba(248, 148, 6, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'pointer',
-    //                     },
-    //                 },
-    //             },
-    //             {
-    //                 when: row => row.autoevaluativo < 2,
-    //                 style: {
-    //                     backgroundColor: 'rgba(242, 38, 19, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'not-allowed',
-    //                     },
-    //                 },
-    //             },
-    //         ],
-    //     },
-    //     {
-    //         name: 'Emocional',
-    //         selector: row =>
-    //             row.emocional === 1
-    //                 ? '0'
-    //                 : parseInt(row.emocional / linksEmocional.length * 100),
-    //         sortable: true,
-    //         conditionalCellStyles: [
-    //             {
-    //                 when: row => row.emocional > 16,
-    //                 style: {
-    //                     backgroundColor: 'rgba(63, 195, 128, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'pointer',
-    //                     },
-    //                 },
-    //             },
-    //             {
-    //                 when: row => row.emocional > 1 && row.emocional < 17,
-    //                 style: {
-    //                     backgroundColor: 'rgba(248, 148, 6, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'pointer',
-    //                     },
-    //                 },
-    //             },
-    //             {
-    //                 when: row => row.emocional < 2,
-    //                 style: {
-    //                     backgroundColor: 'rgba(242, 38, 19, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'not-allowed',
-    //                     },
-    //                 },
-    //             },
-    //         ],
-    //     },
-    //     {
-    //         name: 'Relax',
-    //         selector: row =>
-    //             row.estres === 1
-    //                 ? '0'
-    //                 : parseInt(row.estres / linksRelax.length * 100),
-    //         sortable: true,
-    //         conditionalCellStyles: [
-    //             {
-    //                 when: row => row.estres > 8,
-    //                 style: {
-    //                     backgroundColor: 'rgba(63, 195, 128, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'pointer',
-    //                     },
-    //                 },
-    //             },
-    //             {
-    //                 when: row => row.estres > 1 && row.estres < 9,
-    //                 style: {
-    //                     backgroundColor: 'rgba(248, 148, 6, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'pointer',
-    //                     },
-    //                 },
-    //             },
-    //             {
-    //                 when: row => row.estres < 2,
-    //                 style: {
-    //                     backgroundColor: 'rgba(242, 38, 19, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'not-allowed',
-    //                     },
-    //                 },
-    //             },
-    //         ],
-    //     },
-    //     {
-    //         name: 'Piensalo',
-    //         selector: row =>
-    //             row.piensalo === 1
-    //                 ? '0'
-    //                 : parseInt(row.piensalo / linksPiensalo.length * 100),
-    //         sortable: true,
-    //         conditionalCellStyles: [
-    //             {
-    //                 when: row => row.piensalo > 6,
-    //                 style: {
-    //                     backgroundColor: 'rgba(63, 195, 128, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'pointer',
-    //                     },
-    //                 },
-    //             },
-    //             {
-    //                 when: row => row.piensalo > 1 && row.piensalo < 7,
-    //                 style: {
-    //                     backgroundColor: 'rgba(248, 148, 6, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'pointer',
-    //                     },
-    //                 },
-    //             },
-    //             {
-    //                 when: row => row.piensalo < 2,
-    //                 style: {
-    //                     backgroundColor: 'rgba(242, 38, 19, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'not-allowed',
-    //                     },
-    //                 },
-    //             },
-    //         ],
-    //     },
-    //     {
-    //         name: 'Habilidades',
-    //         selector: row =>
-    //             row.habilidades === 1
-    //                 ? '0'
-    //                 : parseInt(row.habilidades / linksAlternativo.length * 100),
-    //         sortable: true,
-    //         conditionalCellStyles: [
-    //             {
-    //                 when: row => row.habilidades > 6,
-    //                 style: {
-    //                     backgroundColor: 'rgba(63, 195, 128, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'pointer',
-    //                     },
-    //                 },
-    //             },
-    //             {
-    //                 when: row => row.habilidades > 1 && row.habilidades < 7,
-    //                 style: {
-    //                     backgroundColor: 'rgba(248, 148, 6, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'pointer',
-    //                     },
-    //                 },
-    //             },
-    //             {
-    //                 when: row => row.habilidades < 2,
-    //                 style: {
-    //                     backgroundColor: 'rgba(242, 38, 19, 0.9)',
-    //                     color: 'white',
-    //                     '&:hover': {
-    //                         cursor: 'not-allowed',
-    //                     },
-    //                 },
-    //             },
-    //         ],
-    //     },
-    //     {
-    //         name: 'Fecha',
-    //         selector: row => row.fecha,
-    //         sortable: true,
-    //     },
-    // ]
+    const handleExportRows = (rows) => {
+        csvExporter.generateCsv(rows.map((row) => row.original));
+    };
 
+    const handleExportData = () => {
+        csvExporter.generateCsv(Usuarios);
+    };
+
+
+    const csvExporter = new ExportToCsv(csvOptions);
 
     return (
         <>
@@ -431,29 +192,65 @@ const Usuarios = () => {
                 >
                     <main className="main-content position-relative h-100 border-radius-lg ">
                         <NavBarDashboard />
-                        <MaterialReactTable columns={columns} data={Usuarios} />
-
                         <div className="container-fluid">
-                            {/* <DataTable
-                                title="Resultados autoevaluativos"
-                                columns={columnas}
-                                data={Resultados}
-                                pagination
-                                paginationComponentOptions={paginationComponentOptions}
-                                progressPending={loading}
-                                progressComponent={<Loading />}
-                                customStyles={customStyles}
-                            /> */}
-
+                            <MaterialReactTable
+                                columns={columns}
+                                data={Usuarios}
+                                enableRowSelection
+                                positionToolbarAlertBanner="bottom"
+                                renderTopToolbarCustomActions={({ table }) => (
+                                    <Box
+                                        sx={{ display: 'flex', gap: '1rem', p: '0.5rem', flexWrap: 'wrap' }}
+                                    >
+                                        <Button
+                                            color="primary"
+                                            //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
+                                            onClick={handleExportData}
+                                            startIcon={<FileDownloadIcon />}
+                                            variant="contained"
+                                        >
+                                            Todos los datos
+                                        </Button>
+                                        <Button
+                                            disabled={table.getPrePaginationRowModel().rows.length === 0}
+                                            //export all rows, including from the next page, (still respects filtering and sorting)
+                                            onClick={() =>
+                                                handleExportRows(table.getPrePaginationRowModel().rows)
+                                            }
+                                            startIcon={<FileDownloadIcon />}
+                                            variant="contained"
+                                        >
+                                            Datos filtrados
+                                        </Button>
+                                        <Button
+                                            disabled={table.getRowModel().rows.length === 0}
+                                            //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
+                                            onClick={() => handleExportRows(table.getRowModel().rows)}
+                                            startIcon={<FileDownloadIcon />}
+                                            variant="contained"
+                                        >
+                                            Datos de la página
+                                        </Button>
+                                        <Button
+                                            disabled={
+                                                !table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
+                                            }
+                                            //only export selected rows
+                                            onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
+                                            startIcon={<FileDownloadIcon />}
+                                            variant="contained"
+                                        >
+                                            Selección
+                                        </Button>
+                                    </Box>
+                                )}
+                            />
                             <FooterDashboard />
                         </div>
-
                     </main>
                 </div>
             )}
         </>
-
-
     );
 }
 
