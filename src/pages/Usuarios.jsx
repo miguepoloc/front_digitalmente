@@ -44,28 +44,12 @@ const Usuarios = () => {
                 header: 'ID',
             },
             {
-                accessorKey: 'nombre',
-                header: 'Nombre',
-                enableClickToCopy: true,
-            },
-            {
                 accessorKey: 'tipo_documento',
                 header: 'Tipo de documento',
             },
             {
-                accessorKey: 'document',
-                header: 'Documento',
-                enableClickToCopy: true,
-            },
-            {
-                accessorKey: 'email',
-                header: 'Correo',
-                enableClickToCopy: true,
-            },
-            {
-                accessorKey: 'telefono',
-                header: 'Telefono',
-                enableClickToCopy: true,
+                accessorKey: 'sexo__sexo',
+                header: 'Sexo',
             },
             {
                 accessorKey: 'departamento_nacimiento',
@@ -150,15 +134,7 @@ const Usuarios = () => {
                 accessorKey: 'is_staff',
                 header: 'Usuario administrador',
                 Cell: ({ cell }) => cell.getValue() ? 'Sí' : 'No',
-            },
-            {
-                accessorKey: 'created_at',
-                header: 'Fecha de creación',
-            },
-            {
-                accessorKey: 'updated_at',
-                header: 'Fecha de actualización',
-            },
+            }
         ],
         [],
     );

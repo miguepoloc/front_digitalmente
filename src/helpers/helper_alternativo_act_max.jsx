@@ -3,14 +3,14 @@ import arbol from '../components/Dashboard/mod_alternativo/assets/img/3_Arbol_in
 import montana from '../components/Dashboard/mod_alternativo/assets/img/4_Montaña.png'
 import lago from '../components/Dashboard/mod_alternativo/assets/img/5_lago.png'
 import zona from '../components/Dashboard/mod_alternativo/assets/img/6_zona_de_confort.png'
-import mapa from '../components/Dashboard/mod_alternativo/assets/img/1Mapa.jpeg'
+// import mapa from '../components/Dashboard/mod_alternativo/assets/img/1Mapa.jpeg'
 
 //import exito from '../components/Dashboard/mod_alternativo/assets/img/#7 C. del exito.png'
 
 export const paradas = {
     activities: [
         {
-            isActivity:true,
+            isActivity: true,
             name: "Parada 1: Ciudad de las buenas intenciones",
             img: buenasIntenciones,
             correctAnswerIndex: 1, //Hace referencia al indice del vector opcions.
@@ -21,7 +21,7 @@ export const paradas = {
             messagePill: "Una de las formas de vencer la procrastinación es encontrando una motivación o recompensa para nuestro esfuerzo. En el caso de Max es llegar a la Ciudad del Éxito ¿Cuál es el tuyo para realizar determinadas actividades?"
         },
         {
-            isActivity:true,
+            isActivity: true,
             name: "Parada 2: Árbol de las inseguridades ",
             img: arbol,
             correctAnswerIndex: 1,
@@ -33,7 +33,7 @@ export const paradas = {
 
         },
         {
-            isActivity:true,
+            isActivity: true,
             name: "Parada 3: La montaña de la distracción.",
             img: montana,
             correctAnswerIndex: 0,
@@ -44,7 +44,7 @@ export const paradas = {
             messagePill: "Cuando hay una falta de organización y objetivos claros es más fácil inclinarse a la procrastinación. En ocasiones es preferible huir de las distracciones, y saber equilibrar los momentos de descanso y actividad."
         },
         {
-            isActivity:true,
+            isActivity: true,
             name: "Parada 4: Lago de la flojera",
             img: lago,
             correctAnswerIndex: 0,
@@ -60,7 +60,7 @@ export const paradas = {
 
         },
         {
-            isActivity:true,
+            isActivity: true,
             name: "Parada 5: Zona de Confort",
             img: zona,
             correctAnswerIndex: 1,

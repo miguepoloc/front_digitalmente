@@ -1,60 +1,60 @@
-import React,{useState,useContext} from 'react'
+import React from 'react'
 import { imgGanso } from '../../../../helpers/helper_imagen_ganso'
 import { Actividad } from '../../Actividad'
 import imgAutoRegistro from "../assets/img/cuadroAutorregistro.png"
-import { ErrorAlert, Correct_Alert } from '../../../../helpers/helper_Swal_Alerts'
-import { BotonContext } from '../../../../context/BotonContext'
-import { AvanceContext } from '../../../../context/AvanceContext'
-import { AuthContext } from '../../../../context/AuthContext'
+// import { ErrorAlert, Correct_Alert } from '../../../../helpers/helper_Swal_Alerts'
+// import { BotonContext } from '../../../../context/BotonContext'
+// import { AvanceContext } from '../../../../context/AvanceContext'
+// import { AuthContext } from '../../../../context/AuthContext'
 import { DescargablesActFomento } from './DescargablesActFomento'
 
 export const ActividadDeFomentoAlternativo = () => {
 
-    const { setBotonState } = useContext(BotonContext)
+    // const { setBotonState } = useContext(BotonContext)
     // Datos del avance que lleva el usuario
-    const { AvanceState } = useContext(AvanceContext);
+    // const { AvanceState } = useContext(AvanceContext);
     //TODO: se debe validar si esta actividad se hizo anteriormente
     //con el fin de mostar directamente las descargas de los archivos
 
-    const { authState } = useContext(AuthContext)
-    const { userInfo } = authState
+    // const { authState } = useContext(AuthContext)
+    // const { userInfo } = authState
 
-    const [ActividadCompletada, setActividadCompletada] = useState(false)
+    // const [ActividadCompletada, setActividadCompletada] = useState(false)
 
-    const [Datos, setDatos] = useState({
-        Texto1: "",
-        Texto2: "",
-        Texto3: "",
-        Texto4: "",
-        Texto5: ""
-    })
+    // const [Datos, setDatos] = useState({
+    //     Texto1: "",
+    //     Texto2: "",
+    //     Texto3: "",
+    //     Texto4: "",
+    //     Texto5: ""
+    // })
 
-    const validarTextArea = (name) => {
-        let textArea = document.getElementsByName(name)[0].value;
-        return textArea.trim().length >= 1
-    }
+    // const validarTextArea = (name) => {
+    //     let textArea = document.getElementsByName(name)[0].value;
+    //     return textArea.trim().length >= 1
+    // }
 
-    const handleBtnEnviar = () => {
-        const arrTextArea = ["Texto1", "Texto2", "Texto3", "Texto4", "Texto5"]
-        for (let textArea of arrTextArea) {
-            if (!validarTextArea(textArea)) {
-                ErrorAlert("Ups algo ha salido mal.", "Parece que has dejado uno o varios campos en blanco")
-                return false
-            }
-        }
+    // const handleBtnEnviar = () => {
+    //     const arrTextArea = ["Texto1", "Texto2", "Texto3", "Texto4", "Texto5"]
+    //     for (let textArea of arrTextArea) {
+    //         if (!validarTextArea(textArea)) {
+    //             ErrorAlert("Ups algo ha salido mal.", "Parece que has dejado uno o varios campos en blanco")
+    //             return false
+    //         }
+    //     }
 
-        setActividadCompletada(true)
-        Correct_Alert("¡Felicidades has realizado tu autorregistro!", `¡Cuack está orgulloso de tí has completado tu registro! Identificar aquellos patrones en las emociones y pensamientos en torno a la procrastinación de actividades nos permite hacer frente a los mismos y encontrar estrategias para afrontar estos de una mejor manera.
-            <br/>
-            `)
-    }
+    //     setActividadCompletada(true)
+    //     Correct_Alert("¡Felicidades has realizado tu autorregistro!", `¡Cuack está orgulloso de tí has completado tu registro! Identificar aquellos patrones en las emociones y pensamientos en torno a la procrastinación de actividades nos permite hacer frente a los mismos y encontrar estrategias para afrontar estos de una mejor manera.
+    //         <br/>
+    //         `)
+    // }
 
-    const handleChange = (event) => {
-        setDatos({
-            ...Datos,
-            [event.target.name]: event.target.value
-        })
-    }
+    // const handleChange = (event) => {
+    //     setDatos({
+    //         ...Datos,
+    //         [event.target.name]: event.target.value
+    //     })
+    // }
 
     return (
         <div className="mx-4">
@@ -64,12 +64,12 @@ export const ActividadDeFomentoAlternativo = () => {
 
             <div className='row justify-content-center align-items-center'>
                 <div className='col-lg-10'>
-                <Actividad src={imgGanso.lupa_celular} title="¡Actividad de fomento!"
-                text={`<br><p class="text-center">Esta es una actividad de fomento. Eso significa que es un ejercicio para que practiques la habilidad orientada en el módulo a tu ritmo y cuando tu desees. Completamente voluntario. Los cuatro botones abajo presentados te permitirán: a) descargar una versión en pdf que puedes imprimir si quieres, b) una versión en Word editable para que llenes en tu celular, c) una versión en Excel editable para que llenes en tu celular y d) una versión en Excel que se unirá a tu nube en Drive para que llenes también cuando quieras. ¿Lo mejor de estas opciones? Solo tú tienes acceso a estas y solo tú puedes ver lo que escribes allí. Nadie más. Esperamos que sea una herramienta que te ayude a fortalecer tu salud mental.
+                    <Actividad src={imgGanso.lupa_celular} title="¡Actividad de fomento!"
+                        text={`<br><p class="text-center">Esta es una actividad de fomento. Eso significa que es un ejercicio para que practiques la habilidad orientada en el módulo a tu ritmo y cuando tu desees. Completamente voluntario. Los cuatro botones abajo presentados te permitirán: a) descargar una versión en pdf que puedes imprimir si quieres, b) una versión en Word editable para que llenes en tu celular, c) una versión en Excel editable para que llenes en tu celular y d) una versión en Excel que se unirá a tu nube en Drive para que llenes también cuando quieras. ¿Lo mejor de estas opciones? Solo tú tienes acceso a estas y solo tú puedes ver lo que escribes allí. Nadie más. Esperamos que sea una herramienta que te ayude a fortalecer tu salud mental.
                         <br>
                         `
-                }
-                showIcon={true} />
+                        }
+                        showIcon={true} />
                 </div>
                 <div className='col-lg-10'>
 
@@ -99,8 +99,8 @@ export const ActividadDeFomentoAlternativo = () => {
                 </div>
             </div>
 
-            <DescargablesActFomento /> 
-            
+            <DescargablesActFomento />
+
         </div>
     )
 }

@@ -1,11 +1,12 @@
-import React,{useState,useContext,useEffect} from 'react'
+/* eslint-disable eqeqeq */
+import React, { useState, useContext, useEffect } from 'react'
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
 import { Actividad } from '../Actividad'
 import imgAutoRegistro from "./assets/img/cuadroAutorregistro.png"
 import { ErrorAlert, Correct_Alert } from '../../../helpers/helper_Swal_Alerts'
 import { BotonContext } from '../../../context/BotonContext'
 import { AvanceContext } from '../../../context/AvanceContext'
-import { AuthContext } from '../../../context/AuthContext'
+// import { AuthContext } from '../../../context/AuthContext'
 import imgTip from './assets/img/1Capsutips.png'
 import { Tip } from '../Tip'
 import { DescargablesActFomento } from './actividadDeFomento/DescargablesActFomento'
@@ -19,8 +20,8 @@ export const AutoRegistro = () => {
     //TODO: se debe validar si esta actividad se hizo anteriormente
     //con el fin de mostar directamente las descargas de los archivos
 
-    const { authState } = useContext(AuthContext)
-    const { userInfo } = authState
+    // const { authState } = useContext(AuthContext)
+    // const { userInfo } = authState
 
     const [ActividadCompletada, setActividadCompletada] = useState(false)
 
@@ -28,16 +29,16 @@ export const AutoRegistro = () => {
 
 
     useEffect(() => {
-        console.log(AvanceState.habilidades,AvanceState.habilidades == 1 && !ActividadCompletada)
-        if (AvanceState.habilidades <= parseInt(slug) && !ActividadCompletada ){
+        console.log(AvanceState.habilidades, AvanceState.habilidades == 1 && !ActividadCompletada)
+        if (AvanceState.habilidades <= parseInt(slug) && !ActividadCompletada) {
             setBotonState(true)
         }
-        else{
+        else {
             setBotonState(false)
         }
-        
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [AvanceState,ActividadCompletada])
+    }, [AvanceState, ActividadCompletada])
 
     const [Datos, setDatos] = useState({
         Texto1: "",
@@ -98,10 +99,10 @@ export const AutoRegistro = () => {
                         `}
                         showIcon={false} />
 
-                    
+
                 </div>
                 <div className="col-lg-10">
-                <Actividad
+                    <Actividad
                         siImange={true}
                         src={imgGanso.pensando}
                         style={{ width: "110px", height: "110px" }}
@@ -129,17 +130,17 @@ export const AutoRegistro = () => {
             </div>
 
             {ActividadCompletada || AvanceState.habilidades > 4 ? (<>
-            <div className='d-flex justify-content-center align-items-center'>
-                <div className="col-10">
-                    <Actividad  src={imgGanso.lupa_celular} title="¡Un regalo para ti!"
-                        text={`<br><p class="text-center">Te he traído un regalo. Aquí tienes unas versiones editables del ejercicio para que realices cuando quieras, de forma privada y a tu propio ritmo. Esto hace parte de una actividad de fomento, una actividad voluntaria de fortalecimiento que estará disponible al final de módulo y en tu Dashboard, cuando quieras acceder a él.
+                <div className='d-flex justify-content-center align-items-center'>
+                    <div className="col-10">
+                        <Actividad src={imgGanso.lupa_celular} title="¡Un regalo para ti!"
+                            text={`<br><p class="text-center">Te he traído un regalo. Aquí tienes unas versiones editables del ejercicio para que realices cuando quieras, de forma privada y a tu propio ritmo. Esto hace parte de una actividad de fomento, una actividad voluntaria de fortalecimiento que estará disponible al final de módulo y en tu Dashboard, cuando quieras acceder a él.
                 <br>
                 `
-                        }
-                        showIcon={true} />
+                            }
+                            showIcon={true} />
+                    </div>
                 </div>
-            </div>
-                 <DescargablesActFomento /> 
+                <DescargablesActFomento />
 
             </>) : (
                 <>
@@ -221,7 +222,7 @@ export const AutoRegistro = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='text-center'><button className='w-50 search-buttons card-buttons' style={{backgroundColor:"#FCD75A", color:"#3F3F3F"}} onClick={() => handleBtnEnviar()}>Enviar</button></div>
+                        <div className='text-center'><button className='w-50 search-buttons card-buttons' style={{ backgroundColor: "#FCD75A", color: "#3F3F3F" }} onClick={() => handleBtnEnviar()}>Enviar</button></div>
 
                     </div>
 
@@ -229,15 +230,15 @@ export const AutoRegistro = () => {
                 </>
             )}
             <Tip src={imgGanso.celular} title=" "
-                        text={`<h4 class="text-center">A continuación, también te regalamos los siguientes tips que te ayudarán a luchar contra la procrastinación</h4>
+                text={`<h4 class="text-center">A continuación, también te regalamos los siguientes tips que te ayudarán a luchar contra la procrastinación</h4>
                         <div class="text-center mt-4">
                         <img src="${imgTip}" class="text-center rounded-3" style="max-width: 535px;width:100%; "/>
                         </div>
                         `
-                        }
-                        color={"#FCD75A"}
-                        icon="" />
-            
+                }
+                color={"#FCD75A"}
+                icon="" />
+
         </div>
     )
 }

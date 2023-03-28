@@ -10,9 +10,8 @@ import MaterialReactTable from 'material-react-table';
 const Resultados = () => {
     const [loading, setLoading] = useState(true);
 
-    const [Resultados, setResultados] = useState("")
     const [ResultadosDetallados, setResultadosDetallados] = useState("")
-
+    var llaves = []
     useEffect(() => {
         const url = `${process.env.REACT_APP_API_URL}/api/encuesta_detalle`
         const fetchData = async () => {
@@ -22,8 +21,7 @@ const Resultados = () => {
             })
             if (response) {
                 // Coloca la data en la variable de estado
-                setResultados(response.data.data2)
-                setResultadosDetallados(response.data.data1)
+                setResultadosDetallados(response.data)
 
             } else {
                 console.log('No se pudieron traer los datos...')
@@ -35,37 +33,26 @@ const Resultados = () => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    console.log(ResultadosDetallados)
+    llaves = Object.keys(ResultadosDetallados[0] || {})
 
-    console.log(Resultados)
-    
+    // console.log(llaves)
+    const col = []
+    // var nombre = { accessorKey: 'nombre', header: 'Nombre' }
+    var nombre = {}
+    for (let llave of llaves) {
+        nombre = {
+            accessorKey: llave,
+            header: llave,
+        }
+        col.push(nombre)
+    }
 
+    console.log(col)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const columns = useMemo(
-        () => [
-            {
-                accessorKey: 'id_usuario_encuesta__id_usuario',
-                header: 'ID usuario',
-            },
-            {
-                accessorKey: 'id_usuario_encuesta__id_usuario_encuesta',
-                header: 'ID encuesta',
-            },
-            {
-                accessorKey: 'id_usuario_encuesta__id_usuario__nombre',
-                header: 'Nombre',
-                enableClickToCopy: true,
-            },
-            {
-                accessorKey: 'id_usuario_encuesta__id_encuesta__nombre',
-                header: 'Encuesta',
-            },
-            {
-                accessorKey: 'resultado',
-                header: 'Resultado',
-            },
-
-        ],
-        [],
-    );
+        () => col,);
 
     return (
         <>
@@ -76,7 +63,13 @@ const Resultados = () => {
                     <main className="main-content position-relative h-100 border-radius-lg ">
                         <NavBarDashboard />
                         <div className="container-fluid">
-                            <MaterialReactTable columns={columns} data={Resultados} />
+                            <MaterialReactTable
+                                columns={columns}
+                                data={ResultadosDetallados ?? []}
+                                title="Resultados detallados"
+                                enableDensityToggle={false}
+                                initialState={{ density: 'compact' }}
+                            />
                             <FooterDashboard />
                         </div>
                     </main>

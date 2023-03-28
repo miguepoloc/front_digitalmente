@@ -1,8 +1,8 @@
 import alegria from "../assets/img/modulo_emocional/Actividad_1.1/seccion2/Alegria.jpg"
-import asco from "../assets/img/modulo_emocional/Actividad_1.1/seccion2/Asco.jpg"
+// import asco from "../assets/img/modulo_emocional/Actividad_1.1/seccion2/Asco.jpg"
 import ira from "../assets/img/modulo_emocional/Actividad_1.1/seccion2/Ira.jpg"
-import miedo from "../assets/img/modulo_emocional/Actividad_1.1/seccion2/Miedo.jpg"
-import sorpresa from "../assets/img/modulo_emocional/Actividad_1.1/seccion2/Sorpresa.jpg"
+// import miedo from "../assets/img/modulo_emocional/Actividad_1.1/seccion2/Miedo.jpg"
+// import sorpresa from "../assets/img/modulo_emocional/Actividad_1.1/seccion2/Sorpresa.jpg"
 import tristeza from "../assets/img/modulo_emocional/Actividad_1.1/seccion2/Tristeza.jpg"
 
 export const initialOptions = {

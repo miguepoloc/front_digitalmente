@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
 import { Actividad } from "../Actividad"
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
@@ -8,7 +9,7 @@ import imgMatriz from './assets/img/urgente-no urgente.png'
 export const Actividad1Part3 = () => {
     return (
         <>
-            <h2 className='text-center'></h2>
+            {/* <h2 className='text-center'></h2> */}
 
             <div className='row justify-content-center align-items-center mx-1 mx-md-4'>
 

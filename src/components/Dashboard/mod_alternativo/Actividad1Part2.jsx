@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
 import { Actividad } from "../Actividad"
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
-import Iframe from 'react-iframe'
+// import Iframe from 'react-iframe'
 import './assets/css/googleApp.scss'
 import imgCalendar from './assets/img/calendar.png'
 import imgSchool from './assets/img/school.png'
@@ -9,7 +10,7 @@ import imgSchool from './assets/img/school.png'
 export const Actividad1Part2 = () => {
     return (
         <>
-            <h2 className='text-center'></h2>
+            {/* <h2 className='text-center'></h2> */}
 
             <div className='row justify-content-center align-items-center mx-1 mx-md-4'>
 
@@ -32,7 +33,7 @@ export const Actividad1Part2 = () => {
 
             <div className='row my-4 mx-2 '>
             <div className='col col-md-6 '>
-                <a target={"_blank"} class="app w-100 d-flex rounded-2" href="https://play.google.com/store/apps/details?id=com.google.android.calendar ">
+                <a target={"_blank"} class="app w-100 d-flex rounded-2" href="https://play.google.com/store/apps/details?id=com.google.android.calendar " rel="noreferrer">
                    
                         <div class="app-image">
                             <img src={imgCalendar} />
@@ -47,7 +48,7 @@ export const Actividad1Part2 = () => {
                 </a>
             </div>
             <div className='col col-md-6 '>
-                <a  target={"_blank"} class="app w-100 d-flex rounded-2" href="https://play.google.com/store/apps/details?id=daldev.android.gradehelper">
+                <a  target={"_blank"} class="app w-100 d-flex rounded-2" href="https://play.google.com/store/apps/details?id=daldev.android.gradehelper" rel="noreferrer">
                
                         <div class="app-image">
                             <img src={imgSchool} />

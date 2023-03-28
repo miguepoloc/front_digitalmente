@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useContext, useEffect, useState } from 'react'
 import { Actividad } from "../Actividad"
 import { imgGanso } from '../../../helpers/helper_imagen_ganso'
@@ -5,7 +6,7 @@ import Chart from "react-apexcharts";
 import './assets/css/form.scss'
 import { BotonContext } from '../../../context/BotonContext';
 import { AvanceContext } from '../../../context/AvanceContext';
-import { AuthContext } from '../../../context/AuthContext';
+// import { AuthContext } from '../../../context/AuthContext';
 import { useParams } from 'react-router-dom'
 import { renderToString } from 'react-dom/server';
 import { FaBookOpen } from 'react-icons/fa';
@@ -27,7 +28,7 @@ export const Actividad1Part1 = () => {
 
     const { AvanceState } = useContext(AvanceContext);
     const [mostrarGrafico, setMostrarGrafico] = useState(false)
-    const { authState } = useContext(AuthContext)
+    // const { authState } = useContext(AuthContext)
 
 
     useEffect(() => {
@@ -48,13 +49,13 @@ export const Actividad1Part1 = () => {
             return str[0].toUpperCase() + str.substring(1, str.length);
         });
     }
-    const verificarValores = () => {
-        let maximoPermitido = 24;
-        for (let key of Object.keys(respuesta)) {
-            maximoPermitido -= respuesta[key];
-        }
-        return maximoPermitido;
-    }
+    // const verificarValores = () => {
+    //     let maximoPermitido = 24;
+    //     for (let key of Object.keys(respuesta)) {
+    //         maximoPermitido -= respuesta[key];
+    //     }
+    //     return maximoPermitido;
+    // }
 
     const extraerValores = () => {
         let valores = []
@@ -125,18 +126,18 @@ export const Actividad1Part1 = () => {
                 <div className='col-lg-5'>
                     <Actividad src={imgGanso.elegante} title=""
                         text={`Hola, Soy Cuack y quiero hablarte un poco sobre la procrastinación 
-                       `} showIcon={false} 
-                       underText={` <small class="d-flex justify-content-center"><span style="color:red">*</span>${renderToString(<div className='mx-1' >
+                       `} showIcon={false}
+                        underText={` <small class="d-flex justify-content-center"><span style="color:red">*</span>${renderToString(<div className='mx-1' >
 
-                       <div
-                           className={" buttonReferenciaNoFixed text-white"} style={{ cursor: "auto" }}
-                       >
-                           <FaBookOpen size={14} />
-                       </div>
-                       <ButtonLibro asImg={true} size={14} />
-   
-                   </div>)} Aquí podrás encontrar referencias bibliográficas del contenido de este módulo e información adicional sobre el tema.</small>`}
-                       />
+                            <div
+                                className={" buttonReferenciaNoFixed text-white"} style={{ cursor: "auto" }}
+                            >
+                                <FaBookOpen size={14} />
+                            </div>
+                            <ButtonLibro asImg={true} size={14} />
+
+                        </div>)} Aquí podrás encontrar referencias bibliográficas del contenido de este módulo e información adicional sobre el tema.</small>`}
+                    />
                 </div>
                 <div className='col-lg-7'>
                     <Actividad src={imgGanso.leyendo} title="Procrastinación"

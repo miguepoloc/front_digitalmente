@@ -1,11 +1,11 @@
-import React, { useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { imgGanso } from '../../helpers/helper_imagen_ganso'
 import { gansoPensandoAlert } from '../../helpers/helper_Swal_Alerts'
 import { Tip } from '../Dashboard/Tip'
 import { FcInfo } from 'react-icons/fc'
 import { useHistory } from 'react-router-dom'
 
-export const Resultados = ({ objResultados, setRenderResultados, mostrarMensajeDeAlerta = true}) => {
+export const Resultados = ({ objResultados, setRenderResultados, mostrarMensajeDeAlerta = true }) => {
 
     const history = useHistory()
     const text_justify = {
@@ -38,10 +38,10 @@ export const Resultados = ({ objResultados, setRenderResultados, mostrarMensajeD
 
     }
 
-    if(mostrarMensajeDeAlerta){
+    if (mostrarMensajeDeAlerta) {
         mensajeDeAlerta();
     }
-    
+
     useEffect(() => {
         window.scroll(0, 0)
     }, [])
